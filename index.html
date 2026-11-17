@@ -178,11 +178,28 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+.quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.qbtn { min-height: 54px; border: 0; border-radius: 18px; font: inherit; font-size: 15.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; color: #fff; }
+.qbtn.q-dang { background: #3D6AAE; }
+.qbtn.q-cmp { background: #E8736A; }
+.qbtn.q-ai { background: #2F7D6B; }
+.qbtn.q-tj { background: #8C93A3; }
+.ai-links { display: grid; gap: 8px; }
+.ai-link { min-height: 50px; border: 0; border-radius: 999px; background: var(--green); color: #fff; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.ai-link[data-ai="chatgpt"] { background: #2F7D6B; }
+.ai-link[data-ai="gemini"] { background: #6A5ACD; }
 
 .scroll { overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
 .lcs { display: flex; gap: 8px; min-width: min-content; }
 .lc { flex: 0 0 74px; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 8px 4px; text-align: center; font-size: 12px; display: grid; gap: 4px; }
 .lc.cur { border: 2px solid var(--amber); background: #FFF8E3; }
+/* 대운 10개를 한 화면에: 5칸 × 2줄 */
+.dae-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; min-width: 0; }
+.dae-grid .lc { padding: 6px 2px; gap: 2px; font-size: 11px; min-width: 0; }
+.dae-grid .lc .age { font-size: 13px; }
+.dae-grid .lc .yr { font-size: 10px; }
+.dae-grid .lc .gh { font-size: 20px; padding: 1px 0; }
+.dae-grid .lc .sub { font-size: 10.5px; }
 .lc .age { font-weight: 700; font-size: 14px; }
 .lc .yr { color: var(--muted); font-size: 11px; }
 .lc .gh { font-family: var(--font-han); font-weight: 700; font-size: 26px; line-height: 1.15; border-radius: 8px; padding: 2px 0; }
@@ -396,6 +413,16 @@ button.kakao svg { width: 20px; height: 20px; }
       <details><summary>태어난 곳은 왜 고르나요?</summary><p>같은 시계 시각이라도 서쪽 지방은 해가 늦게 뜨고 동쪽은 일찍 떠요. 그래서 경도에 따라 사주의 시가 몇 분씩 달라져요. 시 경계에 가까운 시각에 태어났다면 결과가 달라질 수 있어요.</p></details>
       <details><summary>대운수는 어떻게 정해지나요?</summary><p>태어난 날에서 앞뒤 절기까지의 날 수를 3일에 1년으로 바꿔요. 남녀와 년간의 음양에 따라 순행·역행이 정해져요. 자세한 숫자는 "운" 탭에 나와요.</p></details>
     </section>
+    <section class="card quick" aria-labelledby="h-quick1">
+      <h2 id="h-quick1">더 보기</h2>
+      <div class="quick-grid">
+        <button type="button" class="qbtn q-dang" data-go="6:h-dang"><span aria-hidden="true">⭐</span>당사주 보기</button>
+        <button type="button" class="qbtn q-cmp" data-go="6:h-cmp"><span aria-hidden="true">🧭</span>신살 나침반</button>
+        <button type="button" class="qbtn q-ai" data-go="5:h-ai"><span aria-hidden="true">🤖</span>AI 풀이</button>
+        <button type="button" class="qbtn q-tj" data-go="tojeong"><span aria-hidden="true">📜</span>토정비결</button>
+      </div>
+      <p class="hint" id="quickMsg1" role="status" style="margin-top:8px"></p>
+    </section>
   </div>
 
   <!-- 2. 운 -->
@@ -410,7 +437,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" aria-labelledby="h-dae">
       <h2 id="h-dae">대운 (10년 단위 흐름)</h2>
       <p class="sum" id="daeSum"></p>
-      <div class="scroll"><div class="lcs" id="daeCards"></div></div>
+      <div class="lcs dae-grid" id="daeCards"></div>
       <p class="hint" style="margin-top:8px">카드의 나이는 대운이 바뀌는 때(대운수 기준)이고, 아래 연도는 정확한 계산상의 시작 시점이에요. 한 해 안팎 차이가 있을 수 있어요.</p>
     </section>
     <section class="card" aria-labelledby="h-seun">
@@ -426,6 +453,16 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-wol">월운 <span id="wolYear"></span></h2>
       <div class="grid6" id="wolGrid"></div>
       <p class="hint" style="margin-top:8px">각 달은 절기(입춘, 경칩 등)부터 시작해요. 날짜는 양력이에요.</p>
+    </section>
+    <section class="card quick" aria-labelledby="h-quick2">
+      <h2 id="h-quick2">더 보기</h2>
+      <div class="quick-grid">
+        <button type="button" class="qbtn q-dang" data-go="6:h-dang"><span aria-hidden="true">⭐</span>당사주 보기</button>
+        <button type="button" class="qbtn q-cmp" data-go="6:h-cmp"><span aria-hidden="true">🧭</span>신살 나침반</button>
+        <button type="button" class="qbtn q-ai" data-go="5:h-ai"><span aria-hidden="true">🤖</span>AI 풀이</button>
+        <button type="button" class="qbtn q-tj" data-go="tojeong"><span aria-hidden="true">📜</span>토정비결</button>
+      </div>
+      <p class="hint" id="quickMsg2" role="status" style="margin-top:8px"></p>
     </section>
   </div>
 
@@ -526,6 +563,46 @@ button.kakao svg { width: 20px; height: 20px; }
 
   <!-- 5. 풀이 -->
   <div class="panel" role="tabpanel" id="pn-5" aria-labelledby="tab-5" hidden>
+    <section class="card" aria-labelledby="h-ai">
+      <h2 id="h-ai">AI 풀이</h2>
+      <div>
+        <div class="field">
+          <label for="aiMode">풀이 종류</label>
+          <select id="aiMode">
+            <option value="general">종합 풀이</option>
+            <option value="month">이번 달 운세</option>
+            <option value="question">질문형 풀이</option>
+            <option value="newyear">신년 운세</option>
+            <option value="life">인생 전체 풀이</option>
+            <option value="love">연애·결혼 풀이</option>
+          </select>
+        </div>
+        <div class="field" id="aiQRow" hidden>
+          <label for="aiQ">궁금한 것을 적어 주세요</label>
+          <textarea class="q" id="aiQ" maxlength="300" placeholder="예: 올해 이직해도 괜찮을까요?"></textarea>
+        </div>
+        <div class="field" id="aiYRow" hidden>
+          <label for="aiYear">운세를 볼 해</label>
+          <select id="aiYear"></select>
+        </div>
+      </div>
+      <div class="ai-on" hidden>
+        <p class="hint" style="margin-bottom:10px">지금 화면의 명식·운·관계를 바탕으로 AI가 쉬운 말로 풀어 줘요. 처음 누르면 사용 동의 창이 나올 수 있어요.</p>
+        <button class="primary" id="aiGo" type="button" data-label="AI 풀이 받기">AI 풀이 받기</button>
+        <div class="ai-out" id="aiOut" hidden role="status"></div>
+      </div>
+      <div class="ai-off">
+        <p class="hint" style="margin-bottom:10px">풀이 종류를 고르고 AI를 누르면, 내 명식과 풀이 부탁 글이 <b>자동으로 복사</b>되고 AI 창이 열려요. 열린 창의 입력칸을 길게 눌러 <b>붙여넣기</b>한 뒤 보내면 풀이가 나와요.</p>
+        <div class="ai-links">
+          <button type="button" class="ai-link" data-ai="claude"><span aria-hidden="true">✳️</span>Claude로 풀이 보기</button>
+          <button type="button" class="ai-link" data-ai="chatgpt"><span aria-hidden="true">💬</span>ChatGPT로 풀이 보기</button>
+          <button type="button" class="ai-link" data-ai="gemini"><span aria-hidden="true">✨</span>Gemini로 풀이 보기</button>
+          <button type="button" class="ghost" data-ai="copy">부탁 글만 복사하기</button>
+        </div>
+        <p class="toast" id="aiLinkMsg" role="status" style="margin-top:8px"></p>
+        <p class="hint">AI 앱이나 사이트에 로그인되어 있어야 해요. AI 풀이는 재미와 참고용이에요.</p>
+      </div>
+    </section>
     <section class="card read" aria-labelledby="h-ilju">
       <h2 id="h-ilju">내 일주 성격</h2>
       <div id="iljuBox"></div>
@@ -542,33 +619,6 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-60">60일주 한눈에</h2>
       <p class="hint">내 일주는 노란 표시예요. 누르면 설명이 펼쳐져요.</p>
       <div id="il60"></div>
-    </section>
-    <section class="card" aria-labelledby="h-ai">
-      <h2 id="h-ai">AI 풀이</h2>
-      <div class="ai-on" hidden>
-        <div class="field">
-          <label for="aiMode">풀이 종류</label>
-          <select id="aiMode">
-            <option value="general">종합 풀이</option>
-            <option value="question">질문형 풀이</option>
-            <option value="newyear">신년 운세</option>
-            <option value="life">인생 전체 풀이</option>
-            <option value="love">연애·결혼 풀이</option>
-          </select>
-        </div>
-        <div class="field" id="aiQRow" hidden>
-          <label for="aiQ">궁금한 것을 적어 주세요</label>
-          <textarea class="q" id="aiQ" maxlength="300" placeholder="예: 올해 이직해도 괜찮을까요?"></textarea>
-        </div>
-        <div class="field" id="aiYRow" hidden>
-          <label for="aiYear">운세를 볼 해</label>
-          <select id="aiYear"></select>
-        </div>
-        <p class="hint" style="margin-bottom:10px">지금 화면의 명식·운·관계를 바탕으로 AI가 쉬운 말로 풀어 줘요. 처음 누르면 사용 동의 창이 나올 수 있어요.</p>
-        <button class="primary" id="aiGo" type="button" data-label="AI 풀이 받기">AI 풀이 받기</button>
-        <div class="ai-out" id="aiOut" hidden role="status"></div>
-      </div>
-      <div class="ai-off"><p class="hint">이 화면에서는 AI 풀이를 바로 쓸 수 없어요. 명식 탭의 "전체 글 복사"로 복사해서 AI 대화창에 붙여 넣고 풀이를 부탁해 주세요.</p></div>
     </section>
     <section class="card gl" aria-labelledby="h-gl">
       <h2 id="h-gl">사주 용어 쉽게 보기</h2>
@@ -1483,6 +1533,9 @@ const READ = (function (S) {
       case 'newyear':
         task = ['요청: ' + extra.year + '년 신년 운세를 풀어 주세요. 입춘부터 새해가 시작됩니다.', '구성: ① 올해를 한 줄 키워드로 ② 재물·일·관계·마음 컨디션의 흐름 ③ 월별 흐름(입춘부터 12달, 자료의 월운 사용) ④ 좋은 시기와 조심할 시기 ⑤ 올해 실천 세 가지'];
         size = '1,800~2,400자'; break;
+      case 'month':
+        task = ['요청: ' + (extra.monthLabel || '이번 달') + ' 운세를 풀어 주세요. 달은 절기를 기준으로 바뀝니다.', '구성: ① 이번 달 키워드 한 줄 ② 일·재물·관계·건강의 흐름(자료의 월운과 세운·대운을 근거로) ③ 이번 달 안에서 힘을 내기 좋은 때와 쉬어 갈 때 ④ 이번 달 실천 세 가지'];
+        size = '1,000~1,400자'; break;
       case 'life':
         task = ['요청: 인생 전체의 흐름을 대운 중심으로 풀어 주세요.', '구성: ① 인생 흐름 한눈에 보기 ② 대운별 흐름(자료의 10개 대운을 각각 두 문장씩) ③ 상승기, 쉬어 가는 시기, 전환점 ④ 타고난 강점을 살리는 방법'];
         size = '1,800~2,400자'; break;
@@ -2378,6 +2431,24 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       $('pn-' + b.getAttribute('data-tab')).hidden = !on;
     });
   }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+    b.addEventListener('click', function () {
+      var go = b.getAttribute('data-go');
+      if (go === 'tojeong') {
+        var m = b.closest('.quick').querySelector('[role=status]');
+        m.textContent = '토정비결은 준비 중이에요. 144괘 풀이 글을 정리하고 있어요.';
+        return;
+      }
+      var parts = go.split(':');
+      showTab(parts[0]);
+      var target = document.getElementById(parts[1]);
+      if (target) setTimeout(function () {
+        var sec = target.closest('section') || target;
+        var top = sec.getBoundingClientRect().top + window.scrollY - (document.querySelector('.tabs').offsetHeight + 8);
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }, 30);
+    });
+  });
   tabs.forEach(function (b, i) {
     b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     b.addEventListener('keydown', function (e) {
@@ -2439,6 +2510,17 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     });
   }
 
+  function curMonthInfo() {
+    var res = st.A.res, now = new Date(Date.now() + 9 * 3600000);
+    var ty = now.getUTCFullYear(), md = (now.getUTCMonth() + 1) * 100 + now.getUTCDate();
+    var sy = st.sy, list = X.wolun(res, sy), pick = null;
+    list.forEach(function (q, i) {
+      var mm = +q.start.slice(0, 2), dd = +q.start.slice(3, 5), yy = i === 11 ? sy + 1 : sy;
+      if (yy < ty || (yy === ty && mm * 100 + dd <= md)) pick = q;
+    });
+    if (!pick) return null;
+    return { q: pick, label: ty + '년 ' + pick.term + '(' + pick.start.replace('-', '/') + ')부터 한 달', sn: X.seun(res, sy, 1)[0] };
+  }
   function extraData(mode) {
     var c = st.A, res = c.res, L = [];
     if (mode === 'newyear') {
@@ -2446,6 +2528,9 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       var sn = X.seun(res, y, 1)[0];
       L.push('[신년 자료] ' + y + '년 세운 ' + sn.stemH + sn.branchH + ' (천간 ' + sn.stemGod + ', 지지 ' + sn.branchGod + ', 12운성 ' + sn.unsung + '), 일지와의 관계 ' + (X.pairKinds(res.pillars.day.branch, sn.branch).join(', ') || '없음'));
       L.push('월운(입춘부터): ' + X.wolun(res, y).map(function (q) { return q.term + ' ' + q.start + ' ' + q.stemH + q.branchH + '(' + q.stemGod + '/' + q.branchGod + ')'; }).join(', '));
+    } else if (mode === 'month') {
+      var mi = curMonthInfo();
+      if (mi) L.push('[이번 달 자료] ' + mi.label + ' 월운 ' + mi.q.stemH + mi.q.branchH + ' (천간 ' + mi.q.stemGod + ', 지지 ' + mi.q.branchGod + ', 12운성 ' + mi.q.unsung + '), 일지와의 관계 ' + (X.pairKinds(res.pillars.day.branch, mi.q.branch).join(', ') || '없음') + ' / 그해 세운 ' + mi.sn.stemH + mi.sn.branchH + '(' + mi.sn.stemGod + '/' + mi.sn.branchGod + ')');
     } else if (mode === 'life') {
       L.push('[대운 상세] ' + c.dn.periods.map(function (p) { return p.age + '세(' + p.startYear + '년~) ' + p.stemH + p.branchH + ' 천간 ' + p.stemGod + ' 지지 ' + p.branchGod + ' 12운성 ' + p.unsung; }).join(' / '));
     } else if (mode === 'love') {
@@ -2463,12 +2548,41 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('aiYRow').hidden = m !== 'newyear';
   }
   $('aiMode').addEventListener('change', syncAiMode);
-  bindAI('aiGo', 'aiOut', function () {
+  function buildAiPrompt() {
     var m = $('aiMode').value, q = $('aiQ').value.trim();
     if (m === 'question' && !q) throw new Error('궁금한 것을 먼저 적어 주세요.');
     var summary = lastText + (extraData(m) ? '\n\n' + extraData(m) : '');
-    return READ.aiPrompt(summary, m, { question: q, year: $('aiYear').value });
+    var mi = m === 'month' ? curMonthInfo() : null;
+    return READ.aiPrompt(summary, m, { question: q, year: $('aiYear').value, monthLabel: mi ? mi.label : '' });
+  }
+  var AI_URL = { claude: 'https://claude.ai/new', chatgpt: 'https://chatgpt.com/', gemini: 'https://gemini.google.com/app' };
+  var AI_NAME = { claude: 'Claude', chatgpt: 'ChatGPT', gemini: 'Gemini' };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-ai]'), function (b) {
+    b.addEventListener('click', function () {
+      var kind = b.getAttribute('data-ai'), msg = $('aiLinkMsg'), text;
+      try { text = buildAiPrompt(); } catch (e) { msg.textContent = e.message; return; }
+      // 1) 창이 바뀌기 전에 먼저 복사 (휴대폰에서도 잘 되도록 두 가지 방법)
+      var copied = false;
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+        copied = document.execCommand('copy'); document.body.removeChild(ta);
+      } catch (e) { copied = false; }
+      var p2c = null;
+      if (navigator.clipboard && navigator.clipboard.writeText) { try { p2c = navigator.clipboard.writeText(text); } catch (e) { p2c = null; } }
+      // 2) 그다음 AI 창 열기
+      if (AI_URL[kind]) { try { window.open(AI_URL[kind], '_blank', 'noopener'); } catch (e) {} }
+      function ok() { msg.textContent = kind === 'copy' ? '부탁 글을 복사했어요. AI 대화창에 붙여 넣어 보내 주세요.' : '복사했어요! 열린 ' + AI_NAME[kind] + ' 창의 입력칸에 붙여넣기 하고 보내 주세요.'; }
+      function fail() {
+        msg.textContent = '자동 복사가 안 됐어요. 명식 탭의 "전체 글 복사"를 이용해 주세요.';
+      }
+      if (copied) ok();
+      else if (p2c) p2c.then(ok, fail);
+      else fail();
+    });
   });
+  bindAI('aiGo', 'aiOut', buildAiPrompt);
   bindAI('gAiGo', 'gAiOut', function () {
     if (!lastG) throw new Error('궁합 정보를 먼저 입력해 주세요.');
     var type = document.querySelector('input[name=gtype]:checked').value;
