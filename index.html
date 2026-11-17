@@ -2649,11 +2649,9 @@ var KAKAO_JS_KEY = '393da0e592003f164282500dc2c8d890';
 (function () {
   var sp = document.getElementById('splash'), go = document.getElementById('splashGo');
   var seen = false;
-  try { seen = sessionStorage.getItem('splashSeen') === '1'; } catch (e) {}
   function close() {
     sp.classList.add('out');
     document.body.style.overflow = '';
-    try { sessionStorage.setItem('splashSeen', '1'); } catch (e) {}
     setTimeout(function () { sp.hidden = true; }, 500);
   }
   if (seen) { sp.hidden = true; return; }
