@@ -58,6 +58,9 @@
 #splash .sp-choice button small { font-size: 11.5px; font-weight: 500; opacity: .9; }
 #splash .sp-choice .sp-mr { background: #2C6E8F; box-shadow: 0 8px 18px rgba(44, 110, 143, .3); }
 #splash .sp-choice button:last-child:nth-child(odd) { grid-column: 1 / -1; min-height: 76px !important; flex-direction: row; gap: 10px; }
+#splash .sp-choice .sp-face { background: #C2557A; box-shadow: 0 8px 18px rgba(194, 85, 122, .3); }
+#splash .sp-choice .sp-palm { background: #D07A2E; box-shadow: 0 8px 18px rgba(208, 122, 46, .3); }
+#splash .sp-choice button { min-height: 84px !important; }
 #splash .sp-choice .sp-tj { background: #B07A3C; box-shadow: 0 8px 18px rgba(176, 122, 60, .3); }
 #splash .sp-choice button { min-height: 96px !important; }
 #splash .sp-choice .sp-name { background: #2F7D6B; box-shadow: 0 8px 18px rgba(47, 125, 107, .3); }
@@ -65,6 +68,22 @@
 #splash .sp-choice button small { font-size: 10.5px !important; line-height: 1.3; }
 #splash .sp-choice .sp-tarot { background: #6A5ACD; box-shadow: 0 8px 18px rgba(106, 90, 205, .3); }
 #splash button:focus-visible { outline: 3px solid #FFB38A; outline-offset: 3px; }
+/* 시작 화면 버튼: 파스텔 · 아기자기 */
+#splash .sp-choice button { border: 2.5px solid #fff !important; box-shadow: 0 6px 0 rgba(0,0,0,.06), 0 10px 18px rgba(120,110,160,.14) !important; position: relative; overflow: hidden; transition: transform .15s; font-family: var(--font-cute); }
+#splash .sp-choice button::after { content: '✦'; position: absolute; top: 8px; right: 12px; font-size: 13px; color: #fff; opacity: .95; }
+#splash .sp-choice button:active { transform: translateY(3px) scale(.98); }
+#splash .sp-choice button span { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.75); font-size: 26px !important; margin-bottom: 2px; }
+#splash .sp-choice button small { opacity: .85; }
+#splash .sp-choice #splashGo { background: #CFE3FF !important; color: #2F4F86 !important; }
+#splash .sp-choice .sp-mr { background: #C9ECEF !important; color: #1F5F6B !important; }
+#splash .sp-choice .sp-tarot { background: #E3DBFF !important; color: #4E3FA0 !important; }
+#splash .sp-choice .sp-name { background: #D3F0DD !important; color: #2A6B45 !important; }
+#splash .sp-choice .sp-face { background: #FFD9E6 !important; color: #A33E66 !important; }
+#splash .sp-choice .sp-palm { background: #FFE2C4 !important; color: #9A5418 !important; }
+#splash .sp-choice .sp-tj { background: #FFF0B8 !important; color: #8A6410 !important; }
+#splash .sp-choice button:last-child:nth-child(odd) span { margin-bottom: 0; }
+#splash { overflow-y: auto; justify-content: flex-start; padding-top: max(24px, 4vh); gap: 16px; }
+#splash svg { flex-shrink: 0; width: min(62vw, 280px); overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { #splash { transition: none; } }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -99,10 +118,18 @@ body[data-mode=tj] #pn-9 #tjsResult[hidden] { display: none !important; }
 body[data-mode=tj] .mode-sw button[aria-selected=true] { background: #B07A3C; }
 body[data-mode=tj] header { --hd1: #FFE9C7; --hd2: #FBE0D2; --hd3: #FFF4DC; --hd-ink: #7A4A16; }
 body[data-mode=tj] #tjsGo { background: #B07A3C; }
-@media (max-width: 430px) { .mode-sw { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; border-radius: 18px; } .mode-sw button { font-size: 12.5px; padding: 0 2px; min-height: 44px; border-radius: 14px; line-height: 1.15; } }
+@media (max-width: 430px) { .mode-sw { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; border-radius: 18px; } .mode-sw button { font-size: 12.5px; padding: 0 2px; min-height: 44px; border-radius: 14px; line-height: 1.15; } }
 body[data-mode=saju] #pn-10, body[data-mode=tarot] #pn-10, body[data-mode=name] #pn-10, body[data-mode=tj] #pn-10 { display: none !important; }
 body[data-mode=mr] .tabs, body[data-mode=mr] .panel { display: none !important; }
 body[data-mode=mr] #pn-10 { display: block !important; }
+body[data-mode=face] .card.form, body[data-mode=face] #saveCard, body[data-mode=face] .tabs, body[data-mode=face] .panel,
+body[data-mode=palm] .card.form, body[data-mode=palm] #saveCard, body[data-mode=palm] .tabs, body[data-mode=palm] .panel { display: none !important; }
+body[data-mode=face] #pn-11, body[data-mode=palm] #pn-12 { display: block !important; }
+body[data-mode=face] #pn-11 [hidden], body[data-mode=palm] #pn-12 [hidden] { display: none !important; }
+body[data-mode=face] .mode-sw button[aria-selected=true] { background: #C2557A; }
+body[data-mode=palm] .mode-sw button[aria-selected=true] { background: #D07A2E; }
+body[data-mode=face] header { --hd1: #FBD9E4; --hd2: #F7E1F0; --hd3: #FFE9DF; --hd-ink: #8A2F55; }
+body[data-mode=palm] header { --hd1: #FFE2C7; --hd2: #FDEBD3; --hd3: #FFF4DE; --hd-ink: #8A4A12; }
 body[data-mode=mr] .mode-sw button[aria-selected=true] { background: #2C6E8F; }
 body[data-mode=mr] header { --hd1: #CDE8F2; --hd2: #DCE3FA; --hd3: #E8F4EE; --hd-ink: #1F4F68; }
 body[data-mode=mr] #go { background: #2C6E8F; }
@@ -263,6 +290,24 @@ td.god.gw { color: #9A6B00; font-size: 12px; line-height: 1.35; }
 .tg.good { background: #DDF2E3; color: #2F7D4A; } .tg.bad { background: #FBE1DE; color: #B3342C; } .tg.mid { background: #EEF0F4; color: #5B6577; } .tg.sam { background: #FFF0D6; color: #9A5B00; }
 .ddy-d { font-size: 14px; margin-top: 2px; }
 .ddy-m { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+.fp-fig.fp-wide { width: min(300px, 90%); }
+.fp-fig { display: block; width: min(220px, 70%); height: auto; margin: 0 auto 8px; }
+.fp-q { border: 0; margin: 0; padding: 12px 0; border-top: 1px solid var(--line); }
+.fp-q:first-child { border-top: 0; }
+.fp-q legend { font-weight: 700; font-size: 15.5px; padding: 0; }
+.fp-q legend small { font-weight: 500; color: var(--muted); font-size: 12.5px; margin-left: 4px; }
+.fp-opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.fp-opts input { position: absolute; opacity: 0; pointer-events: none; }
+.fp-opts label { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 13px; font-size: 14px; cursor: pointer; min-height: 38px; display: inline-flex; align-items: center; }
+.fp-opts input:checked + label { background: var(--fp, var(--green)); border-color: var(--fp, var(--green)); color: #fff; font-weight: 700; }
+.fp-opts input:focus-visible + label { outline: 3px solid var(--amber); outline-offset: 2px; }
+.fp-mean { font-size: 13.5px; color: var(--green-2); margin: 6px 0 0; min-height: 0; }
+.fp-res h3 { margin: 14px 0 6px; font-size: 15.5px; }
+.fp-res p { margin: 4px 0; font-size: 14.5px; }
+.fp-kw { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.fp-kw span { background: var(--pink-soft); border-radius: 999px; padding: 3px 10px; font-size: 13px; font-weight: 700; }
+.fp-steps { margin: 0 0 10px; padding-left: 20px; font-size: 14.5px; line-height: 1.7; }
+#pn-11 { --fp: #C2557A; } #pn-12 { --fp: #D07A2E; }
 .tj-gwae { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 6px 0 10px; }
 .tj-gwae div { border-radius: 16px; background: var(--pink-soft); text-align: center; padding: 10px 4px; }
 .tj-gwae b { display: block; font-size: 30px; line-height: 1.1; color: var(--green-2); }
@@ -449,6 +494,8 @@ button.kakao svg { width: 20px; height: 20px; }
     <button type="button" id="splashMr" data-mode="mr" class="sp-mr"><span aria-hidden="true">🔮</span>명리 풀이<small>원국 · 운 · 명리 분석</small></button>
     <button type="button" id="splashTarot" data-mode="tarot" class="sp-tarot"><span aria-hidden="true">🃏</span>타로점<small>카드 3장으로 보는 흐름</small></button>
     <button type="button" id="splashName" data-mode="name" class="sp-name"><span aria-hidden="true">✍️</span>작명<small>사주에 맞는 이름 짓기</small></button>
+    <button type="button" id="splashFace" data-mode="face" class="sp-face"><span aria-hidden="true">👤</span>관상<small>얼굴로 보는 성향</small></button>
+    <button type="button" id="splashPalm" data-mode="palm" class="sp-palm"><span aria-hidden="true">✋</span>손금<small>손바닥 선으로 보는 흐름</small></button>
     <button type="button" id="splashTj" data-mode="tj" class="sp-tj"><span aria-hidden="true">📜</span>토정비결<small>생년월일로 보는 한 해</small></button>
   </div>
 </div>
@@ -464,6 +511,8 @@ button.kakao svg { width: 20px; height: 20px; }
       <button type="button" role="tab" data-mode="tarot" aria-selected="false">🃏 타로</button>
       <button type="button" role="tab" data-mode="name" aria-selected="false">✍️ 작명</button>
       <button type="button" role="tab" data-mode="tj" aria-selected="false">📜 토정</button>
+      <button type="button" role="tab" data-mode="face" aria-selected="false">👤 관상</button>
+      <button type="button" role="tab" data-mode="palm" aria-selected="false">✋ 손금</button>
     </div>
   </div>
 </header>
@@ -852,6 +901,97 @@ button.kakao svg { width: 20px; height: 20px; }
       <p class="toast" id="mrMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
       <p class="hint">다른 대운·해·달·날짜를 고르려면 <b>사주 만세력 → 풀이 탭</b>의 AI 풀이에서 고를 수 있어요.</p>
     </section>
+  </div>
+
+  <!-- 11. 관상 -->
+  <div class="panel" role="tabpanel" id="pn-11" aria-labelledby="h-face" hidden>
+    <section class="card" aria-labelledby="h-face">
+      <h2 id="h-face">👤 내 얼굴 고르기</h2>
+      <svg class="fp-fig fp-wide" viewBox="0 0 300 250" role="img" aria-label="얼굴 삼정 그림">
+        <ellipse cx="100" cy="130" rx="74" ry="104" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2.5"/>
+        <path d="M62 94 q14 -8 28 0 M110 94 q14 -8 28 0" stroke="var(--ink)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="76" cy="110" rx="9" ry="5" fill="var(--ink)"/><ellipse cx="124" cy="110" rx="9" ry="5" fill="var(--ink)"/>
+        <path d="M100 114 l-8 32 h16 z" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M80 182 q20 12 40 0" stroke="#C2557A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="24" cy="126" rx="8" ry="20" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2"/><ellipse cx="176" cy="126" rx="8" ry="20" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2"/>
+        <line x1="28" y1="84" x2="196" y2="84" stroke="#C2557A" stroke-dasharray="4 4"/><line x1="28" y1="156" x2="196" y2="156" stroke="#C2557A" stroke-dasharray="4 4"/>
+        <text x="200" y="58" font-size="13" font-weight="700" fill="#C2557A">상정</text><text x="200" y="74" font-size="11" fill="#C2557A">이마 · 초년</text>
+        <text x="200" y="116" font-size="13" font-weight="700" fill="#C2557A">중정</text><text x="200" y="132" font-size="11" fill="#C2557A">눈썹~코 · 중년</text>
+        <text x="200" y="196" font-size="13" font-weight="700" fill="#C2557A">하정</text><text x="200" y="212" font-size="11" fill="#C2557A">입~턱 · 말년</text>
+      </svg>
+      <p class="hint">거울을 보며 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. 얼굴을 셋으로 나눈 <b>삼정</b>과 눈썹·눈·코·입·귀의 <b>오관</b>으로 봐요.</p>
+      <div id="faceQs"></div>
+    </section>
+    <section class="card" id="faceRes" aria-labelledby="h-facer" hidden>
+      <h2 id="h-facer">✨ 관상 풀이</h2>
+      <div id="faceBox"></div>
+      <div class="ai-links" style="margin-top:12px">
+        <button type="button" class="ai-link" data-ai="claude" data-src="face"><span aria-hidden="true">✳️</span>Claude로 자세히 보기</button>
+        <button type="button" class="ai-link" data-ai="chatgpt" data-src="face"><span aria-hidden="true">💬</span>ChatGPT로 자세히 보기</button>
+        <button type="button" class="ai-link" data-ai="gemini" data-src="face"><span aria-hidden="true">✨</span>Gemini로 자세히 보기</button>
+        <button type="button" class="ghost" data-ai="copy" data-src="face">부탁 글만 복사하기</button>
+      </div>
+      <p class="toast" id="faceMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
+    </section>
+    <section class="card" aria-labelledby="h-facep">
+      <h2 id="h-facep">📷 사진으로 AI에게 관상 보기</h2>
+      <ol class="fp-steps"><li>밝은 곳에서 <b>정면</b>으로 찍어요. 그림자가 지지 않게요.</li><li>앞머리를 넘겨 <b>이마와 귀</b>가 보이게 해요.</li><li>무표정에 가까운 자연스러운 얼굴이 좋아요. 필터·보정은 꺼 주세요.</li><li>아래 버튼을 누르면 부탁 글이 복사되고 AI 창이 열려요. <b>붙여넣기 + 사진 첨부</b> 후 보내요.</li></ol>
+      <div class="warn">사진은 <b>홍짱 앱에 저장되거나 보내지지 않아요.</b> 다만 AI 창에 사진을 올리면 그 AI 회사로 보내져요. <b>본인 사진만</b>, 원하실 때만 올려 주세요. 다른 사람 사진은 꼭 허락을 받고 써 주세요.</div>
+      <div class="ai-links" style="margin-top:12px">
+        <button type="button" class="ai-link" data-ai="claude" data-src="facep"><span aria-hidden="true">✳️</span>Claude에 사진으로 묻기</button>
+        <button type="button" class="ai-link" data-ai="chatgpt" data-src="facep"><span aria-hidden="true">💬</span>ChatGPT에 사진으로 묻기</button>
+        <button type="button" class="ai-link" data-ai="gemini" data-src="facep"><span aria-hidden="true">✨</span>Gemini에 사진으로 묻기</button>
+        <button type="button" class="ghost" data-ai="copy" data-src="facep">부탁 글만 복사하기</button>
+      </div>
+      <p class="toast" id="facepMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
+      <p class="hint">관상은 외모의 좋고 나쁨을 가리는 것이 아니라, 얼굴 모양에 담긴 성향을 옛 방식으로 읽어 보는 재미예요.</p>
+    </section>
+    <section class="card"><p class="hint" style="margin:0">관상은 전통적으로 전해 오는 해석이고 과학적으로 증명된 것은 아니에요. 재미와 참고로만 봐 주세요. 얼굴은 표정과 마음가짐에 따라 바뀐다고도 해요.</p></section>
+  </div>
+
+  <!-- 12. 손금 -->
+  <div class="panel" role="tabpanel" id="pn-12" aria-labelledby="h-palm" hidden>
+    <section class="card" aria-labelledby="h-palm">
+      <h2 id="h-palm">✋ 내 손금 고르기</h2>
+      <svg class="fp-fig" viewBox="0 0 220 260" role="img" aria-label="손금 4대선 그림">
+        <path d="M58 250 L52 150 Q46 120 30 104 Q20 92 30 86 Q40 80 52 94 L66 112 L64 46 Q64 34 74 34 Q84 34 84 46 L86 100 L88 26 Q88 14 99 14 Q110 14 110 26 L110 98 L114 32 Q114 20 125 20 Q136 20 136 32 L134 104 L140 56 Q141 44 151 45 Q161 46 160 58 L156 140 Q154 190 150 250 Z" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M88 126 Q66 150 70 196 Q72 220 82 240" stroke="#D9534F" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M88 128 Q110 140 146 156" stroke="#3D6AAE" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M154 120 Q126 112 104 116 Q92 118 84 108" stroke="#E07BA0" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M116 242 Q114 190 116 132" stroke="#3C9A5F" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="1 0"/>
+        <text x="4" y="206" font-size="12" font-weight="700" fill="#D9534F">생명선</text>
+        <text x="162" y="164" font-size="12" font-weight="700" fill="#3D6AAE">두뇌선</text>
+        <text x="162" y="118" font-size="12" font-weight="700" fill="#C2557A">감정선</text>
+        <text x="162" y="214" font-size="12" font-weight="700" fill="#3C9A5F">운명선</text><path d="M160 210 L120 204" stroke="#3C9A5F" stroke-width="1" fill="none"/>
+      </svg>
+      <p class="hint">손바닥을 활짝 펴고 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. <b>주로 쓰는 손</b>은 지금까지 만들어 온 모습, <b>반대 손</b>은 타고난 바탕으로 많이 봐요.</p>
+      <div id="palmQs"></div>
+    </section>
+    <section class="card" id="palmRes" aria-labelledby="h-palmr" hidden>
+      <h2 id="h-palmr">✨ 손금 풀이</h2>
+      <div id="palmBox"></div>
+      <div class="ai-links" style="margin-top:12px">
+        <button type="button" class="ai-link" data-ai="claude" data-src="palm"><span aria-hidden="true">✳️</span>Claude로 자세히 보기</button>
+        <button type="button" class="ai-link" data-ai="chatgpt" data-src="palm"><span aria-hidden="true">💬</span>ChatGPT로 자세히 보기</button>
+        <button type="button" class="ai-link" data-ai="gemini" data-src="palm"><span aria-hidden="true">✨</span>Gemini로 자세히 보기</button>
+        <button type="button" class="ghost" data-ai="copy" data-src="palm">부탁 글만 복사하기</button>
+      </div>
+      <p class="toast" id="palmMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
+    </section>
+    <section class="card" aria-labelledby="h-palmp">
+      <h2 id="h-palmp">📷 사진으로 AI에게 손금 보기</h2>
+      <ol class="fp-steps"><li>밝은 곳에서 손바닥을 <b>활짝 펴고</b>, 위에서 <b>수직으로</b> 찍어요.</li><li>손목까지 나오게, 손가락은 붙이지 말고 살짝 벌려요.</li><li>선이 잘 보이게 손바닥을 살짝 오므렸다 펴면 좋아요. 양손을 따로 찍으면 더 좋아요.</li><li>아래 버튼을 누르면 부탁 글이 복사되고 AI 창이 열려요. <b>붙여넣기 + 사진 첨부</b> 후 보내요.</li></ol>
+      <div class="warn">사진은 <b>홍짱 앱에 저장되거나 보내지지 않아요.</b> 다만 AI 창에 사진을 올리면 그 AI 회사로 보내져요. <b>본인 사진만</b>, 원하실 때만 올려 주세요. 다른 사람 사진은 꼭 허락을 받고 써 주세요.</div>
+      <div class="ai-links" style="margin-top:12px">
+        <button type="button" class="ai-link" data-ai="claude" data-src="palmp"><span aria-hidden="true">✳️</span>Claude에 사진으로 묻기</button>
+        <button type="button" class="ai-link" data-ai="chatgpt" data-src="palmp"><span aria-hidden="true">💬</span>ChatGPT에 사진으로 묻기</button>
+        <button type="button" class="ai-link" data-ai="gemini" data-src="palmp"><span aria-hidden="true">✨</span>Gemini에 사진으로 묻기</button>
+        <button type="button" class="ghost" data-ai="copy" data-src="palmp">부탁 글만 복사하기</button>
+      </div>
+      <p class="toast" id="palmpMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
+      <p class="hint">손금은 살면서 조금씩 바뀐다고 해요. 지금의 모습을 비춰 보는 정도로 봐 주세요.</p>
+    </section>
+    <section class="card"><p class="hint" style="margin:0">손금은 전통적으로 전해 오는 해석이고 과학적으로 증명된 것은 아니에요. 건강이나 수명을 손금으로 판단하지 마세요. 재미와 참고로만 봐 주세요.</p></section>
   </div>
 
   <!-- 9. 토정비결 (생년월일만으로) -->
@@ -3145,10 +3285,13 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   // ---------- 사주 / 타로 보기 바꾸기 ----------
   var HD_SUB = { saju: '명식, 대운·세운, 합충과 신살, 궁합, 오늘의 운세까지 한 곳에서 봐요.', tarot: '주제와 질문을 정하고 카드 3장을 뽑아 과거·현재·미래의 흐름을 봐요.', name: '아이의 사주에서 부족한 기운을 찾고, 이름의 소리오행을 살펴봐요.' };
   var HD_TITLE = { saju: '사주 만세력', tarot: '홍짱 타로점', name: '홍짱 작명', tj: '홍짱 토정비결', mr: '홍짱 명리 풀이' };
+  HD_TITLE.face = '홍짱 관상'; HD_TITLE.palm = '홍짱 손금';
+  HD_SUB.face = '얼굴의 모양을 골라 타고난 성향을 보고, 사진으로 AI에게 관상을 부탁해요.';
+  HD_SUB.palm = '손바닥의 선을 골라 흐름을 보고, 사진으로 AI에게 손금을 부탁해요.';
   HD_SUB.mr = '사주팔자와 명리 분석을 한눈에 보고, 원국·대운·세운·월운·일운 풀이를 AI에게 부탁해요.';
   HD_SUB.tj = '태어난 해·월·일만 넣으면 그해의 토정비결 괘를 찾아 드려요.';
   function setMode(m) {
-    m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr') ? m : 'saju';
+    m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm') ? m : 'saju';
     document.body.setAttribute('data-mode', m);
     Array.prototype.forEach.call(document.querySelectorAll('.mode-sw [data-mode]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
     $('hdSub').textContent = HD_SUB[m];
@@ -3166,6 +3309,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   if (location.hash === '#name') setMode('name');
   if (location.hash === '#tj' || location.hash === '#tojeong') setMode('tj');
   if (location.hash === '#mr' || location.hash === '#myeongri') setMode('mr');
+  if (location.hash === '#face' || location.hash === '#gwansang') setMode('face');
+  if (location.hash === '#palm' || location.hash === '#songeum') setMode('palm');
 
 
 
@@ -3499,6 +3644,147 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       (miss.length ? '사주 안에 <b>' + miss.map(function (i) { return EN[i]; }).join('·') + '</b> 기운이 없어요. ' : '다섯 기운이 모두 있어요. ') +
       (many.length ? '<b>' + many.map(function (i) { return EN[i]; }).join('·') + '</b> 기운이 많은 편이에요.' : '');
   }
+
+
+  // ---------- 관상 · 손금 ----------
+  var FACE_Q = [
+    { id: 'shape', t: '얼굴형', h: '전체 성향', o: [
+      ['둥근형', '둥글고 부드러운 얼굴은 원만하고 친화력이 좋아 사람이 잘 모인다고 봐요.', '친화력'],
+      ['계란형', '갸름한 계란형은 균형 감각과 센스가 좋아 어디서나 무난히 어울린다고 봐요.', '균형 감각'],
+      ['각진형', '턱선이 또렷한 각진 얼굴은 추진력과 책임감이 강하고 끝까지 해내는 힘으로 봐요.', '추진력'],
+      ['긴형', '세로로 긴 얼굴은 생각이 깊고 계획적이며 차분하게 일을 풀어 간다고 봐요.', '계획성'],
+      ['역삼각형', '이마가 넓고 턱이 좁은 얼굴은 머리 회전이 빠르고 감수성이 섬세하다고 봐요.', '지성·감수성']] },
+    { id: 'fore', t: '이마', h: '상정 · 초년운과 지혜', o: [
+      ['넓고 둥근 이마', '넓고 둥근 이마는 이해가 빠르고 어릴 때 도움을 받기 쉬운 상으로 봐요.', '초년 복'],
+      ['반듯한 네모 이마', '반듯한 이마는 원칙과 신용을 중시하고 공부·자격과 인연이 깊다고 봐요.', '신용'],
+      ['좁은 이마', '좁은 이마는 스스로 길을 열어 가는 자수성가형으로, 늦게 피는 꽃으로 봐요.', '자수성가']] },
+    { id: 'brow', t: '눈썹', h: '형제·대인관계', o: [
+      ['짙고 일자', '짙은 일자 눈썹은 의지가 굳고 솔직하며 한번 정하면 밀고 나간다고 봐요.', '의지'],
+      ['부드러운 아치형', '아치형 눈썹은 다정하고 사교적이라 사람 사이를 잘 이어 준다고 봐요.', '사교성'],
+      ['옅고 짧은 편', '옅은 눈썹은 혼자서도 단단하게 서는 독립심이 있다고 봐요.', '독립심']] },
+    { id: 'eye', t: '눈', h: '마음의 창', o: [
+      ['크고 둥근 눈', '크고 둥근 눈은 감정 표현이 풍부하고 호기심이 많아 밝은 기운을 준다고 봐요.', '표현력'],
+      ['가늘고 긴 눈', '가늘고 긴 눈은 관찰력과 통찰력이 좋아 멀리 내다본다고 봐요.', '통찰력'],
+      ['눈꼬리가 올라간 눈', '올라간 눈꼬리는 결단이 빠르고 리더십이 있다고 봐요.', '결단력'],
+      ['눈꼬리가 내려간 눈', '내려간 눈꼬리는 마음이 따뜻하고 남을 잘 챙긴다고 봐요.', '따뜻함']] },
+    { id: 'nose', t: '코', h: '중정 · 재물과 중년운', o: [
+      ['콧대가 곧고 높은 코', '곧은 콧대는 자존심과 실행력이 강해 스스로 일을 이끈다고 봐요.', '실행력'],
+      ['콧방울이 두툼한 코', '두툼한 콧방울은 재물을 모으고 지키는 힘이 좋다고 봐요.', '재물 관리'],
+      ['작고 둥근 코', '작고 둥근 코는 욕심보다 조화를 택하고 사람과의 관계를 중시한다고 봐요.', '조화']] },
+    { id: 'mouth', t: '입', h: '말·식복', o: [
+      ['입꼬리가 올라간 입', '올라간 입꼬리는 긍정적이고 말에 복이 있어 사람을 웃게 한다고 봐요.', '긍정'],
+      ['작고 단정한 입', '작고 단정한 입은 말을 아끼고 신중하며 믿음을 준다고 봐요.', '신중함'],
+      ['입술이 도톰한 입', '도톰한 입술은 정이 많고 먹을 복·사람 복이 있다고 봐요.', '정·식복']] },
+    { id: 'ear', t: '귀', h: '타고난 복과 어린 시절', o: [
+      ['귓불이 크고 두툼', '두툼한 귓불은 마음이 넉넉하고 복을 담는 그릇이 크다고 봐요.', '넉넉함'],
+      ['작고 단단한 귀', '작고 단단한 귀는 실속이 있고 꼼꼼하다고 봐요.', '실속'],
+      ['눈썹보다 높이 붙은 귀', '높이 붙은 귀는 머리가 좋고 배움이 빠르다고 봐요.', '총명']] },
+    { id: 'chin', t: '턱', h: '하정 · 말년운과 아랫사람', o: [
+      ['둥글고 넉넉한 턱', '넉넉한 턱은 말년이 편안하고 아랫사람·가족의 도움이 있다고 봐요.', '말년 안정'],
+      ['각지고 단단한 턱', '단단한 턱은 끈기와 뚝심이 있어 끝까지 지켜 낸다고 봐요.', '끈기'],
+      ['갸름하고 뾰족한 턱', '갸름한 턱은 감각이 예민하고 창의적이라 새로운 일을 잘 찾는다고 봐요.', '창의성']] }
+  ];
+  var PALM_Q = [
+    { id: 'hand', t: '보는 손', h: '어느 손을 봤나요', o: [
+      ['주로 쓰는 손', '지금까지 살아오며 만들어 온 모습과 노력을 보여 준다고 봐요.', ''],
+      ['반대 손', '타고난 바탕과 성향을 보여 준다고 봐요.', '']] },
+    { id: 'type', t: '손 모양', h: '손바닥과 손가락의 길이', o: [
+      ['네모 손바닥 + 짧은 손가락', '흙의 손: 현실적이고 성실하며 손으로 직접 해내는 힘이 있어요.', '현실감'],
+      ['네모 손바닥 + 긴 손가락', '바람의 손: 생각과 말이 빠르고 배우고 나누는 일을 좋아해요.', '소통'],
+      ['긴 손바닥 + 짧은 손가락', '불의 손: 열정적이고 추진력이 강해 먼저 움직이는 편이에요.', '열정'],
+      ['긴 손바닥 + 긴 손가락', '물의 손: 감수성이 풍부하고 공감 능력과 예술 감각이 좋아요.', '감수성']] },
+    { id: 'life', t: '생명선', h: '엄지를 감싸는 선 · 활력과 생활의 기반', o: [
+      ['길고 깊게 둥글다', '활력이 좋고 생활의 기반이 든든하다고 봐요. 몸을 움직일수록 힘이 나요.', '활력'],
+      ['짧거나 옅다', '길이가 수명을 뜻하지는 않아요. 무리하기보다 리듬을 지키는 쪽이 맞는 손이에요.', '리듬 관리'],
+      ['엄지 쪽에 바짝 붙어 있다', '신중하고 조심스러운 편이라, 익숙한 곳에서 힘을 잘 내요.', '신중함'],
+      ['중간에 끊기거나 겹친다', '삶의 방향이 크게 바뀌는 시기가 있다고 봐요. 이사·이직 같은 변화를 잘 넘기는 힘이 있어요.', '전환']] },
+    { id: 'head', t: '두뇌선', h: '손바닥 가운데 가로선 · 생각하는 방식', o: [
+      ['곧게 가로로 뻗는다', '현실적이고 논리적이라 계획을 세워 차근차근 풀어 가요.', '논리'],
+      ['아래로 휘어진다', '상상력과 창의력이 풍부해 글·그림·기획에 재능이 있다고 봐요.', '창의력'],
+      ['생명선과 붙어서 시작한다', '신중하게 생각한 뒤 움직이는 편이에요.', '신중함'],
+      ['생명선과 떨어져 시작한다', '독립심과 결단력이 있어 스스로 정하고 바로 행동해요.', '결단력'],
+      ['감정선과 하나로 이어진다 (막쥔손금)', '한번 정하면 끝까지 밀고 가는 강한 집중력이 있다고 봐요.', '집중력']] },
+    { id: 'heart', t: '감정선', h: '손가락 아래 가로선 · 마음과 관계', o: [
+      ['검지 밑까지 길게 간다', '정이 깊고 이상이 높아, 마음을 준 사람에게 진심을 다해요.', '깊은 정'],
+      ['중지 밑에서 끝난다', '감정을 현실적으로 다루고 관계에서 실속을 챙겨요.', '현실적 사랑'],
+      ['곧고 짧은 편이다', '감정 표현이 담백하고 혼자만의 시간도 소중히 여겨요.', '담백함'],
+      ['끝이 여러 갈래로 갈라진다', '공감 능력이 좋아 여러 사람과 두루 잘 지낸다고 봐요.', '공감']] },
+    { id: 'fate', t: '운명선', h: '손목에서 중지로 오르는 세로선 · 일과 진로', o: [
+      ['뚜렷하게 올라간다', '목표가 분명하고 한 길을 꾸준히 가는 힘이 있어요.', '꾸준함'],
+      ['희미하거나 끊겨 있다', '여러 일을 해 보며 길을 찾아가는 유연한 손이에요.', '유연함'],
+      ['거의 보이지 않는다', '정해진 틀보다 자유롭게 스스로 길을 만드는 편이라고 봐요.', '자유로움']] },
+    { id: 'marry', t: '결혼선(인연선)', h: '새끼손가락 아래 옆면의 짧은 선', o: [
+      ['한 줄이 뚜렷하다', '마음을 오래 나누는 깊은 인연을 중요하게 여긴다고 봐요.', '깊은 인연'],
+      ['여러 줄이 있다', '사람을 대하는 정이 많아 여러 인연을 소중히 여긴다고 봐요.', '넓은 정'],
+      ['끝이 위로 휜다', '관계에서 즐거움과 따뜻함을 잘 찾는다고 봐요.', '따뜻함'],
+      ['잘 보이지 않는다', '인연보다 자신의 일과 성장에 먼저 마음을 쓰는 시기일 수 있어요.', '자기 성장']] }
+  ];
+  function fpRender(prefix, Q) {
+    $(prefix + 'Qs').innerHTML = Q.map(function (q) {
+      return '<fieldset class="fp-q"><legend>' + q.t + '<small>' + q.h + '</small></legend><div class="fp-opts">' +
+        q.o.map(function (o, i) { var id = prefix + '-' + q.id + '-' + i; return '<input type="radio" name="' + prefix + '-' + q.id + '" id="' + id + '" value="' + i + '"><label for="' + id + '">' + o[0] + '</label>'; }).join('') +
+        '</div><p class="fp-mean" id="' + prefix + '-' + q.id + '-m"></p></fieldset>';
+    }).join('');
+  }
+  function fpPicked(prefix, Q) {
+    return Q.map(function (q) { var x = document.querySelector('input[name=' + prefix + '-' + q.id + ']:checked'); return x ? { q: q, o: q.o[+x.value] } : null; }).filter(Boolean);
+  }
+  function fpUpdate(prefix, Q, groups) {
+    var pk = fpPicked(prefix, Q);
+    Q.forEach(function (q) { var x = document.querySelector('input[name=' + prefix + '-' + q.id + ']:checked'); $(prefix + '-' + q.id + '-m').textContent = x ? '→ ' + q.o[+x.value][1] : ''; });
+    $(prefix + 'Res').hidden = !pk.length;
+    if (!pk.length) return;
+    var kw = pk.map(function (x) { return x.o[2]; }).filter(Boolean);
+    var h = '<div class="fp-res"><p><b>' + pk.length + '곳</b>을 골랐어요. 나를 나타내는 말:</p><div class="fp-kw">' + kw.map(function (k) { return '<span>' + k + '</span>'; }).join('') + '</div>';
+    groups.forEach(function (g) {
+      var items = pk.filter(function (x) { return g.ids.indexOf(x.q.id) >= 0; });
+      if (!items.length) return;
+      h += '<h3>' + g.t + '</h3>' + items.map(function (x) { return '<p><b>' + x.q.t + ' · ' + x.o[0] + '</b> — ' + x.o[1] + '</p>'; }).join('');
+    });
+    h += '<p class="hint" style="margin-top:8px">' + (pk.length < 3 ? '3곳 이상 고르면 AI에게 더 자세히 물어볼 수 있어요.' : '아래 버튼으로 AI에게 더 자세한 풀이를 부탁할 수 있어요.') + '</p></div>';
+    $(prefix + 'Box').innerHTML = h;
+  }
+  var FACE_G = [{ t: '전체 인상', ids: ['shape'] }, { t: '상정 · 초년 (이마)', ids: ['fore'] }, { t: '중정 · 중년 (눈썹·눈·코)', ids: ['brow', 'eye', 'nose', 'ear'] }, { t: '하정 · 말년 (입·턱)', ids: ['mouth', 'chin'] }];
+  var PALM_G = [{ t: '손 모양', ids: ['hand', 'type'] }, { t: '3대 선', ids: ['life', 'head', 'heart'] }, { t: '운명선 · 인연선', ids: ['fate', 'marry'] }];
+  fpRender('face', FACE_Q); fpRender('palm', PALM_Q);
+  $('faceQs').addEventListener('change', function () { fpUpdate('face', FACE_Q, FACE_G); });
+  $('palmQs').addEventListener('change', function () { fpUpdate('palm', PALM_Q, PALM_G); });
+  var FP_RULES = ['- 존댓말(해요체)로, 일반인도 이해하기 쉬운 말로 설명해줘. 절대 반말하지 마.', '- 외모의 좋고 나쁨을 평가하거나 우열을 가리지 말고, 성향과 가능성 중심으로 따뜻하게 풀어줘.', '- 건강·수명·사고·이별처럼 불안한 내용은 단정하지 마. 마지막에 "재미와 참고용이에요"를 한 줄 덧붙여줘.'];
+  function buildFaceSel() {
+    var pk = fpPicked('face', FACE_Q); if (pk.length < 3) throw new Error('얼굴 모양을 3곳 이상 골라 주세요.');
+    return ['[관상 정보]'].concat(pk.map(function (x) { return '- ' + x.q.t + ': ' + x.o[0]; }), ['',
+      '1. 위 관상 정보를 삼정(이마·코·턱)과 오관(눈썹·눈·코·입·귀)으로 나눠 해석해줘.',
+      '2. 타고난 성격의 장점과 조심할 점, 대인관계의 모습을 알려줘.',
+      '3. 일과 재물, 초년·중년·말년의 흐름을 부드럽게 정리해줘.',
+      '4. 이 얼굴의 장점을 살리는 생활 습관이나 표정·말투 팁을 알려줘.',
+      '- 너는 관상 전문가야. 주어진 정보만으로 풀어줘.'], FP_RULES).join('\n');
+  }
+  function buildPalmSel() {
+    var pk = fpPicked('palm', PALM_Q); if (pk.length < 3) throw new Error('손금을 3곳 이상 골라 주세요.');
+    return ['[손금 정보]'].concat(pk.map(function (x) { return '- ' + x.q.t + ': ' + x.o[0]; }), ['',
+      '1. 손 모양과 생명선·두뇌선·감정선을 바탕으로 타고난 성향을 해석해줘.',
+      '2. 운명선과 인연선으로 일·진로와 관계의 흐름을 부드럽게 알려줘.',
+      '3. 이 손금의 장점을 살리는 생활 조언을 해줘.',
+      '- 너는 손금 전문가야. 주어진 정보만으로 풀어줘.'], FP_RULES).join('\n');
+  }
+  function buildFacePhoto() {
+    return ['제 얼굴 정면 사진을 첨부할게요. 관상을 봐 주세요.', '',
+      '1. 얼굴형과 삼정(이마·코·턱), 오관(눈썹·눈·코·입·귀)을 차례로 살펴서 해석해줘.',
+      '2. 타고난 성격의 장점과 조심할 점, 대인관계의 모습을 알려줘.',
+      '3. 일과 재물, 초년·중년·말년의 흐름을 부드럽게 정리해줘.',
+      '4. 사진에서 잘 보이지 않는 부분은 추측하지 말고 "잘 보이지 않아요"라고 말해줘.',
+      '- 너는 관상 전문가야. 사진 속 인물이 누구인지 알아내려 하지 말고, 얼굴 모양만 보고 풀어줘.'].concat(FP_RULES).join('\n');
+  }
+  function buildPalmPhoto() {
+    return ['제 손바닥 사진을 첨부할게요. 손금을 봐 주세요. (주로 쓰는 손 / 반대 손을 적어 주세요: ______ )', '',
+      '1. 손 모양(손바닥과 손가락 길이)으로 기본 성향을 알려줘.',
+      '2. 생명선·두뇌선·감정선·운명선·인연선을 하나씩 찾아서, 사진에서 보이는 모양과 뜻을 설명해줘.',
+      '3. 일·진로와 관계의 흐름, 이 손금의 장점을 살리는 조언을 해줘.',
+      '4. 사진에서 잘 보이지 않는 선은 추측하지 말고 "잘 보이지 않아요"라고 말해줘.',
+      '- 너는 손금 전문가야.'].concat(FP_RULES).join('\n');
+  }
+  var FP_BUILD = { face: buildFaceSel, palm: buildPalmSel, facep: buildFacePhoto, palmp: buildPalmPhoto };
+  var FP_MSG = { face: 'faceMsg', palm: 'palmMsg', facep: 'facepMsg', palmp: 'palmpMsg' };
 
   // ---------- 오늘의 띠별 점수 ----------
   function renderDdToday(c) {
@@ -3895,8 +4181,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   Array.prototype.forEach.call(document.querySelectorAll('[data-ai]'), function (b) {
     b.addEventListener('click', function () {
       var kind = b.getAttribute('data-ai'), src = b.getAttribute('data-src') || 'saju';
-      var msg = src === 'tarot' ? $('tMsg') : src === 'name' ? $('nmMsg') : src === 'tj' ? $('tjMsg') : src === 'tjs' ? $('tjsMsg') : src === 'mr' ? $('mrMsg') : $('aiLinkMsg'), text;
-      try { text = src === 'tarot' ? buildTarotPrompt() : src === 'name' ? buildNamePrompt() : src === 'tj' ? buildTjPrompt() : src === 'tjs' ? buildTjsPrompt() : src === 'mr' ? buildSajuPrompt(document.querySelector('input[name=mrK]:checked').value) : buildAiPrompt(); } catch (e) { msg.textContent = e.message; return; }
+      var msg = src === 'tarot' ? $('tMsg') : src === 'name' ? $('nmMsg') : src === 'tj' ? $('tjMsg') : src === 'tjs' ? $('tjsMsg') : src === 'mr' ? $('mrMsg') : FP_MSG[src] ? $(FP_MSG[src]) : $('aiLinkMsg'), text;
+      try { text = src === 'tarot' ? buildTarotPrompt() : src === 'name' ? buildNamePrompt() : src === 'tj' ? buildTjPrompt() : src === 'tjs' ? buildTjsPrompt() : src === 'mr' ? buildSajuPrompt(document.querySelector('input[name=mrK]:checked').value) : FP_BUILD[src] ? FP_BUILD[src]() : buildAiPrompt(); } catch (e) { msg.textContent = e.message; return; }
       // 1) 창이 바뀌기 전에 먼저 복사 (휴대폰에서도 잘 되도록 두 가지 방법)
       var copied = false;
       try {
