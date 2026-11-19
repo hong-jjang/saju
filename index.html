@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>사주 만세력</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#CFE3FF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="홍짱 사주">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
 <meta name="description" content="명식, 대운·세운, 합충과 신살, 궁합, 일주 이야기까지 한 곳에서 보는 사주 만세력이에요.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="사주 만세력">
@@ -241,6 +248,10 @@ button.ghost { min-height: 44px; padding: 0 18px; border: 1.5px solid var(--gree
 .t-back:hover:not(:disabled) { transform: translateY(-3px); }
 .t-back:disabled { opacity: .18; cursor: default; }
 .t-back:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+td.god.gs { font-size: 12px; line-height: 1.35; }
+td.god.gs span { display: block; }
+.gs-good { color: #9A6B00; } .gs-bad { color: #A33E66; }
+.gs-legend { font-size: 12px; margin-top: 6px; } .gs-legend b { font-weight: 700; }
 td.god.gw { color: #9A6B00; font-size: 12px; line-height: 1.35; }
 .el-radar { display: block; width: min(260px, 80%); height: auto; margin: 4px auto 6px; }
 .el-sum { font-size: 14.5px; margin: 6px 0 0; }
@@ -279,6 +290,35 @@ td.god.gw { color: #9A6B00; font-size: 12px; line-height: 1.35; }
 .yel-v.good { background: #E6F5EA; } .yel-v.bad { background: #FBE8E5; } .yel-v.mid { background: var(--pink-soft); }
 .yel-el { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
 .yel-el span { border-radius: 999px; padding: 4px 12px; font-size: 13.5px; font-weight: 700; }
+.cal-nav { display: flex; gap: 6px; justify-content: center; margin-bottom: 8px; }
+.cal-nav button { min-height: 38px; padding: 0 12px; font-size: 14px; }
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.cal .dw { text-align: center; font-size: 12px; font-weight: 700; color: var(--muted); padding: 2px 0; }
+.cal .dw.sun { color: #D9534F; } .cal .dw.sat { color: #3D6AAE; }
+.cal button.day { border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 3px 0 4px; display: grid; gap: 0; text-align: center; font: inherit; cursor: pointer; min-width: 0; }
+.cal button.day .dn { font-size: 12px; font-weight: 700; }
+.cal button.day .dg { font-size: 9.5px; color: var(--muted); line-height: 1.2; }
+.cal button.day .gz { font-family: var(--font-han); font-weight: 700; font-size: 15px; line-height: 1.15; }
+.cal button.day .us { font-size: 9px; color: var(--muted); line-height: 1.2; white-space: nowrap; overflow: hidden; }
+.cal button.day.today { border: 2px solid var(--amber); background: #FFF8E3; }
+.cal button.day.sel { outline: 3px solid var(--green-2); outline-offset: -1px; }
+.cal button.day.good { background: #EEF8F0; } .cal button.day.bad { background: #FCEFEF; }
+.cal-pick { margin-top: 10px; font-size: 14.5px; }
+.cal-pick p { margin: 4px 0; }
+.trait-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 430px) { .trait-2 { grid-template-columns: 1fr; } }
+.trait-box { border-radius: 18px; padding: 12px 14px; }
+.trait-box.pos { background: #EEF8F0; border: 1.5px solid #BFE5CB; } .trait-box.neg { background: #FFF4EC; border: 1.5px solid #F7D2B5; }
+.trait-box b { font-size: 16px; } .trait-box small { display: block; color: var(--muted); font-size: 12.5px; }
+.trait-box ul { margin: 8px 0 0; padding-left: 18px; font-size: 14.5px; line-height: 1.8; }
+.trait-box.pos li::marker { color: #2F7D4A; } .trait-box.neg li::marker { color: #D07A2E; }
+#traitAcc details { border: 1px solid var(--line); border-radius: 16px; margin-top: 8px; background: #fff; }
+#traitAcc summary { padding: 12px 14px; font-weight: 700; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+#traitAcc summary::-webkit-details-marker { display: none; }
+#traitAcc summary::after { content: '+'; margin-left: auto; color: var(--green-2); font-size: 18px; }
+#traitAcc details[open] summary::after { content: '×'; }
+#traitAcc summary .tg { font-size: 12px; background: var(--pink-soft); color: var(--green-2); border-radius: 999px; padding: 2px 10px; }
+#traitAcc details p { margin: 0; padding: 0 14px 14px; font-size: 14.5px; line-height: 1.75; }
 .ddy-mine { border-radius: 18px; padding: 12px 14px; background: var(--pink-soft); margin: 4px 0 12px; font-size: 14.5px; }
 .ddy-mine b.big { font-size: 18px; }
 .ddy-item { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: start; padding: 10px 2px; border-top: 1px solid var(--line); }
@@ -291,6 +331,7 @@ td.god.gw { color: #9A6B00; font-size: 12px; line-height: 1.35; }
 .ddy-d { font-size: 14px; margin-top: 2px; }
 .ddy-m { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
 .fp-fig.fp-wide { width: min(300px, 90%); }
+.fp-fig.fp-hand { width: min(300px, 92%); }
 .fp-fig { display: block; width: min(220px, 70%); height: auto; margin: 0 auto 8px; }
 .fp-q { border: 0; margin: 0; padding: 12px 0; border-top: 1px solid var(--line); }
 .fp-q:first-child { border-top: 0; }
@@ -306,6 +347,40 @@ td.god.gw { color: #9A6B00; font-size: 12px; line-height: 1.35; }
 .fp-res p { margin: 4px 0; font-size: 14.5px; }
 .fp-kw { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
 .fp-kw span { background: var(--pink-soft); border-radius: 999px; padding: 3px 10px; font-size: 13px; font-weight: 700; }
+.fp-photo { margin: 4px 0 12px; }
+.fp-drop { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 150px; padding: 18px 14px; border: 3px dashed var(--fp, var(--green)); border-radius: 22px; background: var(--pink-soft); text-align: center; cursor: pointer; font-size: 14px; color: var(--ink); transition: background .15s, transform .15s; }
+.fp-drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.fp-drop b { font-size: 16px; }
+.fp-drop .fp-drop-ic { font-size: 34px; line-height: 1; }
+.fp-drop.over { background: #fff; transform: scale(1.01); }
+.fp-drop:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+body.is-pc .fp-pbtns, body.is-pc .fp-send, body.is-pc .only-m, body.is-pc .fp-inapp, body.is-pc #facepRe, body.is-pc #palmpRe { display: none !important; }
+body:not(.is-pc) .fp-drop, body:not(.is-pc) .fp-send2, body:not(.is-pc) .only-pc { display: none !important; }
+#camBox { position: fixed; inset: 0; z-index: 200; background: #1E1A2E; color: #fff; display: flex; flex-direction: column; }
+#camBox[hidden] { display: none !important; }
+.cam-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 17px; }
+.cam-top button { border: 0; background: rgba(255,255,255,.15); color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer; }
+.cam-view { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cam-view video { width: 100%; height: 100%; object-fit: cover; }
+.cam-view video.mirror { transform: scaleX(-1); }
+.cam-guide { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cam-tip { text-align: center; margin: 8px 16px 0; font-size: 14.5px; color: #FFE1EC; }
+.cam-btns { display: flex; align-items: center; justify-content: space-around; padding: 16px 24px 28px; }
+.cam-shot { width: 74px; height: 74px; border-radius: 50%; border: 5px solid #fff; background: #FFB7C5; cursor: pointer; box-shadow: 0 0 0 4px rgba(255,183,197,.35); }
+.cam-shot:active { transform: scale(.94); }
+.cam-side { position: relative; width: 52px; height: 52px; border-radius: 50%; border: 0; background: rgba(255,255,255,.15); color: #fff; font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+.cam-side input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.fp-inapp { margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: #FFF3D6; color: #7A5300; font-size: 14px; line-height: 1.6; }
+.fp-pbtns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fp-pbtn { box-sizing: border-box; height: 58px; overflow: hidden; margin: 0; position: relative; display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 18px; background: var(--fp, var(--green)); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; border: 2.5px solid #fff; box-shadow: 0 6px 14px rgba(0,0,0,.10); }
+.fp-pbtn.alt { background: #fff; color: var(--fp, var(--green)); border-color: var(--fp, var(--green)); }
+.fp-pbtn input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+.fp-pbtn:focus-within { outline: 3px solid var(--amber); outline-offset: 2px; }
+.fp-prev { margin-top: 10px; text-align: center; }
+.fp-prev img { max-width: 100%; max-height: 320px; border-radius: 18px; border: 3px solid #fff; box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+.fp-prev-acts { display: flex; gap: 8px; justify-content: center; margin-top: 8px; }
+.fp-send { margin-top: 10px; background: var(--fp, var(--green)) !important; }
+.fp-send2 { width: 100%; margin-top: 8px; }
 .fp-steps { margin: 0 0 10px; padding-left: 20px; font-size: 14.5px; line-height: 1.7; }
 #pn-11 { --fp: #C2557A; } #pn-12 { --fp: #D07A2E; }
 .tj-gwae { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 6px 0 10px; }
@@ -374,6 +449,45 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+/* 앱 설치 */
+.inst-btn { width: 100%; min-height: 50px; border: 0; border-radius: 999px; background: linear-gradient(90deg, #CFE3FF, #E3DBFF); color: #2F4F86; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; }
+#splash .sp-inst { width: min(88vw, 380px); min-height: 48px; border: 1.5px dashed #9DB6E8; border-radius: 999px; background: rgba(255, 255, 255, .75); color: #2F4F86; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+body.is-app .inst-only { display: none !important; }
+#instBox { position: fixed; inset: 0; z-index: 300; background: rgba(40, 40, 70, .45); display: flex; align-items: flex-end; justify-content: center; }
+#instBox[hidden] { display: none; }
+#instBox .ib { width: min(100%, 460px); background: #fff; border-radius: 24px 24px 0 0; padding: 20px 18px calc(20px + env(safe-area-inset-bottom)); box-shadow: 0 -8px 30px rgba(0, 0, 0, .15); }
+#instBox h3 { margin: 0 0 10px; font-size: 19px; }
+#instBox ol { margin: 0; padding-left: 22px; font-size: 15.5px; line-height: 1.8; }
+#instBox .ib-close { width: 100%; min-height: 48px; margin-top: 14px; border: 0; border-radius: 999px; background: #F0F2F8; font: inherit; font-size: 16px; cursor: pointer; }
+#instBox .ib-tip { font-size: 13.5px; color: #667; margin: 10px 0 0; }
+/* 꿈해몽 */
+#splash .sp-choice .sp-dream { background: #DCD6FF !important; color: #4B3E99 !important; }
+body[data-mode=dream] .card.form, body[data-mode=dream] #saveCard, body[data-mode=dream] .tabs, body[data-mode=dream] .panel { display: none !important; }
+body[data-mode=dream] #pn-13 { display: block !important; }
+body[data-mode=dream] #pn-13 [hidden] { display: none !important; }
+body[data-mode=dream] .mode-sw button[aria-selected=true] { background: #6F5FC9; }
+body[data-mode=dream] header { --hd1: #E2DCFF; --hd2: #F1E3FA; --hd3: #E4F0FF; --hd-ink: #3E3290; }
+.dr-search { display: flex; gap: 8px; }
+.dr-search input { flex: 1; min-width: 0; min-height: 48px; box-sizing: border-box; border-radius: 999px; border: 1.5px solid #D9D2F5; padding: 0 16px; font: inherit; font-size: 16px; background: #fff; }
+.dr-cats { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 4px; }
+.dr-cats button { border: 0; border-radius: 999px; padding: 7px 12px; font: inherit; font-size: 14px; background: #F0ECFF; color: #4B3E99; cursor: pointer; }
+.dr-cats button[aria-pressed=true] { background: #6F5FC9; color: #fff; }
+.dr-list { display: grid; gap: 8px; margin-top: 10px; }
+.dr-item { border: 1px solid #E6E0FA; border-radius: 16px; padding: 10px 12px; background: #FCFBFF; }
+.dr-item b { font-size: 16px; } .dr-item p { margin: 4px 0 0; font-size: 14.5px; line-height: 1.6; }
+.dr-item .dr-tip { color: #6A5FA8; font-size: 13.5px; }
+#drText { width: 100%; min-height: 110px; box-sizing: border-box; border-radius: 14px; border: 1px solid #D9D2F5; padding: 10px; font: inherit; font-size: 15px; }
+/* 오늘 분야별 */
+.td-area { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 10px 0 4px; }
+.td-area div { border-radius: 14px; padding: 9px 10px; background: #F6FAFF; border: 1px solid #E1ECFA; font-size: 13.5px; line-height: 1.5; }
+.td-area b { display: block; font-size: 14.5px; margin-bottom: 2px; }
+.td-area .lv { float: right; font-size: 12px; padding: 1px 7px; border-radius: 999px; background: #E9F5EC; color: #2A6B45; }
+.td-area .lv.mid { background: #F1F1F4; color: #555; } .td-area .lv.low { background: #FDEBF1; color: #A33E66; }
+/* 입문 가이드 */
+.gd-step { display: grid; grid-template-columns: 30px 1fr; gap: 8px; margin: 10px 0; }
+.gd-step i { font-style: normal; width: 28px; height: 28px; border-radius: 50%; background: #FFE9A8; color: #7A5A00; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.gd-step p { margin: 2px 0 0; font-size: 14.5px; line-height: 1.6; }
+.gd-step button { margin-top: 6px; border: 0; border-radius: 999px; padding: 6px 12px; background: #EEF4FF; color: #2F4F86; font: inherit; font-size: 13.5px; cursor: pointer; }
 .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .qbtn { min-height: 54px; border: 0; border-radius: 18px; font: inherit; font-size: 15.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; color: #fff; }
 .qbtn.q-dang { background: #3D6AAE; }
@@ -497,6 +611,21 @@ button.kakao svg { width: 20px; height: 20px; }
     <button type="button" id="splashFace" data-mode="face" class="sp-face"><span aria-hidden="true">👤</span>관상<small>얼굴로 보는 성향</small></button>
     <button type="button" id="splashPalm" data-mode="palm" class="sp-palm"><span aria-hidden="true">✋</span>손금<small>손바닥 선으로 보는 흐름</small></button>
     <button type="button" id="splashTj" data-mode="tj" class="sp-tj"><span aria-hidden="true">📜</span>토정비결<small>생년월일로 보는 한 해</small></button>
+    <button type="button" id="splashDream" data-mode="dream" class="sp-dream"><span aria-hidden="true">🌙</span>꿈해몽<small>간밤의 꿈 풀어 보기</small></button>
+  </div>
+  <button type="button" class="sp-inst inst-only" data-install>📲 휴대폰 홈 화면에 앱으로 설치하기</button>
+</div>
+<div id="camBox" role="dialog" aria-modal="true" aria-label="사진 찍기" hidden>
+  <div class="cam-top"><b id="camTitle">사진 찍기</b><button type="button" id="camClose" aria-label="닫기">✕</button></div>
+  <div class="cam-view">
+    <video id="camVideo" playsinline autoplay muted></video>
+    <svg class="cam-guide" id="camGuide" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+  </div>
+  <p class="cam-tip" id="camTip"></p>
+  <div class="cam-btns">
+    <button type="button" id="camFlip" class="cam-side" aria-label="카메라 바꾸기">🔄</button>
+    <button type="button" id="camShot" class="cam-shot" aria-label="찍기"></button>
+    <label class="cam-side" aria-label="앨범에서 고르기">🖼️<input type="file" accept="image/*" id="camAlbum"></label>
   </div>
 </div>
 <header>
@@ -513,6 +642,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <button type="button" role="tab" data-mode="tj" aria-selected="false">📜 토정</button>
       <button type="button" role="tab" data-mode="face" aria-selected="false">👤 관상</button>
       <button type="button" role="tab" data-mode="palm" aria-selected="false">✋ 손금</button>
+      <button type="button" role="tab" data-mode="dream" aria-selected="false">🌙 꿈해몽</button>
     </div>
   </div>
 </header>
@@ -600,7 +730,7 @@ button.kakao svg { width: 20px; height: 20px; }
     </section>
     <section class="card" aria-labelledby="h-el">
       <h2 id="h-el">오행 분포</h2>
-      <svg class="el-radar" id="elRadar" viewBox="0 0 240 230" role="img" aria-label="오행 오각형 그래프"></svg>
+      <svg class="el-radar" id="elRadar" viewBox="-20 0 280 230" role="img" aria-label="오행 오각형 그래프"></svg>
       <div class="bars" id="bars"></div>
       <p class="el-sum" id="elSum"></p>
       <p class="hint" id="elNote" style="margin-top:10px"></p>
@@ -693,6 +823,13 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-wol">월운 <span id="wolYear"></span></h2>
       <div class="grid6" id="wolGrid"></div>
       <p class="hint" style="margin-top:8px">각 달은 절기(입춘, 경칩 등)부터 시작해요. 날짜는 양력이에요.</p>
+    </section>
+    <section class="card" aria-labelledby="h-cal">
+      <h2 id="h-cal">📅 <span id="calTitle"></span> 일진 달력</h2>
+      <div class="cal-nav"><button type="button" class="ghost" id="calPrev">‹ 지난달</button><button type="button" class="ghost" id="calToday">이번 달</button><button type="button" class="ghost" id="calNext">다음달 ›</button></div>
+      <div class="cal" id="calGrid" role="grid"></div>
+      <div class="cal-pick" id="calPick" aria-live="polite"></div>
+      <p class="hint" style="margin-top:8px">칸마다 위는 천간 십신, 가운데는 그날의 간지, 아래는 지지 십신과 12운성(괄호는 그날 글자끼리의 12운성)이에요. 날짜를 누르면 그날 흐름이 나와요.</p>
     </section>
     <section class="card" aria-labelledby="h-yel">
       <h2 id="h-yel">🔥 그해 오행과 내 사주</h2>
@@ -907,18 +1044,32 @@ button.kakao svg { width: 20px; height: 20px; }
   <div class="panel" role="tabpanel" id="pn-11" aria-labelledby="h-face" hidden>
     <section class="card" aria-labelledby="h-face">
       <h2 id="h-face">👤 내 얼굴 고르기</h2>
-      <svg class="fp-fig fp-wide" viewBox="0 0 300 250" role="img" aria-label="얼굴 삼정 그림">
-        <ellipse cx="100" cy="130" rx="74" ry="104" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2.5"/>
-        <path d="M62 94 q14 -8 28 0 M110 94 q14 -8 28 0" stroke="var(--ink)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <ellipse cx="76" cy="110" rx="9" ry="5" fill="var(--ink)"/><ellipse cx="124" cy="110" rx="9" ry="5" fill="var(--ink)"/>
-        <path d="M100 114 l-8 32 h16 z" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M80 182 q20 12 40 0" stroke="#C2557A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        <ellipse cx="24" cy="126" rx="8" ry="20" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2"/><ellipse cx="176" cy="126" rx="8" ry="20" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2"/>
-        <line x1="28" y1="84" x2="196" y2="84" stroke="#C2557A" stroke-dasharray="4 4"/><line x1="28" y1="156" x2="196" y2="156" stroke="#C2557A" stroke-dasharray="4 4"/>
-        <text x="200" y="58" font-size="13" font-weight="700" fill="#C2557A">상정</text><text x="200" y="74" font-size="11" fill="#C2557A">이마 · 초년</text>
-        <text x="200" y="116" font-size="13" font-weight="700" fill="#C2557A">중정</text><text x="200" y="132" font-size="11" fill="#C2557A">눈썹~코 · 중년</text>
-        <text x="200" y="196" font-size="13" font-weight="700" fill="#C2557A">하정</text><text x="200" y="212" font-size="11" fill="#C2557A">입~턱 · 말년</text>
-      </svg>
+      <svg class="fp-fig fp-wide" viewBox="0 0 300 260" role="img" aria-label="얼굴 삼정 그림">
+      <defs>
+        <linearGradient id="faceG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4EC"/><stop offset="1" stop-color="#FFE3D6"/></linearGradient>
+        <radialGradient id="faceB" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFA9BE" stop-opacity=".7"/><stop offset="1" stop-color="#FFA9BE" stop-opacity="0"/></radialGradient>
+      </defs>
+      <g>
+        <ellipse cx="34" cy="138" rx="14" ry="22" fill="url(#faceG)" stroke="#F2A7A0" stroke-width="4"/>
+        <ellipse cx="190" cy="138" rx="14" ry="22" fill="url(#faceG)" stroke="#F2A7A0" stroke-width="4"/>
+        <path d="M112 22 C168 22 184 70 184 128 C184 196 150 238 112 238 C74 238 40 196 40 128 C40 70 56 22 112 22 Z" fill="url(#faceG)" stroke="#F2A7A0" stroke-width="4.5"/>
+        <path d="M58 70 C70 34 120 22 150 40 C140 52 120 56 104 50 C92 62 72 68 58 70 Z" fill="#8C6A5C" opacity=".9"/>
+        <path d="M70 98 q14 -9 28 -2 M126 96 q14 -7 28 2" stroke="#7A5547" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="84" cy="118" rx="8" ry="10" fill="#4A3A40"/><ellipse cx="140" cy="118" rx="8" ry="10" fill="#4A3A40"/>
+        <circle cx="87" cy="114" r="2.8" fill="#fff"/><circle cx="143" cy="114" r="2.8" fill="#fff"/>
+        <path d="M112 128 q-5 14 -1 22 q4 3 8 0" stroke="#E2A08F" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="66" cy="160" rx="18" ry="11" fill="url(#faceB)"/><ellipse cx="158" cy="160" rx="18" ry="11" fill="url(#faceB)"/>
+        <path d="M96 182 q16 14 32 0" stroke="#E86A8C" stroke-width="4" fill="#FFB3C4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g stroke="#E8A0B4" stroke-width="1.6" stroke-dasharray="4 4"><line x1="22" y1="86" x2="208" y2="86"/><line x1="22" y1="158" x2="208" y2="158"/></g>
+      <g font-family="'Gowun Dodum', sans-serif" font-weight="700" font-size="12.5">
+        <rect x="212" y="42" width="80" height="34" rx="14" fill="#FFE1EC"/><text x="252" y="56" text-anchor="middle" fill="#C2457A">상정</text><text x="252" y="70" text-anchor="middle" fill="#C2457A" font-size="10.5" font-weight="500">이마 · 초년</text>
+        <rect x="212" y="104" width="80" height="34" rx="14" fill="#FFEFD9"/><text x="252" y="118" text-anchor="middle" fill="#B5651D">중정</text><text x="252" y="132" text-anchor="middle" fill="#B5651D" font-size="10.5" font-weight="500">눈썹~코 · 중년</text>
+        <rect x="212" y="180" width="80" height="34" rx="14" fill="#E3F1FF"/><text x="252" y="194" text-anchor="middle" fill="#3D6AAE">하정</text><text x="252" y="208" text-anchor="middle" fill="#3D6AAE" font-size="10.5" font-weight="500">입~턱 · 말년</text>
+      </g>
+      <g fill="#FFC6D6"><path d="M18 22 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z"/><circle cx="200" cy="18" r="4"/><circle cx="12" cy="214" r="3"/></g>
+      <path d="M196 238 c-5 -8 -16 -3 -10 6 l10 9 10 -9 c6 -9 -5 -14 -10 -6z" fill="#FFB7C5"/>
+    </svg>
       <p class="hint">거울을 보며 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. 얼굴을 셋으로 나눈 <b>삼정</b>과 눈썹·눈·코·입·귀의 <b>오관</b>으로 봐요.</p>
       <div id="faceQs"></div>
     </section>
@@ -935,7 +1086,26 @@ button.kakao svg { width: 20px; height: 20px; }
     </section>
     <section class="card" aria-labelledby="h-facep">
       <h2 id="h-facep">📷 사진으로 AI에게 관상 보기</h2>
-      <ol class="fp-steps"><li>밝은 곳에서 <b>정면</b>으로 찍어요. 그림자가 지지 않게요.</li><li>앞머리를 넘겨 <b>이마와 귀</b>가 보이게 해요.</li><li>무표정에 가까운 자연스러운 얼굴이 좋아요. 필터·보정은 꺼 주세요.</li><li>아래 버튼을 누르면 부탁 글이 복사되고 AI 창이 열려요. <b>붙여넣기 + 사진 첨부</b> 후 보내요.</li></ol>
+      <ol class="fp-steps"><li>밝은 곳에서 <b>정면</b>으로 찍어요. 그림자가 지지 않게요.</li><li>앞머리를 넘겨 <b>이마와 귀</b>가 보이게 해요.</li><li>무표정에 가까운 자연스러운 얼굴이 좋아요. 필터·보정은 꺼 주세요.</li><li class="only-m"><b>바로 찍기</b>나 <b>사진 고르기</b>로 사진을 넣고, <b>AI 앱으로 보내기</b>를 눌러요.</li><li class="only-pc">아래 칸에 사진을 <b>끌어다 놓거나 붙여넣고</b>, <b>사진 복사 → AI 창에 Ctrl+V</b>로 보내요.</li></ol>
+      <div class="fp-photo">
+        <div class="fp-pbtns">
+          <label class="fp-pbtn"><input type="file" accept="image/*" capture="user" id="facepCam">📷 바로 찍기</label>
+          <label class="fp-pbtn alt"><input type="file" accept="image/*" id="facepPick">🖼️ 사진 고르기</label>
+        </div>
+        <label class="fp-drop" id="facepDrop" tabindex="0">
+          <input type="file" accept="image/*" id="facepPcPick">
+          <span class="fp-drop-ic" aria-hidden="true">🖼️</span>
+          <b>얼굴 사진을 여기에 붙이기</b>
+          <span>사진을 <b>끌어다 놓거나</b>, <b>Ctrl+V</b>로 붙여넣거나, <b>눌러서 파일 고르기</b></span>
+        </label>
+        <div class="fp-prev" id="facepPrev" hidden>
+          <img id="facepImg" alt="고른 얼굴 사진 미리보기">
+          <div class="fp-prev-acts"><button type="button" class="ghost" id="facepRe">다시 찍기</button><button type="button" class="ghost" id="facepDel">사진 지우기</button></div>
+        </div>
+        <button type="button" class="primary fp-send" id="facepShare" hidden>📤 사진과 함께 AI 앱으로 보내기</button>
+        <button type="button" class="ghost fp-send2" id="facepCopyImg" hidden>🖼️ 사진 복사하기 (PC: AI 창에 Ctrl+V)</button>
+        <p class="toast" id="facepPhotoMsg" role="status" style="white-space:pre-wrap"></p>
+      </div>
       <div class="warn">사진은 <b>홍짱 앱에 저장되거나 보내지지 않아요.</b> 다만 AI 창에 사진을 올리면 그 AI 회사로 보내져요. <b>본인 사진만</b>, 원하실 때만 올려 주세요. 다른 사람 사진은 꼭 허락을 받고 써 주세요.</div>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="facep"><span aria-hidden="true">✳️</span>Claude에 사진으로 묻기</button>
@@ -949,21 +1119,77 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card"><p class="hint" style="margin:0">관상은 전통적으로 전해 오는 해석이고 과학적으로 증명된 것은 아니에요. 재미와 참고로만 봐 주세요. 얼굴은 표정과 마음가짐에 따라 바뀐다고도 해요.</p></section>
   </div>
 
+  <!-- 13. 꿈해몽 -->
+  <div class="panel" role="tabpanel" id="pn-13" aria-labelledby="h-dream" hidden>
+    <section class="card" aria-labelledby="h-dream">
+      <h2 id="h-dream">🌙 꿈 낱말 찾기</h2>
+      <div class="dr-search">
+        <input type="search" id="drQ" placeholder="꿈에 나온 것을 적어 보세요 (돼지, 이빨, 물…)" aria-label="꿈 낱말 찾기">
+      </div>
+      <div class="dr-cats" id="drCats"></div>
+      <div class="dr-list" id="drList" aria-live="polite"></div>
+      <p class="hint" style="margin-top:10px">옛 해몽에서 흔히 쓰던 풀이와, 요즘 마음 상태로 읽는 방법을 함께 적었어요. 꿈은 예언이 아니라 내 마음을 들여다보는 단서로 가볍게 보세요.</p>
+    </section>
+    <section class="card" aria-labelledby="h-drai">
+      <h2 id="h-drai">📝 내 꿈 적고 AI에게 묻기</h2>
+      <textarea id="drText" placeholder="예) 맑은 계곡물에 발을 담갔는데 물고기가 손에 잡혔어요. 기분이 좋았어요."></textarea>
+      <p class="hint">누가 나왔는지, 어떤 색과 장소였는지, 깨었을 때 기분이 어땠는지 적으면 더 잘 풀어 줘요.</p>
+      <div class="ai-links" style="margin-top:10px">
+        <button type="button" class="ai-link" data-ai="claude" data-src="dream"><span aria-hidden="true">✳️</span>Claude로 꿈 풀기</button>
+        <button type="button" class="ai-link" data-ai="chatgpt" data-src="dream"><span aria-hidden="true">💬</span>ChatGPT로 꿈 풀기</button>
+        <button type="button" class="ai-link" data-ai="gemini" data-src="dream"><span aria-hidden="true">✨</span>Gemini로 꿈 풀기</button>
+        <button type="button" class="ghost" data-ai="copy" data-src="dream">부탁 글만 복사하기</button>
+      </div>
+      <p class="toast" id="drMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
+    </section>
+  </div>
+
   <!-- 12. 손금 -->
   <div class="panel" role="tabpanel" id="pn-12" aria-labelledby="h-palm" hidden>
     <section class="card" aria-labelledby="h-palm">
       <h2 id="h-palm">✋ 내 손금 고르기</h2>
-      <svg class="fp-fig" viewBox="0 0 220 260" role="img" aria-label="손금 4대선 그림">
-        <path d="M58 250 L52 150 Q46 120 30 104 Q20 92 30 86 Q40 80 52 94 L66 112 L64 46 Q64 34 74 34 Q84 34 84 46 L86 100 L88 26 Q88 14 99 14 Q110 14 110 26 L110 98 L114 32 Q114 20 125 20 Q136 20 136 32 L134 104 L140 56 Q141 44 151 45 Q161 46 160 58 L156 140 Q154 190 150 250 Z" fill="var(--pink-soft)" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M88 126 Q66 150 70 196 Q72 220 82 240" stroke="#D9534F" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <path d="M88 128 Q110 140 146 156" stroke="#3D6AAE" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <path d="M154 120 Q126 112 104 116 Q92 118 84 108" stroke="#E07BA0" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <path d="M116 242 Q114 190 116 132" stroke="#3C9A5F" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="1 0"/>
-        <text x="4" y="206" font-size="12" font-weight="700" fill="#D9534F">생명선</text>
-        <text x="162" y="164" font-size="12" font-weight="700" fill="#3D6AAE">두뇌선</text>
-        <text x="162" y="118" font-size="12" font-weight="700" fill="#C2557A">감정선</text>
-        <text x="162" y="214" font-size="12" font-weight="700" fill="#3C9A5F">운명선</text><path d="M160 210 L120 204" stroke="#3C9A5F" stroke-width="1" fill="none"/>
-      </svg>
+      <svg class="fp-fig fp-hand" viewBox="0 0 300 290" role="img" aria-label="손금 4대선 그림">
+      <defs>
+        <linearGradient id="handG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4EC"/><stop offset="1" stop-color="#FFE0D2"/></linearGradient>
+        <radialGradient id="handB" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFB7C5" stop-opacity=".55"/><stop offset="1" stop-color="#FFB7C5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <g transform="translate(30 0)">
+        <g fill="#F2A7A0" stroke="#F2A7A0" stroke-width="7" stroke-linejoin="round">
+          <rect x="62" y="44" width="30" height="104" rx="15"/>
+          <rect x="96" y="24" width="32" height="120" rx="16"/>
+          <rect x="132" y="36" width="30" height="110" rx="15"/>
+          <rect x="166" y="66" width="26" height="86" rx="13"/>
+          <rect x="58" y="112" width="136" height="146" rx="52"/>
+          <rect x="40" y="118" width="36" height="104" rx="18" transform="rotate(-34 58 210)"/>
+        </g>
+        <g fill="url(#handG)">
+          <rect x="62" y="44" width="30" height="104" rx="15"/>
+          <rect x="96" y="24" width="32" height="120" rx="16"/>
+          <rect x="132" y="36" width="30" height="110" rx="15"/>
+          <rect x="166" y="66" width="26" height="86" rx="13"/>
+          <rect x="58" y="112" width="136" height="146" rx="52"/>
+          <rect x="40" y="118" width="36" height="104" rx="18" transform="rotate(-34 58 210)"/>
+        </g>
+        <ellipse cx="72" cy="214" rx="26" ry="18" fill="url(#handB)"/>
+        <ellipse cx="170" cy="200" rx="22" ry="16" fill="url(#handB)"/>
+        <g stroke="#F2B5AC" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8">
+          <path d="M68 86 q9 3 18 0 M68 112 q9 3 18 0 M103 66 q9 3 18 0 M103 94 q9 3 18 0 M138 78 q9 3 18 0 M138 104 q9 3 18 0 M171 98 q7 3 15 0 M171 120 q7 3 15 0"/>
+        </g>
+        <path d="M150 128 Q124 120 104 124 Q88 128 74 118" stroke="#E86A9A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M82 136 Q110 148 168 166" stroke="#5B8DDB" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M82 138 Q58 166 64 210 Q68 236 82 252" stroke="#E5574F" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M126 254 Q122 200 124 142" stroke="#43A86B" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </g>
+      <g font-size="12.5" font-weight="700" font-family="'Gowun Dodum', sans-serif">
+        <rect x="200" y="112" width="58" height="22" rx="11" fill="#FFE1EC"/><text x="229" y="127" text-anchor="middle" fill="#C2457A">감정선</text>
+        <rect x="204" y="158" width="58" height="22" rx="11" fill="#E1EBFF"/><text x="233" y="173" text-anchor="middle" fill="#3D6AAE">두뇌선</text>
+        <rect x="186" y="236" width="58" height="22" rx="11" fill="#DDF3E5"/><text x="215" y="251" text-anchor="middle" fill="#2F7D4A">운명선</text>
+        <rect x="2" y="250" width="58" height="22" rx="11" fill="#FFE3E0"/><text x="31" y="265" text-anchor="middle" fill="#C9433B">생명선</text>
+        <path d="M198 124 L182 126 M202 170 L196 167 M186 246 L158 246 M60 258 L100 250" stroke="#E2B6B0" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+      </g>
+      <g fill="#FFC6D6"><path d="M262 40 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z"/><circle cx="20" cy="60" r="4"/><circle cx="278" cy="90" r="3"/></g>
+      <path d="M26 30 c-5 -8 -16 -3 -10 6 l10 9 10 -9 c6 -9 -5 -14 -10 -6z" fill="#FFB7C5"/>
+    </svg>
       <p class="hint">손바닥을 활짝 펴고 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. <b>주로 쓰는 손</b>은 지금까지 만들어 온 모습, <b>반대 손</b>은 타고난 바탕으로 많이 봐요.</p>
       <div id="palmQs"></div>
     </section>
@@ -980,7 +1206,26 @@ button.kakao svg { width: 20px; height: 20px; }
     </section>
     <section class="card" aria-labelledby="h-palmp">
       <h2 id="h-palmp">📷 사진으로 AI에게 손금 보기</h2>
-      <ol class="fp-steps"><li>밝은 곳에서 손바닥을 <b>활짝 펴고</b>, 위에서 <b>수직으로</b> 찍어요.</li><li>손목까지 나오게, 손가락은 붙이지 말고 살짝 벌려요.</li><li>선이 잘 보이게 손바닥을 살짝 오므렸다 펴면 좋아요. 양손을 따로 찍으면 더 좋아요.</li><li>아래 버튼을 누르면 부탁 글이 복사되고 AI 창이 열려요. <b>붙여넣기 + 사진 첨부</b> 후 보내요.</li></ol>
+      <ol class="fp-steps"><li>밝은 곳에서 손바닥을 <b>활짝 펴고</b>, 위에서 <b>수직으로</b> 찍어요.</li><li>손목까지 나오게, 손가락은 붙이지 말고 살짝 벌려요.</li><li>선이 잘 보이게 손바닥을 살짝 오므렸다 펴면 좋아요. 양손을 따로 찍으면 더 좋아요.</li><li class="only-m"><b>바로 찍기</b>나 <b>사진 고르기</b>로 사진을 넣고, <b>AI 앱으로 보내기</b>를 눌러요.</li><li class="only-pc">아래 칸에 사진을 <b>끌어다 놓거나 붙여넣고</b>, <b>사진 복사 → AI 창에 Ctrl+V</b>로 보내요.</li></ol>
+      <div class="fp-photo">
+        <div class="fp-pbtns">
+          <label class="fp-pbtn"><input type="file" accept="image/*" capture="environment" id="palmpCam">📷 바로 찍기</label>
+          <label class="fp-pbtn alt"><input type="file" accept="image/*" id="palmpPick">🖼️ 사진 고르기</label>
+        </div>
+        <label class="fp-drop" id="palmpDrop" tabindex="0">
+          <input type="file" accept="image/*" id="palmpPcPick">
+          <span class="fp-drop-ic" aria-hidden="true">🖼️</span>
+          <b>손바닥 사진을 여기에 붙이기</b>
+          <span>사진을 <b>끌어다 놓거나</b>, <b>Ctrl+V</b>로 붙여넣거나, <b>눌러서 파일 고르기</b></span>
+        </label>
+        <div class="fp-prev" id="palmpPrev" hidden>
+          <img id="palmpImg" alt="고른 손바닥 사진 미리보기">
+          <div class="fp-prev-acts"><button type="button" class="ghost" id="palmpRe">다시 찍기</button><button type="button" class="ghost" id="palmpDel">사진 지우기</button></div>
+        </div>
+        <button type="button" class="primary fp-send" id="palmpShare" hidden>📤 사진과 함께 AI 앱으로 보내기</button>
+        <button type="button" class="ghost fp-send2" id="palmpCopyImg" hidden>🖼️ 사진 복사하기 (PC: AI 창에 Ctrl+V)</button>
+        <p class="toast" id="palmpPhotoMsg" role="status" style="white-space:pre-wrap"></p>
+      </div>
       <div class="warn">사진은 <b>홍짱 앱에 저장되거나 보내지지 않아요.</b> 다만 AI 창에 사진을 올리면 그 AI 회사로 보내져요. <b>본인 사진만</b>, 원하실 때만 올려 주세요. 다른 사람 사진은 꼭 허락을 받고 써 주세요.</div>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="palmp"><span aria-hidden="true">✳️</span>Claude에 사진으로 묻기</button>
@@ -1161,6 +1406,15 @@ button.kakao svg { width: 20px; height: 20px; }
         <p class="hint">AI 앱이나 사이트에 로그인되어 있어야 해요. AI 풀이는 재미와 참고용이에요.</p>
       </div>
     </section>
+    <section class="card" aria-labelledby="h-trait">
+      <h2 id="h-trait">🌷 <span id="traitWho">나</span>의 성향</h2>
+      <div class="trait-2">
+        <div class="trait-box pos"><b>좋은 점</b><small>자연스럽게 드러나는 강점</small><ul id="traitPos"></ul></div>
+        <div class="trait-box neg"><b>조심할 점</b><small>지칠 때 도드라지기 쉬운 모습</small><ul id="traitNeg"></ul></div>
+      </div>
+      <div id="traitAcc"></div>
+      <p class="hint" style="margin-top:8px">태어난 날의 글자(일간)를 바탕으로 한 전통적인 성향 풀이예요. 건강 이야기는 생활 습관을 돌아보는 참고일 뿐, 진단이 아니에요.</p>
+    </section>
     <section class="card read" aria-labelledby="h-ilju">
       <h2 id="h-ilju">내 일주 성격</h2>
       <div id="iljuBox"></div>
@@ -1182,6 +1436,16 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-mr5">🔮 명리 분석</h2>
       <div class="mr-box"></div>
     </section>
+    <section class="card" aria-labelledby="h-guide">
+      <h2 id="h-guide">🐣 사주 처음 읽는 순서</h2>
+      <p class="hint" style="margin-top:0">한자가 낯설어도 괜찮아요. 이 순서대로 하나씩 눌러 보세요.</p>
+      <div class="gd-step"><i>1</i><div><b>나를 찾기: 일간</b><p>태어난 날 기둥(일주)의 위 글자가 '나'예요. 나무·불·흙·쇠·물 가운데 무엇인지 먼저 봐요.</p><button type="button" data-go="1:h-key">내 사주 핵심 보기</button></div></div>
+      <div class="gd-step"><i>2</i><div><b>태어난 계절: 월지</b><p>태어난 달 기둥의 아래 글자예요. 내가 힘을 얻는 계절인지, 쉬어 가는 계절인지 알려 줘요.</p><button type="button" data-go="1:h-key">명식 표 보기</button></div></div>
+      <div class="gd-step"><i>3</i><div><b>많고 적은 기운: 오행</b><p>여덟 글자에 어떤 기운이 많고 비었는지 봐요. 많다고 좋고 적다고 나쁜 건 아니에요. 균형을 보는 거예요.</p><button type="button" data-go="1:h-el">오행 분포 보기</button></div></div>
+      <div class="gd-step"><i>4</i><div><b>나와의 관계: 십신</b><p>다른 글자가 나를 돕는지(인성), 내가 표현하는지(식상), 다루는지(재성), 나를 다잡는지(관성), 나와 같은지(비겁)를 봐요.</p><button type="button" data-go="5:h-trait">내 성향 보기</button></div></div>
+      <div class="gd-step"><i>5</i><div><b>시간의 흐름: 대운·세운</b><p>타고난 그릇에 10년, 1년마다 다른 계절이 찾아와요. 지금이 넓힐 때인지 다질 때인지 살펴봐요.</p><button type="button" data-go="2:h-dae">대운 보기</button></div></div>
+      <p class="hint">사주는 "좋다·나쁘다"를 가리는 것보다 "나는 어떤 때 힘이 나는가"를 묻는 도구로 쓰면 더 도움이 돼요.</p>
+    </section>
     <section class="card gl" aria-labelledby="h-gl">
       <h2 id="h-gl">사주 용어 쉽게 보기</h2>
       <div id="glBox"></div>
@@ -1196,7 +1460,16 @@ button.kakao svg { width: 20px; height: 20px; }
       <button type="button" class="ghost" id="linkCopy">링크 복사</button>
     </div>
     <p class="hint" id="shareMsg" role="status"></p>
+    <button type="button" class="inst-btn inst-only" data-install><span aria-hidden="true">📲</span>홈 화면에 앱으로 설치하기</button>
+    <p class="hint inst-only" style="margin-top:6px">설치하면 휴대폰 바탕화면에 홍짱 아이콘이 생기고, 앱처럼 화면 가득 열려요.</p>
   </section>
+  <div id="instBox" role="dialog" aria-modal="true" aria-labelledby="instTitle" hidden>
+    <div class="ib">
+      <h3 id="instTitle">📲 앱으로 설치하기</h3>
+      <div id="instBody"></div>
+      <button type="button" class="ib-close" id="instClose">알겠어요</button>
+    </div>
+  </div>
 
   <footer>
     만세력 계산을 중심으로 한 도구예요. 절기 시각은 천문 계산으로 구했고, 다른 만세력 프로그램과 대조했어요(명식 6,600여 건, 대운·12운성·공망·십성 1,500건, 음력 1900~2050년 55,000여 일이 모두 일치). 2051년 이후 음력은 천문 계산값이에요. 자시, 시차 보정, 신살, 용신은 학파와 만세력에 따라 다를 수 있어요. 풀이는 재미와 참고용이에요.
@@ -2324,7 +2597,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       sel.appendChild(o);
     });
     var g2 = document.createElement('optgroup'); g2.label = '그 밖에';
-    [['custom', '목록에 없어요 (경도 직접 입력)']].forEach(function (x) {
+    [['m30', '30분 일괄 보정 (다른 만세력 방식)'], ['custom', '목록에 없어요 (경도 직접 입력)']].forEach(function (x) {
       var o = document.createElement('option'); o.value = x[0]; o.textContent = x[1]; g2.appendChild(o);
     });
     sel.appendChild(g2);
@@ -2340,6 +2613,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     P.placeInfo = function () {
       var sel = g('place'), v = sel.value;
       if (v === 'none') return { lon: null, name: '보정 안 함' };
+      if (v === 'm30') return { lon: 127.5, noEot: true, name: '30분 일괄 보정' };
       if (v === 'unknown') return { lon: 126.98, name: '모름 (서울 기준)' };
       if (v === 'custom') { var n = parseFloat(g('lon').value); return { lon: isNaN(n) ? NaN : n, name: '직접 입력 경도 ' + g('lon').value }; }
       return { lon: parseFloat(v), name: sel.options[sel.selectedIndex].textContent.split(' (')[0] };
@@ -2384,7 +2658,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
         inp.h = tp.h; inp.mi = tp.mi;
         var pl = P.placeInfo();
         if (pl.lon !== null && (isNaN(pl.lon) || pl.lon < 100 || pl.lon > 180)) throw new Error('경도는 100~180 사이 숫자로 입력해 주세요.');
-        inp.lon = pl.lon; inp.eot = pl.lon != null;
+        inp.lon = pl.lon; inp.eot = pl.lon != null && !pl.noEot;
       }
       inp.dst = S.DST_YEARS.indexOf(s.y) >= 0 && g('dst').checked;
       return inp;
@@ -2523,15 +2797,16 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       row('지장간', function (col) {
         return col.empty ? td('hid none', '-') : td('hid', col.hidden.map(function (h) { return '<span class="chip e' + h.el + '">' + h.k + '</span>'; }).join(''));
       }) +
-      row('12운성', function (col) { return col.empty ? td('god none', '-') : td('god', X.unsung(res.dayStem, col.branch)); }) +
+      row('12운성', function (col) { return col.empty ? td('god none', '-') : td('god', X.unsung(res.dayStem, col.branch) + '<span class="sub">(' + X.unsung(col.stem, col.branch) + ')</span>'); }) +
       row('납음', function (col) { if (col.empty) return td('god none', '-'); var n = X.napeum(col.stem, col.branch); return td('god', n.name + '<span class="sub">' + n.gloss + '</span>'); }) +
       row('12신살', function (col) { return col.empty ? td('god none', '-') : td('god', '<span class="sub">년 기준</span>' + (twY[LAB[col.key]] || '-') + '<span class="sub">일 기준</span>' + (twD[LAB[col.key]] || '-')); }) +
-      row('귀인', function (col) {
+      row('길신·흉신', function (col) {
         if (col.empty) return td('god none', '-');
-        var lab = LAB[col.key];
-        var names = c.an.sinsal.filter(function (x) { return /귀인|학관|천의성|협록/.test(x.name) && x.where.some(function (w) { return w.indexOf(lab) === 0; }); })
-          .map(function (x) { return x.name.replace(/\(.*\)/, ''); });
-        return td('god' + (names.length ? ' gw' : ' none'), names.length ? names.join('<br>') : '—');
+        var lab = LAB[col.key], seen = {};
+        var list = c.an.sinsal.filter(function (x) { return x.where.some(function (w) { return w.indexOf(lab) === 0; }); })
+          .map(function (x) { return x.name.replace(/\(.*\)/, ''); }).filter(function (n) { if (seen[n]) return false; seen[n] = 1; return true; });
+        if (!list.length) return td('god none', '—');
+        return td('god gs', list.map(function (n) { var good = /귀인|학관|천의성|협록|월덕/.test(n); return '<span class="' + (good ? 'gs-good' : 'gs-bad') + '">' + n + '</span>'; }).join(''));
       });
     $('table').innerHTML = '<table aria-label="사주 명식표"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>';
     $('warns').innerHTML = res.warnings.map(function (w) { return '<div class="warn">' + w + '</div>'; }).join('');
@@ -2604,12 +2879,31 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   }
 
   // ---------- 운 ----------
+  // 오늘 일진 천간의 십신 묶음으로 본 분야별 흐름 (간단 참고용)
+  var TD_AREA = {
+    '비겁': [['일', 'mid', '내 힘으로 밀고 가는 날이에요. 혼자 끝낼 수 있는 일부터 하세요.'], ['돈', 'low', '나가는 돈이 생기기 쉬워요. 빌려주거나 함께 쓰는 돈은 한 번 더 생각해요.'], ['사랑', 'mid', '내 뜻이 강해져요. 상대 말을 끝까지 들어 주면 좋아요.'], ['이동', 'good', '친구·동료와 함께 움직이면 힘이 나요.']],
+    '식상': [['일', 'good', '아이디어와 말솜씨가 살아나요. 만들고 보여 주는 일에 좋아요.'], ['돈', 'mid', '재능이 돈으로 이어지는 씨앗을 심는 날이에요.'], ['사랑', 'good', '표현이 자연스러워요. 고마운 마음을 말로 전해 보세요.'], ['이동', 'good', '가벼운 나들이, 맛있는 곳 찾기에 잘 어울려요.']],
+    '재성': [['일', 'good', '결과를 챙기고 정리하는 일이 잘 풀려요.'], ['돈', 'good', '돈 흐름을 점검하기 좋은 날이에요. 계획한 지출만 해요.'], ['사랑', 'good', '챙겨 주는 마음이 잘 전해져요.'], ['이동', 'mid', '볼일이 있는 이동은 좋고, 충동 쇼핑은 조심해요.']],
+    '관성': [['일', 'mid', '책임과 약속이 늘어요. 규칙과 마감을 먼저 지켜요.'], ['돈', 'mid', '세금·공과금처럼 꼭 내야 할 것을 챙기기 좋아요.'], ['사랑', 'mid', '예의와 배려가 신뢰를 쌓아요. 서운한 말은 하루 미뤄요.'], ['이동', 'low', '서두르면 피곤해요. 시간을 넉넉히 잡아요.']],
+    '인성': [['일', 'good', '배우고 읽고 계획 세우기에 좋아요.'], ['돈', 'mid', '큰 결정보다 정보를 모으는 날이에요.'], ['사랑', 'good', '도움을 받거나 위로를 주고받기 좋아요.'], ['이동', 'mid', '조용한 곳, 책방이나 산책이 잘 맞아요.']]
+  };
+  var TD_GROUP = { '비견': '비겁', '겁재': '비겁', '식신': '식상', '상관': '식상', '편재': '재성', '정재': '재성', '편관': '관성', '정관': '관성', '편인': '인성', '정인': '인성' };
+  function todayAreas(p) {
+    var g = TD_GROUP[p.stemGod]; if (!g) return '';
+    var ch = p.branchRel.some(function (k) { return /^충/.test(k); });
+    var LV = { good: '좋음', mid: '보통', low: '조심' };
+    return '<div class="td-area">' + TD_AREA[g].map(function (a) {
+      var lv = a[1], tx = a[2];
+      if (ch && a[0] === '이동') { lv = 'low'; tx = '일지와 충이 들어 길에서 변수가 생기기 쉬워요. 여유 있게 움직여요.'; }
+      return '<div><span class="lv ' + (lv === 'good' ? '' : lv) + '">' + LV[lv] + '</span><b>' + { '일': '💼 일', '돈': '💰 돈', '사랑': '💗 사랑', '이동': '🚗 이동·여행' }[a[0]] + '</b>' + tx + '</div>';
+    }).join('') + '</div><p class="hint" style="margin:0 0 8px">오늘 일진 천간이 나에게 ' + p.stemGod + '(' + g + ')라서 이렇게 봤어요. 생활 참고용이에요.</p>';
+  }
   function renderToday(c) {
     var k = new Date(Date.now() + 9 * 3600000);
     var y = k.getUTCFullYear(), m = k.getUTCMonth() + 1, d = k.getUTCDate();
     $('todayDate').textContent = '(' + y + '.' + m + '.' + d + ')';
     var p = X.dayFlow(c.res, y, m, d);
-    $('todayBox').innerHTML = READ.todayText(p).map(function (t) { return '<p style="margin:0 0 6px;font-size:15px">' + t + '</p>'; }).join('');
+    $('todayBox').innerHTML = READ.todayText(p).map(function (t) { return '<p style="margin:0 0 6px;font-size:15px">' + t + '</p>'; }).join('') + todayAreas(p);
     var cells = [];
     for (var i = 0; i < 8; i++) {
       var t = new Date(Date.UTC(y, m - 1, d + i));
@@ -2626,7 +2920,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('daeCards').innerHTML = dn.periods.map(function (p) {
       return '<div class="lc' + (p.k === cur ? ' cur' : '') + '"><div class="age">' + p.age + '세</div><div class="yr">' + p.startYear + '년~</div>' +
         '<div>' + p.stemGod + '</div><div class="gh e' + p.stemEl + '">' + p.stemH + '</div><div class="gh e' + p.branchEl + '">' + p.branchH + '</div>' +
-        '<div>' + p.branchGod + '</div><div class="sub">' + p.unsung + '</div></div>';
+        '<div>' + p.branchGod + '</div><div class="sub">' + p.unsung + ' (' + X.unsung(p.stem, p.branch) + ')</div></div>';
     }).join('');
     renderSeun(c);
   }
@@ -2642,7 +2936,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     var w = X.wolun(c.res, st.seunYear);
     $('wolYear').textContent = '(' + st.seunYear + '년)';
     $('wolGrid').innerHTML = w.map(function (q) {
-      return '<div class="cell"><span class="sub">' + q.term + '</span><span class="sub">' + q.start + '</span><span class="gj">' + ganji(q) + '</span><span>' + q.stemGod + '</span></div>';
+      return '<div class="cell"><span class="sub">' + q.term + ' ' + q.start + '</span><span>' + q.stemGod + '</span><span class="gj">' + ganji(q) + '</span><span>' + q.branchGod + '</span><span class="sub">' + q.unsung + '(' + X.unsung(q.stem, q.branch) + ')</span></div>';
     }).join('');
   }
 
@@ -2825,9 +3119,9 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     var c;
     try { c = compute(A, $('base12').value); showErr($('err'), ''); } catch (e) { showErr($('err'), e.message); return; }
     var now = Date.now();
-    st.A = c; st.sy = S.sajuYearAt(now);
+    st.A = c; st.sy = S.sajuYearAt(now); if (scroll) st.mine = true;
     if (st.seunStart == null || st.seunYear == null) { st.seunStart = st.sy - 1; st.seunYear = st.sy; }
-    renderTop(c); renderMyeong(c); renderKey(c); renderOutlook(c); renderExt(c); renderToday(c); renderLuck(c); renderRel(c); renderRead(c); renderTrad(c); renderName(c); renderTj(c); renderMr(c); renderDdy(c); renderYel(c); renderDdToday(c);
+    renderTop(c); renderMyeong(c); renderKey(c); renderOutlook(c); renderExt(c); renderToday(c); renderLuck(c); renderRel(c); renderRead(c); renderTrad(c); renderName(c); renderTj(c); renderMr(c); renderDdy(c); renderYel(c); renderDdToday(c); renderTrait(c); renderCal(c, true);
     lastText = summaryOf(c);
     $('txt').value = lastText;
     fillYears();
@@ -3285,13 +3579,14 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   // ---------- 사주 / 타로 보기 바꾸기 ----------
   var HD_SUB = { saju: '명식, 대운·세운, 합충과 신살, 궁합, 오늘의 운세까지 한 곳에서 봐요.', tarot: '주제와 질문을 정하고 카드 3장을 뽑아 과거·현재·미래의 흐름을 봐요.', name: '아이의 사주에서 부족한 기운을 찾고, 이름의 소리오행을 살펴봐요.' };
   var HD_TITLE = { saju: '사주 만세력', tarot: '홍짱 타로점', name: '홍짱 작명', tj: '홍짱 토정비결', mr: '홍짱 명리 풀이' };
-  HD_TITLE.face = '홍짱 관상'; HD_TITLE.palm = '홍짱 손금';
+  HD_TITLE.face = '홍짱 관상'; HD_TITLE.palm = '홍짱 손금'; HD_TITLE.dream = '홍짱 꿈해몽';
+  HD_SUB.dream = '꿈에 나온 것을 찾아 옛 풀이와 마음 읽기를 보고, 내 꿈을 AI에게 물어봐요.';
   HD_SUB.face = '얼굴의 모양을 골라 타고난 성향을 보고, 사진으로 AI에게 관상을 부탁해요.';
   HD_SUB.palm = '손바닥의 선을 골라 흐름을 보고, 사진으로 AI에게 손금을 부탁해요.';
   HD_SUB.mr = '사주팔자와 명리 분석을 한눈에 보고, 원국·대운·세운·월운·일운 풀이를 AI에게 부탁해요.';
   HD_SUB.tj = '태어난 해·월·일만 넣으면 그해의 토정비결 괘를 찾아 드려요.';
   function setMode(m) {
-    m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm') ? m : 'saju';
+    m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm' || m === 'dream') ? m : 'saju';
     document.body.setAttribute('data-mode', m);
     Array.prototype.forEach.call(document.querySelectorAll('.mode-sw [data-mode]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
     $('hdSub').textContent = HD_SUB[m];
@@ -3310,7 +3605,12 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   if (location.hash === '#tj' || location.hash === '#tojeong') setMode('tj');
   if (location.hash === '#mr' || location.hash === '#myeongri') setMode('mr');
   if (location.hash === '#face' || location.hash === '#gwansang') setMode('face');
+  window.addEventListener('hashchange', function () {
+    var H = { '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#tojeong': 'tj', '#mr': 'mr', '#myeongri': 'mr', '#face': 'face', '#gwansang': 'face', '#palm': 'palm', '#songeum': 'palm', '#dream': 'dream', '#kkum': 'dream' };
+    if (H[location.hash] && document.body.getAttribute('data-mode') !== H[location.hash]) { var sp = document.getElementById('splash'); if (sp) sp.hidden = true; document.body.style.overflow = ''; setMode(H[location.hash]); }
+  });
   if (location.hash === '#palm' || location.hash === '#songeum') setMode('palm');
+  if (location.hash === '#dream' || location.hash === '#kkum') setMode('dream');
 
 
 
@@ -3632,7 +3932,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       var d = pt(i, R * cn[i] / mx), l = pt(i, R + 22);
       g += '<circle cx="' + d[0] + '" cy="' + d[1] + '" r="3.5" fill="var(--green)"/>';
       g += '<text x="' + l[0] + '" y="' + (l[1] - 2) + '" text-anchor="middle" font-size="15" font-weight="700" fill="' + INK[i] + '">' + H[i] + '</text>' +
-        '<text x="' + l[0] + '" y="' + (l[1] + 14) + '" text-anchor="middle" font-size="13" fill="var(--ink)">' + cn[i] + '</text>';
+        '<text x="' + l[0] + '" y="' + (l[1] + 14) + '" text-anchor="middle" font-size="12" fill="var(--ink)">' + ['비겁', '식상', '재성', '관성', '인성'][(i - S.STEM_EL[res.dayStem] + 5) % 5] + ' ' + cn[i] + '</text>';
     });
     $('elRadar').innerHTML = g;
     var ds = res.dayStem, mb = res.pillars.month.branch;
@@ -3783,8 +4083,263 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       '4. 사진에서 잘 보이지 않는 선은 추측하지 말고 "잘 보이지 않아요"라고 말해줘.',
       '- 너는 손금 전문가야.'].concat(FP_RULES).join('\n');
   }
-  var FP_BUILD = { face: buildFaceSel, palm: buildPalmSel, facep: buildFacePhoto, palmp: buildPalmPhoto };
-  var FP_MSG = { face: 'faceMsg', palm: 'palmMsg', facep: 'facepMsg', palmp: 'palmpMsg' };
+  var FP_BUILD = { face: buildFaceSel, palm: buildPalmSel, facep: buildFacePhoto, palmp: buildPalmPhoto, dream: buildDreamPrompt };
+  var FP_MSG = { face: 'faceMsg', palm: 'palmMsg', facep: 'facepMsg', palmp: 'palmpMsg', dream: 'drMsg' };
+  // ---------- 관상·손금 사진: 바로 찍기 / 고르기 / AI 앱으로 보내기 ----------
+  ['face', 'palm'].forEach(function (k) {
+    var file = null, url = null;
+    var msg = $(k + 'pPhotoMsg');
+    var canShareFiles = function (f) { try { return !!(navigator.canShare && navigator.share && navigator.canShare({ files: [f] })); } catch (e) { return false; } };
+    window['fpSet_' + k] = function (f) { setFile(f); };
+    function setFile(f) {
+      if (url) { try { URL.revokeObjectURL(url); } catch (e) {} url = null; }
+      file = f || null;
+      $(k + 'pPrev').hidden = !file;
+      $(k + 'pShare').hidden = !file;
+      $(k + 'pCopyImg').hidden = !file || !(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write);
+      msg.textContent = '';
+      if (!file) { $(k + 'pImg').removeAttribute('src'); return; }
+      url = URL.createObjectURL(file);
+      $(k + 'pImg').src = url;
+      msg.textContent = canShareFiles(file) ? '사진이 준비됐어요. 아래 버튼을 눌러 Claude·ChatGPT·Gemini 앱 중 하나를 고르세요.' : '이 기기에서는 사진을 앱으로 바로 넘길 수 없어요. 아래 AI 버튼으로 창을 연 뒤 사진을 첨부(또는 사진 복사 후 붙여넣기)해 주세요.';
+    }
+    [k + 'pCam', k + 'pPick'].forEach(function (id) {
+      $(id).addEventListener('change', function () { var f = this.files && this.files[0]; if (f && /^image\//.test(f.type)) setFile(f); else if (f) msg.textContent = '사진 파일만 넣을 수 있어요.'; this.value = ''; });
+    });
+    $(k + 'pDel').addEventListener('click', function () { setFile(null); msg.textContent = '사진을 지웠어요.'; });
+    $(k + 'pRe').addEventListener('click', function () { $(k + 'pCam').click(); });
+    function copyText(text) {
+      try { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {}
+      try { navigator.clipboard && navigator.clipboard.writeText(text); } catch (e) {}
+    }
+    $(k + 'pShare').addEventListener('click', function () {
+      if (!file) return;
+      var text = FP_BUILD[k + 'p']();
+      copyText(text);
+      if (canShareFiles(file)) {
+        navigator.share({ files: [file], text: text, title: k === 'face' ? '관상 봐 주세요' : '손금 봐 주세요' }).then(function () {
+          msg.textContent = '보냈어요! AI 앱에서 부탁 글이 안 보이면 입력칸을 길게 눌러 붙여넣기 해 주세요.';
+        }, function (e) { if (e && e.name !== 'AbortError') msg.textContent = '보내지 못했어요. 아래 AI 버튼으로 창을 열고 사진을 첨부해 주세요.'; });
+      } else {
+        msg.textContent = '부탁 글을 복사했어요. 아래 AI 버튼으로 창을 열고, 붙여넣기 한 뒤 사진을 첨부해 주세요.';
+      }
+    });
+    $(k + 'pCopyImg').addEventListener('click', function () {
+      if (!file) return;
+      var img = new Image();
+      img.onload = function () {
+        var sc = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        c.toBlob(function (b) {
+          try {
+            navigator.clipboard.write([new ClipboardItem({ 'image/png': b })]).then(function () {
+              msg.textContent = '사진을 복사했어요. 먼저 아래 AI 버튼으로 부탁 글을 붙여넣고, 사진은 AI 입력칸에서 Ctrl+V로 붙여 넣어 주세요.';
+            }, function () { msg.textContent = '사진 복사가 안 돼요. AI 창에서 사진을 직접 첨부해 주세요.'; });
+          } catch (e) { msg.textContent = '사진 복사가 안 돼요. AI 창에서 사진을 직접 첨부해 주세요.'; }
+        }, 'image/png');
+      };
+      img.src = url;
+    });
+  });
+
+
+
+  // ---------- 앱 안 촬영 화면 (안내선 포함) ----------
+  (function () {
+    var box = $('camBox'), video = $('camVideo'), stream = null, kind = 'palm', facing = 'environment';
+    var GUIDE = {
+      palm: '<path d="M104 372 L98 262 Q74 240 58 212 Q48 192 62 186 Q76 180 90 200 L104 222 L104 128 Q104 110 117 110 Q130 110 130 128 L130 206 L138 96 Q138 80 152 80 Q166 80 166 96 L166 204 L176 110 Q176 94 189 94 Q202 94 202 110 L200 212 L210 150 Q212 136 224 138 Q236 140 234 154 L228 262 Q222 330 216 372 Z" fill="rgba(255,209,220,.08)" stroke="#FFD1DC" stroke-width="4" stroke-dasharray="10 8" stroke-linejoin="round"/>',
+      face: '<ellipse cx="150" cy="190" rx="92" ry="124" fill="none" stroke="#FFD1DC" stroke-width="4" stroke-dasharray="10 8"/><line x1="70" y1="150" x2="230" y2="150" stroke="#FFD1DC" stroke-width="1.5" stroke-dasharray="4 6" opacity=".7"/>'
+    };
+    var TIP = { palm: '손바닥을 활짝 펴서 점선 안에 맞추고, 위에서 수직으로 찍어요.', face: '얼굴을 점선 안에 맞추고, 정면을 보며 찍어요.' };
+    function stop() { if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; } video.srcObject = null; }
+    function start() {
+      stop();
+      return navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1440 } }, audio: false }).then(function (st) {
+        stream = st; video.srcObject = st; video.classList.toggle('mirror', facing === 'user');
+        return video.play().catch(function () {});
+      });
+    }
+    function close() { stop(); box.hidden = true; document.body.style.overflow = ''; }
+    window.fpOpenCam = function (k) {
+      kind = k; facing = k === 'face' ? 'user' : 'environment';
+      $('camTitle').textContent = k === 'face' ? '👤 관상 사진 찍기' : '✋ 손금 사진 찍기';
+      $('camGuide').innerHTML = GUIDE[k]; $('camTip').textContent = TIP[k];
+      box.hidden = false; document.body.style.overflow = 'hidden';
+      return start().catch(function (e) {
+        close();
+        throw e;
+      });
+    };
+    $('camClose').addEventListener('click', close);
+    $('camFlip').addEventListener('click', function () { facing = facing === 'user' ? 'environment' : 'user'; start().catch(function () {}); });
+    $('camShot').addEventListener('click', function () {
+      if (!video.videoWidth) return;
+      var c = document.createElement('canvas'); c.width = video.videoWidth; c.height = video.videoHeight;
+      var g = c.getContext('2d');
+      if (facing === 'user') { g.translate(c.width, 0); g.scale(-1, 1); }
+      g.drawImage(video, 0, 0, c.width, c.height);
+      c.toBlob(function (b) {
+        if (!b) return;
+        var f = new File([b], (kind === 'face' ? 'gwansang' : 'songeum') + '.jpg', { type: 'image/jpeg' });
+        close();
+        window['fpSet_' + kind](f);
+        setTimeout(function () { var el = $(kind + 'pPrev'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+      }, 'image/jpeg', 0.92);
+    });
+    $('camAlbum').addEventListener('change', function () { var f = this.files && this.files[0]; this.value = ''; if (f) { close(); window['fpSet_' + kind](f); } });
+    box.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+    // '바로 찍기': 앱 안 카메라를 먼저 쓰고, 안 되면 휴대폰 기본 카메라(파일 입력)로
+    var inApp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
+    ['face', 'palm'].forEach(function (k) {
+      var inp = $(k + 'pCam'), lab = inp.closest('label');
+      if (inApp) {
+        var n = document.createElement('div'); n.className = 'fp-inapp';
+        n.innerHTML = '📢 <b>카카오톡·인스타그램 같은 앱 안</b>에서 열면 카메라가 막힐 수 있어요. 오른쪽 위(또는 아래)의 <b>⋮ · 공유 버튼 → "다른 브라우저로 열기"</b>를 눌러 크롬·사파리·삼성 인터넷에서 열어 주세요.';
+        lab.parentNode.parentNode.insertBefore(n, lab.parentNode.nextSibling);
+      }
+      lab.addEventListener('click', function (e) {
+        if (lab.dataset.native === '1') { lab.dataset.native = ''; return; }
+        if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || !window.isSecureContext) return; // 기본 동작(파일 입력)
+        e.preventDefault();
+        window.fpOpenCam(k).catch(function (err) {
+          var m = $(k + 'pPhotoMsg');
+          if (err && (err.name === 'NotAllowedError' || err.name === 'SecurityError')) {
+            m.textContent = '카메라 사용이 허락되지 않았어요. 주소창 왼쪽 자물쇠(또는 ⓘ) → 권한 → 카메라 "허용"으로 바꾼 뒤 다시 눌러 주세요. 지금은 휴대폰 기본 카메라로 열어 볼게요.';
+          } else {
+            m.textContent = '이 기기에서는 앱 안 카메라를 켤 수 없어서, 휴대폰 기본 카메라로 열어 볼게요.';
+          }
+          lab.dataset.native = '1'; inp.click();
+        });
+      });
+    });
+  })();
+
+
+  // ---------- 휴대폰: 바로 찍기 / PC: 사진 붙이기 ----------
+  (function () {
+    var ua = navigator.userAgent;
+    var mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(ua));
+    document.body.classList.toggle('is-pc', !mobile);
+    function take(k, f) {
+      if (!f) return;
+      if (!/^image\//.test(f.type)) { $(k + 'pPhotoMsg').textContent = '사진 파일만 붙일 수 있어요.'; return; }
+      window['fpSet_' + k](f);
+      $(k + 'pPhotoMsg').textContent = '사진을 붙였어요. ① 아래 [🖼️ 사진 복사하기] → ② AI 버튼으로 창 열기 → ③ 부탁 글 붙여넣기 → ④ 입력칸에서 Ctrl+V로 사진 붙이기 순서로 보내 주세요.';
+      setTimeout(function () { var el = $(k + 'pPrev'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 30);
+    }
+    ['face', 'palm'].forEach(function (k) {
+      var d = $(k + 'pDrop');
+      $(k + 'pPcPick').addEventListener('change', function () { take(k, this.files && this.files[0]); this.value = ''; });
+      ['dragenter', 'dragover'].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add('over'); }); });
+      ['dragleave', 'drop'].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove('over'); }); });
+      d.addEventListener('drop', function (e) { var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; take(k, f); });
+    });
+    document.addEventListener('paste', function (e) {
+      var m = document.body.getAttribute('data-mode'); if (m !== 'face' && m !== 'palm') return;
+      var t = e.target; if (t && (t.tagName === 'INPUT' && t.type === 'text' || t.tagName === 'TEXTAREA')) return;
+      var items = (e.clipboardData && e.clipboardData.items) || [];
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].kind === 'file' && /^image\//.test(items[i].type)) { e.preventDefault(); take(m, items[i].getAsFile()); return; }
+      }
+    });
+  })();
+
+
+  // ---------- 성향 (일간별) ----------
+  var TRAIT = [
+    { pos: ['곧고 성장 욕구가 강해요', '사람을 이끌고 돌보는 힘이 있어요', '꾸준히 뻗어 나가요'], neg: ['고집이 셀 때가 있어요', '굽히기를 어려워해요', '한꺼번에 많이 벌이기 쉬워요'],
+      gen: '큰 나무처럼 위로 곧게 자라려는 사람이에요. 바르고 어진 마음이 있어 주변을 품고 이끌어요. 한번 정한 방향은 쉽게 바꾸지 않아 믿음직하지만, 유연하게 휘는 법도 함께 익히면 더 크게 자라요.',
+      tal: '기획하고 키워 내는 일에 강해요. 교육, 상담, 기획, 출판처럼 사람과 생각을 자라게 하는 일에서 빛나요.',
+      love: '책임감 있게 상대를 지켜 주려는 사랑이에요. 내 방식만 고집하지 않고 상대의 속도를 맞춰 주면 관계가 깊어져요.',
+      hel: '목(木)은 간·근육·눈과 이어서 봐요. 오래 앉아 있기보다 스트레칭과 산책으로 몸을 자주 풀어 주세요.' },
+    { pos: ['부드럽고 적응력이 좋아요', '섬세하고 감각이 좋아요', '사람 사이를 잘 이어 줘요'], neg: ['눈치를 많이 봐요', '속으로 쌓아 두기 쉬워요', '결정을 미루기도 해요'],
+      gen: '풀과 꽃처럼 부드럽지만 끈질긴 사람이에요. 어디서든 뿌리를 내리고 길을 찾아요. 남을 배려하느라 내 마음을 뒤로 미루기 쉬우니, 하고 싶은 말을 조금씩 꺼내는 연습이 좋아요.',
+      tal: '꾸미고 다듬고 연결하는 일에 재능이 있어요. 디자인, 서비스, 상담, 조경, 콘텐츠 편집에서 감각이 살아나요.',
+      love: '다정하고 세심한 사랑이에요. 서운함을 쌓아 두지 말고 그때그때 부드럽게 말하면 오래 편안해요.',
+      hel: '목(木)은 신경·근육과 이어서 봐요. 긴장이 어깨와 목에 쌓이기 쉬우니 가벼운 요가와 충분한 잠을 챙겨 주세요.' },
+    { pos: ['밝고 열정적이에요', '솔직하고 시원해요', '주변을 환하게 만들어요'], neg: ['급해지기 쉬워요', '마무리가 약할 때가 있어요', '감정이 얼굴에 바로 드러나요'],
+      gen: '하늘의 해처럼 밝고 따뜻한 사람이에요. 숨김없이 표현하고 사람을 모으는 힘이 있어요. 열정이 앞설 때는 숨을 한 번 고르고 끝까지 마무리하면 빛이 오래가요.',
+      tal: '앞에 나서서 알리고 이끄는 일에 강해요. 방송, 강의, 행사, 마케팅, 영업에서 에너지가 살아나요.',
+      love: '뜨겁고 솔직한 사랑이에요. 마음이 식은 것처럼 보이지 않게 작은 표현을 꾸준히 이어 가면 좋아요.',
+      hel: '화(火)는 심장·혈액순환과 이어서 봐요. 과로와 열을 조심하고, 쉬는 시간을 일정에 먼저 넣어 주세요.' },
+    { pos: ['따뜻하고 세심해요', '집중력이 좋아요', '은은하게 사람을 챙겨요'], neg: ['예민해지기 쉬워요', '걱정이 많아요', '서운함을 오래 기억해요'],
+      gen: '촛불처럼 은은하게 곁을 밝히는 사람이에요. 한 가지에 깊이 몰입하고 정성이 깊어요. 감정이 예민해질 때는 혼자 끙끙 앓지 말고 믿는 사람과 나누면 마음이 가벼워져요.',
+      tal: '깊이 파고드는 일에 재능이 있어요. 연구, 글쓰기, 예술, 상담, 교육에서 섬세함이 빛나요.',
+      love: '정성을 다하는 사랑이에요. 상대의 작은 말에 마음이 쓰일 때는 넘겨짚기 전에 한 번 물어보세요.',
+      hel: '화(火)는 심장·수면과 이어서 봐요. 생각이 많아 잠이 얕아지기 쉬우니 자기 전 화면 보기를 줄여 보세요.' },
+    { pos: ['믿음직하고 듬직해요', '포용력이 커요', '중심을 잘 잡아요'], neg: ['변화에 느려요', '속마음을 잘 안 드러내요', '한번 정하면 안 움직여요'],
+      gen: '큰 산처럼 묵직하고 믿음직한 사람이에요. 사람들이 기대어 쉬는 언덕이 되어 줘요. 변화 앞에서 천천히 움직이는 편이니, 작은 변화부터 시도해 보면 기회가 더 넓어져요.',
+      tal: '관리하고 지키고 중재하는 일에 강해요. 행정, 부동산, 공공 분야, 조직 운영에서 신뢰를 얻어요.',
+      love: '한결같고 든든한 사랑이에요. 마음을 말로 표현해 주면 상대가 더 안심해요.',
+      hel: '토(土)는 위장·소화와 이어서 봐요. 규칙적인 식사와 천천히 씹는 습관이 가장 좋은 관리예요.' },
+    { pos: ['꼼꼼하고 실속 있어요', '남을 잘 길러 줘요', '현실 감각이 좋아요'], neg: ['걱정을 사서 해요', '거절을 잘 못해요', '속으로 계산이 많아요'],
+      gen: '기름진 논밭처럼 사람과 일을 길러 내는 사람이에요. 세심하게 챙기고 살림을 알뜰하게 꾸려요. 남을 돌보느라 내 몫을 놓치지 않도록 나를 위한 시간도 꼭 챙겨 주세요.',
+      tal: '키우고 관리하는 일에 재능이 있어요. 교육, 돌봄, 회계, 요리, 살림 콘텐츠에서 실력이 쌓여요.',
+      love: '살뜰히 챙겨 주는 사랑이에요. 혼자 다 떠안지 말고 함께 나누자고 말해 보세요.',
+      hel: '토(土)는 위장·피부와 이어서 봐요. 걱정이 소화로 가기 쉬우니 가벼운 걷기와 따뜻한 음식을 가까이해요.' },
+    { pos: ['결단력이 있어요', '의리 있고 정의로워요', '추진력이 강해요'], neg: ['말이 날카로울 때가 있어요', '타협을 어려워해요', '한번 정하면 밀어붙여요'],
+      gen: '단단한 바위와 쇠처럼 강하고 곧은 사람이에요. 옳다고 믿는 것을 지키는 의리가 있어요. 강한 말이 상처가 되지 않게 부드러운 말투를 곁들이면 더 큰 사람이 따라와요.',
+      tal: '결정하고 실행하는 일에 강해요. 기술, 관리, 법·행정, 운동, 현장 리더 역할에서 힘이 나요.',
+      love: '책임감 있고 확실한 사랑이에요. 맞고 틀림보다 마음을 먼저 들어 주면 관계가 부드러워져요.',
+      hel: '금(金)은 폐·호흡·피부와 이어서 봐요. 건조함을 조심하고 깊은 호흡과 가벼운 유산소 운동을 해 주세요.' },
+    { pos: ['깔끔하고 섬세해요', '완성도를 따져요', '자존심이 단단해요'], neg: ['예민하고 날카로워요', '남의 말에 쉽게 상처받아요', '완벽하려다 지쳐요'],
+      gen: '빛나는 보석처럼 맑고 섬세한 사람이에요. 작은 것도 정확하게 다듬어 완성도를 높여요. 완벽하지 않아도 괜찮다고 스스로를 다독이면 마음이 훨씬 편해져요.',
+      tal: '다듬고 고르고 평가하는 일에 재능이 있어요. 디자인, 편집, 금융, 의료, 품질 관리에서 꼼꼼함이 빛나요.',
+      love: '깔끔하고 진심 어린 사랑이에요. 서운한 말은 바로 정리해서 말하면 오해가 쌓이지 않아요.',
+      hel: '금(金)은 호흡기·피부와 이어서 봐요. 실내 습도를 맞추고 긴장을 푸는 쉼을 자주 가져요.' },
+    { pos: ['지혜롭고 생각이 넓어요', '흐름을 잘 읽어요', '자유롭고 포용력이 있어요'], neg: ['생각이 많아 흩어져요', '속을 잘 안 보여요', '한곳에 머물기 어려워해요'],
+      gen: '큰 강과 바다처럼 깊고 넓은 사람이에요. 상황을 크게 보고 막히면 돌아갈 줄 알아요. 생각이 흩어질 때는 목표를 하나로 좁히고 기록하면 힘이 한곳에 모여요.',
+      tal: '넓게 보고 연결하는 일에 강해요. 기획, 무역·유통, 여행, IT, 연구에서 큰 그림을 그려요.',
+      love: '깊고 넓게 품어 주는 사랑이에요. 혼자 생각만 하지 말고 마음을 말로 꺼내 주면 상대가 안심해요.',
+      hel: '수(水)는 신장·방광·몸의 온도와 이어서 봐요. 몸을 따뜻하게 하고 물을 충분히 마셔 주세요.' },
+    { pos: ['차분하고 감수성이 풍부해요', '공감 능력이 좋아요', '직관이 뛰어나요'], neg: ['걱정이 스며들기 쉬워요', '기분 영향을 많이 받아요', '혼자 참다 지쳐요'],
+      gen: '이슬비처럼 조용히 스며들어 주변을 적셔 주는 사람이에요. 남의 마음을 잘 알아채고 따뜻하게 감싸요. 걱정이 쌓일 때는 몸을 움직여 환기하면 마음이 맑아져요.',
+      tal: '살피고 공감하는 일에 재능이 있어요. 상담, 의료·돌봄, 글쓰기, 연구, 예술에서 감수성이 빛나요.',
+      love: '조용하지만 깊은 사랑이에요. 참기만 하지 말고 원하는 것을 부드럽게 알려 주세요.',
+      hel: '수(水)는 신장·호르몬·수면과 이어서 봐요. 몸이 차지 않게 하고 일정한 시간에 잠드는 습관이 좋아요.' }
+  ];
+  function renderTrait(c) {
+    var t = TRAIT[c.res.dayStem], svn = $('svName') ? $('svName').value.trim() : '';
+    $('traitWho').textContent = svn ? svn + '님' : '나';
+    $('traitPos').innerHTML = t.pos.map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    $('traitNeg').innerHTML = t.neg.map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    $('traitAcc').innerHTML = [['특징', '일반적인 특징', t.gen, true], ['재능', '재능에 관한 이야기', t.tal], ['관계', '사랑에 관한 이야기', t.love], ['건강', '건강에 관한 이야기', t.hel]]
+      .map(function (a) { return '<details' + (a[3] ? ' open' : '') + '><summary><span class="tg">' + a[0] + '</span>' + a[1] + '</summary><p>' + a[2] + '</p></details>'; }).join('');
+  }
+  // ---------- 일진 달력 ----------
+  var calYM = null;
+  function renderCal(c, keep) {
+    var t = kstToday();
+    if (!calYM || !keep) calYM = { y: t.y, m: t.m };
+    var y = calYM.y, m = calYM.m, first = new Date(Date.UTC(y, m - 1, 1)).getUTCDay(), last = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    $('calTitle').textContent = y + '년 ' + m + '월';
+    var h = ['일', '월', '화', '수', '목', '금', '토'].map(function (d, i) { return '<div class="dw' + (i === 0 ? ' sun' : i === 6 ? ' sat' : '') + '">' + d + '</div>'; }).join('');
+    for (var i = 0; i < first; i++) h += '<div></div>';
+    for (var d = 1; d <= last; d++) {
+      var q = X.dayFlow(c.res, y, m, d);
+      var rel = q.branchRel.map(function (x) { return x.replace(/\(.*\)/, ''); });
+      var tone = rel.some(function (x) { return /합/.test(x); }) ? ' good' : rel.indexOf('충') >= 0 ? ' bad' : '';
+      var isT = y === t.y && m === t.m && d === t.d;
+      h += '<button type="button" class="day' + tone + (isT ? ' today' : '') + '" data-d="' + d + '" aria-label="' + m + '월 ' + d + '일 ' + q.stemK + q.branchK + '일">' +
+        '<span class="dn">' + d + '</span><span class="dg">' + q.stemGod + '</span><span class="gz">' + ganji(q) + '</span><span class="dg">' + q.branchGod + '</span><span class="us">' + q.unsung + '(' + X.unsung(q.stem, q.branch) + ')</span></button>';
+    }
+    $('calGrid').innerHTML = h;
+    $('calPick').innerHTML = '';
+  }
+  $('calGrid').addEventListener('click', function (e) {
+    var b = e.target.closest('button.day'); if (!b || !st.A) return;
+    Array.prototype.forEach.call($('calGrid').querySelectorAll('.day.sel'), function (x) { x.classList.remove('sel'); });
+    b.classList.add('sel');
+    var d = +b.getAttribute('data-d'), q = X.dayFlow(st.A.res, calYM.y, calYM.m, d);
+    $('calPick').innerHTML = '<b>' + calYM.m + '월 ' + d + '일 · ' + q.stemK + q.branchK + '일</b>' + READ.todayText(q).map(function (x) { return '<p>' + x.replace('날이에요', '날이에요') + '</p>'; }).join('');
+    try { $('aiDay').value = calYM.y + '-' + p2(calYM.m) + '-' + p2(d); } catch (er) {}
+  });
+  $('calPrev').addEventListener('click', function () { if (!st.A) return; calYM.m--; if (calYM.m < 1) { calYM.m = 12; calYM.y--; } renderCal(st.A, true); });
+  $('calNext').addEventListener('click', function () { if (!st.A) return; calYM.m++; if (calYM.m > 12) { calYM.m = 1; calYM.y++; } renderCal(st.A, true); });
+  $('calToday').addEventListener('click', function () { if (st.A) renderCal(st.A, false); });
 
   // ---------- 오늘의 띠별 점수 ----------
   function renderDdToday(c) {
@@ -4211,6 +4766,90 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     return READ.aiPrompt(lastG, 'gunghap', { type: type, stage: type === '연인' ? $('gstage').value : '' });
   });
 
+
+  // ---------- 꿈해몽 ----------
+  // [낱말, 묶음, 그림, 옛 풀이, 마음 읽기, 찾기용 다른 말]
+  var DREAM = [
+    ['돼지', '동물', '🐷', '옛 해몽에서 대표적인 재물 꿈이에요. 돼지가 집으로 들어오면 복이 들어온다고 봤어요.', '넉넉함과 안정에 대한 바람이 커진 때일 수 있어요.', '돼지꿈 멧돼지 새끼돼지'],
+    ['뱀', '동물', '🐍', '태몽이나 재물, 지혜가 생기는 꿈으로 풀곤 해요. 뱀에게 물리는 꿈도 좋은 기운을 받는다고 봤어요.', '마음속 걱정이나 새로운 변화를 앞둔 긴장이 비칠 수 있어요.', '뱀꿈 구렁이 독사'],
+    ['용', '동물', '🐉', '크게 이름을 떨치거나 바라던 일이 이루어지는 꿈, 귀한 태몽으로 여겼어요.', '큰 목표를 향한 의욕이 차오른 상태로 읽을 수 있어요.', '용꿈 승천'],
+    ['호랑이', '동물', '🐯', '힘 있는 사람의 도움이나 높은 자리, 씩씩한 아이의 태몽으로 봤어요.', '쫓기는 호랑이라면 부담스러운 사람이나 일이 마음에 걸려 있을 수 있어요.', '범'],
+    ['개', '동물', '🐶', '반갑게 따르는 개는 믿을 만한 친구나 도움을 뜻한다고 풀어요. 사납게 짖으면 말다툼을 조심하라는 뜻으로 봤어요.', '곁에 있는 사람과의 관계를 돌아보게 하는 꿈이에요.', '강아지 개꿈'],
+    ['고양이', '동물', '🐱', '옛 풀이에서는 가까운 사람의 속마음이나 작은 시비를 뜻한다고 보기도 했어요.', '혼자만의 시간이나 섬세한 감정이 필요한 때일 수 있어요.', '냥이'],
+    ['소', '동물', '🐮', '부지런히 쌓아 온 일이 결실을 맺고 재산이 늘어나는 꿈으로 풀어요.', '꾸준함을 믿어도 된다는 마음의 신호로 볼 수 있어요.', '황소 젖소'],
+    ['물고기', '동물', '🐟', '맑은 물에서 물고기를 잡으면 재물이나 태몽으로 봤어요.', '기회를 붙잡고 싶은 마음이 드러난 꿈이에요.', '잉어 붕어 고기 낚시'],
+    ['새', '동물', '🐦', '좋은 소식이나 손님이 찾아오는 꿈으로 풀었어요.', '자유롭게 떠나고 싶은 마음, 새 소식을 기다리는 마음일 수 있어요.', '까치 참새 비둘기'],
+    ['쥐', '동물', '🐭', '재물이 조금씩 새어 나가는 것을 조심하라는 뜻으로 풀곤 해요. 쥐를 잡으면 걱정이 사라진다고 봤어요.', '작지만 신경 쓰이는 일이 쌓여 있을 수 있어요.', ''],
+    ['벌레', '동물', '🐛', '벌레를 털어내거나 잡으면 걱정거리가 풀린다고 봤어요.', '귀찮은 일, 정리하지 못한 일이 마음에 남아 있을 수 있어요.', '바퀴벌레 거미 지렁이'],
+    ['조상', '사람', '👴', '돌아가신 조상이 밝은 얼굴로 나타나면 보살핌과 도움을, 말을 남기면 조언으로 받아들였어요.', '가족이나 뿌리에 대한 그리움, 지혜가 필요한 때일 수 있어요.', '할머니 할아버지 돌아가신 부모'],
+    ['아기', '사람', '👶', '새로운 시작이나 태몽으로 풀곤 해요.', '새로 시작한 일, 돌봐야 할 일에 마음이 쓰이는 때예요.', '갓난아기 아이'],
+    ['연예인', '사람', '⭐', '이름이 알려지거나 좋은 사람을 만나는 꿈으로 보기도 해요.', '인정받고 싶은 마음, 닮고 싶은 모습이 비친 꿈이에요.', '유명인 대통령 왕'],
+    ['옛 연인', '사람', '💌', '옛 해몽보다는 마음의 꿈으로 많이 봐요.', '지난 시절의 나, 아직 정리되지 않은 감정을 돌아보는 꿈일 수 있어요.', '전남친 전여친 헤어진'],
+    ['죽음', '상황', '🕊️', '내가 죽거나 남이 죽는 꿈은 오히려 새로 태어나고 걱정이 끝나는 길한 꿈으로 풀었어요.', '한 시기를 끝내고 새로 시작하고 싶은 마음일 수 있어요.', '죽는 꿈 장례식 시체'],
+    ['결혼', '상황', '💍', '옛 풀이에서는 뜻밖에 걱정거리나 바쁜 일이 생긴다고 보기도 했어요.', '약속, 새 관계, 큰 결정을 앞둔 마음이 담겨 있을 수 있어요.', '결혼식 웨딩'],
+    ['시험', '상황', '📝', '옛 해몽보다는 요즘 꿈으로 많이 꿔요.', '평가받는 일, 준비가 덜 됐다는 불안이 마음에 있는 때예요.', '시험꿈 지각 늦는'],
+    ['쫓기는', '상황', '🏃', '나쁜 일을 피하려는 몸부림으로 봤어요. 끝내 도망치면 위기를 넘긴다고 풀어요.', '피하고 싶은 일이나 스트레스가 쌓여 있다는 신호예요.', '쫓기는 꿈 도망 추격'],
+    ['떨어지는', '상황', '⬇️', '높은 곳에서 떨어지면 지위나 일이 흔들릴 수 있으니 조심하라는 뜻으로 봤어요.', '자신감이 흔들리거나 지친 때 자주 꾸는 꿈이에요.', '추락 낭떠러지'],
+    ['날아다니는', '상황', '🕊', '하늘을 나는 꿈은 뜻이 높아지고 일이 잘 풀리는 꿈으로 풀어요.', '답답함에서 벗어나고 싶은 마음, 자유로움을 바라는 마음이에요.', '하늘 나는 비행'],
+    ['싸움', '상황', '🥊', '싸워서 이기면 일이 뜻대로 풀리고, 지면 피로와 압박을 조심하라고 봤어요.', '참아 온 감정이나 갈등이 꿈으로 풀려 나온 것일 수 있어요.', '싸우는 다툼 귀신'],
+    ['길을 잃는', '상황', '🧭', '하려는 일의 방향을 다시 살피라는 뜻으로 풀어요.', '선택을 앞두고 망설이는 마음이 비쳤을 수 있어요.', '길잃음 헤매는'],
+    ['이빨', '몸', '🦷', '이가 빠지는 꿈은 가까운 사람의 건강이나 이별을 걱정하는 꿈으로 풀어 왔어요.', '말이나 겉모습, 자신감에 대한 걱정이 커진 때일 수 있어요.', '이 이빨빠지는 치아'],
+    ['피', '몸', '🩸', '옛 해몽에서 피는 재물로 풀어서, 피를 보거나 묻는 꿈을 좋게 보기도 했어요.', '많이 지쳤거나 마음을 쏟은 일이 있을 수 있어요.', '코피 상처'],
+    ['머리카락', '몸', '💇', '머리를 자르면 걱정을 끊어 낸다고 보고, 빠지면 기운이 약해진 것을 살피라고 봤어요.', '변화를 원하거나 겉모습에 마음이 쓰이는 때예요.', '머리 자르는 탈모'],
+    ['똥', '물건·장소', '💩', '옛 해몽에서 손꼽히는 재물 꿈이에요. 몸에 묻거나 가득 보이면 돈이 들어온다고 봤어요.', '쌓인 것을 털어내고 싶은 마음일 수도 있어요.', '똥꿈 대변 화장실'],
+    ['돈', '물건·장소', '💰', '돈을 줍는 꿈은 오히려 나갈 돈을 조심하라고 풀기도 하고, 돈을 받는 꿈은 좋은 기회로 봤어요.', '돈 걱정이나 바람이 그대로 비친 꿈이에요.', '지폐 동전 복권'],
+    ['집', '물건·장소', '🏠', '새 집이나 넓은 집은 살림이 늘어나는 꿈으로, 무너지는 집은 몸과 집안을 살피라는 뜻으로 봤어요.', '집은 곧 나 자신을 뜻해요. 내 마음의 상태를 보여 줘요.', '이사 무너지는'],
+    ['차', '물건·장소', '🚗', '차를 타고 잘 달리면 일이 순조롭다고, 사고가 나면 서두름을 조심하라고 풀어요.', '내 삶을 내가 잘 몰고 가는지 돌아보게 하는 꿈이에요.', '자동차 버스 사고 운전'],
+    ['신발', '물건·장소', '👟', '신발을 잃으면 사람이나 자리를 잃을까 조심하라고, 새 신발은 새 출발로 봤어요.', '내가 서 있는 자리, 갈 길에 대한 고민이 담겨 있어요.', '구두 잃어버린'],
+    ['화장실', '물건·장소', '🚽', '옛 해몽에서는 재물과 관련된 꿈으로 보기도 했어요.', '참아 온 감정을 풀고 싶은 마음, 쉴 곳이 필요한 마음이에요.', ''],
+    ['반지', '물건·장소', '💍', '약속, 인연, 좋은 소식을 뜻한다고 봤어요.', '관계에 대한 기대나 다짐이 비쳤을 수 있어요.', '금반지 보석 금'],
+    ['물', '자연', '💧', '맑은 물은 재물과 좋은 흐름으로, 흙탕물은 걱정거리로 풀어요.', '물은 감정이에요. 맑으면 마음이 편하고, 흐리면 마음이 복잡하다는 뜻일 수 있어요.', '계곡 강 바다 홍수 흙탕물'],
+    ['불', '자연', '🔥', '집에 불이 활활 타오르면 크게 번창하는 꿈으로 봤어요.', '뜨거운 열정이나 참던 화가 드러난 꿈일 수 있어요.', '화재 불꽃 불타는'],
+    ['해', '자연', '☀️', '해가 품에 들어오거나 떠오르면 귀한 일, 태몽으로 풀었어요.', '희망과 자신감이 차오르는 때예요.', '태양 일출 해돋이'],
+    ['달', '자연', '🌕', '밝은 보름달은 바라던 일이 차오른다고, 태몽으로도 봤어요.', '조용히 이루고 싶은 소망이 있다는 뜻일 수 있어요.', '보름달'],
+    ['비', '자연', '🌧️', '시원한 비는 걱정이 씻겨 내려가는 꿈으로 풀어요.', '마음을 씻어 내고 싶은 때, 눈물이 필요한 때일 수 있어요.', '소나기 장마'],
+    ['눈', '자연', '❄️', '깨끗한 눈은 새 출발과 깨끗한 마음을 뜻한다고 봤어요.', '정리되고 고요한 상태를 바라는 마음이에요.', '눈사람 함박눈'],
+    ['산', '자연', '⛰️', '산에 오르면 목표를 이루고 지위가 오른다고 풀어요.', '지금 올라가고 있는 목표가 마음에 크게 자리하고 있어요.', '등산 산꼭대기'],
+    ['꽃', '자연', '🌸', '활짝 핀 꽃은 기쁜 일, 인연, 태몽으로 봤어요. 시든 꽃은 기운이 약해진 것을 살피라고 했어요.', '아름다움이나 사랑받고 싶은 마음이 피어나는 때예요.', '꽃밭 장미 벚꽃'],
+    ['나무', '자연', '🌳', '크고 푸른 나무는 집안이 번성하고 일이 자란다고 풀어요.', '뿌리내리고 자라고 싶은 마음, 성장의 바람이에요.', '숲 열매 과일'],
+    ['무지개', '자연', '🌈', '바라던 일이 이루어지는 좋은 소식으로 봤어요.', '힘든 시간이 지나가고 희망이 보이는 마음이에요.', '']
+  ];
+  var DR_CATS = ['전체', '동물', '사람', '상황', '몸', '물건·장소', '자연'];
+  var drCat = '전체';
+  function drRender() {
+    var q = ($('drQ').value || '').replace(/\s+/g, '').replace(/꿈$/, '');
+    var list = DREAM.filter(function (d) {
+      if (drCat !== '전체' && d[1] !== drCat) return false;
+      if (!q) return true;
+      var hay = (d[0] + ' ' + d[5]).replace(/\s+/g, '');
+      return hay.indexOf(q) >= 0 || q.indexOf(d[0].replace(/\s+/g, '')) >= 0;
+    });
+    $('drList').innerHTML = list.length ? list.map(function (d) {
+      return '<div class="dr-item"><b>' + d[2] + ' ' + d[0] + ' 꿈</b><p>📜 ' + d[3] + '</p><p class="dr-tip">💭 ' + d[4] + '</p></div>';
+    }).join('') : '<p class="hint">찾는 낱말이 아직 없어요. 아래 칸에 꿈 이야기를 적고 AI에게 물어보세요.</p>';
+  }
+  $('drCats').innerHTML = DR_CATS.map(function (c) { return '<button type="button" aria-pressed="' + (c === '전체') + '" data-c="' + c + '">' + c + '</button>'; }).join('');
+  $('drCats').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-c]'); if (!b) return;
+    drCat = b.getAttribute('data-c');
+    Array.prototype.forEach.call($('drCats').children, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    drRender();
+  });
+  $('drQ').addEventListener('input', drRender);
+  drRender();
+  function buildDreamPrompt() {
+    var t = ($('drText').value || '').trim();
+    if (t.length < 5) throw new Error('꿈 이야기를 먼저 적어 주세요.');
+    var L = ['[꿈 내용]', t, ''];
+    if (st.mine && st.A && st.A.res) { var r = st.A.res; L.push('[참고: 내 사주 일간] ' + SAJU.STEM_K[r.dayStem] + '(' + SAJU.STEM_H[r.dayStem] + ')', ''); }
+    L.push('1. 너는 꿈해몽 전문가야. 위 꿈을 한국 전통 해몽 관점으로 먼저 풀어줘.',
+      '2. 그다음 요즘 심리 관점에서, 이 꿈이 지금 내 마음 상태에 대해 무엇을 말해 주는지 알려줘.',
+      '3. 꿈에 나온 중요한 상징을 하나씩 짚어 주고, 오늘 실천할 수 있는 작은 조언으로 마무리해줘.',
+      '4. 꿈은 미래를 단정하는 예언이 아니라는 점을 지키고, 무섭게 말하지 마.',
+      '5. 쉬운 말로, 반말 없이 따뜻하게 설명해줘.');
+    return L.join('\n');
+  }
+
   // ---------- 용어 ----------
   $('glBox').innerHTML = READ.GLOSSARY.map(function (x) { return '<details><summary>' + x[0] + '</summary><p>' + x[1] + '</p></details>'; }).join('');
 
@@ -4219,6 +4858,50 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
 })();
 </script>
 <script>
+/* ===== 앱 설치 (홈 화면에 추가) ===== */
+(function () {
+  var ua = navigator.userAgent || '';
+  var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  if (standalone) document.body.classList.add('is-app');
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
+  window.addEventListener('appinstalled', function () { deferred = null; document.body.classList.add('is-app'); });
+  var box = document.getElementById('instBox'), body = document.getElementById('instBody');
+  function show(html) { body.innerHTML = html; box.hidden = false; }
+  document.getElementById('instClose').addEventListener('click', function () { box.hidden = true; });
+  box.addEventListener('click', function (e) { if (e.target === box) box.hidden = true; });
+  function guide() {
+    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    if (/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(ua)) {
+      return '<ol><li>지금은 카카오톡 같은 앱 <b>안</b>에서 열려 있어서 설치가 안 돼요.</li><li>오른쪽 아래(또는 위) <b>⋮</b> 또는 <b>공유</b> 버튼을 눌러요.</li><li><b>다른 브라우저로 열기</b>를 골라요. (아이폰은 Safari, 안드로이드는 Chrome)</li><li>열린 화면에서 이 버튼을 다시 눌러요.</li></ol>';
+    }
+    if (ios) {
+      return '<ol><li>화면 아래(또는 위)의 <b>공유 버튼</b> <span aria-hidden="true">⬆️</span>을 눌러요.</li><li>목록을 올려서 <b>홈 화면에 추가</b>를 눌러요.</li><li>오른쪽 위 <b>추가</b>를 누르면 끝!</li></ol><p class="ib-tip">아이폰은 Safari에서 하는 것이 가장 잘 돼요.</p>';
+    }
+    if (/SamsungBrowser/.test(ua)) {
+      return '<ol><li>오른쪽 아래 <b>≡ 메뉴</b>를 눌러요.</li><li><b>현재 페이지 추가</b> → <b>홈 화면</b>을 골라요.</li><li><b>추가</b>를 누르면 끝!</li></ol>';
+    }
+    if (/Android/.test(ua)) {
+      return '<ol><li>오른쪽 위 <b>⋮ 메뉴</b>를 눌러요.</li><li><b>앱 설치</b> 또는 <b>홈 화면에 추가</b>를 눌러요.</li><li><b>설치</b>를 누르면 끝!</li></ol>';
+    }
+    return '<ol><li>주소창 오른쪽 끝의 <b>설치 아이콘</b>(모니터 모양)을 눌러요.</li><li>안 보이면 <b>⋮ 메뉴</b> → <b>저장 및 공유</b> → <b>앱 설치</b>를 눌러요.</li></ol><p class="ib-tip">PC에서는 Chrome이나 Edge에서 설치돼요. 휴대폰에서 이 주소를 열어 설치해도 좋아요.</p>';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-install]'), function (b) {
+    b.addEventListener('click', function () {
+      if (deferred) {
+        var d = deferred; deferred = null;
+        d.prompt();
+        (d.userChoice || Promise.resolve({})).then(function (r) { if (r && r.outcome === 'accepted') document.body.classList.add('is-app'); });
+        return;
+      }
+      show(guide());
+    });
+  });
+})();
+
 /* ===== 카카오톡 공유 설정 (처음 한 번만) =====
    1. developers.kakao.com 에 로그인 → 내 애플리케이션 → 애플리케이션 추가하기
    2. 앱 키에서 "JavaScript 키" 복사
@@ -4270,7 +4953,7 @@ var KAKAO_JS_KEY = '393da0e592003f164282500dc2c8d890';
 <script>
 (function () {
   var sp = document.getElementById('splash'), go = document.getElementById('splashGo');
-  var seen = false;
+  var seen = /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
   function close() {
     sp.classList.add('out');
     document.body.style.overflow = '';
