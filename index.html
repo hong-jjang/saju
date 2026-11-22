@@ -451,6 +451,32 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+.fp-peek { position: sticky; top: 8px; z-index: 6; display: flex; gap: 10px; align-items: center; background: #FFFFFF; border: 2px solid #F4A7BB; border-radius: 18px; padding: 8px; margin: 8px 0 10px; box-shadow: 0 6px 16px rgba(194, 85, 122, .15); }
+.fp-peek[hidden] { display: none; }
+.fp-peek img { width: 92px; height: 92px; object-fit: cover; border-radius: 12px; flex: none; }
+.fp-peek b { display: block; font-size: 14.5px; } .fp-peek span { font-size: 13px; color: #6A5A6A; line-height: 1.5; }
+.fp-gopick { width: 100%; min-height: 50px; margin-top: 10px; border: 0; border-radius: 999px; background: linear-gradient(90deg, #FFD9E6, #E3DBFF); color: #4E3FA0; font: inherit; font-size: 16px; cursor: pointer; }
+.fp-det { margin-top: 10px; } .fp-det summary { cursor: pointer; font-weight: 700; color: #4E3FA0; padding: 6px 0; }
+.t-one { margin-top: 10px; }
+.t-one .tr-card { border: 0; }
+/* 바로 풀이 공통 */
+.pi-box:empty { display: none; }
+.pi-box, .pr { margin-top: 12px; border-radius: 18px; padding: 12px 14px; background: linear-gradient(170deg, #FFFFFF, #F4F7FF); border: 1px solid #E1E8F7; }
+.pr h4, .pi-box h4 { margin: 0 0 6px; font-size: 16.5px; }
+.pr p, .pi-box p { margin: 5px 0; font-size: 14.5px; line-height: 1.7; }
+.pr .tone, .pi-box .tone { display: inline-block; font-size: 12.5px; font-weight: 700; padding: 2px 10px; border-radius: 999px; margin: 0 0 4px; }
+.tone.good { background: #E9F5EC; color: #2A6B45; } .tone.mid { background: #F1F1F4; color: #555; } .tone.hard { background: #FDEBF1; color: #A33E66; }
+.pr-area { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.pr-area div { background: #fff; border: 1px solid #E6ECF7; border-radius: 12px; padding: 7px 9px; font-size: 13.5px; line-height: 1.5; }
+.pr-area b { display: block; font-size: 13.5px; }
+.pr-list { margin: 6px 0 0; padding: 0; list-style: none; }
+.pr-list li { padding: 7px 0; border-bottom: 1px dashed #E1E8F7; font-size: 14px; line-height: 1.6; }
+.pr-list li:last-child { border-bottom: 0; }
+.pr-list .tag { display: inline-block; min-width: 40px; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 999px; margin-right: 6px; text-align: center; }
+.pi-note { font-size: 12.5px !important; color: #7A6F8A; }
+#daeCards .lc, #wolGrid .cell { cursor: pointer; }
+#daeCards .lc.pick, #wolGrid .cell.pick { outline: 3px solid #F4A7BB; outline-offset: 1px; }
+.tj-read { margin-top: 12px; }
 /* 타로 바로 풀이 */
 .tr-wrap { border-radius: 20px; background: linear-gradient(170deg, #FFFFFF, #F6F2FF); border: 1px solid #E6DEFA; padding: 14px; }
 .tr-wrap > h3 { margin: 0 0 4px; font-size: 18px; }
@@ -867,11 +893,14 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-dae">대운 (10년 단위 흐름)</h2>
       <p class="sum" id="daeSum"></p>
       <div class="lcs dae-grid" id="daeCards"></div>
+      <p class="hint" style="margin:6px 0 0">대운 칸을 누르면 그 10년의 풀이가 아래에 나와요.</p>
+      <div id="daeRead"></div>
       <p class="hint" style="margin-top:8px">카드의 나이는 대운이 바뀌는 때(대운수 기준)이고, 아래 연도는 정확한 계산상의 시작 시점이에요. 한 해 안팎 차이가 있을 수 있어요.</p>
     </section>
     <section class="card" aria-labelledby="h-seun">
       <h2 id="h-seun">세운 (해마다의 흐름)</h2>
       <div class="grid5" id="seunGrid"></div>
+      <div id="seunRead"></div>
       <div class="pager">
         <button class="ghost" id="seunPrev" type="button">이전 10년</button>
         <button class="ghost" id="seunNext" type="button">다음 10년</button>
@@ -881,6 +910,8 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" aria-labelledby="h-wol">
       <h2 id="h-wol">월운 <span id="wolYear"></span></h2>
       <div class="grid6" id="wolGrid"></div>
+      <p class="hint" style="margin:6px 0 0">달을 누르면 그달의 풀이가 아래에 나와요.</p>
+      <div id="wolRead"></div>
       <p class="hint" style="margin-top:8px">각 달은 절기(입춘, 경칩 등)부터 시작해요. 날짜는 양력이에요.</p>
     </section>
     <section class="card" aria-labelledby="h-cal">
@@ -1003,7 +1034,9 @@ button.kakao svg { width: 20px; height: 20px; }
         <label><input type="radio" name="tRange" value="major"> 메이저 카드만: 운명적/상징적 메시지</label>
         <label><input type="radio" name="tRange" value="minor"> 마이너 카드만: 현실적/세부적 상황</label>
       </div>
-      <button class="primary" id="tShuffle" type="button">카드 섞기</button>
+      <button class="primary" id="tShuffle" type="button">카드 섞기 (3장 뽑기)</button>
+      <button class="ghost" id="tOneBtn" type="button" style="width:100%;margin-top:8px">☀️ 오늘의 한 장 바로 뽑기</button>
+      <div id="tOne" class="t-one"></div>
       <p class="err" id="tErr" role="alert" hidden></p>
     </section>
     <section class="card" id="tPick" aria-labelledby="h-tpick" hidden>
@@ -1092,6 +1125,8 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" aria-labelledby="h-mrai">
       <h2 id="h-mrai">명리 AI 풀이</h2>
       <div class="mr-kinds" id="mrKinds" role="radiogroup" aria-label="풀이 종류"></div>
+      <div id="mrInstant" class="pi-box"></div>
+      <h3 style="margin:16px 0 4px">🤖 AI에게 더 깊게 물어보기</h3>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="mr"><span aria-hidden="true">✳️</span>Claude로 풀이 보기</button>
         <button type="button" class="ai-link" data-ai="chatgpt" data-src="mr"><span aria-hidden="true">💬</span>ChatGPT로 풀이 보기</button>
@@ -1135,9 +1170,10 @@ button.kakao svg { width: 20px; height: 20px; }
       <path d="M196 238 c-5 -8 -16 -3 -10 6 l10 9 10 -9 c6 -9 -5 -14 -10 -6z" fill="#FFB7C5"/>
     </svg>
       <p class="hint">거울을 보며 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. 얼굴을 셋으로 나눈 <b>삼정</b>과 눈썹·눈·코·입·귀의 <b>오관</b>으로 봐요.</p>
+      <div class="fp-peek" id="facePeek" hidden><img alt="내 사진"><div><b>📷 내 사진을 보며 고르기</b><span>사진과 비슷한 모양을 아래에서 골라 보세요. 고르는 대로 바로 풀이가 나와요.</span></div></div>
       <div id="faceQs"></div>
     </section>
-    <section class="card" id="faceRes" aria-labelledby="h-facer" hidden>
+    <section class="card" id="faceRes" aria-labelledby="h-facer">
       <h2 id="h-facer">✨ 관상 풀이</h2>
       <div id="faceBox"></div>
       <div class="ai-links" style="margin-top:12px">
@@ -1198,6 +1234,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" aria-labelledby="h-drai">
       <h2 id="h-drai">📝 내 꿈 적고 AI에게 묻기</h2>
       <textarea id="drText" placeholder="예) 맑은 계곡물에 발을 담갔는데 물고기가 손에 잡혔어요. 기분이 좋았어요."></textarea>
+      <div id="drMatch"></div>
       <p class="hint">누가 나왔는지, 어떤 색과 장소였는지, 깨었을 때 기분이 어땠는지 적으면 더 잘 풀어 줘요.</p>
       <div class="ai-links" style="margin-top:10px">
         <button type="button" class="ai-link" data-ai="claude" data-src="dream"><span aria-hidden="true">✳️</span>Claude로 꿈 풀기</button>
@@ -1257,9 +1294,10 @@ button.kakao svg { width: 20px; height: 20px; }
       <path d="M26 30 c-5 -8 -16 -3 -10 6 l10 9 10 -9 c6 -9 -5 -14 -10 -6z" fill="#FFB7C5"/>
     </svg>
       <p class="hint">손바닥을 활짝 펴고 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. <b>주로 쓰는 손</b>은 지금까지 만들어 온 모습, <b>반대 손</b>은 타고난 바탕으로 많이 봐요.</p>
+      <div class="fp-peek" id="palmPeek" hidden><img alt="내 사진"><div><b>📷 내 사진을 보며 고르기</b><span>사진과 비슷한 모양을 아래에서 골라 보세요. 고르는 대로 바로 풀이가 나와요.</span></div></div>
       <div id="palmQs"></div>
     </section>
-    <section class="card" id="palmRes" aria-labelledby="h-palmr" hidden>
+    <section class="card" id="palmRes" aria-labelledby="h-palmr">
       <h2 id="h-palmr">✨ 손금 풀이</h2>
       <div id="palmBox"></div>
       <div class="ai-links" style="margin-top:12px">
@@ -1458,6 +1496,8 @@ button.kakao svg { width: 20px; height: 20px; }
           <select id="aiYear"></select>
         </div>
       </div>
+      <div id="aiInstant" class="pi-box"></div>
+      <h3 style="margin:16px 0 4px">🤖 AI에게 더 깊게 물어보기</h3>
       <div class="ai-on" hidden>
         <p class="hint" style="margin-bottom:10px">지금 화면의 명식·운·관계를 바탕으로 AI가 쉬운 말로 풀어 줘요. 처음 누르면 사용 동의 창이 나올 수 있어요.</p>
         <button class="primary" id="aiGo" type="button" data-label="AI 풀이 받기">AI 풀이 받기</button>
@@ -3001,7 +3041,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
         '<span class="y">' + p.year + '</span><span class="gj">' + ganji(p) + '</span><span>' + p.stemGod + '</span><span class="sub">' + p.unsung + '</span></button>';
     }).join('');
     Array.prototype.forEach.call($('seunGrid').querySelectorAll('button'), function (b) {
-      b.addEventListener('click', function () { st.seunYear = +b.getAttribute('data-y'); renderSeun(st.A); });
+      b.addEventListener('click', function () { st.seunYear = +b.getAttribute('data-y'); st.wolPick = null; renderSeun(st.A); renderLuckRead(st.A); });
     });
     var w = X.wolun(c.res, st.seunYear);
     $('wolYear').textContent = '(' + st.seunYear + '년)';
@@ -3172,6 +3212,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     }
     var h = '<table class="duo" aria-label="두 사람 명식"><thead><tr><th scope="row"></th>' + a.res.cols.map(function (col) { return '<th scope="col">' + col.label + '</th>'; }).join('') + '</tr></thead><tbody>' +
       duoRow('나', a) + duoRow('상대', b) + '</tbody></table>';
+    h += ghReadHTML(a, b, g, type);
     h += '<h3>한눈에 보기</h3><p style="margin:0 0 6px;font-size:14px">합 계열 ' + g.signal.good + '개 · 충·형·파·해 계열 ' + g.signal.hard + '개가 있어요. 개수는 참고 신호일 뿐 점수가 아니에요.</p>';
     h += '<div class="rel"><span class="rn">일간 관계</span><span class="rw">나→상대 ' + g.dayGods.aToB + ' · 상대→나 ' + g.dayGods.bToA + (g.dayStemRel ? ' · 일간끼리 ' + g.dayStemRel : '') + '</span></div>';
     h += '<div class="rel"><span class="rn">일지 관계</span><span class="rw">' + (g.dayBranchRel.length ? g.dayBranchRel.join(', ') : '특별한 관계 없음') + '</span></div>';
@@ -3191,7 +3232,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     var now = Date.now();
     st.A = c; st.sy = S.sajuYearAt(now); if (scroll || touched) st.mine = true;
     if (st.seunStart == null || st.seunYear == null) { st.seunStart = st.sy - 1; st.seunYear = st.sy; }
-    renderTop(c); renderMyeong(c); renderKey(c); renderOutlook(c); renderExt(c); renderToday(c); renderLuck(c); renderRel(c); renderRead(c); renderTrad(c); renderName(c); renderTj(c); renderMr(c); renderDdy(c); renderYel(c); renderDdToday(c); renderTrait(c); renderCal(c, true); renderAuto(c);
+    renderTop(c); renderMyeong(c); renderKey(c); renderOutlook(c); renderExt(c); renderToday(c); renderLuck(c); renderRel(c); renderRead(c); renderTrad(c); renderName(c); renderTj(c); renderMr(c); renderDdy(c); renderYel(c); renderDdToday(c); renderTrait(c); renderCal(c, true); renderAuto(c); st.daePick = null; st.wolPick = null; renderLuckRead(c); renderInstant();
     lastText = summaryOf(c);
     $('txt').value = lastText;
     fillYears();
@@ -3830,7 +3871,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       '<div class="tj-calc">· 상괘: 나이 ' + t.age + ' + ' + t.yg + '년 태세수 ' + t.tae + ' = ' + (t.age + t.tae) + ' → 8로 나눈 나머지 <b>' + t.up + '</b><br>' +
       '· 중괘: ' + t.year + '년 음력 ' + t.l.m + '월 날수 ' + t.len + '(' + (t.len === 30 ? '큰달' : '작은달') + ') + ' + t.mg + '월 월건수 ' + t.wol + ' = ' + (t.len + t.wol) + ' → 6으로 나눈 나머지 <b>' + t.mid + '</b><br>' +
       '· 하괘: 생일 ' + t.l.d + ' + ' + t.year + '년 음력 ' + t.l.m + '월 ' + t.dd + '일(' + t.dg + '일) 일진수 ' + t.il + ' = ' + (t.l.d + t.il) + ' → 3으로 나눈 나머지 <b>' + t.low + '</b>' +
-      (t.l.leap ? '<br>· 윤달에 태어나서 같은 달(평달)로 셌어요.' : '') + (t.dd !== t.l.d ? '<br>· 그해 그 달에 ' + t.l.d + '일이 없어서 그믐(' + t.dd + '일)의 일진을 썼어요.' : '') + '</div>';
+      (t.l.leap ? '<br>· 윤달에 태어나서 같은 달(평달)로 셌어요.' : '') + (t.dd !== t.l.d ? '<br>· 그해 그 달에 ' + t.l.d + '일이 없어서 그믐(' + t.dd + '일)의 일진을 썼어요.' : '') + '</div>' + tjReadHTML(t);
   }
   function buildTjPrompt() {
     var c = st.A; if (!c) throw new Error('먼저 생년월일을 넣고 만세력 보기를 눌러 주세요.');
@@ -4097,26 +4138,58 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     }).join('');
   }
   function fpPicked(prefix, Q) {
-    return Q.map(function (q) { var x = document.querySelector('input[name=' + prefix + '-' + q.id + ']:checked'); return x ? { q: q, o: q.o[+x.value] } : null; }).filter(Boolean);
+    return Q.map(function (q) { var x = document.querySelector('input[name=' + prefix + '-' + q.id + ']:checked'); return x ? { q: q, o: q.o[+x.value], i: +x.value } : null; }).filter(Boolean);
   }
   function fpUpdate(prefix, Q, groups) {
     var pk = fpPicked(prefix, Q);
     Q.forEach(function (q) { var x = document.querySelector('input[name=' + prefix + '-' + q.id + ']:checked'); $(prefix + '-' + q.id + '-m').textContent = x ? '→ ' + q.o[+x.value][1] : ''; });
-    $(prefix + 'Res').hidden = !pk.length;
-    if (!pk.length) return;
+    $(prefix + 'Res').hidden = false;
+    if (!pk.length) { $(prefix + 'Box').innerHTML = '<p class="hint">위에서 ' + (prefix === 'face' ? '얼굴 모양' : '손 모양과 손금') + '을 하나씩 고르면 <b>바로 여기에 풀이</b>가 나와요. 사진이 있으면 사진을 보며 골라 보세요.</p>'; return; }
     var kw = pk.map(function (x) { return x.o[2]; }).filter(Boolean);
+    var det = '';
     var h = '<div class="fp-res"><p><b>' + pk.length + '곳</b>을 골랐어요. 나를 나타내는 말:</p><div class="fp-kw">' + kw.map(function (k) { return '<span>' + k + '</span>'; }).join('') + '</div>';
     groups.forEach(function (g) {
       var items = pk.filter(function (x) { return g.ids.indexOf(x.q.id) >= 0; });
       if (!items.length) return;
-      h += '<h3>' + g.t + '</h3>' + items.map(function (x) { return '<p><b>' + x.q.t + ' · ' + x.o[0] + '</b> — ' + x.o[1] + '</p>'; }).join('');
+      det += '<h3>' + g.t + '</h3>' + items.map(function (x) { return '<p><b>' + x.q.t + ' · ' + x.o[0] + '</b> — ' + x.o[1] + '</p>'; }).join('');
     });
+    h += fpSummary(prefix, pk) + '<details class="fp-det"' + (pk.length <= 2 ? ' open' : '') + '><summary>부위별 자세히 보기</summary>' + det + '</details>';
     h += '<p class="hint" style="margin-top:8px">' + (pk.length < 3 ? '3곳 이상 고르면 AI에게 더 자세히 물어볼 수 있어요.' : '아래 버튼으로 AI에게 더 자세한 풀이를 부탁할 수 있어요.') + '</p></div>';
     $(prefix + 'Box').innerHTML = h;
   }
+
+  // ---------- 관상·손금 종합 풀이 ----------
+  var FP_AREA = {
+    face: [['🌱 성격', ['shape', 'eye'], '타고난 성향을 장점으로 쓰면 사람들이 먼저 알아봐요.'], ['💼 일·재물', ['fore', 'nose'], '잘하는 것을 꾸준히 쌓으면 일과 돈이 함께 자라요.'],
+      ['💗 사랑·관계', ['brow', 'mouth'], '말 한마디와 표정이 인연을 부르는 열쇠예요.'], ['🍀 복·건강', ['ear', 'chin'], '타고난 복은 규칙적인 생활과 웃는 얼굴로 더 커져요.']],
+    palm: [['🌱 성격', ['type', 'head'], '내 생각하는 방식을 알면 나에게 맞는 길이 보여요.'], ['💼 일·진로', ['fate'], '스스로 정한 방향을 꾸준히 걸으면 선이 더 또렷해진다고 봐요.'],
+      ['💗 사랑·마음', ['heart', 'marry'], '마음을 표현하는 만큼 관계가 깊어져요.'], ['🍀 활력·건강', ['life'], '생활 리듬을 지키면 활력이 오래가요.']]
+  };
+  var FACE_TIP = ['사람을 모으는 힘이 커요. 남을 챙기는 만큼 내 시간도 꼭 챙겨 주세요.', '균형 감각이 장점이에요. 가끔은 내 의견을 분명히 말해 보세요.', '끝까지 해내는 힘이 있어요. 부드러운 말투를 더하면 더 많은 사람이 따라와요.', '깊은 생각이 강점이에요. 생각을 작은 행동으로 바로 옮겨 보세요.', '빠른 머리와 섬세함이 빛나요. 걱정이 많을 땐 몸을 움직여 머리를 쉬게 해요.'];
+  var PALM_TIP = ['손으로 직접 해내는 힘이 복을 불러요. 오늘 할 일 하나를 끝까지 해 보세요.', '배우고 나누는 일에서 빛나요. 배운 것을 누군가에게 설명해 보세요.', '먼저 움직이는 힘이 강점이에요. 시작한 일을 마무리하는 습관을 더해요.', '공감하는 마음이 큰 재능이에요. 감정을 글이나 그림으로 풀어 보세요.'];
+  function fpSummary(prefix, pk) {
+    var by = {}; pk.forEach(function (x) { by[x.q.id] = x; });
+    var h = '<div class="pr"><h4>🔮 홍짱 종합 풀이</h4>';
+    FP_AREA[prefix].forEach(function (a) {
+      var got = a[1].filter(function (id) { return by[id]; }).map(function (id) { return by[id]; });
+      if (!got.length) return;
+      h += '<p><b>' + a[0] + '</b> ' + got.map(function (x) { return '<b style="color:#4E3FA0">' + x.o[2] + '</b>'; }).join(', ') + JOSA(got[got.length - 1].o[2], '이/가') + ' 돋보여요. ' + a[2] + '</p>';
+    });
+    if (prefix === 'face' && (by.fore || by.nose || by.chin)) {
+      var fl = [['초년', by.fore], ['중년', by.nose], ['말년', by.chin]].filter(function (x) { return x[1]; }).map(function (x) { return x[0] + '에는 ' + x[1].o[2]; });
+      h += '<p><b>🕰️ 삶의 흐름</b> ' + fl.join(', ') + '의 기운이 살아나요.</p>';
+    }
+    if (prefix === 'palm' && by.hand) h += '<p class="pi-note">' + by.hand.o[0] + JOSA(by.hand.o[0], '을/를') + ' 봤어요. ' + by.hand.o[1] + '</p>';
+    var tip = prefix === 'face' ? (by.shape ? FACE_TIP[+by.shape.i] : '') : (by.type ? PALM_TIP[+by.type.i] : '');
+    h += '<p>✨ <b>홍짱쌤 한마디</b>: ' + (tip || '고른 곳이 많을수록 풀이가 더 또렷해져요. 남은 부위도 골라 보세요.') + '</p>';
+    h += '<p class="pi-note">' + (prefix === 'face' ? '관상은 정해진 운명이 아니라 지금의 마음과 습관이 얼굴에 드러난 모습이에요. 표정과 말투가 바뀌면 인상도 바뀌어요.' : '손금은 정해진 운명이 아니라 지금의 생활과 마음을 비추는 거울이에요. 선은 살면서 조금씩 바뀐다고 봐요.') + '</p>';
+    return h + '</div>';
+  }
+
   var FACE_G = [{ t: '전체 인상', ids: ['shape'] }, { t: '상정 · 초년 (이마)', ids: ['fore'] }, { t: '중정 · 중년 (눈썹·눈·코)', ids: ['brow', 'eye', 'nose', 'ear'] }, { t: '하정 · 말년 (입·턱)', ids: ['mouth', 'chin'] }];
   var PALM_G = [{ t: '손 모양', ids: ['hand', 'type'] }, { t: '3대 선', ids: ['life', 'head', 'heart'] }, { t: '운명선 · 인연선', ids: ['fate', 'marry'] }];
   fpRender('face', FACE_Q); fpRender('palm', PALM_Q);
+  fpUpdate('face', FACE_Q, FACE_G); fpUpdate('palm', PALM_Q, PALM_G);
   $('faceQs').addEventListener('change', function () { fpUpdate('face', FACE_Q, FACE_G); });
   $('palmQs').addEventListener('change', function () { fpUpdate('palm', PALM_Q, PALM_G); });
   var FP_RULES = ['- 존댓말(해요체)로, 일반인도 이해하기 쉬운 말로 설명해줘. 절대 반말하지 마.', '- 외모의 좋고 나쁨을 평가하거나 우열을 가리지 말고, 성향과 가능성 중심으로 따뜻하게 풀어줘.', '- 건강·수명·사고·이별처럼 불안한 내용은 단정하지 마. 마지막에 "재미와 참고용이에요"를 한 줄 덧붙여줘.'];
@@ -4168,9 +4241,18 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       $(k + 'pShare').hidden = !file;
       $(k + 'pCopyImg').hidden = !file || !(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write);
       msg.textContent = '';
-      if (!file) { $(k + 'pImg').removeAttribute('src'); return; }
+      var peek = $(k + 'Peek');
+      if (!file) { $(k + 'pImg').removeAttribute('src'); if (peek) peek.hidden = true; return; }
       url = URL.createObjectURL(file);
       $(k + 'pImg').src = url;
+      if (peek) { peek.querySelector('img').src = url; peek.hidden = false; }
+      var go = $(k + 'pGoPick');
+      if (!go) {
+        go = document.createElement('button'); go.type = 'button'; go.id = k + 'pGoPick'; go.className = 'fp-gopick';
+        go.innerHTML = '📖 이 사진을 보며 <b>바로 풀이</b>하기';
+        go.addEventListener('click', function () { var t = $(k + 'Peek'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+        $(k + 'pPrev').parentNode.insertBefore(go, $(k + 'pPrev').nextSibling);
+      }
       msg.textContent = canShareFiles(file) ? '사진이 준비됐어요. 아래 버튼을 눌러 Claude·ChatGPT·Gemini 앱 중 하나를 고르세요.' : '이 기기에서는 사진을 앱으로 바로 넘길 수 없어요. 아래 AI 버튼으로 창을 연 뒤 사진을 첨부(또는 사진 복사 후 붙여넣기)해 주세요.';
     }
     [k + 'pCam', k + 'pPick'].forEach(function (id) {
@@ -4863,6 +4945,14 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     return L.join('\n');
   }
   $('tShuffle').addEventListener('click', tShuffle);
+  $('tOneBtn').addEventListener('click', function () {
+    var all = tAllCards(), cd = all[tRand(all.length)], rev = tRand(2) === 1, d = TDB[cd.name], tk = tTopicKey($('tTopic').value), s1 = tScore(cd, rev), fr = T_FRIEND[d[6]] || ['', ''];
+    $('tOne').innerHTML = '<div class="tr-wrap"><h3>☀️ 오늘의 한 장</h3><div class="tr-card"><div class="tr-mini' + (rev ? ' rev' : '') + '">' + tCardSVG(cd) + '</div><div>' +
+      '<h4>' + cd.name + '<span class="tr-dir' + (rev ? ' r' : '') + '">' + (rev ? '역방향' : '정방향') + '</span></h4>' +
+      '<div class="tr-kw">' + d[0].split('·').map(function (k) { return '<span>' + k + '</span>'; }).join('') + '<span class="tr-who">' + fr[0] + ' ' + d[6] + '</span></div>' +
+      '<p>' + (rev ? d[2] : d[1]) + '</p><p class="tr-tp">' + T_TOPIC_ICON[tk] + ' ' + T_TOPIC[tk][tTone(s1)] + '</p><p><b>👉 오늘의 한마디: ' + d[3] + '</b></p></div></div>' +
+      '<p class="hint" style="margin:4px 0 0">과거·현재·미래로 자세히 보려면 위 <b>카드 섞기</b>로 3장을 뽑아 보세요.</p></div>';
+  });
   $('tAgain').addEventListener('click', function () {
     $('tPick').hidden = true; tarot.picks = [];
     var top = $('h-tarot').closest('section').getBoundingClientRect().top + window.scrollY - (document.querySelector('.tabs').offsetHeight + 8);
@@ -5161,6 +5251,189 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     S2('✨', '홍짱쌤 한마디', '<p>나에게 힘이 되는 기운은 <b>' + tip[0] + '</b>' + JOSA(S.ELEM[yong], '이에요/예요') + '. 색은 ' + tip[1] + ', 방향은 ' + tip[2] + '이 좋아요. ' + tip[3] + ' 같은 습관을 생활에 보태 보세요.</p><p>사주는 정해진 운명이 아니라 <b>나를 이해하는 지도</b>예요. 잘 맞는 길을 알고 걸으면 같은 길도 훨씬 가볍게 걸을 수 있어요.</p>', 's-hj');
     $('autoBox').innerHTML = sec.join('');
   }
+
+
+  // ---------- 바로 풀이 엔진 (대운·세운·월운·일운·토정·궁합·AI 탭·명리·꿈) ----------
+  var PR_STEM = {
+    dae: AR_DAE,
+    year: AR_YEAR,
+    month: ['내 힘으로 밀고 가는 달이에요. 새 일을 시작하기 좋지만 지출과 경쟁은 조심해요.', '표현과 재능이 살아나는 달이에요. 만들고 알리는 일이 잘 풀려요.', '실속을 챙기는 달이에요. 돈과 결과를 정리하기 좋아요.', '책임과 약속을 지키는 달이에요. 맡은 일을 꼼꼼히 마무리해요.', '배우고 채우는 달이에요. 공부·준비·쉼이 힘이 돼요.'],
+    day: ['내 뜻대로 움직이는 날이에요. 혼자 끝낼 수 있는 일부터 해요.', '아이디어와 말솜씨가 살아나는 날이에요.', '결과를 챙기고 정리하기 좋은 날이에요.', '책임과 약속이 늘어나는 날이에요. 규칙을 먼저 지켜요.', '배우고 계획 세우기 좋은 날이에요.']
+  };
+  var PR_BASE = ['주변에 동료나 경쟁자가 많아지는 바탕이에요. 함께하되 내 몫은 지켜요.', '표현하고 만드는 일이 생활 속에 자연스럽게 늘어나는 바탕이에요.', '돈과 현실 문제가 생활의 중심에 놓이는 바탕이에요.', '맡은 일과 책임이 생활을 채우는 바탕이에요.', '배움과 도움, 쉼이 생활을 받쳐 주는 바탕이에요.'];
+  var PR_AREA = [
+    ['내 힘으로 밀고 가는 일이 잘 맞아요.', '나가는 돈이 늘기 쉬워 지출 관리가 필요해요.', '내 뜻이 강해지니 상대 말을 끝까지 들어 주세요.', '무리하게 달리기 쉬워 체력 안배가 중요해요.'],
+    ['아이디어와 표현이 살아나 새 일을 벌이기 좋아요.', '재능이 돈으로 이어지는 씨앗을 심어요.', '마음 표현이 자연스러워 관계가 따뜻해져요.', '에너지를 많이 쓰니 잠과 식사를 챙겨요.'],
+    ['결과와 성과를 챙기기 좋아요.', '돈 흐름이 활발해요. 계획한 만큼 모으고 써요.', '챙겨 주는 마음이 잘 전해져요.', '바쁘게 움직이니 허리와 소화를 살펴요.'],
+    ['책임과 자리가 커지고 평가를 받아요.', '꼭 나갈 돈(세금·공과금)을 먼저 챙겨요.', '예의와 믿음이 관계를 단단하게 해요.', '긴장이 쌓이기 쉬우니 쉬는 시간을 꼭 넣어요.'],
+    ['배우고 준비하고 자격을 쌓기 좋아요.', '큰돈보다 정보와 계획을 모으는 때예요.', '기대고 위로받는 관계가 힘이 돼요.', '몸과 마음이 회복되기 좋아요. 너무 늘어지지만 않게요.']];
+  var PR_KIND = { dae: '10년', year: '한 해', month: '한 달', day: '하루' };
+  function prRel(db, br) {
+    var r = X.pairKinds(db, br).map(function (k) { return k.replace(/\(.*\)/, ''); }), t = [], sc = 0;
+    if (r.indexOf('합') >= 0 || r.indexOf('삼합') >= 0 || r.indexOf('반합') >= 0) { t.push('내 일지(생활 자리)와 <b>합</b>이 들어 사람·약속·인연이 잘 맺어져요.'); sc += 1; }
+    if (r.indexOf('충') >= 0) { t.push('내 일지와 <b>충</b>이 들어 이동·이사·변화 같은 움직임이 생기기 쉬워요. 미리 준비하면 기회가 돼요.'); sc -= 1; }
+    if (r.indexOf('형') >= 0 || r.indexOf('자형') >= 0) { t.push('마찰이 생기기 쉬우니 말과 서류를 한 번 더 확인해요.'); sc -= 1; }
+    if (r.indexOf('파') >= 0 || r.indexOf('해') >= 0 || r.indexOf('원진') >= 0) t.push('작은 어긋남이나 서운함이 생길 수 있어요. 먼저 마음을 표현해 주세요.');
+    return { t: t, sc: sc };
+  }
+  function prEl(c, els) {
+    var y = mrYong(c), cnt = c.res.counts, sc = 0, t = [], seen = {};
+    els.forEach(function (el) {
+      if (seen[el]) return; seen[el] = 1;
+      var nm = EL_TIP[el][0];
+      if (el === y.yong || el === y.hee) { sc += 2; t.push(nm + JOSA(nm, '은/는') + ' 나에게 <b>반가운 기운</b>이에요.'); }
+      else if (y.gi.indexOf(el) >= 0) { sc -= 2; t.push(nm + JOSA(nm, '은/는') + ' 이미 넘치는 쪽을 키워 <b>조금 무겁게</b> 느낄 수 있어요.'); }
+      else if (cnt[el] === 0) { sc += 1; t.push(nm + ' 기운이 사주에 없었는데 채워져, 못 쓰던 힘이 살아나요.'); }
+      else if (cnt[el] >= 3) { sc -= 1; t.push(nm + ' 기운이 이미 ' + cnt[el] + '개라 그 기운이 더 두꺼워져요.'); }
+    });
+    return { sc: sc, t: t };
+  }
+  function prTone(sc) { return sc >= 2 ? ['good', '반가운 흐름'] : sc <= -2 ? ['hard', '조심스러운 흐름'] : ['mid', '무난한 흐름']; }
+  function prSpouse(c, g) { return (c.gender === 'M' && g === 2) || (c.gender !== 'M' && g === 3); }
+  function periodHTML(c, p, kind, title) {
+    var g = grpOfGod(p.stemGod), bg = grpOfGod(p.branchGod), rel = prRel(c.res.pillars.day.branch, p.branch), el = prEl(c, [p.stemEl, p.branchEl]);
+    var sc = el.sc + rel.sc + ([0, 1, 1, 0, 1][g]), tone = prTone(sc);
+    var h = '<div class="pr"><h4>' + title + '</h4><span class="tone ' + tone[0] + '">' + tone[1] + '</span>';
+    h += '<p>하늘 기운(천간)이 나에게 <b>' + p.stemGod + '(' + GRP_LABEL[g] + ')</b>' + JOSA(GRP_LABEL[g], '이라서/라서') + ', ' + PR_STEM[kind][g] + '</p>';
+    h += '<p>땅 기운(지지)은 ' + p.branchGod + '(' + GRP_LABEL[bg] + '): ' + PR_BASE[bg] + '</p>';
+    if (READ.UNSUNG_TEXT[p.unsung]) h += '<p>12운성 ' + p.unsung + ': ' + READ.UNSUNG_TEXT[p.unsung] + '</p>';
+    el.t.concat(rel.t).forEach(function (x) { h += '<p>' + x + '</p>'; });
+    if (prSpouse(c, g) || prSpouse(c, bg)) h += '<p>💗 배우자 별(' + (c.gender === 'M' ? '재성' : '관성') + ')이 들어와 <b>인연·연애·결혼 이야기</b>가 생기기 쉬운 ' + PR_KIND[kind] + JOSA(PR_KIND[kind], '이에요/예요') + '.</p>';
+    h += '<div class="pr-area">' + ['💼 일', '💰 돈', '💗 사랑', '🍀 건강'].map(function (a, i) { return '<div><b>' + a + '</b>' + PR_AREA[g][i] + '</div>'; }).join('') + '</div>';
+    return h + '</div>';
+  }
+  // --- 운 탭: 대운·세운·월운 풀이 ---
+  st.daePick = null; st.wolPick = null;
+  function renderLuckRead(c) {
+    var dn = c.dn, k = st.daePick != null ? st.daePick : (dn.current >= 0 ? dn.current : 0), p = dn.periods[k];
+    if (!p) return;
+    Array.prototype.forEach.call($('daeCards').children, function (el, i) { el.classList.toggle('pick', i === k); el.onclick = function () { st.daePick = i; renderLuckRead(st.A); }; });
+    $('daeRead').innerHTML = periodHTML(c, p, 'dae', '📅 ' + p.age + '~' + (p.age + 9) + '세 ' + p.stemK + p.branchK + ' 대운 (' + p.startYear + '년~)' + (k === dn.current ? ' · 지금' : ''));
+    var sn = X.seun(c.res, st.seunYear, 1)[0];
+    $('seunRead').innerHTML = periodHTML(c, sn, 'year', '🗓️ ' + st.seunYear + '년 ' + sn.stemK + sn.branchK + '년 풀이');
+    var w = X.wolun(c.res, st.seunYear), mi = curMonthInfo(), wi = st.wolPick;
+    if (wi == null) { wi = 0; if (st.seunYear === st.sy && mi) w.forEach(function (q, i) { if (q.term === mi.q.term) wi = i; }); }
+    Array.prototype.forEach.call($('wolGrid').children, function (el, i) { el.classList.toggle('pick', i === wi); el.onclick = function () { st.wolPick = i; renderLuckRead(st.A); }; });
+    var q = w[wi];
+    $('wolRead').innerHTML = periodHTML(c, q, 'month', '🌙 ' + q.term + '(' + q.start.replace('-', '/') + ')부터 한 달 · ' + q.stemK + q.branchK + '월');
+  }
+  // --- 토정비결 풀이 (괘 구조 + 달마다) ---
+  var TJ_UP = ['', '새싹이 돋는 해예요. 새로 시작한 일이 뿌리를 내리고, 작게 심은 것이 자라나요.', '물길이 열리는 해예요. 이동·소식·만남이 잦고, 흐름을 잘 타면 멀리까지 가요.', '햇살이 비치는 해예요. 노력이 드러나고 이름이 알려지며, 숨기던 재능을 보여 줄 때예요.', '바람이 부는 해예요. 변화와 새 소식이 많아요. 흔들려도 중심만 지키면 좋은 방향으로 가요.', '산처럼 머무는 해예요. 크게 벌이기보다 쌓고 지킬 때 더 단단해져요.', '비가 내려 씻기는 해예요. 묵은 일을 정리하면 그 자리에 새 기운이 들어와요.', '들판이 익는 해예요. 그동안 가꾼 것을 거두고 나누며 넉넉해져요.', '달빛 아래 준비하는 해예요. 겉으로 조용해도 안에서 힘을 모으는 소중한 시간이에요.'];
+  var TJ_MID = ['', '귀한 사람의 도움이 들어와요. 혼자 애쓰기보다 도움을 청하면 길이 열려요.', '함께하는 힘이 커요. 협력과 동업, 모임에서 좋은 일이 생겨요.', '경쟁과 비교가 생겨요. 남보다 어제의 나와 겨루면 마음이 편해요.', '움직임이 많아요. 이사·여행·일터 변화가 생길 수 있으니 미리 준비해요.', '재물의 들고 남이 커요. 들어올 때 조금씩 모아 두면 든든해요.', '집과 가족 일이 중심이 돼요. 가까운 사람을 챙기면 복이 돌아와요.'];
+  var TJ_LOW = ['', ['good', '끝이 좋은 해', '처음보다 끝이 밝아요. 꾸준히 가면 연말에 웃을 일이 생겨요.'], ['mid', '지키면 무난한 해', '크게 오르내리지 않아요. 하던 일을 성실히 지키면 무난하게 지나가요.'], ['hard', '조심하면 무사한 해', '서두르면 탈이 날 수 있어요. 큰 결정은 한 번 더 생각하면 무사히 지나가요.']];
+  var TJ_MONTH = ['정월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '동짓달', '섣달'];
+  function tjReadHTML(t) {
+    var h = '<div class="pr tj-read"><h4>📜 ' + t.year + '년 ' + t.num + '괘 홍짱 풀이</h4><span class="tone ' + TJ_LOW[t.low][0] + '">' + TJ_LOW[t.low][1] + '</span>' +
+      '<p><b>한 해의 바탕 (상괘 ' + t.up + ')</b> ' + TJ_UP[t.up] + '</p><p><b>사람과 일 (중괘 ' + t.mid + ')</b> ' + TJ_MID[t.mid] + '</p><p><b>마무리 (하괘 ' + t.low + ')</b> ' + TJ_LOW[t.low][2] + '</p>';
+    try {
+      var sol = LUNAR.lunarToSolar(t.l.y, t.l.m, t.l.d, t.l.leap), di = S.dayIndex(sol.y, sol.m, sol.d), ds = di % 10, db = di % 12;
+      var w = X.wolun({ dayStem: ds }, t.year), good = [], care = [];
+      h += '<p style="margin-top:8px"><b>달마다 흐름</b> <span class="pi-note">(태어난 날의 기운과 그해 달의 기운으로 봤어요)</span></p><ul class="pr-list">' + w.map(function (q, i) {
+        var g = grpOfGod(q.stemGod), r = prRel(db, q.branch), sc = [0, 1, 1, 0, 1][g] + r.sc, tn = sc >= 1 ? ['good', '좋음'] : sc < 0 ? ['hard', '조심'] : ['mid', '보통'];
+        if (tn[0] === 'good') good.push(TJ_MONTH[i]); if (tn[0] === 'hard') care.push(TJ_MONTH[i]);
+        return '<li><span class="tag tone ' + tn[0] + '">' + tn[1] + '</span><b>' + TJ_MONTH[i] + '</b> ' + AR_MONTH[g] + '이에요.' + (r.sc < 0 ? ' 움직임과 말을 조심해요.' : r.sc > 0 ? ' 사람 운이 따라요.' : '') + '</li>';
+      }).join('') + '</ul>';
+      h += '<p>👍 좋은 달: ' + (good.join(', ') || '고르게 무난해요') + ' · ⚠️ 조심할 달: ' + (care.join(', ') || '크게 없어요') + '</p>';
+    } catch (e) {}
+    h += '<p class="pi-note">전통 144괘 원문은 아직 넣지 않았어요. 괘의 세 숫자(상·중·하)와 그해 달마다의 기운으로 쉽게 풀었어요. 자세한 원문 풀이는 AI 버튼을 이용하세요.</p>';
+    return h + '</div>';
+  }
+  // --- 궁합 한눈에 풀이 ---
+  var GH_FEEL = ['친구처럼 편하고 대등한', '챙겨 주고 표현하고 싶은', '아끼고 책임지고 싶은', '믿음직하지만 조금은 어려운', '기대고 배우고 싶은'];
+  function ghReadHTML(a, b, g, type) {
+    var sc = g.signal.good - g.signal.hard, L = [];
+    var dsr = g.dayStemRel || '', dbr = g.dayBranchRel.map(function (x) { return x.replace(/\(.*\)/, ''); }), ddr = g.ddiRel.map(function (x) { return x.replace(/\(.*\)/, ''); });
+    if (dsr.indexOf('합') === 0) { sc += 2; L.push('두 사람의 일간이 <b>합</b>이에요. 처음부터 끌리고 마음이 잘 통하는 사이예요.'); }
+    else if (dsr === '충') { sc -= 1; L.push('두 사람의 일간이 <b>충</b>이에요. 생각하는 방식이 달라 부딪칠 수 있지만, 서로에게 없는 것을 배워요.'); }
+    L.push('나는 상대를 <b>' + GH_FEEL[grpOfGod(g.dayGods.aToB)] + '</b> 사람으로 느끼고(' + g.dayGods.aToB + '), 상대는 나를 <b>' + GH_FEEL[grpOfGod(g.dayGods.bToA)] + '</b> 사람으로 느껴요(' + g.dayGods.bToA + ').');
+    if (dbr.some(function (x) { return /합/.test(x); })) { sc += 2; L.push('생활 자리(일지)가 <b>합</b>이라 함께 지낼수록 편안해지는 궁합이에요.'); }
+    if (dbr.indexOf('충') >= 0) { sc -= 2; L.push('생활 자리(일지)가 <b>충</b>이라 생활 습관이나 속도가 달라요. 각자의 시간과 공간을 존중하면 오히려 오래가요.'); }
+    if (dbr.some(function (x) { return /형|파|해|원진/.test(x); })) { sc -= 1; L.push('생활 자리에 작은 마찰 신호가 있어요. 서운한 건 쌓아 두지 말고 그때그때 부드럽게 말해요.'); }
+    if (ddr.some(function (x) { return /합/.test(x); })) { sc += 1; L.push('띠끼리 <b>합</b>이라 겉으로 보기에도 잘 어울려요.'); }
+    if (ddr.indexOf('충') >= 0) { sc -= 1; L.push('띠끼리 <b>충</b>이에요. 성향 차이를 인정하면 괜찮아요.'); }
+    var fa = g.fills.a.length, fb = g.fills.b.length;
+    if (fa || fb) { sc += Math.min(2, fa + fb); L.push('서로에게 부족한 오행을 채워 주는 사이예요' + (fa ? ' (상대가 나에게 ' + g.fills.a.join('·') + ')' : '') + (fb ? ' (내가 상대에게 ' + g.fills.b.join('·') + ')' : '') + '.'); }
+    var tone = sc >= 3 ? ['good', '잘 맞는 편'] : sc >= 0 ? ['mid', '맞춰 가면 좋은 편'] : ['hard', '노력이 필요한 편'];
+    var ADV = { '연인': ['설렘이 오래가는 사이예요. 고마움을 자주 말로 전해요.', '대화로 속도를 맞추면 더 깊어져요.', '다른 점을 고치려 하기보다 인정해 주세요.'],
+      '부부': ['서로의 든든한 편이에요. 함께하는 작은 일상을 지켜 가요.', '집안일과 돈 관리의 역할을 분명히 나누면 편해요.', '하루 10분, 서로의 이야기를 들어 주는 시간을 만들어요.'],
+      '부모자녀': ['마음이 잘 통하는 사이예요. 칭찬과 믿음이 아이를 키워요.', '아이의 속도를 기다려 주면 관계가 단단해져요.', '가르치기보다 먼저 들어 주면 마음이 열려요.'],
+      '동업': ['역할이 잘 맞는 동업이에요. 약속을 문서로 남기면 더 좋아요.', '맡을 일과 돈 계산을 처음부터 분명히 해요.', '결정 방법과 정리 방법을 미리 정해 두세요.'] };
+    var adv = (ADV[type] || ADV['연인'])[tone[0] === 'good' ? 0 : tone[0] === 'mid' ? 1 : 2];
+    return '<div class="pr"><h4>💞 궁합 한눈에 풀이 (' + type + ')</h4><span class="tone ' + tone[0] + '">' + tone[1] + '</span>' + L.map(function (x) { return '<p>' + x + '</p>'; }).join('') +
+      '<p>✨ <b>홍짱쌤 한마디</b>: ' + adv + '</p><p class="pi-note">궁합은 좋고 나쁨을 가리는 점수가 아니라, 서로를 이해하는 지도예요.</p></div>';
+  }
+  // --- AI 탭·명리: 고른 풀이를 바로 보여 주기 ---
+  function sinsalHTML(c) {
+    var an = c.an, h = '<div class="pr"><h4>⭐ 신살 바로 풀이</h4>';
+    if (!an.sinsal.length) h += '<p>눈에 띄는 신살이 없어요. 한쪽으로 치우치지 않은 담백한 사주예요.</p>';
+    h += '<ul class="pr-list">' + an.sinsal.map(function (x) { var good = /귀인|학관|천의성|협록|월덕/.test(x.name); return '<li><span class="tag tone ' + (good ? 'good' : 'mid') + '">' + (good ? '도움' : '특징') + '</span><b>' + x.name + '</b> (' + x.where.join('·') + ') ' + (x.desc || '') + '</li>'; }).join('') + '</ul>';
+    var gm = an.gongmang;
+    h += '<p>공망: ' + gm.branches.join('·') + (gm.hits.length ? ' — ' + gm.hits.join('·') + '에 걸려 있어 그 자리의 일은 마음먹은 것보다 늦게 채워지기 쉬워요. 대신 욕심을 덜고 의미를 찾으면 좋아요.' : ' — 사주 글자에 걸리지 않았어요.') + '</p>';
+    return h + '</div>';
+  }
+  function autoClone(title) { return '<div class="pr"><h4>' + title + '</h4>' + $('autoBox').innerHTML + '</div>'; }
+  function lifeHTML(c) {
+    var dn = c.dn;
+    return '<div class="pr"><h4>🌈 인생 전체 흐름 (대운 10개)</h4><ul class="pr-list">' + dn.periods.map(function (p) {
+      var g = grpOfGod(p.stemGod), el = prEl(c, [p.stemEl, p.branchEl]), rel = prRel(c.res.pillars.day.branch, p.branch), tn = prTone(el.sc + rel.sc + [0, 1, 1, 0, 1][g]);
+      return '<li><span class="tag tone ' + tn[0] + '">' + p.age + '세</span><b>' + p.stemK + p.branchK + '</b>' + (p.k === dn.current ? ' (지금)' : '') + ' ' + AR_DAE[g] + '</li>';
+    }).join('') + '</ul></div>';
+  }
+  function loveHTML(c) {
+    var res = c.res, db = res.pillars.day.branch, sp = c.gender === 'M' ? 2 : 3, years = X.seun(res, st.sy, 6);
+    var h = '<div class="pr"><h4>💗 연애·결혼 바로 풀이</h4><p>' + TRAIT[res.dayStem].love + '</p>';
+    var auto = document.querySelectorAll('#autoBox .auto-sec')[3]; if (auto) h += '<p>' + Array.prototype.map.call(auto.querySelectorAll('p'), function (x) { return x.innerHTML; }).slice(1).join(' ') + '</p>';
+    h += '<p><b>앞으로 6년 인연 흐름</b></p><ul class="pr-list">' + years.map(function (p) {
+      var r = prRel(db, p.branch), isSp = grpOfGod(p.stemGod) === sp || grpOfGod(p.branchGod) === sp;
+      var tn = isSp && r.sc >= 0 ? ['good', '인연'] : r.sc > 0 ? ['good', '좋음'] : r.sc < 0 ? ['hard', '변화'] : ['mid', '보통'];
+      return '<li><span class="tag tone ' + tn[0] + '">' + tn[1] + '</span><b>' + p.year + '년 ' + p.stemK + p.branchK + '</b> ' + (isSp ? '배우자 별이 들어오는 해예요. ' : '') + (r.t[0] || '관계가 잔잔하게 이어져요.') + '</li>';
+    }).join('') + '</ul></div>';
+    return h;
+  }
+  var QA_KEY = [[/돈|재물|투자|주식|부동산|금전|월급|빚/, 1, '💰 돈'], [/연애|결혼|사랑|남친|여친|남자친구|여자친구|배우자|이혼|재회/, 2, '💗 사랑'], [/건강|아프|병|수술|몸/, 3, '🍀 건강'], [/일|직장|이직|취업|사업|창업|승진|회사|진로|공부|시험|합격/, 0, '💼 일']];
+  function questionHTML(c) {
+    var q = ($('aiQ').value || '').trim(), sn = X.seun(c.res, st.sy, 1)[0], g = grpOfGod(sn.stemGod);
+    var hits = QA_KEY.filter(function (k) { return k[0].test(q); });
+    var h = '<div class="pr"><h4>❓ 질문 바로 풀이</h4>' + (q ? '<p>질문: "' + q.replace(/[<>&]/g, '') + '"</p>' : '<p>위 칸에 궁금한 것을 적으면, 올해 흐름에서 그 부분을 골라 보여 줘요.</p>');
+    (hits.length ? hits : QA_KEY).forEach(function (k) { h += '<p><b>' + k[2] + '</b> (' + st.sy + '년 ' + sn.stemK + sn.branchK + '년) ' + PR_AREA[g][k[1]] + '</p>'; });
+    h += '<p>올해는 ' + AR_YEAR[g] + '</p><p class="pi-note">질문에 꼭 맞는 자세한 답은 아래 AI 버튼으로 물어보세요.</p>';
+    return h + '</div>';
+  }
+  function instantFor(kind, c) {
+    var res = c.res, dn = c.dn;
+    if (kind === 'wonguk') return autoClone('📖 원국 바로 풀이');
+    if (kind === 'general') return autoClone('📖 종합 바로 풀이');
+    if (kind === 'sinsal') return sinsalHTML(c);
+    if (kind === 'life') return lifeHTML(c);
+    if (kind === 'love') return loveHTML(c);
+    if (kind === 'question') return questionHTML(c);
+    if (kind === 'daeun') { var k = +$('aiDaeun').value; if (isNaN(k)) k = dn.current >= 0 ? dn.current : 0; var p = dn.periods[k]; return periodHTML(c, p, 'dae', '📅 ' + p.age + '~' + (p.age + 9) + '세 ' + p.stemK + p.branchK + ' 대운'); }
+    if (kind === 'seun' || kind === 'newyear') { var y = +(kind === 'newyear' ? $('aiYear').value : $('aiSeun').value) || st.sy, sn = X.seun(res, y, 1)[0]; return periodHTML(c, sn, 'year', '🗓️ ' + y + '년 ' + sn.stemK + sn.branchK + '년'); }
+    if (kind === 'wolun') { var y2 = +$('aiSeun').value || st.sy, w = X.wolun(res, y2), q = w[+$('aiWolun').value || 0]; return periodHTML(c, q, 'month', '🌙 ' + q.term + '(' + q.start.replace('-', '/') + ')부터 한 달 · ' + q.stemK + q.branchK + '월'); }
+    if (kind === 'ilun') {
+      var dv = ($('aiDay').value || '').split('-'), t = kstToday(), yy = +dv[0] || t.y, mm = +dv[1] || t.m, dd = +dv[2] || t.d, f = X.dayFlow(res, yy, mm, dd);
+      return periodHTML(c, f, 'day', '☀️ ' + yy + '년 ' + mm + '월 ' + dd + '일 ' + f.stemK + f.branchK + '일');
+    }
+    return '';
+  }
+  function renderInstant() {
+    var c = st.A; if (!c) return;
+    try { $('aiInstant').innerHTML = '<p class="pi-note" style="margin:0 0 4px">📖 앱이 바로 쓴 풀이예요' + (st.mine ? '' : ' (지금은 예시 사주예요)') + '.</p>' + instantFor($('aiMode').value, c); } catch (e) { $('aiInstant').innerHTML = ''; }
+    try { var mk = document.querySelector('input[name=mrK]:checked'); $('mrInstant').innerHTML = instantFor(mk ? mk.value : 'wonguk', c); } catch (e) { $('mrInstant').innerHTML = ''; }
+  }
+  ['aiMode', 'aiDaeun', 'aiSeun', 'aiWolun', 'aiDay', 'aiYear'].forEach(function (id) { var el = $(id); if (el) el.addEventListener('change', function () { setTimeout(renderInstant, 0); }); });
+  $('aiQ').addEventListener('input', function () { if ($('aiMode').value === 'question') renderInstant(); });
+  $('mrKinds').addEventListener('change', renderInstant);
+  // --- 꿈해몽: 적은 꿈에서 낱말 바로 찾기 ---
+  function drMatchRender() {
+    var t = ($('drText').value || '').replace(/\s+/g, ''), box = $('drMatch');
+    if (t.length < 2) { box.innerHTML = ''; return; }
+    var hit = DREAM.filter(function (d) { return [d[0]].concat(d[5].split(' ')).some(function (w) { w = w.replace(/\s+/g, ''); return w.length >= 1 && t.indexOf(w) >= 0; }); });
+    box.innerHTML = hit.length ? '<div class="pr"><h4>🌙 내 꿈 바로 풀이</h4><p class="pi-note">적은 꿈에서 ' + hit.length + '가지 낱말을 찾았어요.</p>' + hit.map(function (d) { return '<p><b>' + d[2] + ' ' + d[0] + '</b> 📜 ' + d[3] + ' 💭 ' + d[4] + '</p>'; }).join('') +
+      '<p>✨ <b>홍짱쌤 한마디</b>: 꿈은 지금 마음이 보내는 편지예요. 깨었을 때의 기분이 좋았다면 좋은 기운으로, 불안했다면 쉬어 가라는 신호로 받아들여 보세요.</p></div>'
+      : '<p class="pi-note" style="margin-top:6px">아직 사전에 있는 낱말을 찾지 못했어요. 동물·사람·물·불처럼 꿈에 나온 것을 적어 보거나, 아래 AI 버튼으로 물어보세요.</p>';
+  }
+  $('drText').addEventListener('input', drMatchRender);
 
   // ---------- 용어 ----------
   $('glBox').innerHTML = READ.GLOSSARY.map(function (x) { return '<details><summary>' + x[0] + '</summary><p>' + x[1] + '</p></details>'; }).join('');
