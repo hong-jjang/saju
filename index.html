@@ -640,6 +640,8 @@ body.is-app .inst-only { display: none !important; }
 #instBox .ib-tip { font-size: 13.5px; color: #667; margin: 10px 0 0; }
 /* 꿈해몽 */
 #splash .sp-choice .sp-dream { background: #DCD6FF !important; color: #4B3E99 !important; }
+#splash .sp-choice .sp-flower { background: #FBE0E6 !important; color: #8C2F3F !important; }
+#splash .sp-choice .sp-day { background: #DCE9F5 !important; color: #1F4466 !important; }
 body[data-mode=dream] .card.form, body[data-mode=dream] #saveCard, body[data-mode=dream] .tabs, body[data-mode=dream] .panel { display: none !important; }
 body[data-mode=dream] #pn-13 { display: block !important; }
 body[data-mode=dream] #pn-13 [hidden] { display: none !important; }
@@ -811,7 +813,9 @@ button.kakao svg { width: 20px; height: 20px; }
 /* ---------- 타로 (딥그린 · 한지 아이보리 · 금색) ---------- */
 .tz { --tz-g: #1F4D3A; --tz-g2: #2C6650; --tz-iv: #F7F1E3; --tz-iv2: #FBF7EE; --tz-au: #B8933A; --tz-ink: #24322B; --tz-mut: #5B6359; }
 body[data-mode=tarot] { background: #EFE8D8; }
-body[data-mode=tarot] header { --hd1: #24563F; --hd2: #2C6650; --hd3: #3D7A5C; --hd-ink: #F7F1E3; }
+body[data-mode=tarot] header { --hd1: #24563F; --hd2: #2C6650; --hd3: #3D7A5C; --hd-ink: #F7F1E3; --hd-sub: #E6DCC2; }
+body[data-mode=tarot] .mode-sw button { color: #1F4D3A; }
+body[data-mode=tarot] .mode-sw button[aria-selected=true] { color: #F7F1E3; }
 body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A; }
 .tz .card { background: var(--tz-iv2); border: 1px solid #E3D8BE; color: var(--tz-ink); }
 .tz h2 { color: var(--tz-g); }
@@ -923,6 +927,8 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
     <button type="button" id="splashTj" data-mode="tj" class="sp-tj"><span aria-hidden="true">📜</span>토정비결<small>생년월일로 보는 한 해</small></button>
     <button type="button" id="splashPalm" data-mode="palm" class="sp-palm"><span aria-hidden="true">✋</span>손금<small>손바닥 선으로 보는 흐름</small></button>
     <button type="button" id="splashDream" data-mode="dream" class="sp-dream"><span aria-hidden="true">🌙</span>꿈해몽<small>간밤의 꿈 풀어 보기</small></button>
+    <button type="button" id="splashFlower" data-mode="flower" class="sp-flower"><span aria-hidden="true">🌸</span>꽃점<small>꽃잎을 떼며 내 마음 보기</small></button>
+    <button type="button" id="splashDay" data-mode="daycard" class="sp-day"><span aria-hidden="true">📅</span>날짜 카드<small>쇼츠·스토리에 올리는 그림</small></button>
   </div>
   <button type="button" class="sp-inst inst-only" data-install>📲 휴대폰 홈 화면에 앱으로 설치하기</button>
 </div>
@@ -956,6 +962,8 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
       <button type="button" role="tab" data-mode="tj" aria-selected="false">📜 토정</button>
       <button type="button" role="tab" data-mode="palm" aria-selected="false">✋ 손금</button>
       <button type="button" role="tab" data-mode="dream" aria-selected="false">🌙 꿈해몽</button>
+      <button type="button" role="tab" data-mode="flower" aria-selected="false">🌸 꽃점</button>
+      <button type="button" role="tab" data-mode="daycard" aria-selected="false">📅 날짜카드</button>
     </div>
   </div>
 </header>
@@ -4170,18 +4178,28 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   HD_SUB.palm = '손금 선의 옛 이름과 상징을 알아보고, 나를 돌아보는 질문을 만나요.';
   HD_SUB.mr = '사주팔자와 명리 분석을 한눈에 보고, 원국·대운·세운·월운·일운 풀이를 AI에게 부탁해요.';
   HD_SUB.tj = '태어난 해·월·일만 넣으면 그해의 토정비결 괘를 찾아 드려요.';
+  var SUB_HASH = { flower: '#kkotjeom', daycard: '#nalja' };
   function setMode(m, push) {
-    var prev = document.body.getAttribute('data-mode');
+    var prev = document.body.getAttribute('data-mode'), sub = SUB_HASH[m] ? m : null, prevSub = document.body.getAttribute('data-sub') || '';
+    if (sub) m = 'tarot';
     m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm' || m === 'dream' || m === 'fengshui') ? m : 'saju';
     document.body.setAttribute('data-mode', m);
     if ((m === 'face' || m === 'palm') && window.fpPreload) window.fpPreload(m);
-    Array.prototype.forEach.call(document.querySelectorAll('.mode-sw [data-mode]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
+    document.body.setAttribute('data-sub', sub || '');
+    Array.prototype.forEach.call(document.querySelectorAll('.mode-sw [data-mode]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-mode') === (sub || m) ? 'true' : 'false'); });
+    if (m === 'tarot') {
+      if (sub === 'flower') setTimeout(function () { if (window.hjFlowerOpen) window.hjFlowerOpen(); }, 30);
+      else if (sub === 'daycard') setTimeout(function () { if (window.hjDayCardOpen) window.hjDayCardOpen(); }, 30);
+      else ['flBox', 'dcBox'].forEach(function (id) { var e = $(id); if (e) e.hidden = true; });
+    }
     $('hdSub').textContent = HD_SUB[m];
     $('hdTitle').textContent = HD_TITLE[m];
+    if (sub === 'flower') { $('hdTitle').textContent = '홍짱 꽃점'; $('hdSub').textContent = '꽃잎을 한 장씩 떼며 두 말을 세어 보고, 내 마음을 돌아봐요.'; }
+    if (sub === 'daycard') { $('hdTitle').textContent = '홍짱 날짜 카드'; $('hdSub').textContent = '날짜를 고르면 그날의 일진과 오늘의 카드를 쇼츠·스토리용 그림으로 만들어요.'; }
     if (m === 'name' && st.A) renderName(st.A);
     if (m === 'saju' && $('pn-7') && !$('tab-7').hasAttribute('hidden') && $('tab-7').getAttribute('aria-selected') === 'true') showTab(1);
     // 메뉴를 바꿀 때는 기록을 남겨서, 휴대폰 '뒤로' 버튼이 앱을 닫지 않고 앞 메뉴로 돌아가게 해요
-    try { var url = m !== 'saju' ? '#' + m : location.pathname + location.search; if (push && prev && prev !== m) history.pushState({ mode: m }, '', url); else history.replaceState({ mode: m }, '', url); } catch (e) {}
+    try { var key = sub || m, url = sub ? SUB_HASH[sub] : m !== 'saju' ? '#' + m : location.pathname + location.search; if (push && prev && (prev !== m || prevSub !== (sub || ''))) history.pushState({ mode: key }, '', url); else history.replaceState({ mode: key }, '', url); } catch (e) {}
     window.scrollTo(0, 0);
   }
   window.setMode = setMode;
@@ -4189,23 +4207,26 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     b.addEventListener('click', function () { setMode(b.getAttribute('data-mode'), true); });
   });
   if (location.hash === '#tarot') setMode('tarot');
-  if (location.hash === '#nalja' || location.hash === '#daycard') { setMode('tarot'); setTimeout(function () { if (window.hjDayCardOpen) window.hjDayCardOpen(); }, 300); }
-  if (location.hash === '#kkotjeom' || location.hash === '#flower') { setMode('tarot'); setTimeout(function () { if (window.hjFlowerOpen) window.hjFlowerOpen(); }, 300); }
+  if (location.hash === '#nalja' || location.hash === '#daycard') setMode('daycard');
+  if (location.hash === '#kkotjeom' || location.hash === '#flower') setMode('flower');
   if (location.hash === '#name') setMode('name');
   if (location.hash === '#tj' || location.hash === '#tojeong') setMode('tj');
   if (location.hash === '#mr' || location.hash === '#myeongri') setMode('mr');
   if (location.hash === '#face' || location.hash === '#gwansang') setMode('face');
   window.addEventListener('hashchange', function () {
-    var H = { '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#tojeong': 'tj', '#mr': 'mr', '#myeongri': 'mr', '#face': 'face', '#gwansang': 'face', '#palm': 'palm', '#songeum': 'palm', '#dream': 'dream', '#kkum': 'dream', '#pungsu': 'fengshui', '#fengshui': 'fengshui' };
+    var H = { '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#tojeong': 'tj', '#mr': 'mr', '#myeongri': 'mr', '#face': 'face', '#gwansang': 'face', '#palm': 'palm', '#songeum': 'palm', '#dream': 'dream', '#kkum': 'dream', '#pungsu': 'fengshui', '#fengshui': 'fengshui', '#kkotjeom': 'flower', '#flower': 'flower', '#nalja': 'daycard', '#daycard': 'daycard' };
     var want = H[location.hash] || (location.hash === '' || location.hash === '#' ? 'saju' : null);
-    if (want === 'saju' && document.body.getAttribute('data-mode') !== 'saju') { setMode('saju'); return; }
-    if (H[location.hash] && document.body.getAttribute('data-mode') !== H[location.hash]) { var sp = document.getElementById('splash'); if (sp) sp.hidden = true; document.body.style.overflow = ''; setMode(H[location.hash]); }
+    if (!want) return;
+    var cur = document.body.getAttribute('data-sub') || document.body.getAttribute('data-mode');
+    if (cur === want) return;
+    var sp = document.getElementById('splash'); if (sp) sp.hidden = true; document.body.style.overflow = '';
+    setMode(want);
   });
   window.addEventListener('popstate', function (e) {
     var m = e.state && e.state.mode;
-    if (!m) { var H2 = { '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#mr': 'mr', '#face': 'face', '#palm': 'palm', '#dream': 'dream', '#fengshui': 'fengshui' }; m = H2[location.hash] || 'saju'; }
+    if (!m) { var H2 = { '#kkotjeom': 'flower', '#nalja': 'daycard', '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#mr': 'mr', '#face': 'face', '#palm': 'palm', '#dream': 'dream', '#fengshui': 'fengshui' }; m = H2[location.hash] || 'saju'; }
     var cb = document.getElementById('camBox'); if (cb && !cb.hidden) { var x = document.getElementById('camClose'); if (x) x.click(); }
-    if (document.body.getAttribute('data-mode') !== m) setMode(m);
+    if (document.body.getAttribute('data-mode') !== m || (document.body.getAttribute('data-sub') || '') !== (SUB_HASH[m] ? m : '')) setMode(m);
   });
   if (location.hash === '#palm' || location.hash === '#songeum') setMode('palm');
   if (location.hash === '#dream' || location.hash === '#kkum') setMode('dream');
