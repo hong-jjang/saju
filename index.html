@@ -451,6 +451,51 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+/* 풍수 */
+#splash .sp-choice .sp-fs { background: #D6EEDF !important; color: #2A6B45 !important; }
+body[data-mode=fengshui] .tabs, body[data-mode=fengshui] .panel { display: none !important; }
+body[data-mode=fengshui] #pn-14 { display: block !important; }
+body[data-mode=fengshui] #pn-14 [hidden] { display: none !important; }
+body[data-mode=fengshui] .mode-sw button[aria-selected=true] { background: #3F8A5E; }
+body[data-mode=fengshui] header { --hd1: #D6EEDF; --hd2: #E4F0FA; --hd3: #F4F7E6; --hd-ink: #24573A; }
+body[data-mode=fengshui] #go { background: #3F8A5E; }
+.fs-gua { display: flex; gap: 12px; align-items: center; border-radius: 18px; padding: 12px 14px; background: linear-gradient(160deg, #F1FAF4, #EEF5FF); border: 1px solid #D6EADF; }
+.fs-gua .num { flex: none; width: 64px; height: 64px; border-radius: 18px; background: #3F8A5E; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; line-height: 1.1; }
+.fs-gua .num small { font-size: 11px; font-weight: 500; }
+.fs-gua p { margin: 2px 0; font-size: 14.5px; line-height: 1.6; }
+.fs-wheel-wrap { position: relative; width: min(100%, 340px); margin: 12px auto 0; }
+.fs-wheel-wrap svg { display: block; width: 100%; height: auto; transition: transform .25s ease-out; }
+.fs-needle { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); color: #E8736A; font-size: 20px; }
+.fs-now { text-align: center; font-size: 15.5px; font-weight: 700; margin: 8px 0; min-height: 1.4em; }
+.fs-list { list-style: none; padding: 0; margin: 10px 0 0; }
+.fs-list li { display: grid; grid-template-columns: 64px 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px dashed #E1E8F2; font-size: 14px; line-height: 1.6; }
+.fs-list li:last-child { border-bottom: 0; }
+.fs-list .tag { align-self: start; text-align: center; border-radius: 999px; font-size: 12.5px; font-weight: 700; padding: 3px 0; }
+.fs-list .tag.g { background: #E9F5EC; color: #2A6B45; } .fs-list .tag.b { background: #FDEBF1; color: #A33E66; }
+.fs-room { border-radius: 16px; padding: 10px 12px; margin: 8px 0; background: #FAFCFF; border: 1px solid #E4EAF5; }
+.fs-room > b { display: block; font-size: 15px; margin-bottom: 2px; }
+#fsWheel .fsl { transform-box: fill-box; transform-origin: center; transition: transform .25s ease-out; }
+.fs-room p { margin: 2px 0; font-size: 14px; line-height: 1.65; }
+.fs-chip { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 700; margin: 0 2px; }
+/* 원광만세력 참고 추가 */
+.day .dn .lu { font-style: normal; font-size: 9.5px; color: #9A8FA8; margin-left: 3px; font-weight: 400; }
+.day .term { display: block; font-size: 10px; font-weight: 700; color: #fff; background: #7CC49A; border-radius: 999px; padding: 0 4px; margin: 1px auto; width: fit-content; }
+#svMemo { width: 100%; box-sizing: border-box; margin-top: 6px; min-height: 42px; border-radius: 12px; border: 1px solid var(--line); padding: 0 12px; font: inherit; font-size: 15px; }
+.sv-memo { display: block; color: #7A6F8A; }
+.mv-wrap { overflow-x: auto; margin-top: 10px; border-radius: 14px; border: 1px solid var(--line); }
+table.mv { border-collapse: collapse; width: 100%; min-width: 340px; font-size: 14px; }
+table.mv th, table.mv td { border-bottom: 1px solid #EEF0F6; padding: 6px 4px; text-align: center; }
+table.mv thead th { background: #F4F1FF; font-size: 12.5px; }
+table.mv tbody th { text-align: left; padding-left: 8px; }
+table.mv tbody th small { display: block; font-size: 11px; color: #7A6F8A; font-weight: 400; }
+table.mv td span { display: block; font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700; line-height: 1.25; }
+table.mv td.mv-dn { font-size: 12px; }
+.mv-name { border: 0; background: none; font: inherit; font-weight: 700; color: #2F5590; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.fz-sw { position: absolute; top: 14px; right: 14px; display: flex; align-items: center; gap: 3px; background: rgba(255, 255, 255, .7); border-radius: 999px; padding: 3px 6px; font-size: 12px; z-index: 2; }
+.fz-sw span { color: #6A5A6A; margin-right: 2px; }
+.fz-sw button { border: 0; background: transparent; border-radius: 999px; min-width: 26px; height: 26px; cursor: pointer; color: #3A2A31; font-weight: 700; }
+.fz-sw button[data-z="1"] { font-size: 12px; } .fz-sw button[data-z="1.12"] { font-size: 14.5px; } .fz-sw button[data-z="1.25"] { font-size: 17px; }
+.fz-sw button[aria-pressed=true] { background: #E8736A; color: #fff; }
 /* 사진 한 장으로 바로 보기 */
 .fq { background: linear-gradient(160deg, #FFF5F8, #F3EEFF); border: 1.5px solid #F4C3D3; }
 .fq-tip { font-size: 14px; line-height: 1.6; margin: 0 0 10px; }
@@ -735,6 +780,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <button type="button" id="splashPalm" data-mode="palm" class="sp-palm"><span aria-hidden="true">✋</span>손금<small>손바닥 선으로 보는 흐름</small></button>
     <button type="button" id="splashTj" data-mode="tj" class="sp-tj"><span aria-hidden="true">📜</span>토정비결<small>생년월일로 보는 한 해</small></button>
     <button type="button" id="splashDream" data-mode="dream" class="sp-dream"><span aria-hidden="true">🌙</span>꿈해몽<small>간밤의 꿈 풀어 보기</small></button>
+    <button type="button" id="splashFs" data-mode="fengshui" class="sp-fs"><span aria-hidden="true">🧭</span>풍수<small>내 사주에 맞는 방위와 집</small></button>
   </div>
   <button type="button" class="sp-inst inst-only" data-install>📲 휴대폰 홈 화면에 앱으로 설치하기</button>
 </div>
@@ -756,6 +802,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <div class="dots" aria-hidden="true"><i style="background:#7CC49A"></i><i style="background:#F28B82"></i><i style="background:#F2C46B"></i><i style="background:#C9CED6"></i><i style="background:#8DB3F0"></i></div>
     <span class="cloud" aria-hidden="true"></span>
     <h1><span id="hdTitle">사주 만세력</span> <span class="stamp" aria-label="홍짱"><b>홍</b><b>짱</b></span></h1>
+    <div class="fz-sw" role="group" aria-label="글자 크기"><span>글자</span><button type="button" data-z="1" aria-label="보통 글자">가</button><button type="button" data-z="1.12" aria-label="큰 글자">가</button><button type="button" data-z="1.25" aria-label="아주 큰 글자">가</button></div>
     <p id="hdSub">명식, 대운·세운, 합충과 신살, 궁합, 오늘의 운세까지 한 곳에서 봐요.</p>
     <div class="mode-sw" role="tablist" aria-label="보기 고르기">
       <button type="button" role="tab" data-mode="saju" aria-selected="true">📜 만세력</button>
@@ -766,6 +813,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <button type="button" role="tab" data-mode="face" aria-selected="false">👤 관상</button>
       <button type="button" role="tab" data-mode="palm" aria-selected="false">✋ 손금</button>
       <button type="button" role="tab" data-mode="dream" aria-selected="false">🌙 꿈해몽</button>
+      <button type="button" role="tab" data-mode="fengshui" aria-selected="false">🧭 풍수</button>
     </div>
   </div>
 </header>
@@ -787,6 +835,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <h2 id="h-save">💾 사주 저장 목록</h2>
     <div class="sv-add">
       <input type="text" id="svName" maxlength="20" placeholder="이름 (예: 홍선영)" autocomplete="off" aria-label="저장할 이름">
+      <input type="text" id="svMemo" maxlength="40" placeholder="메모 (예: 친구, 상담 고객)" autocomplete="off" aria-label="메모">
       <button type="button" class="primary" id="svSave">지금 사주 저장</button>
     </div>
     <p class="toast" id="svMsg" role="status"></p>
@@ -795,9 +844,11 @@ button.kakao svg { width: 20px; height: 20px; }
         <input type="radio" name="svF" id="svF-all" value="all" checked><label for="svF-all">전체</label>
         <input type="radio" name="svF" id="svF-fav" value="fav"><label for="svF-fav">★ 즐겨찾기</label>
       </div>
-      <input type="search" id="svFind" placeholder="이름 찾기" aria-label="이름 찾기">
+      <input type="search" id="svFind" placeholder="이름·메모·생일 찾기" aria-label="이름, 메모, 생년월일로 찾기">
     </div>
     <div id="svList"></div>
+    <button type="button" class="ghost" id="svMulti" style="width:100%;margin-top:10px">👥 저장한 사람 한눈에 보기 (최대 15명)</button>
+    <div id="svMultiBox"></div>
     <div class="sync-box" id="syncBox">
       <div class="sync-head"><b>☁️ PC·휴대폰 연동</b><span id="syncState">꺼짐</span></div>
       <p class="sync-msg" id="syncMsg">구글 계정으로 로그인하면 저장 목록과 즐겨찾기가 PC와 휴대폰에서 똑같이 보여요.</p>
@@ -888,9 +939,11 @@ button.kakao svg { width: 20px; height: 20px; }
       <ul class="info" id="info"></ul>
     </section>
     <section class="card" aria-labelledby="h-txt">
-      <h2 id="h-txt">글로 복사하기</h2>
+      <h2 id="h-txt">명식 글로 복사·보내기</h2>
       <div class="actions">
         <button class="ghost" id="copy" type="button">전체 글 복사</button>
+        <button class="ghost" id="txtShare" type="button">📤 문자·카톡으로 보내기</button>
+        <button class="ghost" id="txtMail" type="button">✉️ 메일로 보내기</button>
         <span class="toast" id="toast" role="status"></span>
       </div>
       <textarea class="out" id="txt" readonly aria-label="명식 요약 글"></textarea>
@@ -956,7 +1009,8 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-dae">대운 (10년 단위 흐름)</h2>
       <p class="sum" id="daeSum"></p>
       <div class="lcs dae-grid" id="daeCards"></div>
-      <p class="hint" style="margin:6px 0 0">대운 칸을 누르면 그 10년의 풀이가 아래에 나와요.</p>
+      <p class="hint" style="margin:6px 0 0">대운 칸을 누르면 그 10년의 풀이가 나오고, <b>세운·월운도 그 대운 기간으로 함께 바뀌어요.</b></p>
+      <p class="toast" id="daeLink" role="status" style="margin:4px 0 0"></p>
       <div id="daeRead"></div>
       <p class="hint" style="margin-top:8px">카드의 나이는 대운이 바뀌는 때(대운수 기준)이고, 아래 연도는 정확한 계산상의 시작 시점이에요. 한 해 안팎 차이가 있을 수 있어요.</p>
     </section>
@@ -981,6 +1035,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-cal">📅 <span id="calTitle"></span> 일진 달력</h2>
       <div class="cal-nav"><button type="button" class="ghost" id="calPrev">‹ 지난달</button><button type="button" class="ghost" id="calToday">이번 달</button><button type="button" class="ghost" id="calNext">다음달 ›</button></div>
       <div class="cal" id="calGrid" role="grid"></div>
+      <p class="hint" id="calTerm" style="margin:6px 0 0"></p>
       <div class="cal-pick" id="calPick" aria-live="polite"></div>
       <p class="hint" style="margin-top:8px">칸마다 위는 천간 십신, 가운데는 그날의 간지, 아래는 지지 십신과 12운성(괄호는 그날 글자끼리의 12운성)이에요. 날짜를 누르면 그날 흐름이 나와요.</p>
     </section>
@@ -1301,6 +1356,46 @@ button.kakao svg { width: 20px; height: 20px; }
       <p class="hint">관상은 외모의 좋고 나쁨을 가리는 것이 아니라, 얼굴 모양에 담긴 성향을 옛 방식으로 읽어 보는 재미예요.</p>
     </section>
     <section class="card"><p class="hint" style="margin:0">관상은 전통적으로 전해 오는 해석이고 과학적으로 증명된 것은 아니에요. 재미와 참고로만 봐 주세요. 얼굴은 표정과 마음가짐에 따라 바뀐다고도 해요.</p></section>
+  </div>
+
+  <!-- 14. 풍수 -->
+  <div class="panel" role="tabpanel" id="pn-14" aria-labelledby="h-fs" hidden>
+    <section class="card" aria-labelledby="h-fs">
+      <h2 id="h-fs">🧭 내 좋은 방위 <span class="sub" id="fsWho"></span></h2>
+      <div id="fsGua"></div>
+      <div class="fs-wheel-wrap"><svg id="fsWheel" viewBox="-170 -170 340 340" role="img" aria-label="팔방위 길흉 바퀴"></svg><div class="fs-needle" aria-hidden="true">▲</div></div>
+      <div class="fs-now" id="fsNow" role="status"></div>
+      <button type="button" class="ghost" id="fsCompass" style="width:100%">📱 휴대폰 나침반 켜기</button>
+      <p class="hint" id="fsCmpMsg" style="text-align:center;margin-top:6px">휴대폰을 눕혀 들고 돌리면, 지금 바라보는 방향이 나에게 좋은지 알려 줘요.</p>
+      <div id="fsStars"></div>
+    </section>
+    <section class="card" aria-labelledby="h-fs-room">
+      <h2 id="h-fs-room">🏠 공간별 풍수</h2>
+      <div id="fsRooms"></div>
+    </section>
+    <section class="card" aria-labelledby="h-fs-deco">
+      <h2 id="h-fs-deco">🎨 내 사주에 맞는 인테리어</h2>
+      <div id="fsDeco"></div>
+    </section>
+    <section class="card" aria-labelledby="h-fs-year">
+      <h2 id="h-fs-year">📅 올해 이사·공사 때 조심할 방위 <span class="sub">(민속)</span></h2>
+      <div id="fsYear"></div>
+    </section>
+    <section class="card" aria-labelledby="h-fs-ai">
+      <h2 id="h-fs-ai">🤖 AI에게 우리 집 풍수 묻기</h2>
+      <textarea id="fsQ" rows="3" style="width:100%;box-sizing:border-box;border-radius:14px;border:1px solid var(--line);padding:10px;font:inherit;font-size:15px" placeholder="예) 현관이 북쪽이고 침대 머리가 서쪽이에요. 아이 책상은 창가에 있어요. 어떻게 바꾸면 좋을까요?"></textarea>
+      <p class="hint">집 구조(현관·침대·책상 방향)를 적을수록 자세하게 답해 줘요. 집 사진은 AI 창에 직접 첨부하면 돼요.</p>
+      <div class="ai-links" style="margin-top:10px">
+        <button type="button" class="ai-link" data-ai="claude" data-src="fs"><span aria-hidden="true">✳️</span>Claude로 풍수 묻기</button>
+        <button type="button" class="ai-link" data-ai="chatgpt" data-src="fs"><span aria-hidden="true">💬</span>ChatGPT로 풍수 묻기</button>
+        <button type="button" class="ai-link" data-ai="gemini" data-src="fs"><span aria-hidden="true">✨</span>Gemini로 풍수 묻기</button>
+        <button type="button" class="ghost" data-ai="copy" data-src="fs">부탁 글만 복사하기</button>
+      </div>
+      <p class="toast" id="fsMsg" role="status" style="margin-top:8px;white-space:pre-wrap"></p>
+      <div class="sh-row" data-share="fsShareBox" data-title="풍수 풀이"></div>
+    </section>
+    <section class="card hj-ask" data-src="fengshui" aria-label="홍짱쌤에게 문의하기"></section>
+    <div id="fsShareBox" style="position:absolute;left:-9999px;top:0;width:360px" aria-hidden="true"></div>
   </div>
 
   <!-- 13. 꿈해몽 -->
@@ -3334,7 +3429,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     var now = Date.now();
     st.A = c; st.sy = S.sajuYearAt(now); if (scroll || touched) st.mine = true;
     if (st.seunStart == null || st.seunYear == null) { st.seunStart = st.sy - 1; st.seunYear = st.sy; }
-    renderTop(c); renderMyeong(c); renderKey(c); renderOutlook(c); renderExt(c); renderToday(c); renderLuck(c); renderRel(c); renderRead(c); renderTrad(c); renderName(c); renderTj(c); renderMr(c); renderDdy(c); renderYel(c); renderDdToday(c); renderTrait(c); renderCal(c, true); renderAuto(c); st.daePick = null; st.wolPick = null; renderLuckRead(c); renderInstant();
+    renderTop(c); renderMyeong(c); renderKey(c); renderOutlook(c); renderExt(c); renderToday(c); renderLuck(c); renderRel(c); renderRead(c); renderTrad(c); renderName(c); renderTj(c); renderMr(c); renderDdy(c); renderYel(c); renderDdToday(c); renderTrait(c); renderCal(c, true); renderAuto(c); st.daePick = null; st.wolPick = null; renderLuckRead(c); renderInstant(); try { renderFs(c); } catch (e) {}
     lastText = summaryOf(c);
     $('txt').value = lastText;
     fillYears();
@@ -3792,14 +3887,15 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   // ---------- 사주 / 타로 보기 바꾸기 ----------
   var HD_SUB = { saju: '명식, 대운·세운, 합충과 신살, 궁합, 오늘의 운세까지 한 곳에서 봐요.', tarot: '주제와 질문을 정하고 카드 3장을 뽑아 과거·현재·미래의 흐름을 봐요.', name: '아이의 사주에서 부족한 기운을 찾고, 이름의 소리오행을 살펴봐요.' };
   var HD_TITLE = { saju: '사주 만세력', tarot: '홍짱 타로점', name: '홍짱 작명', tj: '홍짱 토정비결', mr: '홍짱 명리 풀이' };
-  HD_TITLE.face = '홍짱 관상'; HD_TITLE.palm = '홍짱 손금'; HD_TITLE.dream = '홍짱 꿈해몽';
+  HD_TITLE.face = '홍짱 관상'; HD_TITLE.palm = '홍짱 손금'; HD_TITLE.dream = '홍짱 꿈해몽'; HD_TITLE.fengshui = '홍짱 풍수';
+  HD_SUB.fengshui = '태어난 해로 나에게 좋은 방위를 찾고, 집 배치와 사주에 맞는 인테리어를 알려 줘요.';
   HD_SUB.dream = '꿈에 나온 것을 찾아 옛 풀이와 마음 읽기를 보고, 내 꿈을 AI에게 물어봐요.';
   HD_SUB.face = '얼굴의 모양을 골라 타고난 성향을 보고, 사진으로 AI에게 관상을 부탁해요.';
   HD_SUB.palm = '손바닥의 선을 골라 흐름을 보고, 사진으로 AI에게 손금을 부탁해요.';
   HD_SUB.mr = '사주팔자와 명리 분석을 한눈에 보고, 원국·대운·세운·월운·일운 풀이를 AI에게 부탁해요.';
   HD_SUB.tj = '태어난 해·월·일만 넣으면 그해의 토정비결 괘를 찾아 드려요.';
   function setMode(m) {
-    m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm' || m === 'dream') ? m : 'saju';
+    m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm' || m === 'dream' || m === 'fengshui') ? m : 'saju';
     document.body.setAttribute('data-mode', m);
     if ((m === 'face' || m === 'palm') && window.fpPreload) window.fpPreload(m);
     Array.prototype.forEach.call(document.querySelectorAll('.mode-sw [data-mode]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
@@ -3820,11 +3916,12 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   if (location.hash === '#mr' || location.hash === '#myeongri') setMode('mr');
   if (location.hash === '#face' || location.hash === '#gwansang') setMode('face');
   window.addEventListener('hashchange', function () {
-    var H = { '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#tojeong': 'tj', '#mr': 'mr', '#myeongri': 'mr', '#face': 'face', '#gwansang': 'face', '#palm': 'palm', '#songeum': 'palm', '#dream': 'dream', '#kkum': 'dream' };
+    var H = { '#tarot': 'tarot', '#name': 'name', '#tj': 'tj', '#tojeong': 'tj', '#mr': 'mr', '#myeongri': 'mr', '#face': 'face', '#gwansang': 'face', '#palm': 'palm', '#songeum': 'palm', '#dream': 'dream', '#kkum': 'dream', '#pungsu': 'fengshui', '#fengshui': 'fengshui' };
     if (H[location.hash] && document.body.getAttribute('data-mode') !== H[location.hash]) { var sp = document.getElementById('splash'); if (sp) sp.hidden = true; document.body.style.overflow = ''; setMode(H[location.hash]); }
   });
   if (location.hash === '#palm' || location.hash === '#songeum') setMode('palm');
   if (location.hash === '#dream' || location.hash === '#kkum') setMode('dream');
+  if (location.hash === '#pungsu' || location.hash === '#fengshui') setMode('fengshui');
 
 
 
@@ -3863,7 +3960,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   function svRender() {
     var list = svRead(), f = document.querySelector('input[name=svF]:checked').value, k = $('svFind').value.trim();
     var shown = list.map(function (r, i) { r._i = i; return r; })
-      .filter(function (r) { return (f === 'all' || r.fav) && (!k || r.name.indexOf(k) >= 0); })
+      .filter(function (r) { var kd = digits(k); return (f === 'all' || r.fav) && (!k || r.name.indexOf(k) >= 0 || (r.memo || '').indexOf(k) >= 0 || (kd.length >= 2 && digits(r.date).indexOf(kd) >= 0)); })
       .sort(function (a, b) { return (b.fav ? 1 : 0) - (a.fav ? 1 : 0) || a.name.localeCompare(b.name, 'ko'); });
     if (!shown.length) {
       $('svList').innerHTML = '<p class="hint">' + (list.length ? '조건에 맞는 사주가 없어요.' : '아직 저장한 사주가 없어요. 생년월일을 넣고 이름을 적은 뒤 <b>지금 사주 저장</b>을 눌러 보세요.') + '</p>';
@@ -3872,7 +3969,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('svList').innerHTML = shown.map(function (r) {
       var nm = String(r.name).replace(/[<>&"]/g, '');
       return '<div class="sv-item"><span class="sv-av" aria-hidden="true">' + (r.gender === 'M' ? '👦' : '👧') + '</span>' +
-        '<div class="sv-info"><b>' + nm + '</b><small>' + svDesc(r) + '</small></div>' +
+        '<div class="sv-info"><b>' + nm + '</b><small>' + svDesc(r) + '</small>' + (r.memo ? '<small class="sv-memo">📝 ' + String(r.memo).replace(/[<>&"]/g, '') + '</small>' : '') + '</div>' +
         '<button type="button" class="sv-star" data-i="' + r._i + '" aria-label="' + nm + ' 즐겨찾기' + (r.fav ? ' 해제' : '') + '" aria-pressed="' + (r.fav ? 'true' : 'false') + '">' + (r.fav ? '★' : '☆') + '</button>' +
         '<div class="sv-acts"><button type="button" class="sv-load" data-i="' + r._i + '">사주 보기</button>' +
         '<button type="button" class="sv-gh" data-i="' + r._i + '">궁합 상대로</button>' +
@@ -3884,7 +3981,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     if (!name) { msg.textContent = '저장할 이름을 먼저 적어 주세요.'; $('svName').focus(); return; }
     try { A.read(zasi()); } catch (e) { msg.textContent = e.message; return; }
     var list = svRead(), rec = svSnap('a'), at = -1;
-    rec.name = name; rec.t = Date.now();
+    rec.name = name; rec.t = Date.now(); rec.memo = $('svMemo').value.trim();
     var dl = svDelRead(); if (dl[name]) { delete dl[name]; svDelWrite(dl); }
     list.forEach(function (r, i) { if (r.name === name) at = i; });
     if (at >= 0) { rec.fav = list[at].fav; list[at] = rec; } else list.push(rec);
@@ -3901,7 +3998,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       list.splice(i, 1); svWrite(list); svRender(); $('svMsg').textContent = '지웠어요.'; return;
     }
     if (b.classList.contains('sv-load')) {
-      svFill('a', A, r); $('svName').value = r.name; touched = true; renderAll(document.body.getAttribute('data-mode') !== 'name');
+      svFill('a', A, r); $('svName').value = r.name; $('svMemo').value = r.memo || ''; touched = true; renderAll(document.body.getAttribute('data-mode') !== 'name');
       $('svMsg').textContent = '"' + r.name + '" 사주를 불러왔어요.';
       return;
     }
@@ -4522,8 +4619,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       '4. 사진에서 잘 보이지 않는 선은 추측하지 말고 "잘 보이지 않아요"라고 말해줘.',
       '- 너는 손금 전문가야.'].concat(FP_RULES).join('\n');
   }
-  var FP_BUILD = { face: buildFaceSel, palm: buildPalmSel, facep: buildFacePhoto, palmp: buildPalmPhoto, dream: buildDreamPrompt };
-  var FP_MSG = { face: 'faceMsg', palm: 'palmMsg', facep: 'facepMsg', palmp: 'palmpMsg', dream: 'drMsg' };
+  var FP_BUILD = { face: buildFaceSel, palm: buildPalmSel, facep: buildFacePhoto, palmp: buildPalmPhoto, dream: buildDreamPrompt, fs: buildFsPrompt };
+  var FP_MSG = { face: 'faceMsg', palm: 'palmMsg', facep: 'facepMsg', palmp: 'palmpMsg', dream: 'drMsg', fs: 'fsMsg' };
   // ---------- 관상·손금 사진: 바로 찍기 / 고르기 / AI 앱으로 보내기 ----------
   ['face', 'palm'].forEach(function (k) {
     var file = null, url = null;
@@ -4766,13 +4863,17 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('calTitle').textContent = y + '년 ' + m + '월';
     var h = ['일', '월', '화', '수', '목', '금', '토'].map(function (d, i) { return '<div class="dw' + (i === 0 ? ' sun' : i === 6 ? ' sat' : '') + '">' + d + '</div>'; }).join('');
     for (var i = 0; i < first; i++) h += '<div></div>';
+    var tMs = S.termMs((y - 1899) * 12 + (m - 1)), tK = S.fmtKST(tMs), tDay = +tK.slice(8, 10), tName = S.TERM_NAMES[m - 1];
+    $('calTerm').innerHTML = '🌿 이달의 절기: <b>' + tName + '</b> ' + m + '월 ' + tDay + '일 ' + tK.slice(11, 16) + ' (이 시각부터 ' + tName + '월이 시작돼요)';
     for (var d = 1; d <= last; d++) {
-      var q = X.dayFlow(c.res, y, m, d);
+      var q = X.dayFlow(c.res, y, m, d), lu = null;
+      try { lu = LUNAR.solarToLunar(y, m, d); } catch (e) { lu = null; }
+      var luTxt = lu ? (lu.d === 1 || d === 1 ? (lu.leap ? '윤' : '') + lu.m + '.' + lu.d : String(lu.d)) : '';
       var rel = q.branchRel.map(function (x) { return x.replace(/\(.*\)/, ''); });
       var tone = rel.some(function (x) { return /합/.test(x); }) ? ' good' : rel.indexOf('충') >= 0 ? ' bad' : '';
       var isT = y === t.y && m === t.m && d === t.d;
       h += '<button type="button" class="day' + tone + (isT ? ' today' : '') + '" data-d="' + d + '" aria-label="' + m + '월 ' + d + '일 ' + q.stemK + q.branchK + '일">' +
-        '<span class="dn">' + d + '</span><span class="dg">' + q.stemGod + '</span><span class="gz">' + ganji(q) + '</span><span class="dg">' + q.branchGod + '</span><span class="us">' + q.unsung + '(' + X.unsung(q.stem, q.branch) + ')</span></button>';
+        '<span class="dn">' + d + '<i class="lu">' + luTxt + '</i></span>' + (d === tDay ? '<span class="term">' + tName + '</span>' : '') + '<span class="dg">' + q.stemGod + '</span><span class="gz">' + ganji(q) + '</span><span class="dg">' + q.branchGod + '</span><span class="us">' + q.unsung + '(' + X.unsung(q.stem, q.branch) + ')</span></button>';
     }
     $('calGrid').innerHTML = h;
     $('calPick').innerHTML = '';
@@ -5376,10 +5477,10 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
 
 
   // ---------- 홍짱쌤에게 문의하기 ----------
-  var HJ_MENU = { saju: '사주 만세력', mr: '명리 풀이', tarot: '타로점', name: '작명', tj: '토정비결', face: '관상', palm: '손금', dream: '꿈해몽', gunghap: '궁합' };
+  var HJ_MENU = { saju: '사주 만세력', mr: '명리 풀이', tarot: '타로점', name: '작명', tj: '토정비결', face: '관상', palm: '손금', dream: '꿈해몽', gunghap: '궁합', fengshui: '풍수' };
   function hjInfo(src) {
     try {
-      if ((src === 'saju' || src === 'mr' || src === 'gunghap') && st.mine && st.A) {
+      if ((src === 'saju' || src === 'mr' || src === 'gunghap' || src === 'fengshui') && st.mine && st.A) {
         var L = summaryOf(st.A, '[내 사주]').split('\n');
         var cut = L.indexOf(''); return L.slice(0, cut > 0 ? cut : 9).join('\n');
       }
@@ -5412,7 +5513,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     var any = kakao || form || mail;
     Array.prototype.forEach.call(document.querySelectorAll('.hj-ask'), function (box) {
       var src = box.getAttribute('data-src');
-      var canInfo = src === 'saju' || src === 'mr' || src === 'gunghap' || src === 'tarot' || src === 'dream';
+      var canInfo = src === 'saju' || src === 'mr' || src === 'gunghap' || src === 'tarot' || src === 'dream' || src === 'fengshui';
       box.innerHTML = '<h2><span class="hj-stamp" aria-hidden="true">홍<br>짱</span>홍짱쌤에게 직접 물어보기</h2>' +
         '<p>AI 풀이가 어렵거나, 내 상황에 맞게 더 깊이 알고 싶을 때 <b>홍짱쌤이 쉽게 풀어서 설명해 드려요.</b> 상담 방법과 비용은 문의 주시면 안내해 드려요.</p>' +
         '<textarea aria-label="궁금한 점" placeholder="궁금한 점을 적어 주세요. 예) 올해 일을 옮겨도 괜찮을까요?"></textarea>' +
@@ -5603,7 +5704,15 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   function renderLuckRead(c) {
     var dn = c.dn, k = st.daePick != null ? st.daePick : (dn.current >= 0 ? dn.current : 0), p = dn.periods[k];
     if (!p) return;
-    Array.prototype.forEach.call($('daeCards').children, function (el, i) { el.classList.toggle('pick', i === k); el.onclick = function () { st.daePick = i; renderLuckRead(st.A); }; });
+    Array.prototype.forEach.call($('daeCards').children, function (el, i) {
+      el.classList.toggle('pick', i === k);
+      el.onclick = function () {
+        st.daePick = i; var pp = st.A.dn.periods[i];
+        st.seunStart = pp.startYear; st.seunYear = (st.sy >= pp.startYear && st.sy <= pp.startYear + 9) ? st.sy : pp.startYear; st.wolPick = null;
+        renderSeun(st.A); renderLuckRead(st.A);
+        var note = $('daeLink'); if (note) note.textContent = '👆 ' + pp.age + '세 ' + pp.stemK + pp.branchK + ' 대운을 골랐어요. 아래 세운은 ' + pp.startYear + '~' + (pp.startYear + 9) + '년, 월운은 ' + st.seunYear + '년으로 바뀌었어요.';
+      };
+    });
     $('daeRead').innerHTML = periodHTML(c, p, 'dae', '📅 ' + p.age + '~' + (p.age + 9) + '세 ' + p.stemK + p.branchK + ' 대운 (' + p.startYear + '년~)' + (k === dn.current ? ' · 지금' : ''));
     var sn = X.seun(c.res, st.seunYear, 1)[0];
     $('seunRead').innerHTML = periodHTML(c, sn, 'year', '🗓️ ' + st.seunYear + '년 ' + sn.stemK + sn.branchK + '년 풀이');
@@ -5833,6 +5942,176 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     });
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else setTimeout(start, 0);
   })();
+
+
+  // ---------- 여러 명 한눈에 보기 (원광만세력처럼 최대 15명) ----------
+  $('svMulti').addEventListener('click', function () {
+    var box = $('svMultiBox');
+    if (box.innerHTML) { box.innerHTML = ''; this.textContent = '👥 저장한 사람 한눈에 보기 (최대 15명)'; return; }
+    var list = svRead().map(function (r, i) { r._i = i; return r; }).sort(function (a, b) { return (b.fav ? 1 : 0) - (a.fav ? 1 : 0) || a.name.localeCompare(b.name, 'ko'); }).slice(0, 15);
+    if (!list.length) { box.innerHTML = '<p class="hint">아직 저장한 사주가 없어요.</p>'; return; }
+    var keep = svSnap('b'), gt = gTouched, rows = [];
+    list.forEach(function (r) {
+      try {
+        svFill('b', B, r); var c = compute(B, 'year'), cols = c.res.cols.slice(), dn = c.dn, cur = dn.current >= 0 ? dn.periods[dn.current] : null;
+        rows.push('<tr><th scope="row"><button type="button" class="mv-name" data-i="' + r._i + '">' + (r.fav ? '★ ' : '') + String(r.name).replace(/[<>&"]/g, '') + '</button><small>' + (c.gender === 'M' ? '남' : '여') + ' · ' + ANIMALS[c.res.pillars.year.branch] + '띠</small></th>' +
+          ['hour', 'day', 'month', 'year'].map(function (key) {
+            var col = cols.filter(function (x) { return x.key === key; })[0];
+            return col && !col.empty ? '<td><span class="e' + col.stemEl + '">' + col.stemH + '</span><span class="e' + col.branchEl + '">' + col.branchH + '</span></td>' : '<td class="none">-</td>';
+          }).join('') + '<td class="mv-dn">' + (cur ? cur.age + '세<br>' + cur.stemK + cur.branchK : '대운 전') + '</td></tr>');
+      } catch (e) { rows.push('<tr><th scope="row">' + String(r.name).replace(/[<>&"]/g, '') + '</th><td colspan="5" class="none">계산할 수 없어요</td></tr>'); }
+    });
+    svFill('b', B, keep); gTouched = gt;
+    box.innerHTML = '<div class="mv-wrap"><table class="mv"><thead><tr><th>이름</th><th>시</th><th>일</th><th>월</th><th>년</th><th>지금 대운</th></tr></thead><tbody>' + rows.join('') + '</tbody></table></div>' +
+      '<p class="hint" style="margin-top:6px">즐겨찾기 먼저, 최대 15명이에요. 이름을 누르면 그 사람 사주를 열어요.</p>';
+    this.textContent = '👥 한눈에 보기 닫기';
+  });
+  $('svMultiBox').addEventListener('click', function (e) {
+    var b = e.target.closest('.mv-name'); if (!b) return;
+    var btn = document.querySelector('#svList .sv-load[data-i="' + b.getAttribute('data-i') + '"]');
+    if (btn) btn.click(); else { var r = svRead()[+b.getAttribute('data-i')]; if (r) { svFill('a', A, r); $('svName').value = r.name; touched = true; renderAll(true); } }
+  });
+  // ---------- 명식 문자·카톡·메일로 보내기 ----------
+  $('txtShare').addEventListener('click', function () {
+    var t = $('txt').value, msg = $('toast');
+    if (navigator.share) { navigator.share({ title: '홍짱 사주 명식', text: t + '\n\nhttps://hong-jjang.github.io/saju/' }).catch(function () {}); return; }
+    $('copy').click(); msg.textContent = '복사했어요. 문자·카톡 대화창에 붙여 넣어 보내 주세요.';
+  });
+  $('txtMail').addEventListener('click', function () {
+    var t = $('txt').value; if (t.length > 1800) t = t.slice(0, 1800) + '\n…(길어서 줄였어요)';
+    location.href = 'mailto:?subject=' + encodeURIComponent('[홍짱 사주] ' + ($('svName').value.trim() || '명식')) + '&body=' + encodeURIComponent(t + '\n\nhttps://hong-jjang.github.io/saju/');
+  });
+  // ---------- 글자 크기 ----------
+  (function () {
+    var KEY = 'hongjjang-zoom';
+    function apply(z) { document.body.style.zoom = z === 1 ? '' : z; Array.prototype.forEach.call(document.querySelectorAll('.fz-sw button'), function (b) { b.setAttribute('aria-pressed', +b.getAttribute('data-z') === z ? 'true' : 'false'); }); }
+    var z0 = 1; try { z0 = +localStorage.getItem(KEY) || 1; } catch (e) {}
+    apply(z0);
+    Array.prototype.forEach.call(document.querySelectorAll('.fz-sw button'), function (b) {
+      b.addEventListener('click', function () { var z = +b.getAttribute('data-z'); apply(z); try { localStorage.setItem(KEY, String(z)); } catch (e) {} });
+    });
+  })();
+
+
+  // ---------- 풍수 (팔택풍수 명괘 + 사주 오행 인테리어 + 민속 방위) ----------
+  var FS_DIR = ['북', '북동', '동', '남동', '남', '남서', '서', '북서'];  // 0=북부터 시계 방향
+  var FS_KEY = { N: 0, NE: 1, E: 2, SE: 3, S: 4, SW: 5, W: 6, NW: 7 };
+  // 명괘별 방위 (생기·천의·연년·복위 / 화해·오귀·육살·절명) — 팔택풍수에서 전해 오는 표
+  var FS_TABLE = {
+    1: ['SE', 'E', 'S', 'N', 'W', 'NE', 'NW', 'SW'], 2: ['NE', 'W', 'NW', 'SW', 'E', 'SE', 'S', 'N'], 3: ['S', 'N', 'SE', 'E', 'SW', 'NW', 'NE', 'W'],
+    4: ['N', 'S', 'E', 'SE', 'NW', 'SW', 'W', 'NE'], 6: ['W', 'NE', 'SW', 'NW', 'SE', 'E', 'N', 'S'], 7: ['NW', 'SW', 'NE', 'W', 'N', 'S', 'SE', 'E'],
+    8: ['SW', 'NW', 'W', 'NE', 'S', 'N', 'E', 'SE'], 9: ['E', 'SE', 'N', 'S', 'NE', 'W', 'SW', 'NW'] };
+  var FS_STAR = [
+    ['생기', 'g', '가장 좋은 방향이에요. 활력·성공·기회를 부르는 자리로 봐요.'], ['천의', 'g', '건강과 회복의 방향이에요. 쉬고 잠자는 자리에 좋아요.'],
+    ['연년', 'g', '관계와 화합의 방향이에요. 가족·부부·인연이 편안해진다고 봐요.'], ['복위', 'g', '마음이 안정되는 방향이에요. 공부·명상·생각하는 자리에 좋아요.'],
+    ['화해', 'b', '작은 다툼과 손해를 조심하는 방향이에요.'], ['오귀', 'b', '구설과 불조심이 필요한 방향이에요.'],
+    ['육살', 'b', '관계가 엇갈리기 쉬운 방향이에요.'], ['절명', 'b', '가장 피하는 방향이에요. 창고·화장실처럼 오래 머물지 않는 곳으로 써요.']];
+  var FS_GUA = { 1: ['감(坎)', '수', '물'], 2: ['곤(坤)', '토', '땅'], 3: ['진(震)', '목', '우레'], 4: ['손(巽)', '목', '바람'], 6: ['건(乾)', '금', '하늘'], 7: ['태(兌)', '금', '연못'], 8: ['간(艮)', '토', '산'], 9: ['리(離)', '화', '불'] };
+  var FS_EL_DECO = {
+    0: ['초록·연두', '화분과 식물(몬스테라, 스투키), 나무 가구, 세로로 긴 소품', '거실 동쪽에 초록 식물 두기'],
+    1: ['빨강·주황·분홍', '따뜻한 조명, 캔들, 해·꽃 그림, 삼각 무늬 소품', '어두운 구석에 노란 스탠드 켜기'],
+    2: ['노랑·베이지·갈색', '도자기, 흙 화분, 낮고 넓은 가구, 네모 쿠션', '집 가운데를 비우고 깔끔하게 정리하기'],
+    3: ['흰색·은색·금색', '금속 소품, 둥근 시계, 하얀 패브릭, 정리함', '현관과 책상 위 물건 줄이기'],
+    4: ['검정·남색·파랑', '어항·작은 분수, 유리 화병, 물결 그림, 거울(현관 정면은 피하기)', '물 그림이나 파란 커튼 걸기'] };
+  function fsGua(c) {
+    var y = c.res.sajuYear || c.inp.y, r = ((y % 9) + 9) % 9, k;
+    if (c.gender === 'M') { k = (11 - r) % 9; if (k === 0) k = 9; if (k === 5) k = 2; }
+    else { k = (r + 4) % 9; if (k === 0) k = 9; if (k === 5) k = 8; }
+    return { k: k, y: y, east: [1, 3, 4, 9].indexOf(k) >= 0 };
+  }
+  function fsDirs(k) { var t = FS_TABLE[k], m = {}; t.forEach(function (d, i) { m[FS_KEY[d]] = i; }); return m; } // 방위번호 → 별 번호
+  var fsCur = null;
+  function fsWheel(k) {
+    var mp = fsDirs(k), h = '';
+    for (var d = 0; d < 8; d++) {
+      var a0 = (d * 45 - 22.5 - 90) * Math.PI / 180, a1 = (d * 45 + 22.5 - 90) * Math.PI / 180, R = 160, r = 58;
+      var st0 = FS_STAR[mp[d]], good = st0[1] === 'g';
+      var path = 'M' + (r * Math.cos(a0)).toFixed(1) + ' ' + (r * Math.sin(a0)).toFixed(1) + ' L' + (R * Math.cos(a0)).toFixed(1) + ' ' + (R * Math.sin(a0)).toFixed(1) +
+        ' A' + R + ' ' + R + ' 0 0 1 ' + (R * Math.cos(a1)).toFixed(1) + ' ' + (R * Math.sin(a1)).toFixed(1) + ' L' + (r * Math.cos(a1)).toFixed(1) + ' ' + (r * Math.sin(a1)).toFixed(1) + ' A' + r + ' ' + r + ' 0 0 0 ' + (r * Math.cos(a0)).toFixed(1) + ' ' + (r * Math.sin(a0)).toFixed(1) + ' Z';
+      var am = (d * 45 - 90) * Math.PI / 180, tx = 112 * Math.cos(am), ty = 112 * Math.sin(am);
+      h += '<path d="' + path + '" fill="' + (good ? (mp[d] === 0 ? '#BFE8CF' : '#DDF4E6') : (mp[d] === 7 ? '#FFC9D6' : '#FDEBF1')) + '" stroke="#fff" stroke-width="3"/>' +
+        '<g transform="translate(' + tx.toFixed(1) + ' ' + ty.toFixed(1) + ')"><g class="fsl"><text text-anchor="middle" y="-6" font-size="17" font-weight="700" fill="' + (good ? '#2A6B45' : '#A33E66') + '">' + FS_DIR[d] + '</text>' +
+        '<text text-anchor="middle" y="14" font-size="14" fill="#3A2A31">' + st0[0] + (good ? ' ○' : ' ✕') + '</text></g></g>';
+    }
+    h += '<circle r="56" fill="#FFFDF8" stroke="#D9B46A" stroke-width="2"/><g class="fsl"><text text-anchor="middle" y="-6" font-size="13" fill="#7A6F8A">명괘</text><text text-anchor="middle" y="20" font-size="28" font-weight="700" fill="#3F8A5E">' + k + '</text></g>';
+    return h;
+  }
+  function renderFs(c) {
+    var g = fsGua(c), k = g.k, gi = FS_GUA[k], t = FS_TABLE[k], mp = fsDirs(k);
+    fsCur = { k: k, mp: mp };
+    var nm = $('svName') ? $('svName').value.trim().replace(/[<>&"]/g, '') : '';
+    $('fsWho').textContent = (st.mine && nm ? nm + '님 · ' : '') + (c.gender === 'M' ? '남' : '여') + ' · ' + g.y + '년생 기준';
+    $('fsGua').innerHTML = '<div class="fs-gua"><div class="num">' + k + '<small>' + gi[0] + '</small></div><div><p><b>' + (g.east ? '동사택' : '서사택') + '</b> 사람이에요. 명괘 ' + k + '은 ' + gi[2] + '(' + gi[1] + ') 기운이에요.</p>' +
+      '<p>좋은 방향: <b style="color:#2A6B45">' + t.slice(0, 4).map(function (d) { return FS_DIR[FS_KEY[d]]; }).join(' · ') + '</b><br>피할 방향: <b style="color:#A33E66">' + t.slice(4).map(function (d) { return FS_DIR[FS_KEY[d]]; }).join(' · ') + '</b></p></div></div>' +
+      (st.mine ? '' : '<p class="sample-note" style="margin-top:8px">지금은 예시 값이에요. 위에 생년월일과 성별을 넣고 만세력 보기를 눌러 주세요.</p>');
+    $('fsWheel').innerHTML = fsWheel(k);
+    $('fsStars').innerHTML = '<ul class="fs-list">' + t.map(function (d, i) { var s0 = FS_STAR[i]; return '<li><span class="tag ' + s0[1] + '">' + s0[0] + '</span><span><b>' + FS_DIR[FS_KEY[d]] + '</b> — ' + s0[2] + '</span></li>'; }).join('') + '</ul>';
+    var D = function (i) { return '<b style="color:#2A6B45">' + FS_DIR[FS_KEY[t[i]]] + '</b>'; };
+    $('fsRooms').innerHTML = [
+      ['🚪 현관', '현관(대문)이 ' + D(0) + '(생기)이나 ' + D(2) + '(연년) 쪽이면 좋은 기운이 잘 들어온다고 봐요. 방향을 바꿀 수 없으면 <b>밝게, 깨끗하게</b>가 첫째예요. 신발은 꼭 정리하고, 현관 정면에 큰 거울은 피해요.'],
+      ['🛏️ 침실·침대', '침대 머리를 ' + D(1) + '(천의)나 ' + D(2) + '(연년) 쪽으로 두면 잠과 회복에 좋다고 봐요. 문과 일직선으로 눕는 자리, 창문 바로 아래는 피해요.'],
+      ['📚 책상·공부', '책상에 앉았을 때 ' + D(0) + '(생기)나 ' + D(3) + '(복위)를 바라보면 집중이 잘된다고 봐요. 등 뒤는 벽, 문은 눈에 보이는 자리가 안정적이에요.'],
+      ['🛋️ 거실', '가족이 모이는 소파는 ' + D(2) + '(연년) 쪽을 향하면 화목하다고 봐요. 거실 가운데는 비워 두고 통로를 막지 않아요.'],
+      ['🍳 부엌', '불(가스레인지)과 물(싱크대)이 바로 붙어 있으면 다툼을 부른다고 봐요. 사이에 도마나 식물을 두어 나눠 주세요. 냉장고 위는 비워 두면 좋아요.'],
+      ['🚻 화장실·창고', '피할 방향인 <b style="color:#A33E66">' + FS_DIR[FS_KEY[t[7]]] + '</b>(절명)·<b style="color:#A33E66">' + FS_DIR[FS_KEY[t[5]]] + '</b>(오귀) 쪽은 화장실·창고·다용도실로 쓰면 오히려 좋다고 봐요. 화장실 문은 늘 닫아 두세요.']
+    ].map(function (r) { return '<div class="fs-room"><b>' + r[0] + '</b><p>' + r[1] + '</p></div>'; }).join('') + '<p class="hint">정확한 방향은 집 한가운데에 서서 휴대폰 나침반으로 재요.</p>';
+    var y0 = mrYong(c), el = y0.yong != null ? y0.yong : (c.res.counts.indexOf(Math.min.apply(null, c.res.counts)));
+    var dc = FS_EL_DECO[el], guaEl = { '수': 4, '토': 2, '목': 0, '금': 3, '화': 1 }[gi[1]];
+    $('fsDeco').innerHTML = '<div class="fs-room"><b>내 사주에 반가운 기운: ' + EL_TIP[el][0] + '</b><p>🎨 색: ' + dc[0] + '</p><p>🪴 물건: ' + dc[1] + '</p><p>✨ 오늘 해 볼 것: ' + dc[2] + '</p></div>' +
+      (guaEl !== el ? '<div class="fs-room"><b>명괘의 기운: ' + EL_TIP[guaEl][0] + '</b><p>🎨 ' + FS_EL_DECO[guaEl][0] + ' 소품을 조금 곁들이면 내 방위 기운과 잘 어울려요.</p></div>' : '') +
+      '<p class="hint">' + (y0.yong != null ? '명리 분석의 용신' : '사주에 가장 적은 오행') + '을 기준으로 골랐어요. 생활에 편한 것이 먼저예요.</p>';
+    var yy = kstToday().y, yb = ((yy - 4) % 12 + 12) % 12;
+    var ss = [[8, 0, 4, '남쪽(사·오·미)'], [2, 6, 10, '북쪽(해·자·축)'], [5, 9, 1, '동쪽(인·묘·진)'], [11, 3, 7, '서쪽(신·유·술)']].filter(function (x) { return x.slice(0, 3).indexOf(yb) >= 0; })[0];
+    var dj = [[[11, 0, 1], '서쪽(유)'], [[2, 3, 4], '북쪽(자)'], [[5, 6, 7], '동쪽(묘)'], [[8, 9, 10], '남쪽(오)']].filter(function (x) { return x[0].indexOf(yb) >= 0; })[0];
+    $('fsYear').innerHTML = '<div class="fs-room"><b>' + yy + '년 ' + S.STEM_K[((yy - 4) % 10 + 10) % 10] + S.BR_K[yb] + '년</b><p>⚠️ <b>삼살방</b>: ' + ss[3] + ' — 이 방향으로 이사하거나 큰 공사를 하는 것을 조심했어요.</p><p>⚠️ <b>대장군방</b>: ' + dj[1] + ' — 이 방향의 수리·증축을 피했어요.</p></div><p class="hint">옛사람들이 지켜 온 민속 방위예요. 실제 이사와 공사는 생활 여건을 먼저 생각하세요.</p>';
+    $('fsShareBox').innerHTML = '<p>' + $('fsGua').innerText + '</p><p>' + $('fsStars').innerText + '</p><p>' + $('fsRooms').innerText + '</p><p>' + $('fsDeco').innerText + '</p><p>' + $('fsYear').innerText + '</p>';
+    fsNowText(null);
+  }
+  function fsNowText(head) {
+    if (!fsCur) return;
+    if (head == null) { $('fsNow').textContent = '위가 북쪽이에요. 초록은 좋은 방향, 분홍은 피할 방향이에요.'; return; }
+    var d = Math.round(((head % 360) + 360) % 360 / 45) % 8, s0 = FS_STAR[fsCur.mp[d]];
+    $('fsNow').innerHTML = '지금 <b>' + FS_DIR[d] + '</b>쪽을 보고 있어요 → <span style="color:' + (s0[1] === 'g' ? '#2A6B45' : '#A33E66') + '">' + s0[0] + ' (' + (s0[1] === 'g' ? '좋음' : '피할 방향') + ')</span>';
+    $('fsWheel').style.transform = 'rotate(' + (-head) + 'deg)';
+    Array.prototype.forEach.call($('fsWheel').querySelectorAll('.fsl'), function (g) { g.style.transform = 'rotate(' + head + 'deg)'; });
+  }
+  (function () {
+    var on = false;
+    function onOri(e) {
+      var hd = e.webkitCompassHeading != null ? e.webkitCompassHeading : (e.absolute && e.alpha != null ? 360 - e.alpha : null);
+      if (hd != null) fsNowText(hd);
+    }
+    $('fsCompass').addEventListener('click', function () {
+      if (on) return;
+      var start = function () {
+        on = true; $('fsCmpMsg').textContent = '나침반이 켜졌어요. 휴대폰을 평평하게 들고 천천히 돌려 보세요.';
+        window.addEventListener('ondeviceorientationabsolute' in window ? 'deviceorientationabsolute' : 'deviceorientation', onOri);
+      };
+      if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        var ios = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+        DeviceOrientationEvent.requestPermission().then(function (r) {
+          if (r === 'granted' || !ios) start(); else $('fsCmpMsg').textContent = '나침반 사용을 허용해야 해요. 설정 → Safari → 동작 및 방향 접근을 켜 주세요.';
+        }).catch(function () { if (!ios) start(); else $('fsCmpMsg').textContent = '나침반을 켤 수 없어요. 휴대폰 나침반 앱으로 방향을 확인해 주세요.'; });
+      } else if (window.DeviceOrientationEvent) start();
+      else $('fsCmpMsg').textContent = '이 기기에서는 나침반을 쓸 수 없어요. 휴대폰 나침반 앱으로 방향을 확인해 주세요.';
+    });
+  })();
+  function buildFsPrompt() {
+    var c = st.A; if (!c || !st.mine) throw Object.assign(new Error('먼저 위에서 생년월일과 성별을 넣고 [만세력 보기]를 눌러 주세요.'), { field: 'a-date' });
+    var g = fsGua(c), t = FS_TABLE[g.k], y0 = mrYong(c), q = ($('fsQ').value || '').trim();
+    var L = sajuBase(c);
+    L.push('', '[풍수 정보]', '- 팔택풍수 명괘: ' + g.k + '괘 ' + FS_GUA[g.k][0] + ' (' + (g.east ? '동사택' : '서사택') + ', ' + g.y + '년 기준)',
+      '- 좋은 방향: ' + t.slice(0, 4).map(function (d, i) { return FS_STAR[i][0] + ' ' + FS_DIR[FS_KEY[d]]; }).join(', '),
+      '- 피할 방향: ' + t.slice(4).map(function (d, i) { return FS_STAR[i + 4][0] + ' ' + FS_DIR[FS_KEY[d]]; }).join(', '),
+      '- 사주에 반가운 오행(용신): ' + (y0.yong != null ? EL_TIP[y0.yong][0] : '뚜렷하지 않음'));
+    if (q) L.push('- 우리 집 이야기: ' + q);
+    L.push('', '1. 너는 풍수 인테리어 전문가야. 위 명괘의 좋은 방향을 현관·침대 머리·책상·소파 배치에 맞춰 구체적으로 알려줘.',
+      '2. 내 사주의 반가운 오행에 맞는 색·소재·식물·소품을 방마다 추천해줘.',
+      '3. 우리 집 이야기가 있으면 지금 배치에서 바꾸면 좋은 점을 우선순위 3가지로 정리해줘.',
+      '4. 돈이 많이 드는 공사보다 오늘 바로 할 수 있는 정리·배치 위주로, 쉬운 말과 존댓말로 설명해줘.',
+      '5. 풍수는 생활을 편하게 하는 참고 지혜라는 점을 지키고, 겁주지 마.');
+    return L.join('\n');
+  }
 
   // ---------- 용어 ----------
   $('glBox').innerHTML = READ.GLOSSARY.map(function (x) { return '<details><summary>' + x[0] + '</summary><p>' + x[1] + '</p></details>'; }).join('');
@@ -6085,7 +6364,7 @@ var KAKAO_JS_KEY = '393da0e592003f164282500dc2c8d890';
 <script>
 (function () {
   var sp = document.getElementById('splash'), go = document.getElementById('splashGo');
-  var seen = /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
+  var seen = /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum|pungsu|fengshui)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
   function close() {
     sp.classList.add('out');
     document.body.style.overflow = '';
