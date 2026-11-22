@@ -451,6 +451,36 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+/* 사진 한 장으로 바로 보기 */
+.fq { background: linear-gradient(160deg, #FFF5F8, #F3EEFF); border: 1.5px solid #F4C3D3; }
+.fq-tip { font-size: 14px; line-height: 1.6; margin: 0 0 10px; }
+.fq-btns { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; }
+.fq-btns label { position: relative; min-height: 58px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; cursor: pointer; text-align: center; padding: 0 8px; }
+.fq-btns input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+.fq-cam { background: #E8736A; color: #fff; box-shadow: 0 6px 14px rgba(232, 115, 106, .3); }
+.fq-alb { background: #fff; color: #A33E66; border: 1.5px solid #F4A7BB; }
+.fq-inapp { font-size: 13px; color: #A33E66; margin: 8px 0 0; }
+.fq-res { margin-top: 12px; }
+.fq-cv { display: block; width: 100%; max-height: 56vh; object-fit: contain; border-radius: 14px; background: #fff; }
+.fq-st { font-size: 14px; line-height: 1.6; margin: 8px 0; }
+.fq-pick .row { margin: 8px 0; }
+.fq-pick .row b { display: block; font-size: 14px; margin-bottom: 4px; }
+.fq-pick .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.fq-pick button { border: 1.5px solid #E6DAF0; background: #fff; border-radius: 999px; padding: 7px 12px; font: inherit; font-size: 13.5px; cursor: pointer; min-height: 38px; }
+.fq-pick button.on { background: #6F5FC9; border-color: #6F5FC9; color: #fff; font-weight: 700; }
+.fq-more { width: 100%; margin-top: 10px; }
+.fq-load { display: inline-block; width: 16px; height: 16px; border: 3px solid #E6DAF0; border-top-color: #6F5FC9; border-radius: 50%; animation: fqspin 1s linear infinite; vertical-align: -3px; margin-right: 6px; }
+@keyframes fqspin { to { transform: rotate(360deg); } }
+/* PC·휴대폰 연동 */
+.sync-box { margin-top: 12px; border-radius: 18px; padding: 12px 14px; background: linear-gradient(160deg, #EEF5FF, #F4EFFF); border: 1px solid #DCE5F7; }
+.sync-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.sync-head span { font-size: 12.5px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #F1F1F4; color: #666; }
+.sync-head span.on { background: #E9F5EC; color: #2A6B45; }
+.sync-msg { font-size: 13.5px; margin: 6px 0 8px; line-height: 1.6; }
+.sync-btns { display: grid; gap: 8px; }
+.sync-in { min-height: 48px; border: 1.5px solid #C9D6F0; border-radius: 999px; background: #fff; color: #2F4F86; font: inherit; font-size: 15.5px; font-weight: 700; cursor: pointer; }
+.sync-move { margin-top: 10px; } .sync-move summary { cursor: pointer; font-size: 14px; font-weight: 700; color: #4E3FA0; }
+#syncCode { width: 100%; box-sizing: border-box; margin-top: 8px; border-radius: 12px; border: 1px solid #D9D2F5; padding: 8px; font: inherit; font-size: 13px; }
 /* 풀이 카톡 보내기 */
 .sh-row { margin-top: 12px; }
 .sh-row .sh-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -461,8 +491,18 @@ textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); 
 .sh-row .sh-msg:empty { display: none; }
 .fp-peek { position: sticky; top: 8px; z-index: 6; display: flex; gap: 10px; align-items: center; background: #FFFFFF; border: 2px solid #F4A7BB; border-radius: 18px; padding: 8px; margin: 8px 0 10px; box-shadow: 0 6px 16px rgba(194, 85, 122, .15); }
 .fp-peek[hidden] { display: none; }
-.fp-peek img { width: 92px; height: 92px; object-fit: cover; border-radius: 12px; flex: none; }
-.fp-peek b { display: block; font-size: 14.5px; } .fp-peek span { font-size: 13px; color: #6A5A6A; line-height: 1.5; }
+.fp-peek .fp-pv { position: relative; flex: none; width: 92px; }
+.fp-peek img { width: 92px; height: 92px; object-fit: cover; border-radius: 12px; display: block; }
+.fp-peek canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; pointer-events: none; }
+.fp-peek .fp-pt { min-width: 0; }
+.fp-peek .fp-zoom { margin-top: 6px; border: 1px solid #E6C3D2; background: #FFF5F8; color: #A33E66; border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.fp-peek.big { position: static; flex-direction: column; align-items: stretch; }
+.fp-peek.big .fp-pv { width: 100%; }
+.fp-peek.big img { display: none; }
+.fp-peek.big canvas { display: block; position: static; width: 100%; height: auto; border-radius: 12px; }
+.fp-opts label.fp-ap { position: relative; }
+.fp-opts label.fp-ap::after { content: '자동'; position: absolute; top: -8px; right: -4px; font-size: 10px; font-weight: 700; background: #6F5FC9; color: #fff; border-radius: 999px; padding: 1px 6px; }
+.fp-peek .fp-pt > b { display: block; font-size: 14.5px; } .fp-peek span { font-size: 13px; color: #6A5A6A; line-height: 1.5; }
 .fp-gopick { width: 100%; min-height: 50px; margin-top: 10px; border: 0; border-radius: 999px; background: linear-gradient(90deg, #FFD9E6, #E3DBFF); color: #4E3FA0; font: inherit; font-size: 16px; cursor: pointer; }
 .fp-det { margin-top: 10px; } .fp-det summary { cursor: pointer; font-weight: 700; color: #4E3FA0; padding: 6px 0; }
 .t-one { margin-top: 10px; }
@@ -758,7 +798,21 @@ button.kakao svg { width: 20px; height: 20px; }
       <input type="search" id="svFind" placeholder="이름 찾기" aria-label="이름 찾기">
     </div>
     <div id="svList"></div>
-    <p class="hint" style="margin-top:8px">저장한 사주는 <b>이 휴대폰(이 브라우저)에만</b> 저장되고, 서버로 보내지 않아요. 다른 기기에서는 보이지 않고, 브라우저 기록을 지우면 사라질 수 있어요.</p>
+    <div class="sync-box" id="syncBox">
+      <div class="sync-head"><b>☁️ PC·휴대폰 연동</b><span id="syncState">꺼짐</span></div>
+      <p class="sync-msg" id="syncMsg">구글 계정으로 로그인하면 저장 목록과 즐겨찾기가 PC와 휴대폰에서 똑같이 보여요.</p>
+      <div class="sync-btns">
+        <button type="button" class="sync-in" id="syncIn">🔐 구글로 로그인해서 연동</button>
+        <button type="button" class="ghost" id="syncOut" hidden>로그아웃</button>
+      </div>
+      <details class="sync-move"><summary>📦 로그인 없이 목록 옮기기 (코드)</summary>
+        <p class="hint">이 기기의 목록을 코드로 만들어 카톡 "나와의 채팅"으로 보내고, 다른 기기에서 붙여 넣으면 합쳐져요.</p>
+        <div class="sync-btns"><button type="button" class="ghost" id="syncExport">📤 내 목록 코드 만들기</button><button type="button" class="ghost" id="syncImport">📥 코드 붙여 넣어 합치기</button></div>
+        <textarea id="syncCode" rows="3" placeholder="여기에 코드를 붙여 넣고 [코드 붙여 넣어 합치기]를 눌러요" hidden></textarea>
+        <p class="toast" id="syncMoveMsg" role="status" style="white-space:pre-wrap"></p>
+      </details>
+    </div>
+    <p class="hint" style="margin-top:8px">로그인하지 않으면 저장 목록은 <b>이 기기(이 브라우저)에만</b> 남아요. 로그인하면 내 구글 계정 전용 공간에만 저장되고, 다른 사람은 볼 수 없어요.</p>
   </section>
 
   <div class="tabs" role="tablist" aria-label="결과 보기">
@@ -879,7 +933,7 @@ button.kakao svg { width: 20px; height: 20px; }
         <button type="button" class="qbtn q-dang" data-go="6:h-dang"><span aria-hidden="true">⭐</span>당사주 보기</button>
         <button type="button" class="qbtn q-cmp" data-go="6:h-cmp"><span aria-hidden="true">🧭</span>신살 나침반</button>
         <button type="button" class="qbtn q-ai" data-go="5:h-ai"><span aria-hidden="true">🤖</span>AI 풀이</button>
-        <button type="button" class="qbtn q-tarot" data-go="7:h-tarot"><span aria-hidden="true">🃏</span>타로점</button>
+        <button type="button" class="qbtn q-tarot" data-go="7:h-tarot">타로점</button>
         <button type="button" class="qbtn q-tj" data-go="6:h-tj"><span aria-hidden="true">📜</span>토정비결</button>
       </div>
       <p class="hint" id="quickMsg1" role="status" style="margin-top:8px"></p>
@@ -948,7 +1002,7 @@ button.kakao svg { width: 20px; height: 20px; }
         <button type="button" class="qbtn q-dang" data-go="6:h-dang"><span aria-hidden="true">⭐</span>당사주 보기</button>
         <button type="button" class="qbtn q-cmp" data-go="6:h-cmp"><span aria-hidden="true">🧭</span>신살 나침반</button>
         <button type="button" class="qbtn q-ai" data-go="5:h-ai"><span aria-hidden="true">🤖</span>AI 풀이</button>
-        <button type="button" class="qbtn q-tarot" data-go="7:h-tarot"><span aria-hidden="true">🃏</span>타로점</button>
+        <button type="button" class="qbtn q-tarot" data-go="7:h-tarot">타로점</button>
         <button type="button" class="qbtn q-tj" data-go="6:h-tj"><span aria-hidden="true">📜</span>토정비결</button>
       </div>
       <p class="hint" id="quickMsg2" role="status" style="margin-top:8px"></p>
@@ -1153,6 +1207,22 @@ button.kakao svg { width: 20px; height: 20px; }
 
   <!-- 11. 관상 -->
   <div class="panel" role="tabpanel" id="pn-11" aria-labelledby="h-face" hidden>
+    <section class="card fq" id="faceQuick" aria-labelledby="h-faceq">
+      <h2 id="h-faceq">📷 사진 한 장으로 바로 보기</h2>
+      <p class="fq-tip">😊 정면을 보고, 웃지 말고, 밝은 곳에서 찍어요. 앱이 얼굴을 살펴보고 바로 풀어 줘요. 사진은 이 기기 안에서만 살펴봐요.</p>
+      <div class="fq-btns">
+        <label class="fq-cam">📸 사진 찍기<input type="file" accept="image/*" capture="user" id="faceQCam"></label>
+        <label class="fq-alb">🖼️ 앨범에서<input type="file" accept="image/*" id="faceQAlb"></label>
+      </div>
+      <p class="fq-inapp" hidden>카카오톡 안에서는 느리거나 안 될 수 있어요. 오른쪽 위 ⋮ → <b>다른 브라우저로 열기</b>를 추천해요.</p>
+      <div class="fq-res" id="faceQRes" hidden>
+        <canvas class="fq-cv"></canvas>
+        <p class="fq-st" role="status"></p>
+        <div class="fq-pick"></div>
+        <div class="fq-sum"></div>
+        <button type="button" class="ghost fq-more">자세히 보기 · AI에게 사진으로 묻기 ↓</button>
+      </div>
+    </section>
     <section class="card" aria-labelledby="h-face">
       <h2 id="h-face">👤 내 얼굴 고르기</h2>
       <svg class="fp-fig fp-wide" viewBox="0 0 300 260" role="img" aria-label="얼굴 삼정 그림">
@@ -1182,7 +1252,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <path d="M196 238 c-5 -8 -16 -3 -10 6 l10 9 10 -9 c6 -9 -5 -14 -10 -6z" fill="#FFB7C5"/>
     </svg>
       <p class="hint">거울을 보며 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. 얼굴을 셋으로 나눈 <b>삼정</b>과 눈썹·눈·코·입·귀의 <b>오관</b>으로 봐요.</p>
-      <div class="fp-peek" id="facePeek" hidden><img alt="내 사진"><div><b>📷 내 사진을 보며 고르기</b><span>사진과 비슷한 모양을 아래에서 골라 보세요. 고르는 대로 바로 풀이가 나와요.</span></div></div>
+      <div class="fp-peek" id="facePeek" hidden><div class="fp-pv"><img alt="내 사진"><canvas aria-hidden="true"></canvas></div><div class="fp-pt"><b>📷 사진으로 자동 고르기</b><span class="fp-auto">사진을 넣으면 앱이 살펴보고 골라 줘요.</span><button type="button" class="fp-zoom">🔍 크게 보기</button></div></div>
       <div id="faceQs"></div>
     </section>
     <section class="card" id="faceRes" aria-labelledby="h-facer">
@@ -1262,6 +1332,22 @@ button.kakao svg { width: 20px; height: 20px; }
 
   <!-- 12. 손금 -->
   <div class="panel" role="tabpanel" id="pn-12" aria-labelledby="h-palm" hidden>
+    <section class="card fq" id="palmQuick" aria-labelledby="h-palmq">
+      <h2 id="h-palmq">📷 사진 한 장으로 바로 보기</h2>
+      <p class="fq-tip">✋ 손바닥을 활짝 펴고, 손목까지 나오게, 밝은 곳에서 찍어요. 앱이 손 모양을 고르고 손금 자리를 표시해 줘요. 사진은 이 기기 안에서만 살펴봐요.</p>
+      <div class="fq-btns">
+        <label class="fq-cam">📸 사진 찍기<input type="file" accept="image/*" capture="environment" id="palmQCam"></label>
+        <label class="fq-alb">🖼️ 앨범에서<input type="file" accept="image/*" id="palmQAlb"></label>
+      </div>
+      <p class="fq-inapp" hidden>카카오톡 안에서는 느리거나 안 될 수 있어요. 오른쪽 위 ⋮ → <b>다른 브라우저로 열기</b>를 추천해요.</p>
+      <div class="fq-res" id="palmQRes" hidden>
+        <canvas class="fq-cv"></canvas>
+        <p class="fq-st" role="status"></p>
+        <div class="fq-pick"></div>
+        <div class="fq-sum"></div>
+        <button type="button" class="ghost fq-more">자세히 보기 · AI에게 사진으로 묻기 ↓</button>
+      </div>
+    </section>
     <section class="card" aria-labelledby="h-palm">
       <h2 id="h-palm">✋ 내 손금 고르기</h2>
       <svg class="fp-fig fp-hand" viewBox="0 0 300 290" role="img" aria-label="손금 4대선 그림">
@@ -1307,7 +1393,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <path d="M26 30 c-5 -8 -16 -3 -10 6 l10 9 10 -9 c6 -9 -5 -14 -10 -6z" fill="#FFB7C5"/>
     </svg>
       <p class="hint">손바닥을 활짝 펴고 가장 가까운 모양을 골라 주세요. 다 고르지 않아도 돼요. <b>주로 쓰는 손</b>은 지금까지 만들어 온 모습, <b>반대 손</b>은 타고난 바탕으로 많이 봐요.</p>
-      <div class="fp-peek" id="palmPeek" hidden><img alt="내 사진"><div><b>📷 내 사진을 보며 고르기</b><span>사진과 비슷한 모양을 아래에서 골라 보세요. 고르는 대로 바로 풀이가 나와요.</span></div></div>
+      <div class="fp-peek" id="palmPeek" hidden><div class="fp-pv"><img alt="내 사진"><canvas aria-hidden="true"></canvas></div><div class="fp-pt"><b>📷 사진으로 자동 고르기</b><span class="fp-auto">사진을 넣으면 앱이 살펴보고 골라 줘요.</span><button type="button" class="fp-zoom">🔍 크게 보기</button></div></div>
       <div id="palmQs"></div>
     </section>
     <section class="card" id="palmRes" aria-labelledby="h-palmr">
@@ -3715,6 +3801,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   function setMode(m) {
     m = (m === 'tarot' || m === 'name' || m === 'tj' || m === 'mr' || m === 'face' || m === 'palm' || m === 'dream') ? m : 'saju';
     document.body.setAttribute('data-mode', m);
+    if ((m === 'face' || m === 'palm') && window.fpPreload) window.fpPreload(m);
     Array.prototype.forEach.call(document.querySelectorAll('.mode-sw [data-mode]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
     $('hdSub').textContent = HD_SUB[m];
     $('hdTitle').textContent = HD_TITLE[m];
@@ -3744,7 +3831,11 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   // ---------- 사주 저장 목록 (이 기기 브라우저에만 저장) ----------
   var SV_KEY = 'hongjjang-saju-list-v1';
   function svRead() { try { var v = JSON.parse(localStorage.getItem(SV_KEY) || '[]'); return Array.isArray(v) ? v : []; } catch (e) { return []; } }
-  function svWrite(list) { try { localStorage.setItem(SV_KEY, JSON.stringify(list)); return true; } catch (e) { return false; } }
+  var SV_DEL = 'hongjjang-saju-del-v1';
+  function svDelRead() { try { var v = JSON.parse(localStorage.getItem(SV_DEL) || '{}'); return v && typeof v === 'object' ? v : {}; } catch (e) { return {}; } }
+  function svDelWrite(d) { try { localStorage.setItem(SV_DEL, JSON.stringify(d)); } catch (e) {} }
+  function svClean(list) { return list.map(function (r) { var o = {}; Object.keys(r).forEach(function (k) { if (k.charAt(0) !== '_') o[k] = r[k]; }); return o; }); }
+  function svWrite(list, quiet) { try { localStorage.setItem(SV_KEY, JSON.stringify(svClean(list))); if (!quiet && window.hjSyncPush) window.hjSyncPush(); return true; } catch (e) { return false; } }
   function svSnap(prefix) {
     var q = function (id) { return document.getElementById(prefix + '-' + id); };
     return {
@@ -3793,7 +3884,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     if (!name) { msg.textContent = '저장할 이름을 먼저 적어 주세요.'; $('svName').focus(); return; }
     try { A.read(zasi()); } catch (e) { msg.textContent = e.message; return; }
     var list = svRead(), rec = svSnap('a'), at = -1;
-    rec.name = name;
+    rec.name = name; rec.t = Date.now();
+    var dl = svDelRead(); if (dl[name]) { delete dl[name]; svDelWrite(dl); }
     list.forEach(function (r, i) { if (r.name === name) at = i; });
     if (at >= 0) { rec.fav = list[at].fav; list[at] = rec; } else list.push(rec);
     msg.textContent = svWrite(list) ? (at >= 0 ? '"' + name + '" 사주를 새 정보로 바꿔 저장했어요.' : '"' + name + '" 사주를 저장했어요.') : '이 브라우저에서는 저장할 수 없어요. (사생활 보호 모드인지 확인해 주세요)';
@@ -3802,9 +3894,10 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   $('svList').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-i]'); if (!b) return;
     var list = svRead(), i = +b.getAttribute('data-i'), r = list[i]; if (!r) return;
-    if (b.classList.contains('sv-star')) { r.fav = !r.fav; svWrite(list); svRender(); return; }
+    if (b.classList.contains('sv-star')) { r.fav = !r.fav; r.t = Date.now(); svWrite(list); svRender(); return; }
     if (b.classList.contains('sv-del')) {
       if (!confirm('"' + r.name + '" 사주를 목록에서 지울까요?')) return;
+      var dl = svDelRead(); dl[r.name] = Date.now(); svDelWrite(dl);
       list.splice(i, 1); svWrite(list); svRender(); $('svMsg').textContent = '지웠어요.'; return;
     }
     if (b.classList.contains('sv-load')) {
@@ -4174,6 +4267,193 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $(prefix + 'Box').innerHTML = h;
   }
 
+  // ---------- 사진으로 관상·손금 자동 고르기 (MediaPipe, 기기 안에서만 계산) ----------
+  var MP_V = '0.10.21', MP_BASE = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@' + MP_V;
+  var MP_MODEL = { face: 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task', palm: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task' };
+  var mpBase = null, mpTask = {};
+  function mpGet(k) {
+    if (!mpBase) mpBase = import(MP_BASE + '/vision_bundle.mjs').then(function (v) { return v.FilesetResolver.forVisionTasks(MP_BASE + '/wasm').then(function (fs) { return { v: v, fs: fs }; }); });
+    if (!mpTask[k]) mpTask[k] = mpBase.then(function (m) {
+      var opt = { baseOptions: { modelAssetPath: MP_MODEL[k], delegate: 'CPU' }, runningMode: 'IMAGE' };
+      if (k === 'face') { opt.numFaces = 1; return m.v.FaceLandmarker.createFromOptions(m.fs, opt); }
+      opt.numHands = 1; return m.v.HandLandmarker.createFromOptions(m.fs, opt);
+    });
+    mpTask[k].catch(function () { mpTask[k] = null; mpBase = null; });
+    return mpTask[k];
+  }
+  function mpPts(L, w, h) { return L.map(function (p) { return { x: p.x * w, y: p.y * h }; }); }
+  function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+  function lerp(a, b, t) { return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t }; }
+  // 얼굴: 눈높이를 수평으로 돌려서 잰 비율로 보기 고르기
+  function faceMeasure(P) {
+    var ang = Math.atan2(P[263].y - P[33].y, P[263].x - P[33].x), c = Math.cos(-ang), s = Math.sin(-ang), o = P[168];
+    var R = P.map(function (p) { var dx = p.x - o.x, dy = p.y - o.y; return { x: dx * c - dy * s, y: dx * s + dy * c }; });
+    var W = dist(R[234], R[454]), H = dist(R[10], R[152]);
+    var eyeL = dist(R[33], R[133]), eyeR = dist(R[362], R[263]);
+    var open = (dist(R[159], R[145]) / eyeL + dist(R[386], R[374]) / eyeR) / 2;
+    // 눈꼬리: 안쪽보다 바깥쪽이 얼마나 위에 있는지 (y는 아래로 갈수록 커요)
+    var tilt = ((R[133].y - R[33].y) / eyeL + (R[362].y - R[263].y) / eyeR) / 2;
+    function arch(a, m, b) { var ab = dist(R[a], R[b]); var area = Math.abs((R[b].x - R[a].x) * (R[a].y - R[m].y) - (R[a].x - R[m].x) * (R[b].y - R[a].y)); return area / ab / ab; }
+    var mouthW = dist(R[61], R[291]), lipMidY = (R[13].y + R[14].y) / 2, cornerY = (R[61].y + R[291].y) / 2;
+    return {
+      W: W, H: H, ratio: H / W,
+      jaw: dist(R[172], R[397]) / W, chinW: dist(R[150], R[379]) / W, fore: dist(R[54], R[284]) / W,
+      foreH: Math.abs(R[9].y - R[10].y) / H,
+      open: open, tilt: tilt,
+      brow: (arch(70, 105, 107) + arch(300, 334, 336)) / 2, browLen: (dist(R[70], R[107]) + dist(R[300], R[336])) / 2 / W,
+      noseW: dist(R[129], R[358]) / W, noseL: Math.abs(R[2].y - R[168].y) / H,
+      mouthW: mouthW / W, lip: (Math.abs(R[0].y - R[13].y) + Math.abs(R[17].y - R[14].y)) / mouthW, smile: (lipMidY - cornerY) / H
+    };
+  }
+  function facePick(m) {
+    var pk = {};
+    pk.shape = m.ratio >= 1.40 ? 3 : (m.fore - m.chinW > 0.36 && m.jaw < 0.80) ? 4 : m.jaw >= 0.86 ? 2 : m.ratio < 1.18 ? 0 : 1;
+    pk.fore = m.foreH >= 0.235 && m.fore >= 0.85 ? 0 : m.foreH < 0.195 ? 2 : 1;
+    pk.brow = m.browLen < 0.27 ? 2 : m.brow >= 0.16 ? 1 : 0;
+    pk.eye = m.tilt >= 0.12 ? 2 : m.tilt <= 0 ? 3 : m.open >= 0.30 ? 0 : 1;
+    pk.nose = m.noseW >= 0.34 ? 1 : m.noseL >= 0.30 ? 0 : 2;
+    pk.mouth = m.smile >= 0.05 ? 0 : m.lip >= 0.30 ? 2 : 1;
+    pk.chin = m.chinW <= 0.50 ? 2 : m.jaw >= 0.86 ? 1 : 0;
+    return pk;
+  }
+  // 손: 손바닥 폭·길이, 가운뎃손가락 길이로 손 모양 고르기
+  function palmMeasure(P) {
+    var palmL = dist(P[0], P[9]), palmW = dist(P[5], P[17]);
+    var finger = dist(P[9], P[10]) + dist(P[10], P[11]) + dist(P[11], P[12]);
+    return { square: palmW / palmL, finger: finger / palmL };
+  }
+  function palmPick(m) {
+    var sq = m.square >= 0.80, longF = m.finger >= 0.98;
+    return { type: sq ? (longF ? 1 : 0) : (longF ? 3 : 2) };
+  }
+
+  var FACE_OVAL = [10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 379, 378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 234, 127, 162, 21, 54, 103, 67, 109];
+  function fpDraw(k, cv, P) {
+    var ctx = cv.getContext('2d'), lw = Math.max(2.5, cv.width / 200), fs = Math.max(14, cv.width / 32);
+    ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.font = '700 ' + fs + 'px "Noto Sans KR", sans-serif';
+    function label(t, x, y, col) { ctx.fillStyle = 'rgba(255,255,255,.85)'; var w = ctx.measureText(t).width; ctx.fillRect(x - 4, y - fs, w + 8, fs * 1.3); ctx.fillStyle = col; ctx.fillText(t, x, y); }
+    if (k === 'face') {
+      ctx.strokeStyle = '#F28B9B'; ctx.setLineDash([lw * 3, lw * 2]); ctx.beginPath();
+      FACE_OVAL.forEach(function (i, n) { if (n) ctx.lineTo(P[i].x, P[i].y); else ctx.moveTo(P[i].x, P[i].y); }); ctx.closePath(); ctx.stroke(); ctx.setLineDash([]);
+      var u = { x: P[152].x - P[10].x, y: P[152].y - P[10].y }, ul = Math.hypot(u.x, u.y); u = { x: u.x / ul, y: u.y / ul };
+      var v = { x: -u.y, y: u.x }, half = dist(P[234], P[454]) * 0.62;
+      [[10, '#7CC49A'], [9, '#F2C46B'], [2, '#8DB3F0'], [152, '#F28B82']].forEach(function (a) {
+        var q = P[a[0]]; ctx.strokeStyle = a[1]; ctx.beginPath(); ctx.moveTo(q.x - v.x * half, q.y - v.y * half); ctx.lineTo(q.x + v.x * half, q.y + v.y * half); ctx.stroke();
+      });
+      var lx = P[234].x - half * 0.15;
+      label('상정·초년', Math.max(4, lx - fs * 5), (P[10].y + P[9].y) / 2, '#2A6B45');
+      label('중정·중년', Math.max(4, lx - fs * 5), (P[9].y + P[2].y) / 2, '#8A6410');
+      label('하정·말년', Math.max(4, lx - fs * 5), (P[2].y + P[152].y) / 2, '#2F5590');
+      return;
+    }
+    // 손금: 손 모양에서 다섯 선이 있을 자리를 그려요
+    var C = { x: (P[0].x + P[5].x + P[9].x + P[13].x + P[17].x) / 5, y: (P[0].y + P[5].y + P[9].y + P[13].y + P[17].y) / 5 };
+    function q2(a, c, b, col, t, at) { ctx.strokeStyle = col; ctx.setLineDash([lw * 3, lw * 2]); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.quadraticCurveTo(c.x, c.y, b.x, b.y); ctx.stroke(); ctx.setLineDash([]); var m = at || lerp(lerp(a, c, .5), lerp(c, b, .5), .5); label(t, m.x, m.y, col); }
+    var lifeA = lerp(lerp(P[5], P[2], .5), C, .15), lifeB = lerp(P[0], P[1], .45), lifeC = lerp(P[1], C, .35);
+    q2(lifeA, lifeC, lifeB, '#E05570', '생명선', { x: lifeB.x - fs * 1.5, y: lifeB.y + fs * 1.2 });
+    var headB = lerp(lerp(P[17], P[0], .45), C, .2);
+    q2(lifeA, lerp(lifeA, headB, .5), headB, '#2F7D4A', '두뇌선', { x: headB.x + fs * .3, y: headB.y + fs * .4 });
+    var hS = lerp(lerp(P[17], P[0], .2), P[13], .1), hE = lerp(lerp(P[5], P[9], .5), C, .3);
+    q2(hS, lerp(lerp(hS, hE, .5), P[13], .15), hE, '#B4466A', '감정선', { x: hE.x - fs * 3.2, y: hE.y - fs * .5 });
+    var fS = lerp(P[0], C, .2), fE = lerp(P[9], C, .35);
+    q2(fS, lerp(fS, fE, .5), fE, '#6F5FC9', '운명선', { x: fS.x - fs * 1.5, y: fS.y + fs * 1.2 });
+    var edge = { x: P[17].x + (P[17].x - P[13].x) * .25, y: P[17].y + (P[17].y - P[13].y) * .25 }, mS = lerp(edge, hS, .55), mE = lerp(mS, C, .18);
+    q2(mS, lerp(mS, mE, .5), mE, '#C07A1A', '결혼선', { x: mS.x + fs * .3, y: mS.y - fs * 1.2 });
+  }
+  function fpAuto(k, url) {
+    var peek = $(k + 'Peek'); if (!peek) return;
+    var stx = peek.querySelector('.fp-auto'), cv = peek.querySelector('canvas'), Q = k === 'face' ? FACE_Q : PALM_Q, G = k === 'face' ? FACE_G : PALM_G;
+    var who = k === 'face' ? '얼굴' : '손';
+    stx.innerHTML = '🔍 사진을 살펴보는 중이에요… <small>(처음 한 번은 몇 초 걸려요. 사진은 이 기기 안에서만 살펴봐요)</small>';
+    Array.prototype.forEach.call(document.querySelectorAll('#' + k + 'Qs label.fp-ap'), function (l) { l.classList.remove('fp-ap'); });
+    cv.getContext('2d').clearRect(0, 0, cv.width, cv.height);
+    var q = fqEls(k); if (q) { q.res.hidden = false; q.st.innerHTML = '<span class="fq-load"></span>' + (mpReady[k] ? '사진을 살펴보는 중이에요…' : '처음 한 번은 살펴보는 도구를 받느라 시간이 조금 걸려요…'); q.pick.innerHTML = ''; q.sum.innerHTML = ''; }
+    var slow = setTimeout(function () { var t = '⏳ 인터넷이 느려서 오래 걸리고 있어요. 조금만 더 기다려 주세요. 계속 안 되면 와이파이에서 다시 해 보세요.'; stx.innerHTML = t; if (q) q.st.innerHTML = '<span class="fq-load"></span>' + t; }, 20000);
+    var im = null, im0 = new Image(); im0.src = url;
+    (im0.decode ? im0.decode() : new Promise(function (ok) { im0.onload = ok; })).then(function () {
+      // 휴대폰의 큰 사진은 1280px로 줄여서 살펴봐요 (빠르고 메모리를 덜 써요)
+      var sc0 = Math.min(1, 1280 / Math.max(im0.naturalWidth, im0.naturalHeight));
+      var c0 = document.createElement('canvas'); c0.width = Math.round(im0.naturalWidth * sc0); c0.height = Math.round(im0.naturalHeight * sc0);
+      c0.getContext('2d').drawImage(im0, 0, 0, c0.width, c0.height); im = c0; im.naturalWidth = c0.width; im.naturalHeight = c0.height;
+      return mpGet(k);
+    }).then(function (lm) {
+      clearTimeout(slow); mpReady[k] = true;
+      var res = lm.detect(im), L = k === 'face' ? (res.faceLandmarks || [])[0] : (res.landmarks || [])[0];
+      if (!L) { var nf = '⚠️ ' + who + JOSA(who, '을/를') + ' 찾지 못했어요. ' + (k === 'face' ? '정면을 보고 얼굴 전체가 밝게 나오게' : '손바닥을 활짝 펴고 손목까지 나오게') + ' 다시 찍어 주세요. 직접 고르려면 아래 [자세히 보기]를 눌러요.'; stx.innerHTML = nf; if (q) { q.st.innerHTML = nf; q.cv.getContext('2d').clearRect(0, 0, q.cv.width, q.cv.height); q.cv.width = 0; } return; }
+      var P = mpPts(L, im.naturalWidth, im.naturalHeight);
+      var xs = P.map(function (q) { return q.x; }), ys = P.map(function (q) { return q.y; });
+      var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+      var mg = k === 'face' ? 0.45 : 0.35, bw = x1 - x0, bh = y1 - y0;
+      var cx0 = Math.max(0, x0 - bw * mg), cy0 = Math.max(0, y0 - bh * (k === 'face' ? 0.6 : mg)), cx1 = Math.min(im.naturalWidth, x1 + bw * mg), cy1 = Math.min(im.naturalHeight, y1 + bh * mg);
+      var sc = Math.min(3, 900 / Math.max(1, cx1 - cx0));
+      cv.width = Math.round((cx1 - cx0) * sc); cv.height = Math.round((cy1 - cy0) * sc);
+      cv.getContext('2d').drawImage(im, cx0, cy0, cx1 - cx0, cy1 - cy0, 0, 0, cv.width, cv.height);
+      fpDraw(k, cv, P.map(function (q) { return { x: (q.x - cx0) * sc, y: (q.y - cy0) * sc }; }));
+      var pk = k === 'face' ? facePick(faceMeasure(P)) : palmPick(palmMeasure(P)), n = 0;
+      Object.keys(pk).forEach(function (id) {
+        var el = document.querySelector('input[name="' + k + '-' + id + '"][value="' + pk[id] + '"]'); if (!el) return;
+        el.checked = true; n++; var lb = document.querySelector('label[for="' + el.id + '"]'); if (lb) lb.classList.add('fp-ap');
+      });
+      fpUpdate(k, Q, G);
+      stx.innerHTML = k === 'face'
+        ? '✨ 앱이 <b>' + n + '곳</b>을 자동으로 골랐어요 (보라색 <b>자동</b> 표시). <b>귀</b>는 직접 골라 주세요. 다르게 보이면 눌러서 바꿔도 돼요.'
+        : '✨ <b>손 모양</b>을 자동으로 골랐어요. 사진 위 <b>색깔 안내선 근처</b>의 손금을 보고 생명선·두뇌선·감정선·운명선·결혼선을 골라 주세요.';
+      peek.classList.add('big');
+      peek.querySelector('.fp-zoom').textContent = '🔽 작게 보기';
+      if (q) { q.cv.width = cv.width; q.cv.height = cv.height; q.cv.getContext('2d').drawImage(cv, 0, 0); q.st.innerHTML = k === 'face' ? '✨ 앱이 <b>' + n + '곳</b>을 자동으로 골랐어요. 귀만 아래에서 골라 주세요.' : '✨ <b>손 모양</b>을 골랐어요. 사진의 <b>색깔 선 근처</b>를 보고 아래 다섯 선을 골라 주세요.'; fqRefresh(k); }
+    }).catch(function () { clearTimeout(slow); var ft = '⚠️ 살펴보는 도구를 불러오지 못했어요. 인터넷을 확인하고 다시 찍어 주세요. 직접 고르려면 아래 [자세히 보기]를 눌러요.'; stx.innerHTML = ft; if (q) q.st.innerHTML = ft; });
+  }
+  ['face', 'palm'].forEach(function (k) {
+    var peek = $(k + 'Peek'); if (!peek) return;
+    peek.querySelector('.fp-zoom').addEventListener('click', function () { var b = peek.classList.toggle('big'); this.textContent = b ? '🔽 작게 보기' : '🔍 크게 보기'; });
+  });
+
+
+  // ---------- 사진 한 장으로 바로 보기 (휴대폰용 간단 화면) ----------
+  var mpReady = {};
+  function fqEls(k) { var r = $(k + 'QRes'); if (!r) return null; return { res: r, cv: r.querySelector('.fq-cv'), st: r.querySelector('.fq-st'), pick: r.querySelector('.fq-pick'), sum: r.querySelector('.fq-sum') }; }
+  var FQ_PICK = { face: ['ear'], palm: ['life', 'head', 'heart', 'fate', 'marry'] };
+  function fqRefresh(k) {
+    var q = fqEls(k); if (!q || q.res.hidden) return;
+    var Q = k === 'face' ? FACE_Q : PALM_Q;
+    q.pick.innerHTML = FQ_PICK[k].map(function (id) {
+      var qq = Q.filter(function (x) { return x.id === id; })[0]; if (!qq) return '';
+      var cur = document.querySelector('input[name="' + k + '-' + id + '"]:checked');
+      return '<div class="row"><b>' + qq.t + ' <small style="font-weight:400;color:#7A6F8A">' + qq.h + '</small></b><div class="chips">' + qq.o.map(function (o, i) {
+        return '<button type="button" data-id="' + id + '" data-i="' + i + '" class="' + (cur && +cur.value === i ? 'on' : '') + '">' + o[0] + '</button>';
+      }).join('') + '</div></div>';
+    }).join('');
+    var pk = fpPicked(k, Q);
+    q.sum.innerHTML = pk.length ? fpSummary(k, pk) : '';
+  }
+  ['face', 'palm'].forEach(function (k) {
+    var q = fqEls(k); if (!q) return;
+    if (/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) $(k + 'Quick').querySelector('.fq-inapp').hidden = false;
+    [k + 'QCam', k + 'QAlb'].forEach(function (id) {
+      $(id).addEventListener('change', function () {
+        var f = this.files && this.files[0]; this.value = '';
+        if (!f) return;
+        if (!/^image\//.test(f.type) && !/\.(jpe?g|png|heic|heif|webp)$/i.test(f.name || '')) { q.res.hidden = false; q.st.textContent = '사진 파일만 넣을 수 있어요.'; return; }
+        window['fpSet_' + k](f);
+        setTimeout(function () { q.res.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+      });
+    });
+    q.pick.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-id]'); if (!b) return;
+      var el = document.querySelector('input[name="' + k + '-' + b.getAttribute('data-id') + '"][value="' + b.getAttribute('data-i') + '"]'); if (!el) return;
+      el.checked = true; el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    $(k + 'Qs').addEventListener('change', function () { fqRefresh(k); });
+    q.res.querySelector('.fq-more').addEventListener('click', function () { var t = $(k + 'Res'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  });
+  // 관상·손금 화면에 들어오면 살펴보는 도구를 미리 받아 둬요
+  window.fpPreload = function (k) {
+    if (mpReady[k] || !window.Promise) return;
+    var go = function () { try { mpGet(k).then(function () { mpReady[k] = true; }, function () {}); } catch (e) {} };
+    if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 2500 }); else setTimeout(go, 1200);
+  };
+  var m0 = document.body.getAttribute('data-mode'); if (m0 === 'face' || m0 === 'palm') window.fpPreload(m0);
+
   // ---------- 관상·손금 종합 풀이 ----------
   var FP_AREA = {
     face: [['🌱 성격', ['shape', 'eye'], '타고난 성향을 장점으로 쓰면 사람들이 먼저 알아봐요.'], ['💼 일·재물', ['fore', 'nose'], '잘하는 것을 꾸준히 쌓으면 일과 돈이 함께 자라요.'],
@@ -4261,11 +4541,11 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       if (!file) { $(k + 'pImg').removeAttribute('src'); if (peek) peek.hidden = true; return; }
       url = URL.createObjectURL(file);
       $(k + 'pImg').src = url;
-      if (peek) { peek.querySelector('img').src = url; peek.hidden = false; }
+      if (peek) { peek.querySelector('img').src = url; peek.hidden = false; peek.classList.remove('big'); try { fpAuto(k, url); } catch (e) {} }
       var go = $(k + 'pGoPick');
       if (!go) {
         go = document.createElement('button'); go.type = 'button'; go.id = k + 'pGoPick'; go.className = 'fp-gopick';
-        go.innerHTML = '📖 이 사진을 보며 <b>바로 풀이</b>하기';
+        go.innerHTML = '📖 자동으로 고른 <b>바로 풀이</b> 보기';
         go.addEventListener('click', function () { var t = $(k + 'Peek'); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
         $(k + 'pPrev').parentNode.insertBefore(go, $(k + 'pPrev').nextSibling);
       }
@@ -5451,6 +5731,109 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   }
   $('drText').addEventListener('input', drMatchRender);
 
+
+  // ---------- PC·휴대폰 연동 (구글 로그인 + Firebase) / 코드로 옮기기 ----------
+  function svMerge(aList, aDel, bList, bDel) {
+    var del = {}, by = {};
+    [aDel || {}, bDel || {}].forEach(function (d) { Object.keys(d).forEach(function (n) { del[n] = Math.max(del[n] || 0, +d[n] || 0); }); });
+    (aList || []).concat(bList || []).forEach(function (r) {
+      if (!r || !r.name) return;
+      var cur = by[r.name];
+      if (!cur || (+r.t || 0) > (+cur.t || 0)) by[r.name] = r;
+    });
+    var list = Object.keys(by).sort().map(function (n) { return by[n]; }).filter(function (r) { return !(del[r.name] && del[r.name] >= (+r.t || 0)); });
+    var del2 = {};
+    Object.keys(del).sort().forEach(function (n) { if (Date.now() - del[n] <= 400 * 864e5) del2[n] = del[n]; });
+    return { list: svClean(list), del: del2 };
+  }
+  function svNorm(x) {
+    if (Array.isArray(x)) return x.map(svNorm);
+    if (x && typeof x === 'object') { var o = {}; Object.keys(x).sort().forEach(function (k) { o[k] = svNorm(x[k]); }); return o; }
+    return x;
+  }
+  function svSame(a, b) { return JSON.stringify(svNorm(a)) === JSON.stringify(svNorm(b)); }
+  window.hjSvMerge = svMerge;
+  (function () {
+    var fb = null, db = null, user = null, unsub = null, pushing = false;
+    function state(on, text) { var el = $('syncState'); el.textContent = text; el.classList.toggle('on', !!on); }
+    function msg(t) { $('syncMsg').innerHTML = t; }
+    function hhmm() { var d = new Date(); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
+    function ref() { return db.collection('users').doc(user.uid); }
+    function applyRemote(data) {
+      var m = svMerge(svRead(), svDelRead(), data && data.list, data && data.del);
+      var loc = svClean(svRead()).sort(function (x, y) { return x.name < y.name ? -1 : x.name > y.name ? 1 : 0; });
+      var changedLocal = !svSame(loc, m.list) || !svSame(svDelRead(), m.del);
+      svDelWrite(m.del); svWrite(m.list, true); svRender();
+      return { m: m, needPush: !data || !svSame((data.list || []).slice().sort(function (x, y) { return x.name < y.name ? -1 : x.name > y.name ? 1 : 0; }), m.list) || !svSame(data.del || {}, m.del), changedLocal: changedLocal };
+    }
+    window.hjSyncPush = function () {
+      if (!user || !db) return;
+      pushing = true;
+      ref().set({ list: svClean(svRead()), del: svDelRead(), at: Date.now() }).then(function () { pushing = false; msg('☁️ 연동 중이에요 · <b>' + (user.email || '') + '</b><br>마지막 저장 ' + hhmm()); }, function (e) { pushing = false; msg('⚠️ 클라우드 저장에 실패했어요. 인터넷을 확인해 주세요. (' + (e && e.code || '') + ')'); });
+    };
+    function onUser(u) {
+      user = u;
+      if (unsub) { unsub(); unsub = null; }
+      $('syncIn').hidden = !!u; $('syncOut').hidden = !u;
+      if (!u) { state(false, '꺼짐'); msg('구글 계정으로 로그인하면 저장 목록과 즐겨찾기가 PC와 휴대폰에서 똑같이 보여요.'); return; }
+      state(true, '연동 중'); msg('☁️ 목록을 맞추는 중이에요…');
+      unsub = ref().onSnapshot(function (snap) {
+        if (snap.metadata && snap.metadata.hasPendingWrites) return;
+        var r = applyRemote(snap.exists ? snap.data() : null);
+        if (r.needPush) window.hjSyncPush();
+        else msg('☁️ 연동 중이에요 · <b>' + (u.email || '') + '</b><br>PC와 휴대폰 목록이 같아요 (' + hhmm() + ')' + (r.changedLocal ? ' · 다른 기기에서 바뀐 내용을 가져왔어요.' : ''));
+      }, function (e) { msg('⚠️ 클라우드를 읽지 못했어요. (' + (e && e.code || '') + ')'); });
+    }
+    function load(src) { return new Promise(function (ok, no) { var sc = document.createElement('script'); sc.src = src; sc.onload = ok; sc.onerror = no; document.head.appendChild(sc); }); }
+    function start() {
+      var cfg = window.HJ_FIREBASE || {};
+      if (!cfg.apiKey || !cfg.projectId) {
+        state(false, '설정 전'); $('syncIn').hidden = true;
+        msg('PC·휴대폰 자동 연동은 아직 설정 전이에요. 지금은 아래 <b>📦 코드로 목록 옮기기</b>를 이용해 주세요.');
+        return;
+      }
+      var V = '10.12.2', base = 'https://www.gstatic.com/firebasejs/' + V + '/';
+      load(base + 'firebase-app-compat.js').then(function () { return Promise.all([load(base + 'firebase-auth-compat.js'), load(base + 'firebase-firestore-compat.js')]); }).then(function () {
+        fb = window.firebase; fb.initializeApp(cfg); db = fb.firestore();
+        try { db.enablePersistence({ synchronizeTabs: true }).catch(function () {}); } catch (e) {}
+        fb.auth().getRedirectResult().catch(function (e) { msg('⚠️ 로그인하지 못했어요. (' + (e && e.code || '') + ')'); });
+        fb.auth().onAuthStateChanged(onUser);
+      }).catch(function () { state(false, '연결 안 됨'); msg('⚠️ 연동 기능을 불러오지 못했어요. 인터넷을 확인해 주세요.'); });
+    }
+    $('syncIn').addEventListener('click', function () {
+      if (!fb) return;
+      if (/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) { msg('⚠️ 카카오톡 같은 앱 <b>안</b>에서는 구글 로그인이 막혀 있어요. 오른쪽 위 ⋮ → <b>다른 브라우저로 열기</b>(Chrome·Safari)에서 로그인해 주세요.'); return; }
+      var pv = new fb.auth.GoogleAuthProvider(); pv.setCustomParameters({ prompt: 'select_account' });
+      fb.auth().signInWithPopup(pv).catch(function (e) {
+        if (e && e.code === 'auth/popup-blocked') return fb.auth().signInWithRedirect(pv);
+        if (e && e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') msg('⚠️ 로그인하지 못했어요. (' + (e && e.code || '') + ')');
+      });
+    });
+    $('syncOut').addEventListener('click', function () { if (fb) fb.auth().signOut(); });
+    // 코드로 옮기기
+    function enc(o) { return 'HJ1:' + btoa(unescape(encodeURIComponent(JSON.stringify(o)))); }
+    function dec(t) { var m = String(t).replace(/\s+/g, '').match(/HJ1:([A-Za-z0-9+/=]+)/); if (!m) throw new Error('코드 모양이 아니에요.'); return JSON.parse(decodeURIComponent(escape(atob(m[1])))); }
+    $('syncExport').addEventListener('click', function () {
+      var list = svClean(svRead()), code = enc({ list: list, del: svDelRead() }), mm = $('syncMoveMsg');
+      if (!list.length) { mm.textContent = '아직 저장한 사주가 없어요.'; return; }
+      var text = '[홍짱 사주 저장 목록 ' + list.length + '명]\n다른 기기의 홍짱 사주 → 저장 목록 → 📦 코드로 목록 옮기기 → [코드 붙여 넣어 합치기]\n' + code;
+      if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) { navigator.share({ text: text }).then(function () { mm.textContent = '보냈어요! 다른 기기에서 이 코드를 붙여 넣어 주세요.'; }, function () {}); return; }
+      var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta);
+      if (navigator.clipboard && navigator.clipboard.writeText) { try { navigator.clipboard.writeText(text); ok = true; } catch (e) {} }
+      mm.textContent = ok ? '코드를 복사했어요 (' + list.length + '명). 카톡 "나와의 채팅"에 붙여 넣어 두고, 다른 기기에서 복사해 [코드 붙여 넣어 합치기]를 눌러요.' : '자동 복사가 안 됐어요.';
+    });
+    $('syncImport').addEventListener('click', function () {
+      var ta = $('syncCode'), mm = $('syncMoveMsg');
+      if (ta.hidden || !ta.value.trim()) { ta.hidden = false; ta.focus(); mm.textContent = '받은 코드를 위 칸에 붙여 넣고 한 번 더 눌러 주세요.'; return; }
+      try {
+        var o = dec(ta.value), before = svRead().length, m = svMerge(svRead(), svDelRead(), o.list, o.del);
+        svDelWrite(m.del); svWrite(m.list); svRender(); ta.value = ''; ta.hidden = true;
+        mm.textContent = '합쳤어요! 이제 ' + m.list.length + '명이에요 (새로 ' + Math.max(0, m.list.length - before) + '명).';
+      } catch (e) { mm.textContent = '⚠️ ' + e.message + ' 받은 글 전체를 그대로 붙여 넣어 주세요.'; }
+    });
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else setTimeout(start, 0);
+  })();
+
   // ---------- 용어 ----------
   $('glBox').innerHTML = READ.GLOSSARY.map(function (x) { return '<details><summary>' + x[0] + '</summary><p>' + x[1] + '</p></details>'; }).join('');
 
@@ -5627,6 +6010,17 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   }
   Array.prototype.forEach.call(document.querySelectorAll('.sh-row'), setup);
 })();
+
+/* ===== PC·휴대폰 연동 설정 (Firebase) =====
+   Firebase 콘솔 → 프로젝트 설정 → 내 앱(웹) → "SDK 설정 및 구성"의 값을 따옴표 안에 넣어요.
+   비워 두면 자동 연동은 꺼지고, '코드로 목록 옮기기'만 쓸 수 있어요.
+   (이 값은 공개되어도 괜찮은 웹 설정값이에요. 보안은 Firestore 규칙으로 지켜요.) */
+var HJ_FIREBASE = {
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  appId: ''
+};
 
 /* ===== 홍짱쌤 문의 창구 설정 =====
    따옴표 안에 링크나 주소를 넣으면 그 버튼이 앱에 나타나요. 비워 두면 버튼이 숨겨져요.
