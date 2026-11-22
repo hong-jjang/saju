@@ -174,6 +174,20 @@ function main() {
     if (nAll) bad = true;
     if (only) console.log('   📝 검수표: ' + path.relative(path.join(ROOT, '..'), writeReport(entry.id, r)));
   });
+  try { // 꽃점 설정 (tarot/flower.json)
+    const f = readJSON(path.join(ROOT, 'flower.json')).data, fe = [];
+    if (!f.petals || !(f.petals.min >= 2) || !(f.petals.max >= f.petals.min) || f.petals.max > 24) fe.push('petals: min 2 이상, max 는 min 이상 24 이하로 적어요');
+    if (!Array.isArray(f.colors) || !f.colors.length) fe.push('colors: 꽃잎 색을 1개 이상 적어요');
+    (f.sets || []).forEach((st, i) => {
+      const k = `sets[${i}]`;
+      if (!str(st.title)) fe.push(k + '.title 이 비어 있어요');
+      if (!Array.isArray(st.pair) || st.pair.length !== 2 || !st.pair.every(str)) fe.push(k + '.pair 는 두 말이어야 해요 (예: ["해 볼까", "기다려 볼까"])');
+      if (!Array.isArray(st.questions) || !st.questions.length) fe.push(k + '.questions 에 질문을 1개 이상 적어요');
+    });
+    if (!f.sets || !f.sets.length) fe.push('sets: 고르는 말 묶음을 1개 이상 적어요');
+    console.log('\n🌸 꽃점 (flower.json): ' + (fe.length ? '❌' : '✅ 검사 통과'));
+    fe.forEach((e) => console.log('   ❌ ' + e)); if (fe.length) bad = true;
+  } catch (e) { console.log('\n🌸 꽃점 (flower.json): ❌ 파일을 읽을 수 없어요 (' + e.message + ')'); bad = true; }
   try { // index.html 안 비상용 기본 덱 사본이 최신인지
     const m = fs.readFileSync(path.join(ROOT, '..', 'index.html'), 'utf8').match(/var TZ_FALLBACK = (.*);\n/);
     const bv = readJSON(path.join(ROOT, 'decks/basic/deck.json')).data.version;

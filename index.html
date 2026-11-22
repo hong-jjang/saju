@@ -535,10 +535,13 @@ table.mv td.mv-dn { font-size: 12px; }
 #syncCode { width: 100%; box-sizing: border-box; margin-top: 8px; border-radius: 12px; border: 1px solid #D9D2F5; padding: 8px; font: inherit; font-size: 13px; }
 /* 풀이 카톡 보내기 */
 .sh-row { margin-top: 12px; }
+.sh-row { border-top: 1px dashed #E2E4EC; padding-top: 12px; }
 .sh-row .sh-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.sh-row button { min-height: 48px; border: 0; border-radius: 999px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
-.sh-row .sh-txt { background: #FEE500; color: #191919; }
-.sh-row .sh-img { background: #E3DBFF; color: #4E3FA0; }
+.sh-row button { min-height: 46px; border: 1.5px solid transparent; border-radius: 14px; font: inherit; font-size: 14.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; word-break: keep-all; transition: transform .15s ease; }
+.sh-row button:hover { transform: translateY(-1px); }
+.sh-row .sh-txt { background: #FFF6B8; border-color: #F2DE6A; color: #3B3200; }
+.sh-row .sh-img { background: #fff; border-color: #D8D1F6; color: #5546B8; }
+@media (max-width: 420px) { .sh-row button { font-size: 13.5px; gap: 3px; letter-spacing: -.3px; padding: 0 6px; white-space: nowrap; } }
 .sh-row .sh-msg { font-size: 13.5px; color: var(--green-2); margin: 6px 0 0; white-space: pre-wrap; }
 .sh-row .sh-msg:empty { display: none; }
 .fp-peek { position: sticky; top: 8px; z-index: 6; display: flex; gap: 10px; align-items: center; background: #FFFFFF; border: 2px solid #F4A7BB; border-radius: 18px; padding: 8px; margin: 8px 0 10px; box-shadow: 0 6px 16px rgba(194, 85, 122, .15); }
@@ -671,10 +674,20 @@ body[data-mode=dream] header { --hd1: #E2DCFF; --hd2: #F1E3FA; --hd3: #E4F0FF; -
 .qbtn.q-tj { background: #B07A3C; }
 .qbtn.q-tarot { background: #6A5ACD; }
 .quick-grid .qbtn:last-child:nth-child(odd) { grid-column: 1 / -1; }
-.ai-links { display: grid; gap: 8px; }
-.ai-link { min-height: 50px; border: 0; border-radius: 999px; background: var(--green); color: #fff; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.ai-link[data-ai="chatgpt"] { background: #2F7D6B; }
-.ai-link[data-ai="gemini"] { background: #6A5ACD; }
+.ai-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ai-links > :not(.ai-link) { grid-column: 1 / -1; }
+.ai-link { --c: #B85F3A; --bg: #FBEFE8; --ln: #F0D3C4; position: relative; min-height: 92px; padding: 10px 6px 9px; border: 1.5px solid var(--ln); border-radius: 18px; background: var(--bg); color: var(--c);
+  font: inherit; font-size: 14px; font-weight: 700; line-height: 1.3; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; word-break: keep-all;
+  box-shadow: 0 2px 0 var(--ln); transition: transform .15s ease, box-shadow .15s ease; }
+.ai-link > span[aria-hidden] { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #fff; font-size: 18px; box-shadow: 0 1px 4px rgba(0, 0, 0, .08); }
+.ai-link:hover { transform: translateY(-2px); box-shadow: 0 5px 12px rgba(0, 0, 0, .08); }
+.ai-link:active { transform: translateY(1px); box-shadow: none; }
+.ai-link:focus-visible { outline: 3px solid var(--c); outline-offset: 2px; }
+.ai-link[data-ai="chatgpt"] { --c: #1F6E5A; --bg: #E8F4EF; --ln: #C6E2D6; }
+.ai-link[data-ai="gemini"] { --c: #5546B8; --bg: #EFECFC; --ln: #D8D1F6; }
+.ai-links > .ghost[data-ai="copy"] { min-height: 42px; margin-top: 2px; border: 1.5px dashed #C9CFDD; border-radius: 14px; background: #fff; color: #5B6478; font-size: 14.5px; font-weight: 700; }
+.ai-links > .ghost[data-ai="copy"]::before { content: "📋 "; }
+.ai-links > .ghost[data-ai="copy"]:hover { border-style: solid; color: #3A4256; }
 
 .scroll { overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
 .lcs { display: flex; gap: 8px; min-width: min-content; }
@@ -761,6 +774,40 @@ footer { margin-top: 20px; font-size: 12.5px; color: var(--muted); }
 button.kakao { min-height: 46px; padding: 0 18px; border: 0; border-radius: 12px; background: #FEE500; color: #191919; font: inherit; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 button.kakao svg { width: 20px; height: 20px; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+/* ---------- 날짜 카드 ---------- */
+.tz-big.tz-day { background: #EAF1F8; color: #1F4466; border-color: #7FA3C4; }
+.tz-big.tz-day .tz-ico { color: #1F4466; }
+.dc-date { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px 60px; gap: 6px; align-items: center; margin: 10px 0; }
+.dc-date input { min-height: 48px; font: inherit; font-size: 17px; padding: 6px 10px; border: 1px solid #CFC3A4; border-radius: 12px; background: #fff; color: #24322B; width: 100%; box-sizing: border-box; }
+.dc-nav, .dc-today { white-space: nowrap; min-height: 48px; border-radius: 12px; border: 2px solid #1F4D3A; background: #fff; color: #1F4D3A; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; padding: 0 10px; }
+.dc-opts { border: 0; padding: 0; margin: 4px 0 10px; }
+.dc-prev { text-align: center; margin: 8px 0; }
+.dc-prev img { width: min(100%, 300px); aspect-ratio: 9 / 16; border-radius: 14px; box-shadow: 0 6px 18px rgba(31, 77, 58, .2); background: #F7F1E3; display: block; margin: 0 auto; }
+@media (min-width: 640px) { .tz-start { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (max-width: 639px) { .tz-start { grid-template-columns: 1fr 1fr !important; } .tz-start .tz-big { min-height: 96px; font-size: 18px; } .tz-start .tz-big small { font-size: 13px; } .tz-start .tz-rec { grid-column: 1 / -1; } }
+/* ---------- 꽃점 ---------- */
+.fl-sets { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+.fl-sets button { font: inherit; font-size: 16.5px; min-height: 46px; padding: 6px 14px; border-radius: 999px; border: 2px solid #1F4D3A; background: #fff; color: #1F4D3A; cursor: pointer; }
+.fl-sets button[aria-checked=true] { background: #1F4D3A; color: #F7F1E3; font-weight: 700; }
+.fl-stage { position: relative; max-width: 320px; margin: 6px auto 0; text-align: center; }
+#flSvg { width: 100%; height: auto; display: block; }
+#flSvg .pt { cursor: pointer; transition: transform .7s ease-in, opacity .7s ease-in; transform-box: fill-box; transform-origin: center; }
+#flSvg .pt:hover path, #flSvg .pt:focus path { stroke-width: 3.5; }
+#flSvg .pt:focus { outline: none; }
+#flSvg .pt:focus-visible path { stroke: #B8933A; stroke-width: 5; }
+#flSvg .pt.off { transform: translate(var(--dx), 260px) rotate(var(--rot)); opacity: 0; pointer-events: none; }
+.fl-word { font-size: 26px; font-weight: 700; color: #1F4D3A; min-height: 1.4em; margin: 4px 0 0; }
+.fl-left { margin: 2px 0 0; }
+.fl-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fl-res { margin-top: 12px; padding: 14px 16px; border-radius: 16px; background: #fff; border: 2px solid #1F4D3A; }
+.fl-res h3 { margin: 0 0 6px; font-size: 22px; color: #1F4D3A; }
+.fl-res p { font-size: 18px; line-height: 1.7; margin: 6px 0; }
+.fl-my { background: #FBF7EE; border-radius: 12px; padding: 8px 12px; }
+#flQ { margin-bottom: 0; }
+.tz-big.tz-fl { background: #FBE9EC; color: #8C2F3F; border-color: #C9707F; }
+.tz-big.tz-fl .tz-ico { color: #C9707F; }
+@media (min-width: 640px) { .tz-start { grid-template-columns: repeat(4, 1fr) !important; } }
+@media (prefers-reduced-motion: reduce) { #flSvg .pt { transition: opacity .2s; } #flSvg .pt.off { transform: none; } }
 /* ---------- 타로 (딥그린 · 한지 아이보리 · 금색) ---------- */
 .tz { --tz-g: #1F4D3A; --tz-g2: #2C6650; --tz-iv: #F7F1E3; --tz-iv2: #FBF7EE; --tz-au: #B8933A; --tz-ink: #24322B; --tz-mut: #5B6359; }
 body[data-mode=tarot] { background: #EFE8D8; }
@@ -1228,6 +1275,8 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
       <div class="tz-start">
         <button type="button" class="tz-big" id="tzOne"><span class="tz-ico" aria-hidden="true">🂠</span>한 장 뽑기<small>오늘의 카드 한 장</small></button>
         <button type="button" class="tz-big" id="tzThree"><span class="tz-ico" aria-hidden="true">🂠🂠🂠</span>세 장 뽑기<small>상황 · 살펴볼 점 · 해볼 수 있는 일</small></button>
+        <button type="button" class="tz-big tz-fl" id="flBtn"><span class="tz-ico" aria-hidden="true">🌸</span>꽃점 놀이<small>꽃잎을 떼며 내 마음 보기</small></button>
+        <button type="button" class="tz-big tz-day" id="dcBtn"><span class="tz-ico" aria-hidden="true">📅</span>날짜 카드<small>쇼츠·스토리에 올리는 그림</small></button>
         <button type="button" class="tz-big tz-rec" id="tzRecBtn"><span class="tz-ico" aria-hidden="true">📒</span>나의 기록 <span id="tzRecN"></span><small>저장한 카드 다시 보기</small></button>
       </div>
       <details class="tz-q">
@@ -1273,6 +1322,54 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
         </details>
         <button type="button" class="tz-btn tz-ghost" id="tzAgain">처음으로</button>
       </div>
+    </section>
+
+    <section class="card tz-flower" id="flBox" aria-labelledby="h-fl" hidden>
+      <h2 id="h-fl">🌸 꽃점 놀이</h2>
+      <p class="tz-lead" id="flLead">꽃잎을 한 장씩 떼며 두 말을 번갈아 세는 옛 놀이예요.</p>
+      <div class="fl-sets" id="flSets" role="radiogroup" aria-label="무엇을 떠올릴까요"></div>
+      <p class="tz-hint" id="flPrompt"></p>
+      <label for="flQ" class="tz-lbl">✍️ 내 고민 한 문장 <span class="tz-opt">(선택)</span></label>
+      <input type="text" id="flQ" maxlength="80" autocomplete="off">
+      <p class="tz-hint" style="margin-top:4px">적은 고민은 꽃잎 수에 영향을 주지 않아요. 이 화면에만 보이고 어디에도 저장되지 않아요.</p>
+      <div class="fl-stage">
+        <svg id="flSvg" viewBox="0 0 300 380" role="group" aria-label="꽃"></svg>
+        <p class="fl-word" id="flWord" aria-live="polite"></p>
+        <p class="tz-hint fl-left" id="flLeft" aria-live="polite"></p>
+      </div>
+      <div class="fl-btns">
+        <button type="button" class="tz-btn" id="flPick">꽃잎 한 장 떼기</button>
+        <button type="button" class="tz-btn tz-ghost" id="flNew">새 꽃 받기</button>
+      </div>
+      <div id="flResult" hidden></div>
+      <div class="sh-row" data-share="flResult" data-title="꽃점 놀이" hidden id="flShare"></div>
+      <p class="tz-hint">꽃잎 수는 꽃을 받을 때마다 무작위로 정해져요. 떠올린 고민이나 사람에 따라 바뀌지 않아요. 꽃은 다른 사람의 마음이나 앞일을 알려 주지 않아요.</p>
+      <button type="button" class="tz-btn tz-ghost" id="flBack">처음으로</button>
+    </section>
+
+    <section class="card tz-daycard" id="dcBox" aria-labelledby="h-dc" hidden>
+      <h2 id="h-dc">📅 날짜별 공유 카드</h2>
+      <p class="tz-lead">날짜를 고르면 그날의 일진·절기·띠 관계와 날짜로 정한 오늘의 카드를 세로 그림(1080×1920)으로 만들어요. 쇼츠·스토리·카톡에 올리기 좋아요.</p>
+      <div class="dc-date">
+        <button type="button" class="dc-nav" id="dcPrev" aria-label="하루 전">◀</button>
+        <input type="date" id="dcDate" min="1900-02-01" max="2100-12-31" aria-label="날짜 고르기">
+        <button type="button" class="dc-nav" id="dcNext" aria-label="하루 뒤">▶</button>
+        <button type="button" class="dc-today" id="dcToday">오늘</button>
+      </div>
+      <fieldset class="dc-opts"><legend class="tz-lbl">카드에 넣을 것</legend>
+        <label class="check tz-check"><input type="checkbox" id="dcOptDdi" checked>띠 관계 (합·충)</label>
+        <label class="check tz-check"><input type="checkbox" id="dcOptCard" checked>오늘의 카드와 질문</label>
+        <label for="dcMsg" class="tz-lbl">홍짱의 한마디 <span class="tz-opt">(선택 · 카드 아래에 들어가요)</span></label>
+        <input type="text" id="dcMsg" maxlength="60" placeholder="예) 오늘도 나에게 다정한 하루 되세요">
+      </fieldset>
+      <div class="dc-prev"><img id="dcImg" alt="날짜 카드 미리보기"><p class="tz-hint" id="dcState" role="status">카드를 만드는 중이에요…</p></div>
+      <div class="fl-btns">
+        <button type="button" class="tz-btn" id="dcSave">🖼️ 그림 저장</button>
+        <button type="button" class="tz-btn tz-ghost" id="dcCopy">📋 글 복사</button>
+      </div>
+      <p class="tz-msg" id="dcOut" role="status"></p>
+      <p class="tz-hint">일진·절기·띠 관계는 만세력 계산값이에요(한국 시간, 그날 0시 기준). 오늘의 카드는 날짜로 정해져서 그날은 누구에게나 같은 카드예요. 앞일이나 좋고 나쁨을 알려 주는 그림이 아니에요.</p>
+      <button type="button" class="tz-btn tz-ghost" id="dcBack">처음으로</button>
     </section>
 
     <section class="card tz-records" id="tzRecords" aria-labelledby="h-tzrec" hidden>
@@ -4092,6 +4189,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     b.addEventListener('click', function () { setMode(b.getAttribute('data-mode'), true); });
   });
   if (location.hash === '#tarot') setMode('tarot');
+  if (location.hash === '#nalja' || location.hash === '#daycard') { setMode('tarot'); setTimeout(function () { if (window.hjDayCardOpen) window.hjDayCardOpen(); }, 300); }
+  if (location.hash === '#kkotjeom' || location.hash === '#flower') { setMode('tarot'); setTimeout(function () { if (window.hjFlowerOpen) window.hjFlowerOpen(); }, 300); }
   if (location.hash === '#name') setMode('name');
   if (location.hash === '#tj' || location.hash === '#tojeong') setMode('tj');
   if (location.hash === '#mr' || location.hash === '#myeongri') setMode('mr');
@@ -5569,7 +5668,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     var q = $('tzQ').value.trim(); // 질문은 뽑은 뒤에 읽어요 (추첨에 쓰지 않아요)
     tarot = { kind: kind, deckId: deckId, deckVersion: D.deck.version, deckTitle: D.deck.title, rightsOwner: (D.deck.rights || {}).owner || '', question: q, at: new Date().toISOString(), dev: !!forced,
       picks: picks.map(function (p, i) { return { pos: i, posLabel: kind === 'three' ? TZ_POS3[i] : '오늘의 카드', cardId: p.cardId, reversed: p.reversed, flipped: false, view: tzView(deckId, p.cardId, p.reversed) }; }) };
-    $('tzRecords').hidden = true; $('tzStage').hidden = false; $('tzAfter').hidden = true; $('tzSaveMsg').textContent = ''; $('tzMemo').value = '';
+    $('tzRecords').hidden = true; $('flBox').hidden = true; $('dcBox').hidden = true; $('tzStage').hidden = false; $('tzAfter').hidden = true; $('tzSaveMsg').textContent = ''; $('tzMemo').value = '';
     $('h-tzstage').textContent = kind === 'three' ? '세 장을 차례로 뒤집어 보세요' : '카드를 뒤집어 보세요';
     $('tzStageInfo').innerHTML = (q ? '질문: “' + esc(q) + '” · ' : '') + esc(D.deck.title) + (forced ? ' · <b>개발용 지정 카드</b>' : '');
     tzRenderRow(); $('tzRead').innerHTML = '';
@@ -5692,7 +5791,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       tzRecList(); tzRecCount();
     }
   });
-  $('tzRecBtn').addEventListener('click', function () { $('tzStage').hidden = true; $('tzRecords').hidden = false; tzRecList(); $('tzRecords').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  $('tzRecBtn').addEventListener('click', function () { $('tzStage').hidden = true; $('flBox').hidden = true; $('dcBox').hidden = true; $('tzRecords').hidden = false; tzRecList(); $('tzRecords').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   $('tzRecBack').addEventListener('click', function () { $('tzRecords').hidden = true; $('h-tarot').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
 
   // ---- 설정 ----
@@ -5773,6 +5872,218 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       '- 건강·법률·돈·합격 같은 일을 확정해서 말하지 말고, 불안을 주는 표현을 쓰지 마세요.');
     return L.join('\n');
   }
+  // ================= 꽃점 놀이 =================
+  // 설정: tarot/flower.json (꽃잎 수, 고르는 말, 질문). 파일을 못 읽으면 아래 사본을 써요.
+  var FL_FALLBACK = {"note":"꽃점 놀이 설정이에요. 꽃잎 수 범위, 고르는 말, 문구, 고민 입력칸 예시(placeholder), 질문을 여기서 바꿔요. 앱 코드는 고치지 않아도 돼요.","version":"1.1.0","petals":{"min":5,"max":13},"colors":[{"name":"목","fill":"#9CC58A","line":"#4E7A3C"},{"name":"화","fill":"#F0A08A","line":"#B4533A"},{"name":"토","fill":"#F1D48A","line":"#A8822A"},{"name":"금","fill":"#F7F3E8","line":"#A39C88"},{"name":"수","fill":"#9DBAD6","line":"#3F6589"}],"sets":[{"id":"choice","title":"할까, 말까","prompt":"마음속으로 고민 중인 일 하나를 떠올려요.","pair":["해 볼까","기다려 볼까"],"questions":["꽃잎이 멈춘 말을 봤을 때, 마음이 ‘다행이다’였나요, ‘아쉽다’였나요?","이 일을 해 본다면, 가장 작은 첫걸음은 무엇일까요?","기다린다면, 무엇을 확인한 뒤에 다시 정하고 싶나요?","이 고민을 털어놓고 싶은 사람은 누구인가요?"],"placeholder":"예) 이번 달에 그림책 수업을 새로 열어 볼까?"},{"id":"heart","title":"마음 전하기","prompt":"마음을 전하고 싶은 사람을 떠올려요. 꽃은 그 사람의 마음을 알려 주지 않아요. 내 마음만 비춰 봐요.","pair":["말해 볼까","조금 더 품어 볼까"],"questions":["꽃잎이 멈춘 말을 봤을 때, 마음이 ‘다행이다’였나요, ‘아쉽다’였나요?","그 사람에게 가장 전하고 싶은 한마디는 무엇인가요?","마음을 전한다면, 편하게 말할 수 있는 때와 방법은 언제일까요?","상대의 대답과 상관없이, 나를 아껴 주는 방법은 무엇일까요?"],"placeholder":"예) 오랜 친구에게 고맙다고 말하고 싶어요."},{"id":"today","title":"오늘의 나","prompt":"오늘 하루를 떠올려요.","pair":["힘내 볼까","쉬어 갈까"],"questions":["꽃잎이 멈춘 말을 봤을 때, 마음이 ‘다행이다’였나요, ‘아쉽다’였나요?","오늘 나에게 꼭 필요한 것 한 가지는 무엇인가요?","오늘 해낸 일 가운데 스스로 칭찬하고 싶은 것은 무엇인가요?","잠들기 전에 나에게 해 주고 싶은 말은 무엇인가요?"],"placeholder":"예) 오늘은 해야 할 일이 너무 많아요."}],"ending":"꽃이 답을 정해 주는 건 아니에요. 마지막 꽃잎을 봤을 때 든 느낌이 지금 내 마음의 진짜 대답일 수 있어요."};
+  var FL = { cfg: FL_FALLBACK, set: 0, n: 0, left: 0, picked: 0 };
+  function flLoad() { return fetch(TZ_BASE + 'flower.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (c) { if (c && c.sets && c.sets.length && c.petals) FL.cfg = c; }, function () {}); }
+  function flPetal(i, n, col) { // 꽃잎 하나 (가운데에서 바깥으로)
+    var a = 360 * i / n, len = n > 10 ? 88 : 96, w = Math.max(18, Math.min(34, 190 / n));
+    var d = 'M150 150 C ' + (150 - w) + ' ' + (150 - len * 0.45) + ', ' + (150 - w * 0.7) + ' ' + (150 - len) + ', 150 ' + (150 - len - 6) + ' C ' + (150 + w * 0.7) + ' ' + (150 - len) + ', ' + (150 + w) + ' ' + (150 - len * 0.45) + ', 150 150 Z';
+    var dx = Math.round(Math.sin(a * Math.PI / 180) * 60), rot = (TZ_DRAW.rand(2) ? 1 : -1) * (40 + TZ_DRAW.rand(60));
+    return '<g class="pt" tabindex="0" role="button" aria-label="꽃잎 떼기" data-i="' + i + '" style="--dx:' + dx + 'px;--rot:' + rot + 'deg"><g transform="rotate(' + a + ' 150 150)"><path d="' + d + '" fill="' + col.fill + '" stroke="' + col.line + '" stroke-width="2"/><path d="M150 146 L150 ' + (150 - len + 18) + '" stroke="' + col.line + '" stroke-opacity=".35" stroke-width="1.5"/></g></g>';
+  }
+  function flDraw() {
+    var c = FL.cfg, n = c.petals.min + TZ_DRAW.rand(c.petals.max - c.petals.min + 1), cols = c.colors;
+    FL.n = n; FL.left = n; FL.picked = 0;
+    var h = '<rect x="0" y="0" width="300" height="380" rx="20" fill="#FBF7EE"/>' +
+      '<path d="M150 230 C 146 280, 156 320, 150 372" stroke="#3E7C5B" stroke-width="7" fill="none" stroke-linecap="round"/>' +
+      '<path d="M151 300 C 120 280, 92 290, 78 312 C 104 322, 132 318, 151 300 Z" fill="#6FA37F" stroke="#3E7C5B" stroke-width="2"/>' +
+      '<path d="M150 330 C 180 310, 210 316, 224 338 C 198 350, 170 346, 150 330 Z" fill="#6FA37F" stroke="#3E7C5B" stroke-width="2"/>';
+    for (var i = 0; i < n; i++) h += flPetal(i, n, cols[i % cols.length]);
+    h += '<circle cx="150" cy="150" r="26" fill="#E9C46A" stroke="#B8933A" stroke-width="3"/><g fill="#B8933A">' +
+      [0, 60, 120, 180, 240, 300].map(function (a) { var r = a * Math.PI / 180; return '<circle cx="' + (150 + 13 * Math.cos(r)).toFixed(1) + '" cy="' + (150 + 13 * Math.sin(r)).toFixed(1) + '" r="3"/>'; }).join('') + '<circle cx="150" cy="150" r="3.5"/></g>';
+    $('flSvg').innerHTML = h;
+    $('flWord').textContent = ''; $('flResult').hidden = true; $('flShare').hidden = true; $('flPick').disabled = false;
+    $('flLeft').textContent = '꽃잎이 ' + n + '장 있어요. 꽃잎을 누르거나 아래 버튼을 눌러 한 장씩 떼어 보세요.';
+  }
+  function flSetUI() {
+    var c = FL.cfg;
+    $('flSets').innerHTML = c.sets.map(function (st, i) { return '<button type="button" role="radio" aria-checked="' + (i === FL.set) + '" data-i="' + i + '">' + esc(st.title) + '</button>'; }).join('');
+    var st = c.sets[FL.set]; $('flQ').placeholder = st.placeholder || '고민을 한 문장으로 적어 보세요'; $('flPrompt').innerHTML = esc(st.prompt) + '<br>두 말: <b>' + esc(st.pair[0]) + '</b> · <b>' + esc(st.pair[1]) + '</b>';
+  }
+  function flTake(g) {
+    if (!g || g.classList.contains('off') || FL.left <= 0) return;
+    g.classList.add('off'); g.setAttribute('aria-hidden', 'true'); g.removeAttribute('tabindex');
+    var st = FL.cfg.sets[FL.set], w = st.pair[FL.picked % 2];
+    FL.picked++; FL.left--;
+    $('flWord').textContent = w + '…';
+    $('flLeft').textContent = FL.left ? '남은 꽃잎 ' + FL.left + '장' : '마지막 꽃잎이었어요.';
+    if (!FL.left) { $('flPick').disabled = true; setTimeout(function () { flEnd(w); }, 750); }
+    else { var nx = $('flSvg').querySelector('.pt:not(.off)'); if (document.activeElement === g && nx) try { nx.focus(); } catch (e) {} }
+  }
+  function flEnd(w) {
+    var st = FL.cfg.sets[FL.set], qs = st.questions, q1 = qs[0], q2 = qs.length > 1 ? qs[1 + TZ_DRAW.rand(qs.length - 1)] : '';
+    $('flWord').textContent = '‘' + w + '’';
+    var my = ($('flQ').value || '').trim();
+    $('flResult').innerHTML = '<div class="fl-res"><h3>🌸 마지막 꽃잎: ‘' + esc(w) + '’</h3><p>' + esc(st.title) + ' · 꽃잎 ' + FL.n + '장</p>' +
+      (my ? '<p class="fl-my"><span class="tz-k">내 고민</span>“' + esc(my) + '”</p>' : '') +
+      '<p>' + esc(FL.cfg.ending) + '</p><p><span class="tz-k">생각해 볼 질문</span>' + esc(q1) + '</p>' + (q2 ? '<p><span class="tz-k">하나 더</span>' + esc(q2) + '</p>' : '') + '</div>';
+    $('flResult').hidden = false; $('flShare').hidden = false;
+    $('flResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  $('flSvg').addEventListener('click', function (e) { flTake(e.target.closest('.pt')); });
+  $('flSvg').addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.pt')) { e.preventDefault(); flTake(e.target.closest('.pt')); } });
+  $('flPick').addEventListener('click', function () { var all = $('flSvg').querySelectorAll('.pt:not(.off)'); if (all.length) flTake(all[all.length - 1]); });
+  $('flNew').addEventListener('click', flDraw);
+  $('flSets').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; FL.set = +b.getAttribute('data-i'); flSetUI(); flDraw(); });
+  function flOpen() {
+    $('tzStage').hidden = true; $('tzRecords').hidden = true; $('dcBox').hidden = true; $('flBox').hidden = false;
+    flLoad().then(function () { if (FL.set >= FL.cfg.sets.length) FL.set = 0; flSetUI(); flDraw(); });
+    flSetUI(); flDraw();
+    setTimeout(function () { $('flBox').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40);
+  }
+  $('flBtn').addEventListener('click', flOpen);
+  $('flBack').addEventListener('click', function () { $('flBox').hidden = true; $('h-tarot').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  window.hjFlowerOpen = flOpen;
+  // ================= 날짜별 공유 카드 =================
+  var DC_ZOO = [['쥐', '🐭'], ['소', '🐮'], ['호랑이', '🐯'], ['토끼', '🐰'], ['용', '🐲'], ['뱀', '🐍'], ['말', '🐴'], ['양', '🐑'], ['원숭이', '🐵'], ['닭', '🐔'], ['개', '🐶'], ['돼지', '🐷']];
+  var DC_WD = ['일', '월', '화', '수', '목', '금', '토'];
+  function dcKst() { var t = new Date(Date.now() + 9 * 3600000); return t.toISOString().slice(0, 10); }
+  function dcHash(str) { var h = 2166136261; for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function dcData(iso) {
+    var y = +iso.slice(0, 4), m = +iso.slice(5, 7), d = +iso.slice(8, 10);
+    var di = S.dayIndex(y, m, d), st = di % 10, br = di % 12, lu = LUNAR.solarToLunar(y, m, d);
+    // 절기: 그날 0시(한국 시간) 기준으로 지금 절기와 다음 절기
+    var r = S.calc({ y: y, m: m, d: d, h: 0, mi: 0, dst: false, zasi: 'next' });
+    var dayTerm = null, r2 = S.calc({ y: y, m: m, d: d, h: 23, mi: 59, dst: false, zasi: 'next' });
+    if (r2.cur.name !== r.cur.name) dayTerm = r2.cur;
+    var hap6 = [1, 0, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2][br];
+    var san = [[8, 0, 4], [11, 3, 7], [2, 6, 10], [5, 9, 1]].filter(function (g) { return g.indexOf(br) >= 0; })[0].filter(function (x) { return x !== br; });
+    var hap = [hap6].concat(san).filter(function (x, i, a) { return a.indexOf(x) === i; });
+    var cid = TZ.cards[dcHash(iso + '|hongjjang') % 78].id, v = tzView(tzActiveId(), cid, false);
+    return { y: y, m: m, d: d, wd: DC_WD[new Date(Date.UTC(y, m - 1, d)).getUTCDay()], lu: lu, st: st, br: br,
+      gzK: S.STEM_K[st] + S.BR_K[br], gzH: S.STEM_H[st] + S.BR_H[br], elS: S.ELEM[S.STEM_EL[st]], elB: S.ELEM[S.BR_EL[br]],
+      cur: r.cur, next: r.next, dayTerm: dayTerm, hap: hap, chung: (br + 6) % 12, card: v };
+  }
+  function dcRR(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+  function dcWrap(c, text, w) { var lines = [], cur = ''; Array.from(text).forEach(function (ch) { if (c.measureText(cur + ch).width > w && cur && !/[.,?!”’)…]/.test(ch)) { lines.push(cur); cur = ch === ' ' ? '' : ch; } else cur += ch; }); if (cur) lines.push(cur); return lines; }
+  function dcLoadImg(src) { return new Promise(function (ok) { if (!src) return ok(null); var im = new Image(); im.onload = function () { ok(im); }; im.onerror = function () { ok(null); }; im.src = src; }); }
+  function dcDraw(D, opt) {
+    var W = 1080, H = 1920, F = '"Gowun Dodum", "Noto Sans KR", sans-serif', B = '700 ', G = '#1F4D3A', AU = '#B8933A', IV = '#F7F1E3', INK = '#24322B', MUT = '#6B6B5E';
+    var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var c = cv.getContext('2d');
+    var EL = { '목': ['#E3F0DC', '#2F5D26'], '화': ['#F8E0D8', '#8C2F14'], '토': ['#F5EBCF', '#6B4E0E'], '금': ['#EEEEEA', '#45474A'], '수': ['#DCE7F2', '#1F4466'] };
+    c.fillStyle = '#EFE6D2'; c.fillRect(0, 0, W, H);
+    dcRR(c, 40, 40, W - 80, H - 80, 48); c.fillStyle = IV; c.fill(); c.lineWidth = 6; c.strokeStyle = G; c.stroke();
+    dcRR(c, 64, 64, W - 128, H - 128, 34); c.lineWidth = 2.5; c.strokeStyle = AU; c.stroke();
+    ['#7FA86A', '#D0785A', '#D9B860', '#C9C4B4', '#5F84A3'].forEach(function (col, i) { c.beginPath(); c.arc(W / 2 - 64 + i * 32, 118, 10, 0, 7); c.fillStyle = col; c.fill(); });
+    c.textAlign = 'center'; c.fillStyle = MUT; c.font = '34px ' + F; c.fillText('홍짱 사주 · 날짜 카드', W / 2, 186);
+    c.fillStyle = G; c.font = B + '96px ' + F; c.fillText(D.m + '월 ' + D.d + '일 (' + D.wd + ')', W / 2, 300);
+    c.fillStyle = MUT; c.font = '40px ' + F; c.fillText(D.y + '년' + (D.lu ? ' · 음력 ' + (D.lu.leap ? '윤' : '') + D.lu.m + '월 ' + D.lu.d + '일' : ''), W / 2, 362);
+    // 일진
+    var y0 = 410; dcRR(c, 110, y0, W - 220, 260, 30); c.fillStyle = '#fff'; c.fill(); c.lineWidth = 2; c.strokeStyle = '#E3D8BE'; c.stroke();
+    c.beginPath(); c.arc(250, y0 + 130, 96, 0, 7); c.fillStyle = G; c.fill(); c.lineWidth = 5; c.strokeStyle = AU; c.stroke();
+    c.fillStyle = IV; c.font = B + '78px "Noto Serif KR", serif'; c.fillText(D.gzH, 250, y0 + 157);
+    c.textAlign = 'left'; c.fillStyle = AU; c.font = B + '32px ' + F; c.fillText('오늘의 일진', 390, y0 + 70);
+    c.fillStyle = G; c.font = B + '64px ' + F; c.fillText(D.gzK + '일', 390, y0 + 142);
+    [['천간', D.elS], ['지지', D.elB]].forEach(function (e, i) {
+      var x = 390 + i * 230, col = EL[e[1]]; dcRR(c, x, y0 + 172, 210, 60, 30); c.fillStyle = col[0]; c.fill();
+      c.fillStyle = col[1]; c.font = B + '34px ' + F; c.textAlign = 'center'; c.fillText(e[0] + ' ' + e[1] + '(' + S.ELEM_H[S.ELEM.indexOf(e[1])] + ')', x + 105, y0 + 214); c.textAlign = 'left';
+    });
+    // 절기
+    var y1 = y0 + 320; c.textAlign = 'center'; c.fillStyle = INK; c.font = '38px ' + F;
+    c.fillText(D.dayTerm ? '🌿 오늘 ' + D.dayTerm.name + ' 절기가 들어와요 (' + D.dayTerm.kst.slice(11) + ')' : '🌿 ' + D.cur.name + ' 절기 · 다음 ' + D.next.name + ' ' + (+D.next.kst.slice(5, 7)) + '월 ' + (+D.next.kst.slice(8, 10)) + '일', W / 2, y1);
+    var y = y1 + 60;
+    if (opt.ddi) {
+      c.font = B + '36px ' + F; c.fillStyle = G; c.fillText('오늘 지지 ' + S.BR_K[D.br] + '(' + S.BR_H[D.br] + ')와 띠 관계', W / 2, y + 20);
+      c.font = '38px ' + F; c.fillStyle = INK;
+      c.fillText('어울림(합)  ' + D.hap.map(function (b) { return DC_ZOO[b][1] + ' ' + DC_ZOO[b][0]; }).join('   '), W / 2, y + 86);
+      c.fillText('부딪힘(충)  ' + DC_ZOO[D.chung][1] + ' ' + DC_ZOO[D.chung][0], W / 2, y + 140);
+      y += 175;
+    }
+    return { cv: cv, c: c, y: y, W: W, H: H, F: F, B: B, G: G, AU: AU, IV: IV, INK: INK, MUT: MUT };
+  }
+  function dcFinish(K, D, opt, img) {
+    var c = K.c, W = K.W, H = K.H, F = K.F, B = K.B, y = K.y + 10;
+    if (opt.card) {
+      var v = D.card, cw = 234, ch = 390, cx = 130, cy = y;
+      c.save(); c.shadowColor = 'rgba(31,77,58,.25)'; c.shadowBlur = 24; c.shadowOffsetY = 8; dcRR(c, cx, cy, cw, ch, 22); c.fillStyle = K.IV; c.fill(); c.restore();
+      if (img) { c.save(); dcRR(c, cx, cy, cw, ch, 22); c.clip(); var s0 = Math.min(cw / img.naturalWidth, ch / img.naturalHeight), iw = img.naturalWidth * s0, ih = img.naturalHeight * s0; c.drawImage(img, cx + (cw - iw) / 2, cy + (ch - ih) / 2, iw, ih); c.restore(); }
+      else {
+        dcRR(c, cx, cy, cw, ch, 22); c.lineWidth = 5; c.strokeStyle = K.G; c.stroke(); dcRR(c, cx + 16, cy + 16, cw - 32, ch - 32, 14); c.lineWidth = 2.5; c.strokeStyle = K.AU; c.stroke();
+        c.textAlign = 'center'; c.fillStyle = K.G; c.font = B + '38px ' + F; c.fillText(v.label, cx + cw / 2, cy + 72);
+        c.font = '54px ' + F; c.fillText('✦', cx + cw / 2, cy + 215); c.font = B + (v.name.length > 5 ? 30 : 40) + 'px ' + F; c.fillText(v.name, cx + cw / 2, cy + 330);
+      }
+      dcRR(c, cx, cy, cw, ch, 22); c.lineWidth = 4; c.strokeStyle = K.G; c.stroke();
+      var tx = cx + cw + 46, tw = W - tx - 120; c.textAlign = 'left';
+      c.fillStyle = K.AU; c.font = B + '32px ' + F; c.fillText('오늘의 카드', tx, cy + 50);
+      c.fillStyle = K.G; c.font = B + '60px ' + F; c.fillText(v.name, tx, cy + 128);
+      c.fillStyle = K.MUT; c.font = '30px ' + F; c.fillText(v.keywords.slice(0, 3).join(' · '), tx, cy + 180);
+      c.fillStyle = K.INK; c.font = '38px ' + F; dcWrap(c, v.story, tw).slice(0, 4).forEach(function (ln, i) { c.fillText(ln, tx, cy + 246 + i * 54); });
+      y = cy + ch + 36;
+      c.font = B + '38px ' + F; var ql = dcWrap(c, v.question, W - 300).slice(0, 3), qh = 96 + ql.length * 54;
+      dcRR(c, 110, y, W - 220, qh, 28); c.fillStyle = '#EEF3EC'; c.fill();
+      c.textAlign = 'left'; c.fillStyle = K.AU; c.font = B + '32px ' + F; c.fillText('오늘의 질문', 150, y + 52);
+      c.fillStyle = K.G; c.font = B + '38px ' + F; ql.forEach(function (ln, i) { c.fillText(ln, 150, y + 104 + i * 54); });
+      y += qh + 26;
+    }
+    if (opt.msg) { c.textAlign = 'center'; c.fillStyle = K.G; c.font = B + '40px ' + F; var ml = dcWrap(c, '“' + opt.msg + '”', W - 260).slice(0, 2), room = Math.max(1, Math.floor((H - 200 - y) / 54)); ml.slice(0, room).forEach(function (ln, i) { c.fillText(ln, W / 2, y + 44 + i * 54); }); }
+    // 아래
+    c.textAlign = 'center'; c.fillStyle = K.MUT; c.font = '26px ' + F; c.fillText('전통 일진과 날짜로 정한 카드예요. 앞일을 알려 주는 그림이 아니에요.', W / 2, H - 150);
+    c.save(); c.translate(W - 170, 170); c.rotate(0.1); dcRR(c, -42, -42, 84, 84, 14); c.fillStyle = '#E8736A'; c.fill(); c.fillStyle = '#FFF6F1'; c.font = B + '28px "Noto Sans KR", sans-serif'; c.fillText('홍', 0, -6); c.fillText('짱', 0, 26); c.restore();
+    c.fillStyle = K.G; c.font = B + '32px ' + F; c.fillText('hong-jjang.github.io/saju', W / 2, H - 98);
+    return new Promise(function (ok) { K.cv.toBlob(function (b) { ok(b); }, 'image/png'); });
+  }
+  var DC = { blob: null, data: null, url: null, seq: 0 };
+  function dcMake() {
+    var iso = $('dcDate').value; if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return;
+    var opt = { ddi: $('dcOptDdi').checked, card: $('dcOptCard').checked, msg: $('dcMsg').value.trim() }, my = ++DC.seq, D;
+    try { D = dcData(iso); } catch (e) { $('dcState').textContent = '⚠️ ' + (e.message || '이 날짜는 만들 수 없어요.'); return; }
+    $('dcState').textContent = '카드를 만드는 중이에요…';
+    var txt = D.gzK + D.gzH + D.card.name + D.card.story + D.card.question + opt.msg + '0123456789월일년음력절기오늘의질문카드띠관계어울림부딪힘합충천간지지';
+    var fonts = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('34px "Gowun Dodum"', txt), document.fonts.load('700 38px "Noto Sans KR"', txt), document.fonts.load('700 86px "Noto Serif KR"', D.gzH)]).catch(function () {}) : Promise.resolve();
+    fonts.then(function () { return dcLoadImg(opt.card ? D.card.front : null); }).then(function (img) {
+      if (my !== DC.seq) return null;
+      return dcFinish(dcDraw(D, opt), D, opt, img);
+    }).then(function (blob) {
+      if (!blob || my !== DC.seq) return;
+      DC.blob = blob; DC.data = D;
+      if (DC.url) URL.revokeObjectURL(DC.url); DC.url = URL.createObjectURL(blob); $('dcImg').src = DC.url;
+      $('dcState').textContent = D.y + '년 ' + D.m + '월 ' + D.d + '일 카드예요. 오늘의 카드: ' + D.card.name;
+    });
+  }
+  function dcCaption() {
+    var D = DC.data; if (!D) return '';
+    var L = ['📅 ' + D.y + '년 ' + D.m + '월 ' + D.d + '일 (' + D.wd + ')' + (D.lu ? ' · 음력 ' + (D.lu.leap ? '윤' : '') + D.lu.m + '월 ' + D.lu.d + '일' : ''),
+      '오늘의 일진: ' + D.gzK + '(' + D.gzH + ')일 · 천간 ' + D.elS + ' · 지지 ' + D.elB,
+      '🌿 ' + (D.dayTerm ? '오늘 ' + D.dayTerm.name + ' 절기' : D.cur.name + ' 절기 · 다음 ' + D.next.name + ' ' + (+D.next.kst.slice(5, 7)) + '월 ' + (+D.next.kst.slice(8, 10)) + '일')];
+    if ($('dcOptDdi').checked) L.push('띠 어울림(합): ' + D.hap.map(function (b) { return DC_ZOO[b][0]; }).join('·') + ' / 부딪힘(충): ' + DC_ZOO[D.chung][0]);
+    if ($('dcOptCard').checked) { L.push('🃏 오늘의 카드: ' + D.card.name + ' — ' + D.card.story); L.push('❓ 오늘의 질문: ' + D.card.question); }
+    if ($('dcMsg').value.trim()) L.push('💬 ' + $('dcMsg').value.trim());
+    L.push('', '#홍짱사주 #오늘의일진 #오늘의타로 #날짜카드 #' + D.gzK + '일', 'https://hong-jjang.github.io/saju/');
+    return L.join('\n');
+  }
+  function dcShift(n) { var t = new Date($('dcDate').value + 'T00:00:00Z'); if (isNaN(t)) t = new Date(dcKst() + 'T00:00:00Z'); t.setUTCDate(t.getUTCDate() + n); $('dcDate').value = t.toISOString().slice(0, 10); dcMake(); }
+  $('dcPrev').addEventListener('click', function () { dcShift(-1); });
+  $('dcNext').addEventListener('click', function () { dcShift(1); });
+  $('dcToday').addEventListener('click', function () { $('dcDate').value = dcKst(); dcMake(); });
+  ['dcDate', 'dcOptDdi', 'dcOptCard'].forEach(function (id) { $(id).addEventListener('change', dcMake); });
+  var dcT = null; $('dcMsg').addEventListener('input', function () { clearTimeout(dcT); dcT = setTimeout(dcMake, 500); });
+  $('dcSave').addEventListener('click', function () {
+    if (!DC.blob) return;
+    var D = DC.data, name = '홍짱-날짜카드-' + D.y + p2(D.m) + p2(D.d) + '.png', file = new File([DC.blob], name, { type: 'image/png' });
+    if (navigator.canShare && navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: '홍짱 사주 · 날짜 카드', text: dcCaption() }).then(function () { $('dcOut').textContent = '보냈어요!'; }, function (e) { if (e && e.name !== 'AbortError') $('dcOut').textContent = '보내지 못했어요. 다시 눌러 주세요.'; });
+      return;
+    }
+    var a = document.createElement('a'); a.href = DC.url; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    $('dcOut').textContent = '그림을 저장했어요 (' + name + '). 쇼츠·스토리·카톡에 사진으로 올려 주세요.';
+  });
+  $('dcCopy').addEventListener('click', function () {
+    var t = dcCaption(); if (!t) return;
+    var ok = false; try { var ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.top = '-1000px'; document.body.appendChild(ta); ta.select(); ok = document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {}
+    try { if (navigator.clipboard) navigator.clipboard.writeText(t); ok = true; } catch (e) {}
+    $('dcOut').textContent = ok ? '소개 글을 복사했어요. 쇼츠·인스타 설명란에 붙여 넣어 주세요.' : '복사가 안 됐어요.';
+  });
+  function dcOpen() {
+    $('tzStage').hidden = true; $('tzRecords').hidden = true; $('flBox').hidden = true; $('dcBox').hidden = false;
+    if (!$('dcDate').value) $('dcDate').value = dcKst();
+    dcMake();
+    setTimeout(function () { $('dcBox').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40);
+  }
+  $('dcBtn').addEventListener('click', dcOpen);
+  $('dcBack').addEventListener('click', function () { $('dcBox').hidden = true; $('h-tarot').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  window.hjDayCardOpen = function () { if (TZ.ready) dcOpen(); else setTimeout(window.hjDayCardOpen, 300); };
   tzLoad();
 
   var AI_URL = { claude: 'https://claude.ai/new', chatgpt: 'https://chatgpt.com/', gemini: 'https://gemini.google.com/app' };
@@ -6794,7 +7105,7 @@ var KAKAO_JS_KEY = '393da0e592003f164282500dc2c8d890';
 <script>
 (function () {
   var sp = document.getElementById('splash'), go = document.getElementById('splashGo');
-  var seen = /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum|pungsu|fengshui)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
+  var seen = /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum|pungsu|fengshui|kkotjeom|flower|nalja|daycard)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
   function close() {
     sp.classList.add('out');
     document.body.style.overflow = '';
