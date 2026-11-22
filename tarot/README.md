@@ -6,7 +6,8 @@
 tarot/
 ├─ cards.json              ← 78장 공통 목록 (카드 ID·분류). ID는 절대 바꾸지 않아요.
 ├─ registry.json           ← 어떤 덱이 있는지, 새 리딩에 쓰는 덱(active), 검증 통과 기록(verified)
-├─ validate.js             ← 검증 명령
+├─ validate.js             ← 검증 명령 · 검수표 만들기
+├─ reports/                ← 검수표 (validate.js 가 만들어요)
 ├─ embed.js                ← 기본 덱을 고쳤을 때 앱 안 비상용 사본 맞추기
 └─ decks/
    ├─ basic/               ← 기본 덱: 그림 없이 이름·번호만 있는 글자 카드 (지금 쓰는 덱)
@@ -28,52 +29,82 @@ tarot/
 
 덱마다 같은 ID를 써요. 그래서 기본 덱의 `major-17`과 홍짱 덱의 `major-17`은 그림과 해설이 서로 달라도 같은 카드로 다뤄요.
 
-## 카드 데이터 예시 (`deck.json` 안)
+## 카드 데이터 (2판 구조)
+
+전통 해설과 홍짱의 창작 해설을 따로 적어요. 실제 예시는 `tarot/decks/hongjjang-ohaeng/deck.json`의 `"major-17"`이에요.
 
 ```json
 "major-17": {
   "name": "별",
   "front": "images/v1/major-17.png",
-  "alt": "밤하늘 아래 방울이가 물병으로 별빛을 받는 모습",
-  "element": null,
-  "keywords": ["희망", "회복", "작은 빛"],
-  "story": "어두운 하늘에도 별 하나는 빛나요.",
-  "storyReversed": "별빛이 잠시 가려져도 사라진 건 아니에요.",
-  "upright": "카드의 정방향 뜻을 두세 문장으로 적어요.",
-  "reversed": "카드의 역방향 뜻을 두세 문장으로 적어요.",
-  "question": "요즘 내 마음을 조금 밝게 해준 일은 무엇인가요?"
+  "alt": "밤하늘 큰 별 아래에서 방울이가 물병 두 개로 물을 붓는 장면",
+  "review": "초안",
+  "traditional": {
+    "keywords": ["희망", "치유", "영감"],
+    "upright": "전통 정방향 뜻",
+    "reversed": "전통 역방향 뜻",
+    "source": "확인 필요"
+  },
+  "scene": {
+    "description": "홍짱이 그린 장면 한두 문장",
+    "symbols": [ { "symbol": "큰 별", "meaning": "어둠 속에서도 남아 있는 작은 희망" } ]
+  },
+  "reading": {
+    "author": "홍짱",
+    "story": "어두운 하늘에도 별 하나는 빛나요.",
+    "storyReversed": "별빛이 잠시 가려져도 사라진 건 아니에요.",
+    "question": "요즘 내 마음을 조금 밝게 해준 일은 무엇인가요?",
+    "advice": "마음이 밝아졌던 순간을 하나 적어 보세요."
+  },
+  "positions": {
+    "situation": { "upright": "지금의 상황에서 읽는 문장", "reversed": "역방향일 때" },
+    "consider":  { "upright": "살펴볼 점에서 읽는 문장", "reversed": "…" },
+    "action":    { "upright": "해볼 수 있는 일에서 읽는 문장", "reversed": "…" }
+  },
+  "element": { "value": "수", "reason": "배정 이유", "usage": "해설에서 쓰는 방법", "review": "초안" }
 }
 ```
 
 | 항목 | 뜻 | 꼭 필요? |
 |---|---|---|
-| `name` | 화면에 보이는 카드 이름 | ✅ |
-| `front` | 앞면 그림 경로 (deck.json 이 있는 폴더 기준) | 홍짱 덱은 ✅ |
-| `alt` | 그림을 글로 설명 (화면 읽기 프로그램용) | 그림이 있으면 ✅ |
-| `keywords` | 핵심어 | ✅ |
-| `story` | 카드를 뒤집으면 먼저 보이는 한 문장 | ✅ |
-| `storyReversed` | 역방향일 때의 한 문장 | 없으면 `reversed`를 써요 |
-| `upright`, `reversed` | 정방향·역방향 풀이 | ✅ |
-| `question` | 생각해 볼 질문 | ✅ |
-| `element` | 오행 (`"목"·"화"·"토"·"금"·"수"`), 정하지 않았으면 `null` = 미정 | 선택 |
+| `review` | 카드 검토 상태: `"초안"` → `"검토 중"` → `"승인"` | ✅ |
+| `traditional` | 전통 핵심어·정역방향 뜻. `source`에 참고한 책·자료를 적고, 못 찾았으면 `"확인 필요"` | ✅ |
+| `scene` | 홍짱이 그린 장면과 그 속 상징·뜻 | 홍짱 덱은 ✅ |
+| `reading` | 앱에 보이는 창작 해설: 한 문장, 성찰 질문, 한마디 조언 | ✅ |
+| `positions` | 세 장 배열의 자리별 해설. 없으면 앱이 정해진 자리 규칙으로 이어 써요 | 선택 |
+| `element` | 오행·배정 이유·쓰임·검토 상태. **`review`가 `"승인"`일 때만** 사용자 풀이에 보여요. 정하지 않았으면 `"value": null` | 선택 |
+| `front`, `alt` | 앞면 그림 경로와 그림 설명 | 홍짱 덱은 ✅ |
 
-덱 맨 위에는 `deckId`, `version`, `status`(`draft` 작업 중 / `published` 공개 / `dev` 개발용), `back`(뒷면 경로), `rights`(사용 권리)가 있어요.
+## 카드 한 장 바꾸기 — '별' 예시 (실제 파일 이름)
 
-## 별 한 장으로 해 보는 순서
-
-1. **별 그림 넣기**: 그림을 `decks/hongjjang-ohaeng/images/v1/major-17.png`로 저장해요.
-2. **카드 데이터 고치기**: `decks/hongjjang-ohaeng/deck.json`의 `"major-17"`에서 `front`를 `"images/v1/major-17.png"`로 바꾸고, `alt`와 해설을 적어요. 버전(`version`)도 올려요. 예) `"1.0.0"`
-3. **미리 보기**: `http://localhost:8000/?tarotdev=1#tarot` → 개발용 미리보기에서 덱 `홍짱 오행 타로`, 카드 `major-17`을 골라요. 아직 없는 카드는 **기본 카드 임시 표시**로 보여요.
-4. **검증하기**:
+1. **그림 넣기**: 새 그림을 `tarot/decks/hongjjang-ohaeng/images/v1/major-17.png`로 저장해요.
+   - 지금은 `images/v0.1/major-17.png`(토끼 별, 첫 시안)가 **임시**로 연결돼 있어요. 이 파일은 지우지 마세요.
+2. **카드 데이터 고치기**: `tarot/decks/hongjjang-ohaeng/deck.json`을 열어서
+   - 맨 위 `"version"`을 올려요. 예) `"0.2.0"` → `"0.3.0"`
+   - `"major-17"`의 `"front"`를 `"images/v1/major-17.png"`로 바꾸고 `"alt"`를 적어요.
+   - `"temporary": true`와 `"tempNote"` 줄은 지워요.
+   - `"scene"`의 장면 설명과 상징을 적고, 해설·자리별 해설을 다듬어요.
+3. **나란히 보기**: `http://localhost:8000/?tarotdev=1#tarot`을 열어요.
+   - 개발용 미리보기에서 왼쪽 `기본 덱`, 오른쪽 `홍짱 오행 타로`, 카드 `major-17 · 별`을 골라요.
+   - 앞면, 뒷면, 자리별 해설, 그림이 잘리는지를 확인해요.
+   - "이 카드를 고른 자리에 넣어 세 장 리딩 열기"로 자리마다 어떻게 읽히는지 볼 수 있어요.
+4. **검수표 만들기**:
    ```bash
    node tarot/validate.js hongjjang-ohaeng
    ```
-   고칠 곳이 `❌ [major-17] front: 앞면 그림 파일이 없어요 → …`처럼 카드 ID와 항목으로 나와요.
-5. **완성 덱 켜기**: 78장을 모두 채워 `❌`가 없어지면 `deck.json`의 `"status"`를 `"published"`로 바꾸고 실행해요.
+   `tarot/reports/hongjjang-ohaeng-검수표.md`에 카드별 표와 "홍짱이 검토할 원고·이미지" 목록이 생겨요.
+5. **승인하기**: 마음에 들면 `"review": "승인"`으로 바꿔요. 오행도 확정했다면 `"element"`의 `"review"`도 `"승인"`으로 바꿔요.
+6. **승인한 카드만 먼저 바꿔 넣기**:
+   ```bash
+   node tarot/validate.js hongjjang-ohaeng --overlay
+   ```
+   기본 덱으로 뽑다가 '별'이 나오면 홍짱 별로 보여요. 나머지 77장은 기본 카드 그대로예요.
+7. **78장이 모두 승인되면 덱 전체 켜기**: `deck.json`의 `"status"`를 `"published"`로 바꾸고 실행해요.
    ```bash
    node tarot/validate.js hongjjang-ohaeng --activate
    ```
-   검증을 통과해야만 `registry.json`이 바뀌고, 새로 뽑는 카드부터 홍짱 덱으로 나와요.
+
+저장한 기록은 뽑은 그때의 덱 버전·방향·그림 경로·해설·종합 질문을 그대로 갖고 있어요. 그래서 다시 열어도 카드를 다시 뽑지 않아요. 덱을 바꿔도 예전 모습 그대로 열려요.
 
 ## 꼭 지켜 주세요
 
@@ -86,5 +117,7 @@ tarot/
 ## 앱에서 하는 일 (코드 구조)
 
 - **추첨**(`TZ_DRAW`): 78장 중에서 중복 없이 뽑아요. 질문은 추첨에 쓰지 않아요. 역방향은 설정에서 켤 때만 나와요.
+- **세 장 읽기**: 자리별 해설(없으면 자리 규칙) → 세 장을 이어 읽는 하나의 질문. 정·역방향이 섞이거나 완드·펜타클, 컵·소드가 함께 나오면 두 방향을 함께 보라는 문장을 더해요.
+- **오행**: 카드의 `element.review`가 "승인"일 때만 "오행 수"처럼 글자와 색으로 보여 줘요.
 - **해석**(덱 데이터): 뽑힌 카드 ID로 덱 파일의 이름·그림·해설을 찾아요.
 - **기록**: 이 브라우저(localStorage)에만 저장돼요. 카드 ID·순서·방향·덱 ID와 버전·그때의 이름과 해설·그림 경로를 함께 담아요.
