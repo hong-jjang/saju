@@ -451,6 +451,14 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+/* 풀이 카톡 보내기 */
+.sh-row { margin-top: 12px; }
+.sh-row .sh-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sh-row button { min-height: 48px; border: 0; border-radius: 999px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.sh-row .sh-txt { background: #FEE500; color: #191919; }
+.sh-row .sh-img { background: #E3DBFF; color: #4E3FA0; }
+.sh-row .sh-msg { font-size: 13.5px; color: var(--green-2); margin: 6px 0 0; white-space: pre-wrap; }
+.sh-row .sh-msg:empty { display: none; }
 .fp-peek { position: sticky; top: 8px; z-index: 6; display: flex; gap: 10px; align-items: center; background: #FFFFFF; border: 2px solid #F4A7BB; border-radius: 18px; padding: 8px; margin: 8px 0 10px; box-shadow: 0 6px 16px rgba(194, 85, 122, .15); }
 .fp-peek[hidden] { display: none; }
 .fp-peek img { width: 92px; height: 92px; object-fit: cover; border-radius: 12px; flex: none; }
@@ -774,6 +782,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <h2 id="h-auto">📖 <span id="autoWho">나</span>의 사주 한눈에 풀이</h2>
       <p class="sample-note" id="autoSample" hidden>지금은 예시 사주예요. 위 입력칸에 생년월일을 넣고 만세력 보기를 누르면 내 풀이로 바뀌어요.</p>
       <div id="autoBox"></div>
+      <div class="sh-row" data-share="autoBox" data-title="사주 한눈에 풀이"></div>
       <div class="auto-more">
         <button type="button" class="ai-link" data-go="5:h-ai"><span aria-hidden="true">🤖</span>AI에게 더 깊게 물어보기</button>
         <button type="button" class="hj-more" data-go="5:hjAskSaju"><span aria-hidden="true">💬</span>홍짱쌤에게 직접 물어보기</button>
@@ -977,6 +986,7 @@ button.kakao svg { width: 20px; height: 20px; }
         <select id="tjYear"></select>
       </div>
       <div id="tjBox"></div>
+      <div class="sh-row" data-share="tjBox" data-title="토정비결 풀이"></div>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="tj"><span aria-hidden="true">✳️</span>Claude에게 풀이 부탁</button>
         <button type="button" class="ai-link" data-ai="chatgpt" data-src="tj"><span aria-hidden="true">💬</span>ChatGPT에게 풀이 부탁</button>
@@ -1037,6 +1047,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <button class="primary" id="tShuffle" type="button">카드 섞기 (3장 뽑기)</button>
       <button class="ghost" id="tOneBtn" type="button" style="width:100%;margin-top:8px">☀️ 오늘의 한 장 바로 뽑기</button>
       <div id="tOne" class="t-one"></div>
+      <div class="sh-row" data-share="tOne" data-title="오늘의 타로 한 장"></div>
       <p class="err" id="tErr" role="alert" hidden></p>
     </section>
     <section class="card" id="tPick" aria-labelledby="h-tpick" hidden>
@@ -1046,6 +1057,7 @@ button.kakao svg { width: 20px; height: 20px; }
       <div class="t-deck" id="tDeck" aria-label="뒤집힌 카드 더미"></div>
       <div id="tDone" hidden style="margin-top:16px">
         <div id="tRead"></div>
+      <div class="sh-row" data-share="tRead" data-title="타로 풀이"></div>
         <h3 style="margin:18px 0 6px">🤖 AI에게 더 깊게 물어보기</h3>
         <p class="hint" style="margin-bottom:10px">AI를 누르면 뽑은 카드와 질문이 <b>자동으로 복사</b>되고 AI 창이 열려요. 입력칸에 붙여넣기 하고 보내면 해석이 나와요.</p>
         <div class="ai-links">
@@ -1176,6 +1188,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" id="faceRes" aria-labelledby="h-facer">
       <h2 id="h-facer">✨ 관상 풀이</h2>
       <div id="faceBox"></div>
+      <div class="sh-row" data-share="faceBox" data-title="관상 풀이"></div>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="face"><span aria-hidden="true">✳️</span>Claude로 자세히 보기</button>
         <button type="button" class="ai-link" data-ai="chatgpt" data-src="face"><span aria-hidden="true">💬</span>ChatGPT로 자세히 보기</button>
@@ -1300,6 +1313,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" id="palmRes" aria-labelledby="h-palmr">
       <h2 id="h-palmr">✨ 손금 풀이</h2>
       <div id="palmBox"></div>
+      <div class="sh-row" data-share="palmBox" data-title="손금 풀이"></div>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="palm"><span aria-hidden="true">✳️</span>Claude로 자세히 보기</button>
         <button type="button" class="ai-link" data-ai="chatgpt" data-src="palm"><span aria-hidden="true">💬</span>ChatGPT로 자세히 보기</button>
@@ -1380,6 +1394,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" id="tjsResult" aria-labelledby="h-tjsr" hidden>
       <h2 id="h-tjsr">📜 토정비결 결과</h2>
       <div id="tjsBox"></div>
+      <div class="sh-row" data-share="tjsBox" data-title="토정비결 풀이"></div>
       <div class="ai-links" style="margin-top:12px">
         <button type="button" class="ai-link" data-ai="claude" data-src="tjs"><span aria-hidden="true">✳️</span>Claude에게 풀이 부탁</button>
         <button type="button" class="ai-link" data-ai="chatgpt" data-src="tjs"><span aria-hidden="true">💬</span>ChatGPT에게 풀이 부탁</button>
@@ -1428,6 +1443,7 @@ button.kakao svg { width: 20px; height: 20px; }
     <section class="card" aria-labelledby="h-gr" id="gResult">
       <h2 id="h-gr">두 사람의 명식과 관계</h2>
       <div id="gBox"></div>
+      <div class="sh-row" data-share="gBox" data-title="궁합 풀이"></div>
     </section>
     <section class="card" aria-labelledby="h-gai">
       <h2 id="h-gai">AI 궁합 풀이</h2>
@@ -5485,6 +5501,131 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       show(guide());
     });
   });
+})();
+
+
+/* ===== 풀이를 카카오톡으로 보내기 (글·이미지) ===== */
+(function () {
+  var APP = 'https://hong-jjang.github.io/saju/';
+  function who() { var n = document.getElementById('svName'); return n && n.value.trim() ? n.value.trim() + '님의 ' : ''; }
+  function cleanText(el) {
+    var t = (el.innerText || '').replace(/\r/g, '').split('\n').map(function (x) { return x.replace(/\s+$/g, ''); });
+    var out = [];
+    t.forEach(function (x) {
+      if (/^(부위별 자세히 보기|AI에게|아래 버튼으로|3곳 이상 고르면|과거·현재·미래로 자세히)/.test(x.trim())) return;
+      if (!x.trim()) { if (out.length && out[out.length - 1] !== '') out.push(''); return; }
+      out.push(x.trim());
+    });
+    // 이모지만 있는 줄은 다음 줄 앞에 붙이고, 짧은 낱말 줄(키워드)은 한 줄로 모아요
+    var m = [];
+    for (var i = 0; i < out.length; i++) {
+      var x = out[i];
+      if (/^\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*$/u.test(x) && out[i + 1]) { out[i + 1] = x + ' ' + out[i + 1]; continue; }
+      m.push(x);
+    }
+    var r = [], run = [];
+    function flush() { if (run.length >= 2) r.push(run.join(' · ')); else if (run.length) r.push(run[0]); run = []; }
+    m.forEach(function (x) {
+      var short = x && x.length <= 16 && !/[.!?:]$/.test(x) && !/^\p{Extended_Pictographic}/u.test(x);
+      if (short) run.push(x); else { flush(); r.push(x); }
+    });
+    flush();
+    return r.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+  function buildText(title, el) {
+    var d = new Date(Date.now() + 9 * 3600000);
+    return '📖 ' + who() + title + ' (' + d.getUTCFullYear() + '.' + (d.getUTCMonth() + 1) + '.' + d.getUTCDate() + ')\n\n' + cleanText(el) + '\n\n— 홍짱 사주에서 본 풀이예요\n' + APP;
+  }
+  function copy(text) {
+    var ok = false;
+    try { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-1000px'; document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length); ok = document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {}
+    if (navigator.clipboard && navigator.clipboard.writeText) { try { navigator.clipboard.writeText(text); ok = true; } catch (e) {} }
+    return ok;
+  }
+  // 글자를 줄 너비에 맞게 자르기 (한글은 글자 단위)
+  function wrap(ctx, text, w) {
+    var lines = [], cur = '';
+    Array.from(text).forEach(function (ch) {
+      if (ctx.measureText(cur + ch).width > w && cur) { lines.push(cur); cur = ch === ' ' ? '' : ch; } else cur += ch;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  function makeImage(title, text) {
+    var W = 1080, P = 72, IW = W - P * 2 - 40;
+    var FONT = '"Gowun Dodum", "Noto Sans KR", sans-serif', BOLD = '700 ';
+    var c = document.createElement('canvas'), ctx = c.getContext('2d');
+    var rows = [], body = text.split('\n');
+    body.shift(); // 첫 줄(제목)은 따로 그려요
+    body.forEach(function (ln) {
+      if (!ln) { rows.push({ gap: 18 }); return; }
+      var head = ln.length <= 26 && /^[^0-9A-Za-z가-힣\s(]/.test(ln);
+      ctx.font = (head ? BOLD + '38px ' : '34px ') + FONT;
+      wrap(ctx, ln, IW).forEach(function (x, i) { rows.push({ t: x, head: head && i === 0, size: head ? 38 : 34 }); });
+    });
+    var H = 300 + rows.reduce(function (a, r) { return a + (r.gap || (r.head ? 64 : 54)); }, 0) + 220;
+    c.width = W; c.height = H;
+    var g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#CFE3FF'); g.addColorStop(.55, '#E3DBFF'); g.addColorStop(1, '#FFE3EC');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    function rr(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+    rr(40, 40, W - 80, H - 80, 44); ctx.fillStyle = '#FFFDF9'; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = '#F4A7BB'; ctx.stroke();
+    // 오행 점
+    ['#7CC49A', '#F28B82', '#F2C46B', '#C9CED6', '#8DB3F0'].forEach(function (col, i) { ctx.beginPath(); ctx.arc(W / 2 - 60 + i * 30, 96, 9, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill(); });
+    ctx.textAlign = 'center'; ctx.fillStyle = '#2F5590'; ctx.font = BOLD + '50px ' + FONT;
+    wrap(ctx, title, W - 200).forEach(function (x, i) { ctx.fillText(x, W / 2, 180 + i * 60); });
+    ctx.textAlign = 'left';
+    var y = 290;
+    rows.forEach(function (r) {
+      if (r.gap) { y += r.gap; return; }
+      ctx.font = (r.head ? BOLD : '') + r.size + 'px ' + FONT;
+      ctx.fillStyle = r.head ? '#B4466A' : '#3A2A31';
+      if (r.head) y += 10;
+      ctx.fillText(r.t, P + 20, y);
+      y += r.head ? 54 : 54;
+    });
+    // 아래: 도장 + 주소
+    var sy = H - 220;
+    ctx.save(); ctx.translate(W / 2, sy + 40); ctx.rotate(-0.1); rr(-46, -46, 92, 92, 16); ctx.fillStyle = '#E8736A'; ctx.fill();
+    ctx.fillStyle = '#FFF6F1'; ctx.textAlign = 'center'; ctx.font = BOLD + '30px "Noto Sans KR", sans-serif'; ctx.fillText('홍', 0, -6); ctx.fillText('짱', 0, 30); ctx.restore();
+    ctx.textAlign = 'center'; ctx.fillStyle = '#7A6F8A'; ctx.font = '28px ' + FONT; ctx.fillText('홍짱 사주 · hong-jjang.github.io/saju', W / 2, H - 70);
+    return new Promise(function (res) { c.toBlob(function (b) { res(b); }, 'image/png'); });
+  }
+  function setup(row) {
+    var id = row.getAttribute('data-share'), title = row.getAttribute('data-title');
+    row.innerHTML = '<div class="sh-btns"><button type="button" class="sh-txt">💬 카톡으로 글 보내기</button><button type="button" class="sh-img">🖼️ 이미지로 보내기</button></div><p class="sh-msg" role="status"></p>';
+    var msg = row.querySelector('.sh-msg');
+    function target() { var el = document.getElementById(id); return el && (el.innerText || '').trim().length > 10 ? el : null; }
+    row.querySelector('.sh-txt').addEventListener('click', function () {
+      var el = target(); if (!el) { msg.textContent = '먼저 풀이를 만들어 주세요.'; return; }
+      var text = buildText(title, el);
+      if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        navigator.share({ title: '홍짱 사주 · ' + title, text: text }).then(function () { msg.textContent = '보냈어요!'; }, function (e) { if (e && e.name === 'AbortError') return; msg.textContent = copy(text) ? '복사했어요. 카카오톡 대화창에 붙여 넣어 보내 주세요.' : '공유가 안 됐어요.'; });
+      } else {
+        msg.textContent = copy(text) ? '풀이 전체를 복사했어요! 카카오톡 대화창에 붙여 넣기(Ctrl+V) 하고 보내 주세요.' : '자동 복사가 안 됐어요.';
+      }
+    });
+    row.querySelector('.sh-img').addEventListener('click', function () {
+      var el = target(); if (!el) { msg.textContent = '먼저 풀이를 만들어 주세요.'; return; }
+      msg.textContent = '이미지를 만들고 있어요…';
+      var text = buildText(title, el);
+      var ready = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('34px "Gowun Dodum"', text), document.fonts.load('700 38px "Noto Sans KR"', text), document.fonts.load('700 30px "Noto Sans KR"', '홍짱')]).catch(function () {}) : Promise.resolve();
+      ready.then(function () { return makeImage('📖 ' + who() + title, text.split('\n— 홍짱')[0]); }).then(function (blob) {
+        var file = new File([blob], '홍짱-' + title.replace(/\s+/g, '') + '.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({ files: [file], title: '홍짱 사주 · ' + title }).then(function () { msg.textContent = '보냈어요!'; }, function (e) { if (e && e.name !== 'AbortError') msg.textContent = '공유가 안 됐어요. 다시 눌러 주세요.'; else msg.textContent = ''; });
+          return;
+        }
+        var url = URL.createObjectURL(blob), a = document.createElement('a');
+        a.href = url; a.download = file.name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        var done = '이미지를 저장했어요. 카카오톡에서 사진으로 보내 주세요.';
+        if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+          navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () { msg.textContent = done + '\n(PC는 카카오톡 대화창에 Ctrl+V로 바로 붙여 넣어도 돼요.)'; }, function () { msg.textContent = done; });
+        } else msg.textContent = done;
+      }).catch(function () { msg.textContent = '이미지를 만들지 못했어요. 글 보내기를 이용해 주세요.'; });
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.sh-row'), setup);
 })();
 
 /* ===== 홍짱쌤 문의 창구 설정 =====
