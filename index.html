@@ -218,6 +218,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 .check input { width: 22px; height: 22px; accent-color: var(--green-2); flex: none; }
 .hint { font-size: 13px; color: var(--muted); margin: 0; }
 .dst-row { background: var(--warn-bg); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px; }
+.dst-auto { margin: 0; font-size: 14px; line-height: 1.6; }
 details { margin-bottom: 14px; }
 summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 500; color: var(--green-2); }
 .radio { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; font-size: 14px; }
@@ -451,6 +452,9 @@ td.hid { font-size: 12px; line-height: 1.7; }
 textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); padding: 10px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); resize: vertical; }
 .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
 .toast { font-size: 14px; color: var(--green-2); }
+#offBar { position: fixed; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 400; width: min(92vw, 460px); box-sizing: border-box; background: #3A2A31; color: #fff; border-radius: 16px; padding: 10px 14px; font-size: 13.5px; line-height: 1.5; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+#offBar[hidden] { display: none; }
+#offBar small { opacity: .8; }
 /* 풍수 */
 #splash .sp-choice .sp-fs { background: #D6EEDF !important; color: #2A6B45 !important; }
 body[data-mode=fengshui] .tabs, body[data-mode=fengshui] .panel { display: none !important; }
@@ -463,9 +467,9 @@ body[data-mode=fengshui] #go { background: #3F8A5E; }
 .fs-gua .num { flex: none; width: 64px; height: 64px; border-radius: 18px; background: #3F8A5E; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; line-height: 1.1; }
 .fs-gua .num small { font-size: 11px; font-weight: 500; }
 .fs-gua p { margin: 2px 0; font-size: 14.5px; line-height: 1.6; }
-.fs-wheel-wrap { position: relative; width: min(100%, 340px); margin: 12px auto 0; }
+.fs-wheel-wrap { position: relative; width: min(100%, 340px); margin: 12px auto 0; padding-top: 16px; overflow: hidden; }
 .fs-wheel-wrap svg { display: block; width: 100%; height: auto; transition: transform .25s ease-out; }
-.fs-needle { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); color: #E8736A; font-size: 20px; }
+.fs-needle { position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: #E8736A; font-size: 20px; line-height: 1; z-index: 1; }
 .fs-now { text-align: center; font-size: 15.5px; font-weight: 700; margin: 8px 0; min-height: 1.4em; }
 .fs-list { list-style: none; padding: 0; margin: 10px 0 0; }
 .fs-list li { display: grid; grid-template-columns: 64px 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px dashed #E1E8F2; font-size: 14px; line-height: 1.6; }
@@ -1817,6 +1821,20 @@ const SAJU = (function () {
   const HIDDEN = [[8, 9], [9, 7, 5], [4, 2, 0], [0, 1], [1, 9, 4], [4, 6, 2], [2, 5, 3], [3, 1, 5], [4, 8, 6], [6, 7], [7, 3, 4], [4, 0, 8]];
   const TERM_NAMES = ['소한', '입춘', '경칩', '청명', '입하', '망종', '소서', '입추', '백로', '한로', '입동', '대설'];
   const DST_YEARS = [1948, 1949, 1950, 1951, 1955, 1956, 1957, 1958, 1959, 1960, 1987, 1988];
+  // 1987·1988년 서머타임 (시계 시각 기준): 5월 둘째 일요일 02:00 시작 → 10월 둘째 일요일 03:00 끝
+  const DST_AUTO = { 1987: { s: [5, 10], e: [10, 11] }, 1988: { s: [5, 8], e: [10, 9] } };
+  // 결과: { on: true/false, note: '' } — 태어난 날짜·시각(시계)로 자동 판정
+  function dstAuto(y, m, d, h, mi) {
+    const R = DST_AUTO[y]; if (!R) return null;
+    const known = h != null, t = known ? h * 60 + mi : 12 * 60;
+    const md = m * 100 + d, sMd = R.s[0] * 100 + R.s[1], eMd = R.e[0] * 100 + R.e[1];
+    let on = false, note = '';
+    if (md > sMd && md < eMd) on = true;
+    else if (md === sMd) { on = t >= 120; if (known && t >= 120 && t < 180) note = '이날 새벽 2시~2시 59분은 시계를 3시로 당겨서 실제로는 없던 시각이에요. 시각을 한 번 더 확인해 주세요.'; }
+    else if (md === eMd) { on = t < 180; if (known && t >= 120 && t < 180) note = '이날 새벽 2시~2시 59분은 시계를 되돌려서 두 번 있었던 시각이에요. 서머타임 쪽(앞의 시각)으로 계산했어요.'; }
+    if (!known && (md === sMd || md === eMd)) note = '서머타임이 시작·끝난 날인데 태어난 시각을 몰라서 낮 12시 기준으로 판정했어요.';
+    return { on: on, note: note, start: y + '.' + R.s[0] + '.' + R.s[1] + ' 02시', end: y + '.' + R.e[0] + '.' + R.e[1] + ' 03시' };
+  }
   const TEN = [['비견', '겁재'], ['식신', '상관'], ['편재', '정재'], ['편관', '정관'], ['편인', '정인']];
   const EPOCH_MS = Date.UTC(1900, 0, 1);
 
@@ -1958,7 +1976,7 @@ const SAJU = (function () {
       const a = termIndexAt(dayStartUtc), b = termIndexAt(dayEndUtc - 60000);
       if (a !== b) warnings.push('이날은 절기(' + TERM_NAMES[(a + 1) % 12] + ')가 바뀌는 날이라, 태어난 시각에 따라 월주가 달라질 수 있어요.');
     }
-    if (inp.dst === false && DST_YEARS.indexOf(y) >= 0) {
+    if (inp.dst === false && DST_YEARS.indexOf(y) >= 0 && !DST_AUTO[y]) {
       warnings.push(y + '년은 한국에서 썸머타임을 시행한 해예요. 시행 기간에 태어났다면 "썸머타임 적용"을 켜 주세요.');
     }
 
@@ -2006,7 +2024,7 @@ const SAJU = (function () {
 
   return {
     calc: calc, STEM_K: STEM_K, STEM_H: STEM_H, BR_K: BR_K, BR_H: BR_H, ELEM: ELEM, ELEM_H: ELEM_H,
-    DST_YEARS: DST_YEARS, TERM_NAMES: TERM_NAMES, stdOffsetMin: stdOffsetMin, dayIndex: dayIndex,
+    DST_YEARS: DST_YEARS, DST_AUTO: DST_AUTO, dstAuto: dstAuto, TERM_NAMES: TERM_NAMES, stdOffsetMin: stdOffsetMin, dayIndex: dayIndex,
     HIDDEN: HIDDEN, STEM_EL: STEM_EL, BR_EL: BR_EL, tenGod: tenGod, EPOCH_MS: EPOCH_MS,
     termMinute: termMinute, sajuYearAt: sajuYearAt, fmtKST: fmtKST, termMs: function (i) { initTerms(); return termMs(i); }
   };
@@ -2894,8 +2912,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
         '<p class="hint" style="margin:0">태어난 곳에 따라 시(時)가 몇 분 달라져요. 가까운 큰 도시를 고르면 돼요.</p></div>' +
       '<div class="field" id="' + p + '-lonRow" hidden><label for="' + p + '-lon">경도 (동경, 도)</label>' +
         '<input type="number" id="' + p + '-lon" step="0.01" min="100" max="180" placeholder="예: 127.5"></div>' +
-      '<div class="dst-row" id="' + p + '-dstRow" hidden><label class="check" for="' + p + '-dst"><input type="checkbox" id="' + p + '-dst">썸머타임 기간에 태어났어요</label>' +
-        '<p class="hint">이 해에는 한국에서 썸머타임을 시행했어요. 시행 기간에 태어났다면 켜 주세요.</p></div>';
+      '<div class="dst-row" id="' + p + '-dstRow" hidden><p class="dst-auto" id="' + p + '-dstAuto" hidden></p><div id="' + p + '-dstManual"><label class="check" for="' + p + '-dst"><input type="checkbox" id="' + p + '-dst">서머타임 기간에 태어났어요</label>' +
+        '<p class="hint">이 해에는 한국에서 서머타임을 시행했어요. 시행 기간에 태어났다면 켜 주세요. (옛 기록이라 자료마다 날짜가 조금 달라요)</p></div></div>';
   }
   function fillPlace(sel) {
     CITIES.forEach(function (c) {
@@ -2967,7 +2985,9 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
         if (pl.lon !== null && (isNaN(pl.lon) || pl.lon < 100 || pl.lon > 180)) throw new Error('경도는 100~180 사이 숫자로 입력해 주세요.');
         inp.lon = pl.lon; inp.eot = pl.lon != null && !pl.noEot;
       }
-      inp.dst = S.DST_YEARS.indexOf(s.y) >= 0 && g('dst').checked;
+      var au = S.dstAuto(s.y, s.m, s.d, inp.h, inp.mi);
+      inp.dst = au ? au.on : (S.DST_YEARS.indexOf(s.y) >= 0 && g('dst').checked);
+      inp.dstAuto = au;
       return inp;
     };
     P.sync = function () {
@@ -2978,6 +2998,17 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       var isDst = sy != null && S.DST_YEARS.indexOf(sy) >= 0;
       g('dstRow').hidden = !isDst;
       if (!isDst) g('dst').checked = false;
+      var auBox = g('dstAuto'), au = null;
+      if (isDst && S.DST_AUTO[sy]) {
+        try { var s0 = P.solar(), tp0 = g('unk').checked ? null : parseTime(g('time').value); au = S.dstAuto(s0.y, s0.m, s0.d, tp0 ? tp0.h : null, tp0 ? tp0.mi : null); } catch (e) { au = null; }
+      }
+      g('dstManual').hidden = !!au;
+      auBox.hidden = !au;
+      if (au) {
+        g('dst').checked = au.on;
+        auBox.innerHTML = '☀️ <b>서머타임 자동 판정: ' + (au.on ? '적용' : '적용 안 함') + '</b><br>' + sy + '년 서머타임은 ' + au.start + ' ~ ' + au.end + '까지였어요. ' +
+          (au.on ? '이 기간에 태어나서 <b>시계 시각에서 1시간을 빼서</b> 계산해요.' : '이 기간 밖이라 시계 시각 그대로 계산해요.') + (au.note ? '<br>⚠️ ' + au.note : '');
+      }
       g('dateLbl').textContent = '생년월일 (' + (cal === 'lunar' ? '음력' : '양력') + ')';
       if (cal === 'lunar') {
         var pd = parseDate(g('date').value), ly = pd ? pd.y : NaN, lm = pd ? pd.m : NaN;
@@ -3010,6 +3041,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     };
     P.bind = function (fn, calFn) {
       ['unk', 'place', 'lon', 'dst', 'leap', 'g-f', 'g-m'].forEach(function (id) { g(id).addEventListener('change', fn); });
+      ['date', 'time'].forEach(function (id) { g(id).addEventListener('input', function () { try { P.sync(); } catch (e) {} }); });
       g('lon').addEventListener('input', fn);
       var dt = g('date'), tm = g('time');
       var errEl = document.getElementById(p === 'a' ? 'err' : 'gErr');
@@ -3148,7 +3180,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
 
     var items = [];
     var offTxt = res.std === 510 ? '+8:30 (동경 127.5° 표준시 시기)' : '+9:00';
-    items.push('<li><b>당시 표준시</b> ' + offTxt + (inp.dst ? ', 썸머타임 적용' : '') + '</li>');
+    items.push('<li><b>당시 표준시</b> ' + offTxt + (inp.dst ? ', 서머타임 적용(1시간 빼기)' + (inp.dstAuto ? ' · 자동 판정' : '') : (inp.dstAuto ? ', 서머타임 기간 밖(자동 판정)' : '')) + '</li>');
     items.push('<li><b>월주 기준 절기</b> ' + res.cur.name + ' ' + res.cur.kst + ' 이후 (한국시간)</li>');
     items.push('<li><b>다음 절기</b> ' + res.next.name + ' ' + res.next.kst + '</li>');
     items.push('<li><b>년주 기준</b> 입춘이 지나야 새해로 봐요. 이 명식의 년은 ' + res.sajuYear + '년이에요.</li>');
@@ -6121,13 +6153,23 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
 })();
 </script>
 <script>
+/* ===== 인터넷이 없을 때 안내 ===== */
+(function () {
+  var bar = document.createElement('div');
+  bar.id = 'offBar'; bar.setAttribute('role', 'status'); bar.hidden = true;
+  bar.innerHTML = '📴 인터넷 없이 보고 있어요. 사주 계산과 바로 풀이는 그대로 돼요. <small>(AI·카톡 보내기·연동은 인터넷이 필요해요)</small>';
+  document.body.appendChild(bar);
+  function upd() { bar.hidden = navigator.onLine !== false; }
+  window.addEventListener('online', upd); window.addEventListener('offline', upd); upd();
+})();
+
 /* ===== 앱 설치 (홈 화면에 추가) ===== */
 (function () {
   var ua = navigator.userAgent || '';
   var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
   if (standalone) document.body.classList.add('is-app');
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(function () {}); });
   }
   var deferred = null;
   window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
