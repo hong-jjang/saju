@@ -642,6 +642,14 @@ body.is-app .inst-only { display: none !important; }
 #splash .sp-choice .sp-dream { background: #DCD6FF !important; color: #4B3E99 !important; }
 #splash .sp-choice .sp-flower { background: #FBE0E6 !important; color: #8C2F3F !important; }
 #splash .sp-choice .sp-day { background: #DCE9F5 !important; color: #1F4466 !important; }
+/* 시작 화면 버튼: 세 칸, 아이콘 작게 (65번 다음) */
+#splash .sp-choice { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; }
+#splash .sp-choice button { min-height: 76px !important; padding: 8px 4px !important; gap: 3px !important; font-size: 14.5px !important; border-radius: 18px !important; border-width: 2px !important; }
+#splash .sp-choice button span { width: 34px !important; height: 34px !important; font-size: 19px !important; margin-bottom: 1px !important; }
+#splash .sp-choice button small { word-break: keep-all; font-size: 9.5px !important; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+#splash .sp-choice button::after { top: 5px !important; right: 7px !important; font-size: 10px !important; }
+#splash .sp-choice button:last-child:nth-child(odd) { grid-column: auto !important; min-height: 76px !important; flex-direction: column !important; gap: 3px !important; }
+@media (min-width: 640px) { #splash .sp-choice { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } #splash .sp-choice button { min-height: 88px !important; font-size: 15.5px !important; } #splash .sp-choice button small { font-size: 11px !important; } }
 body[data-mode=dream] .card.form, body[data-mode=dream] #saveCard, body[data-mode=dream] .tabs, body[data-mode=dream] .panel { display: none !important; }
 body[data-mode=dream] #pn-13 { display: block !important; }
 body[data-mode=dream] #pn-13 [hidden] { display: none !important; }
@@ -776,6 +784,9 @@ footer { margin-top: 20px; font-size: 12.5px; color: var(--muted); }
 button.kakao { min-height: 46px; padding: 0 18px; border: 0; border-radius: 12px; background: #FEE500; color: #191919; font: inherit; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 button.kakao svg { width: 20px; height: 20px; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+/* 꽃점·날짜카드 아이콘으로 열면 그 화면만 보여요 */
+body[data-sub=flower] #pn-7 > section:not(#flBox), body[data-sub=daycard] #pn-7 > section:not(#dcBox) { display: none !important; }
+body[data-sub=flower] #flBox, body[data-sub=daycard] #dcBox { margin-top: 0; }
 /* ---------- 날짜 카드 ---------- */
 .tz-big.tz-day { background: #EAF1F8; color: #1F4466; border-color: #7FA3C4; }
 .tz-big.tz-day .tz-ico { color: #1F4466; }
@@ -808,7 +819,7 @@ button.kakao svg { width: 20px; height: 20px; }
 #flQ { margin-bottom: 0; }
 .tz-big.tz-fl { background: #FBE9EC; color: #8C2F3F; border-color: #C9707F; }
 .tz-big.tz-fl .tz-ico { color: #C9707F; }
-@media (min-width: 640px) { .tz-start { grid-template-columns: repeat(4, 1fr) !important; } }
+
 @media (prefers-reduced-motion: reduce) { #flSvg .pt { transition: opacity .2s; } #flSvg .pt.off { transform: none; } }
 /* ---------- 타로 (딥그린 · 한지 아이보리 · 금색) ---------- */
 .tz { --tz-g: #1F4D3A; --tz-g2: #2C6650; --tz-iv: #F7F1E3; --tz-iv2: #FBF7EE; --tz-au: #B8933A; --tz-ink: #24322B; --tz-mut: #5B6359; }
@@ -1283,8 +1294,6 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
       <div class="tz-start">
         <button type="button" class="tz-big" id="tzOne"><span class="tz-ico" aria-hidden="true">🂠</span>한 장 뽑기<small>오늘의 카드 한 장</small></button>
         <button type="button" class="tz-big" id="tzThree"><span class="tz-ico" aria-hidden="true">🂠🂠🂠</span>세 장 뽑기<small>상황 · 살펴볼 점 · 해볼 수 있는 일</small></button>
-        <button type="button" class="tz-big tz-fl" id="flBtn"><span class="tz-ico" aria-hidden="true">🌸</span>꽃점 놀이<small>꽃잎을 떼며 내 마음 보기</small></button>
-        <button type="button" class="tz-big tz-day" id="dcBtn"><span class="tz-ico" aria-hidden="true">📅</span>날짜 카드<small>쇼츠·스토리에 올리는 그림</small></button>
         <button type="button" class="tz-big tz-rec" id="tzRecBtn"><span class="tz-ico" aria-hidden="true">📒</span>나의 기록 <span id="tzRecN"></span><small>저장한 카드 다시 보기</small></button>
       </div>
       <details class="tz-q">
@@ -1352,7 +1361,6 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
       <div id="flResult" hidden></div>
       <div class="sh-row" data-share="flResult" data-title="꽃점 놀이" hidden id="flShare"></div>
       <p class="tz-hint">꽃잎 수는 꽃을 받을 때마다 무작위로 정해져요. 떠올린 고민이나 사람에 따라 바뀌지 않아요. 꽃은 다른 사람의 마음이나 앞일을 알려 주지 않아요.</p>
-      <button type="button" class="tz-btn tz-ghost" id="flBack">처음으로</button>
     </section>
 
     <section class="card tz-daycard" id="dcBox" aria-labelledby="h-dc" hidden>
@@ -1377,7 +1385,6 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
       </div>
       <p class="tz-msg" id="dcOut" role="status"></p>
       <p class="tz-hint">일진·절기·띠 관계는 만세력 계산값이에요(한국 시간, 그날 0시 기준). 오늘의 카드는 날짜로 정해져서 그날은 누구에게나 같은 카드예요. 앞일이나 좋고 나쁨을 알려 주는 그림이 아니에요.</p>
-      <button type="button" class="tz-btn tz-ghost" id="dcBack">처음으로</button>
     </section>
 
     <section class="card tz-records" id="tzRecords" aria-labelledby="h-tzrec" hidden>
@@ -5952,10 +5959,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('tzStage').hidden = true; $('tzRecords').hidden = true; $('dcBox').hidden = true; $('flBox').hidden = false;
     flLoad().then(function () { if (FL.set >= FL.cfg.sets.length) FL.set = 0; flSetUI(); flDraw(); });
     flSetUI(); flDraw();
-    setTimeout(function () { $('flBox').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40);
+    window.scrollTo(0, 0);
   }
-  $('flBtn').addEventListener('click', flOpen);
-  $('flBack').addEventListener('click', function () { $('flBox').hidden = true; $('h-tarot').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   window.hjFlowerOpen = flOpen;
   // ================= 날짜별 공유 카드 =================
   var DC_ZOO = [['쥐', '🐭'], ['소', '🐮'], ['호랑이', '🐯'], ['토끼', '🐰'], ['용', '🐲'], ['뱀', '🐍'], ['말', '🐴'], ['양', '🐑'], ['원숭이', '🐵'], ['닭', '🐔'], ['개', '🐶'], ['돼지', '🐷']];
@@ -6100,10 +6105,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('tzStage').hidden = true; $('tzRecords').hidden = true; $('flBox').hidden = true; $('dcBox').hidden = false;
     if (!$('dcDate').value) $('dcDate').value = dcKst();
     dcMake();
-    setTimeout(function () { $('dcBox').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 40);
+    window.scrollTo(0, 0);
   }
-  $('dcBtn').addEventListener('click', dcOpen);
-  $('dcBack').addEventListener('click', function () { $('dcBox').hidden = true; $('h-tarot').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   window.hjDayCardOpen = function () { if (TZ.ready) dcOpen(); else setTimeout(window.hjDayCardOpen, 300); };
   tzLoad();
 
