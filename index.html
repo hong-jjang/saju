@@ -827,9 +827,9 @@ button.kakao svg { width: 20px; height: 20px; }
     <h2 id="h-in">태어난 때 입력</h2>
     <div id="formA"></div>
     <details>
-      <summary>자시(밤 11시~새벽 1시) 처리 방식</summary>
-      <label class="radio" for="z-next"><input type="radio" name="zasi" id="z-next" value="next" checked><span>밤 11시부터 다음 날로 계산 (기본)<br><span class="hint">일주와 시주 모두 다음 날 기준이에요.</span></span></label>
-      <label class="radio" for="z-same"><input type="radio" name="zasi" id="z-same" value="same"><span>야자시 인정<br><span class="hint">밤 11시~자정은 일주를 당일로 두고, 시주는 다음 날 일간으로 정해요.</span></span></label>
+      <summary>자시(시계로 밤 11시 30분~새벽 1시 29분) 처리 방식</summary>
+      <label class="radio" for="z-next"><input type="radio" name="zasi" id="z-next" value="next" checked><span>밤 11시 30분부터 다음 날로 계산 (기본)<br><span class="hint">자시가 시작되는 밤 11시 30분부터 일주와 시주 모두 다음 날 기준이에요.</span></span></label>
+      <label class="radio" for="z-same"><input type="radio" name="zasi" id="z-same" value="same"><span>야자시 인정<br><span class="hint">야자시(시계로 밤 11시 30분~0시 29분)는 일주를 당일로 두고, 시주는 다음 날 일간으로 정해요. 0시 30분부터는 조자시예요.</span></span></label>
     </details>
     <button class="primary" id="go" type="button">만세력 보기</button>
     <p class="err" id="err" role="alert" hidden></p>
@@ -1969,7 +1969,7 @@ const SAJU = (function () {
       const dNext = TERM_MIN[ti + 1] - minute;
       if (dCur <= 120) warnings.push('출생 시각이 ' + cur.name + ' 절입 시각(' + cur.kst + ')에서 2시간 이내예요. 만세력마다 월주가 다를 수 있으니 한 번 더 확인해 보세요.');
       else if (dNext <= 120) warnings.push('출생 시각이 ' + nx.name + ' 절입 시각(' + nx.kst + ')에서 2시간 이내예요. 만세력마다 월주가 다를 수 있으니 한 번 더 확인해 보세요.');
-      if (lateNight) warnings.push('밤 11시~새벽 1시(자시) 출생은 학파에 따라 일주·시주가 달라져요. 지금은 "' + (inp.zasi === 'same' ? '야자시 인정(일주는 당일)' : '밤 11시부터 다음 날') + '" 방식으로 계산했어요.');
+      if (lateNight) warnings.push('야자시(30분 일괄 보정이면 시계로 밤 11시 30분~0시 29분) 출생은 학파에 따라 일주·시주가 달라져요. 지금은 "' + (inp.zasi === 'same' ? '야자시 인정(일주는 당일)' : '자시 시작부터 다음 날') + '" 방식으로 계산했어요.');
     } else {
       const dayStartUtc = Date.UTC(y, m - 1, d, 0, 0) - (std + dstMin) * 60000;
       const dayEndUtc = dayStartUtc + 86400000;
@@ -2915,14 +2915,25 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       '<div class="dst-row" id="' + p + '-dstRow" hidden><p class="dst-auto" id="' + p + '-dstAuto" hidden></p><div id="' + p + '-dstManual"><label class="check" for="' + p + '-dst"><input type="checkbox" id="' + p + '-dst">서머타임 기간에 태어났어요</label>' +
         '<p class="hint">이 해에는 한국에서 서머타임을 시행했어요. 시행 기간에 태어났다면 켜 주세요. (옛 기록이라 자료마다 날짜가 조금 달라요)</p></div></div>';
   }
+  // 30분 일괄 보정일 때 시계 시각이 어느 시(時)인지: 자시 23:30~01:29, 축시 01:30~03:29 …
+  var SI12 = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'];
+  function siName(h, mi, place) {
+    if (place !== 'm30') return ' · 지역 보정 뒤에 시(時)가 정해져요';
+    var t = ((h * 60 + mi - 30) % 1440 + 1440) % 1440, b = Math.floor(((t + 60) % 1440) / 120);
+    var st0 = (b * 120 - 60 + 30 + 1440) % 1440, en = (st0 + 119) % 1440;
+    var f = function (x) { return p2(Math.floor(x / 60)) + ':' + p2(x % 60); };
+    return ' · ' + SI12[b] + '시 (' + f(st0) + '~' + f(en) + ')' + (b === 0 ? (t >= 1380 ? ' · 야자시' : ' · 조자시') : '');
+  }
   function fillPlace(sel) {
+    var o0 = document.createElement('option'); o0.value = 'm30'; o0.textContent = '⭐ 30분 일괄 보정 (자시 23:30부터 · 기본)'; o0.selected = true; sel.appendChild(o0);
+    var g1 = document.createElement('optgroup'); g1.label = '지역별 정밀 보정 (경도·계절 차이)';
     CITIES.forEach(function (c) {
       var o = document.createElement('option'); o.value = String(c[1]); o.textContent = c[0] + (c[2] ? ' (' + c[2] + ')' : '');
-      if (c[0] === '서울') o.selected = true;
-      sel.appendChild(o);
+      g1.appendChild(o);
     });
+    sel.appendChild(g1);
     var g2 = document.createElement('optgroup'); g2.label = '그 밖에';
-    [['m30', '30분 일괄 보정 (다른 만세력 방식)'], ['custom', '목록에 없어요 (경도 직접 입력)']].forEach(function (x) {
+    [['custom', '목록에 없어요 (경도 직접 입력)']].forEach(function (x) {
       var o = document.createElement('option'); o.value = x[0]; o.textContent = x[1]; g2.appendChild(o);
     });
     sel.appendChild(g2);
@@ -2938,7 +2949,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     P.placeInfo = function () {
       var sel = g('place'), v = sel.value;
       if (v === 'none') return { lon: null, name: '보정 안 함' };
-      if (v === 'm30') return { lon: 127.5, noEot: true, name: '30분 일괄 보정' };
+      if (v === 'm30') return { lon: 127.5, noEot: true, name: '30분 일괄 보정 (자시 23:30부터)' };
       if (v === 'unknown') return { lon: 126.98, name: '모름 (서울 기준)' };
       if (v === 'custom') { var n = parseFloat(g('lon').value); return { lon: isNaN(n) ? NaN : n, name: '직접 입력 경도 ' + g('lon').value }; }
       return { lon: parseFloat(v), name: sel.options[sel.selectedIndex].textContent.split(' (')[0] };
@@ -2971,7 +2982,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       var tg = digits(g('time').value), tb = false, tm;
       if (g('unk').checked) tm = '시간 없이 년·월·일 기둥만 계산해요';
       else if (tg.length === 0) tm = '오전 9시 30분 → 0930 · 오후 3시 → 1500';
-      else { var tp = parseTime(g('time').value); if (tp) tm = ampm(tp.h, tp.mi); else { tm = '시각이 맞지 않아요 (0000~2359)'; tb = true; } }
+      else { var tp = parseTime(g('time').value); if (tp) tm = ampm(tp.h, tp.mi) + siName(tp.h, tp.mi, g('place').value); else { tm = '시각이 맞지 않아요 (0000~2359)'; tb = true; } }
       th.textContent = tm; th.classList.toggle('bad', tb);
     };
     P.read = function (zasi) {
@@ -3980,7 +3991,8 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     P.prevCal = r.cal;
     q(r.gender === 'M' ? 'g-m' : 'g-f').checked = true;
     q('date').value = r.date; q('time').value = r.time || ''; q('unk').checked = !!r.unk;
-    if (Array.prototype.some.call(q('place').options, function (o) { return o.value === r.place; })) q('place').value = r.place;
+    var pl0 = (!r.pv && r.place === '126.98') ? 'm30' : r.place; // 예전 기본값(서울)은 새 기본값으로
+    if (Array.prototype.some.call(q('place').options, function (o) { return o.value === pl0; })) q('place').value = pl0;
     q('lon').value = r.lon || ''; q('leap').checked = !!r.leap; q('dst').checked = !!r.dst;
     P.sync();
   }
@@ -4013,7 +4025,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     if (!name) { msg.textContent = '저장할 이름을 먼저 적어 주세요.'; $('svName').focus(); return; }
     try { A.read(zasi()); } catch (e) { msg.textContent = e.message; return; }
     var list = svRead(), rec = svSnap('a'), at = -1;
-    rec.name = name; rec.t = Date.now(); rec.memo = $('svMemo').value.trim();
+    rec.name = name; rec.t = Date.now(); rec.memo = $('svMemo').value.trim(); rec.pv = 2;
     var dl = svDelRead(); if (dl[name]) { delete dl[name]; svDelWrite(dl); }
     list.forEach(function (r, i) { if (r.name === name) at = i; });
     if (at >= 0) { rec.fav = list[at].fav; list[at] = rec; } else list.push(rec);
