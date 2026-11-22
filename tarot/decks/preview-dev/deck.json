@@ -1,0 +1,33 @@
+{
+ "deckId": "preview-dev",
+ "version": "0.1.0",
+ "title": "개발용 미리보기 덱",
+ "status": "dev",
+ "devOnly": true,
+ "inheritsFrom": "basic",
+ "requiresImages": false,
+ "back": "../basic/back.svg",
+ "rights": {
+  "owner": "홍짱 사주 앱 (자체 제작)",
+  "text": "교체 시험용 임시 그림과 임시 문구예요.",
+  "license": "개발 시험용"
+ },
+ "cards": {
+  "major-17": {
+   "name": "별",
+   "front": "images/v0.1/major-17-temp.svg",
+   "alt": "임시 그림: 밤하늘에 큰 별 하나가 빛나는 모습",
+   "temporary": true,
+   "keywords": [
+    "희망",
+    "작은 빛",
+    "회복"
+   ],
+   "story": "어두운 하늘에도 별 하나는 빛나요.",
+   "storyReversed": "별빛이 잠시 구름에 가려도 사라진 건 아니에요.",
+   "upright": "어두운 하늘에도 별 하나는 빛나요. (교체 가능한 임시 문구예요)",
+   "reversed": "별빛이 잠시 구름에 가려도 사라진 건 아니에요. (교체 가능한 임시 문구예요)",
+   "question": "요즘 내 마음을 조금 밝게 해준 일은 무엇인가요?"
+  }
+ }
+}

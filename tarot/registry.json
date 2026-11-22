@@ -1,0 +1,21 @@
+{
+ "note": "active는 새 리딩에 쓰는 덱이에요. verified는 node tarot/validate.js 가 검증을 통과한 덱과 버전을 적어 두는 곳이에요. 직접 고치지 말고 검증 명령으로 바꿔요.",
+ "active": "basic",
+ "decks": [
+  {
+   "id": "basic",
+   "path": "decks/basic/deck.json"
+  },
+  {
+   "id": "preview-dev",
+   "path": "decks/preview-dev/deck.json"
+  },
+  {
+   "id": "hongjjang-ohaeng",
+   "path": "decks/hongjjang-ohaeng/deck.json"
+  }
+ ],
+ "verified": {
+  "basic": "1.0.1"
+ }
+}

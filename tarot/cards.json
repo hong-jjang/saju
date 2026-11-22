@@ -1,0 +1,708 @@
+{
+ "note": "모든 덱이 함께 쓰는 카드 목록이에요. ID는 바꾸지 마세요. 이름·그림·해설은 덱 파일에서 바꿔요.",
+ "version": "1",
+ "cards": [
+  {
+   "id": "major-00",
+   "arcana": "major",
+   "number": 0,
+   "roman": "0",
+   "suit": null,
+   "rank": null,
+   "defaultName": "바보"
+  },
+  {
+   "id": "major-01",
+   "arcana": "major",
+   "number": 1,
+   "roman": "I",
+   "suit": null,
+   "rank": null,
+   "defaultName": "마법사"
+  },
+  {
+   "id": "major-02",
+   "arcana": "major",
+   "number": 2,
+   "roman": "II",
+   "suit": null,
+   "rank": null,
+   "defaultName": "여사제"
+  },
+  {
+   "id": "major-03",
+   "arcana": "major",
+   "number": 3,
+   "roman": "III",
+   "suit": null,
+   "rank": null,
+   "defaultName": "여황제"
+  },
+  {
+   "id": "major-04",
+   "arcana": "major",
+   "number": 4,
+   "roman": "IV",
+   "suit": null,
+   "rank": null,
+   "defaultName": "황제"
+  },
+  {
+   "id": "major-05",
+   "arcana": "major",
+   "number": 5,
+   "roman": "V",
+   "suit": null,
+   "rank": null,
+   "defaultName": "교황"
+  },
+  {
+   "id": "major-06",
+   "arcana": "major",
+   "number": 6,
+   "roman": "VI",
+   "suit": null,
+   "rank": null,
+   "defaultName": "연인"
+  },
+  {
+   "id": "major-07",
+   "arcana": "major",
+   "number": 7,
+   "roman": "VII",
+   "suit": null,
+   "rank": null,
+   "defaultName": "전차"
+  },
+  {
+   "id": "major-08",
+   "arcana": "major",
+   "number": 8,
+   "roman": "VIII",
+   "suit": null,
+   "rank": null,
+   "defaultName": "힘"
+  },
+  {
+   "id": "major-09",
+   "arcana": "major",
+   "number": 9,
+   "roman": "IX",
+   "suit": null,
+   "rank": null,
+   "defaultName": "은둔자"
+  },
+  {
+   "id": "major-10",
+   "arcana": "major",
+   "number": 10,
+   "roman": "X",
+   "suit": null,
+   "rank": null,
+   "defaultName": "운명의 수레바퀴"
+  },
+  {
+   "id": "major-11",
+   "arcana": "major",
+   "number": 11,
+   "roman": "XI",
+   "suit": null,
+   "rank": null,
+   "defaultName": "정의"
+  },
+  {
+   "id": "major-12",
+   "arcana": "major",
+   "number": 12,
+   "roman": "XII",
+   "suit": null,
+   "rank": null,
+   "defaultName": "매달린 사람"
+  },
+  {
+   "id": "major-13",
+   "arcana": "major",
+   "number": 13,
+   "roman": "XIII",
+   "suit": null,
+   "rank": null,
+   "defaultName": "죽음"
+  },
+  {
+   "id": "major-14",
+   "arcana": "major",
+   "number": 14,
+   "roman": "XIV",
+   "suit": null,
+   "rank": null,
+   "defaultName": "절제"
+  },
+  {
+   "id": "major-15",
+   "arcana": "major",
+   "number": 15,
+   "roman": "XV",
+   "suit": null,
+   "rank": null,
+   "defaultName": "악마"
+  },
+  {
+   "id": "major-16",
+   "arcana": "major",
+   "number": 16,
+   "roman": "XVI",
+   "suit": null,
+   "rank": null,
+   "defaultName": "탑"
+  },
+  {
+   "id": "major-17",
+   "arcana": "major",
+   "number": 17,
+   "roman": "XVII",
+   "suit": null,
+   "rank": null,
+   "defaultName": "별"
+  },
+  {
+   "id": "major-18",
+   "arcana": "major",
+   "number": 18,
+   "roman": "XVIII",
+   "suit": null,
+   "rank": null,
+   "defaultName": "달"
+  },
+  {
+   "id": "major-19",
+   "arcana": "major",
+   "number": 19,
+   "roman": "XIX",
+   "suit": null,
+   "rank": null,
+   "defaultName": "태양"
+  },
+  {
+   "id": "major-20",
+   "arcana": "major",
+   "number": 20,
+   "roman": "XX",
+   "suit": null,
+   "rank": null,
+   "defaultName": "심판"
+  },
+  {
+   "id": "major-21",
+   "arcana": "major",
+   "number": 21,
+   "roman": "XXI",
+   "suit": null,
+   "rank": null,
+   "defaultName": "세계"
+  },
+  {
+   "id": "wands-01",
+   "arcana": "minor",
+   "number": 1,
+   "roman": null,
+   "suit": "wands",
+   "rank": "ace",
+   "defaultName": "완드 에이스"
+  },
+  {
+   "id": "wands-02",
+   "arcana": "minor",
+   "number": 2,
+   "roman": null,
+   "suit": "wands",
+   "rank": "2",
+   "defaultName": "완드 2"
+  },
+  {
+   "id": "wands-03",
+   "arcana": "minor",
+   "number": 3,
+   "roman": null,
+   "suit": "wands",
+   "rank": "3",
+   "defaultName": "완드 3"
+  },
+  {
+   "id": "wands-04",
+   "arcana": "minor",
+   "number": 4,
+   "roman": null,
+   "suit": "wands",
+   "rank": "4",
+   "defaultName": "완드 4"
+  },
+  {
+   "id": "wands-05",
+   "arcana": "minor",
+   "number": 5,
+   "roman": null,
+   "suit": "wands",
+   "rank": "5",
+   "defaultName": "완드 5"
+  },
+  {
+   "id": "wands-06",
+   "arcana": "minor",
+   "number": 6,
+   "roman": null,
+   "suit": "wands",
+   "rank": "6",
+   "defaultName": "완드 6"
+  },
+  {
+   "id": "wands-07",
+   "arcana": "minor",
+   "number": 7,
+   "roman": null,
+   "suit": "wands",
+   "rank": "7",
+   "defaultName": "완드 7"
+  },
+  {
+   "id": "wands-08",
+   "arcana": "minor",
+   "number": 8,
+   "roman": null,
+   "suit": "wands",
+   "rank": "8",
+   "defaultName": "완드 8"
+  },
+  {
+   "id": "wands-09",
+   "arcana": "minor",
+   "number": 9,
+   "roman": null,
+   "suit": "wands",
+   "rank": "9",
+   "defaultName": "완드 9"
+  },
+  {
+   "id": "wands-10",
+   "arcana": "minor",
+   "number": 10,
+   "roman": null,
+   "suit": "wands",
+   "rank": "10",
+   "defaultName": "완드 10"
+  },
+  {
+   "id": "wands-11",
+   "arcana": "minor",
+   "number": 11,
+   "roman": null,
+   "suit": "wands",
+   "rank": "page",
+   "defaultName": "완드 시종"
+  },
+  {
+   "id": "wands-12",
+   "arcana": "minor",
+   "number": 12,
+   "roman": null,
+   "suit": "wands",
+   "rank": "knight",
+   "defaultName": "완드 기사"
+  },
+  {
+   "id": "wands-13",
+   "arcana": "minor",
+   "number": 13,
+   "roman": null,
+   "suit": "wands",
+   "rank": "queen",
+   "defaultName": "완드 여왕"
+  },
+  {
+   "id": "wands-14",
+   "arcana": "minor",
+   "number": 14,
+   "roman": null,
+   "suit": "wands",
+   "rank": "king",
+   "defaultName": "완드 왕"
+  },
+  {
+   "id": "cups-01",
+   "arcana": "minor",
+   "number": 1,
+   "roman": null,
+   "suit": "cups",
+   "rank": "ace",
+   "defaultName": "컵 에이스"
+  },
+  {
+   "id": "cups-02",
+   "arcana": "minor",
+   "number": 2,
+   "roman": null,
+   "suit": "cups",
+   "rank": "2",
+   "defaultName": "컵 2"
+  },
+  {
+   "id": "cups-03",
+   "arcana": "minor",
+   "number": 3,
+   "roman": null,
+   "suit": "cups",
+   "rank": "3",
+   "defaultName": "컵 3"
+  },
+  {
+   "id": "cups-04",
+   "arcana": "minor",
+   "number": 4,
+   "roman": null,
+   "suit": "cups",
+   "rank": "4",
+   "defaultName": "컵 4"
+  },
+  {
+   "id": "cups-05",
+   "arcana": "minor",
+   "number": 5,
+   "roman": null,
+   "suit": "cups",
+   "rank": "5",
+   "defaultName": "컵 5"
+  },
+  {
+   "id": "cups-06",
+   "arcana": "minor",
+   "number": 6,
+   "roman": null,
+   "suit": "cups",
+   "rank": "6",
+   "defaultName": "컵 6"
+  },
+  {
+   "id": "cups-07",
+   "arcana": "minor",
+   "number": 7,
+   "roman": null,
+   "suit": "cups",
+   "rank": "7",
+   "defaultName": "컵 7"
+  },
+  {
+   "id": "cups-08",
+   "arcana": "minor",
+   "number": 8,
+   "roman": null,
+   "suit": "cups",
+   "rank": "8",
+   "defaultName": "컵 8"
+  },
+  {
+   "id": "cups-09",
+   "arcana": "minor",
+   "number": 9,
+   "roman": null,
+   "suit": "cups",
+   "rank": "9",
+   "defaultName": "컵 9"
+  },
+  {
+   "id": "cups-10",
+   "arcana": "minor",
+   "number": 10,
+   "roman": null,
+   "suit": "cups",
+   "rank": "10",
+   "defaultName": "컵 10"
+  },
+  {
+   "id": "cups-11",
+   "arcana": "minor",
+   "number": 11,
+   "roman": null,
+   "suit": "cups",
+   "rank": "page",
+   "defaultName": "컵 시종"
+  },
+  {
+   "id": "cups-12",
+   "arcana": "minor",
+   "number": 12,
+   "roman": null,
+   "suit": "cups",
+   "rank": "knight",
+   "defaultName": "컵 기사"
+  },
+  {
+   "id": "cups-13",
+   "arcana": "minor",
+   "number": 13,
+   "roman": null,
+   "suit": "cups",
+   "rank": "queen",
+   "defaultName": "컵 여왕"
+  },
+  {
+   "id": "cups-14",
+   "arcana": "minor",
+   "number": 14,
+   "roman": null,
+   "suit": "cups",
+   "rank": "king",
+   "defaultName": "컵 왕"
+  },
+  {
+   "id": "swords-01",
+   "arcana": "minor",
+   "number": 1,
+   "roman": null,
+   "suit": "swords",
+   "rank": "ace",
+   "defaultName": "소드 에이스"
+  },
+  {
+   "id": "swords-02",
+   "arcana": "minor",
+   "number": 2,
+   "roman": null,
+   "suit": "swords",
+   "rank": "2",
+   "defaultName": "소드 2"
+  },
+  {
+   "id": "swords-03",
+   "arcana": "minor",
+   "number": 3,
+   "roman": null,
+   "suit": "swords",
+   "rank": "3",
+   "defaultName": "소드 3"
+  },
+  {
+   "id": "swords-04",
+   "arcana": "minor",
+   "number": 4,
+   "roman": null,
+   "suit": "swords",
+   "rank": "4",
+   "defaultName": "소드 4"
+  },
+  {
+   "id": "swords-05",
+   "arcana": "minor",
+   "number": 5,
+   "roman": null,
+   "suit": "swords",
+   "rank": "5",
+   "defaultName": "소드 5"
+  },
+  {
+   "id": "swords-06",
+   "arcana": "minor",
+   "number": 6,
+   "roman": null,
+   "suit": "swords",
+   "rank": "6",
+   "defaultName": "소드 6"
+  },
+  {
+   "id": "swords-07",
+   "arcana": "minor",
+   "number": 7,
+   "roman": null,
+   "suit": "swords",
+   "rank": "7",
+   "defaultName": "소드 7"
+  },
+  {
+   "id": "swords-08",
+   "arcana": "minor",
+   "number": 8,
+   "roman": null,
+   "suit": "swords",
+   "rank": "8",
+   "defaultName": "소드 8"
+  },
+  {
+   "id": "swords-09",
+   "arcana": "minor",
+   "number": 9,
+   "roman": null,
+   "suit": "swords",
+   "rank": "9",
+   "defaultName": "소드 9"
+  },
+  {
+   "id": "swords-10",
+   "arcana": "minor",
+   "number": 10,
+   "roman": null,
+   "suit": "swords",
+   "rank": "10",
+   "defaultName": "소드 10"
+  },
+  {
+   "id": "swords-11",
+   "arcana": "minor",
+   "number": 11,
+   "roman": null,
+   "suit": "swords",
+   "rank": "page",
+   "defaultName": "소드 시종"
+  },
+  {
+   "id": "swords-12",
+   "arcana": "minor",
+   "number": 12,
+   "roman": null,
+   "suit": "swords",
+   "rank": "knight",
+   "defaultName": "소드 기사"
+  },
+  {
+   "id": "swords-13",
+   "arcana": "minor",
+   "number": 13,
+   "roman": null,
+   "suit": "swords",
+   "rank": "queen",
+   "defaultName": "소드 여왕"
+  },
+  {
+   "id": "swords-14",
+   "arcana": "minor",
+   "number": 14,
+   "roman": null,
+   "suit": "swords",
+   "rank": "king",
+   "defaultName": "소드 왕"
+  },
+  {
+   "id": "pentacles-01",
+   "arcana": "minor",
+   "number": 1,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "ace",
+   "defaultName": "펜타클 에이스"
+  },
+  {
+   "id": "pentacles-02",
+   "arcana": "minor",
+   "number": 2,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "2",
+   "defaultName": "펜타클 2"
+  },
+  {
+   "id": "pentacles-03",
+   "arcana": "minor",
+   "number": 3,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "3",
+   "defaultName": "펜타클 3"
+  },
+  {
+   "id": "pentacles-04",
+   "arcana": "minor",
+   "number": 4,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "4",
+   "defaultName": "펜타클 4"
+  },
+  {
+   "id": "pentacles-05",
+   "arcana": "minor",
+   "number": 5,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "5",
+   "defaultName": "펜타클 5"
+  },
+  {
+   "id": "pentacles-06",
+   "arcana": "minor",
+   "number": 6,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "6",
+   "defaultName": "펜타클 6"
+  },
+  {
+   "id": "pentacles-07",
+   "arcana": "minor",
+   "number": 7,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "7",
+   "defaultName": "펜타클 7"
+  },
+  {
+   "id": "pentacles-08",
+   "arcana": "minor",
+   "number": 8,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "8",
+   "defaultName": "펜타클 8"
+  },
+  {
+   "id": "pentacles-09",
+   "arcana": "minor",
+   "number": 9,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "9",
+   "defaultName": "펜타클 9"
+  },
+  {
+   "id": "pentacles-10",
+   "arcana": "minor",
+   "number": 10,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "10",
+   "defaultName": "펜타클 10"
+  },
+  {
+   "id": "pentacles-11",
+   "arcana": "minor",
+   "number": 11,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "page",
+   "defaultName": "펜타클 시종"
+  },
+  {
+   "id": "pentacles-12",
+   "arcana": "minor",
+   "number": 12,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "knight",
+   "defaultName": "펜타클 기사"
+  },
+  {
+   "id": "pentacles-13",
+   "arcana": "minor",
+   "number": 13,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "queen",
+   "defaultName": "펜타클 여왕"
+  },
+  {
+   "id": "pentacles-14",
+   "arcana": "minor",
+   "number": 14,
+   "roman": null,
+   "suit": "pentacles",
+   "rank": "king",
+   "defaultName": "펜타클 왕"
+  }
+ ]
+}
