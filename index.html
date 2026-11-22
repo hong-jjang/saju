@@ -4570,8 +4570,30 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   ['face', 'palm'].forEach(function (k) {
     var q = fqEls(k); if (!q) return;
     if (/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) $(k + 'Quick').querySelector('.fq-inapp').hidden = false;
+    var qi = $(k + 'QCam'), ql = qi.closest('label');
+    ql.addEventListener('click', function (e) {
+      if (ql.dataset.native === '1') { ql.dataset.native = ''; return; }
+      if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || !window.isSecureContext || !window.fpOpenCam) return;
+      e.preventDefault();
+      window.fpOpenCam(k, 'quick').catch(function (err) {
+        q.res.hidden = false;
+        q.st.textContent = err && (err.name === 'NotAllowedError' || err.name === 'SecurityError') ? '카메라 사용이 허락되지 않아 휴대폰 기본 카메라로 열어요. (주소창 자물쇠 → 권한 → 카메라 허용으로 바꾸면 앱 안에서 찍을 수 있어요)' : '앱 안 카메라를 켤 수 없어서 휴대폰 기본 카메라로 열어요.';
+        ql.dataset.native = '1'; qi.click();
+      });
+    });
+    [k + 'QAlb', k + 'QCam'].forEach(function (id) {
+      $(id).addEventListener('click', function () { try { sessionStorage.setItem('hjCam', k); } catch (e) {} });
+    });
+    if (k === 'face') document.addEventListener('visibilitychange', function () { if (!document.hidden) setTimeout(function () { try { sessionStorage.removeItem('hjCam'); } catch (e) {} }, 3000); });
+    try {
+      if (sessionStorage.getItem('hjCam') === k) {
+        sessionStorage.removeItem('hjCam'); q.res.hidden = false;
+        q.st.innerHTML = '😥 사진을 고르는 사이에 휴대폰 메모리가 모자라 화면이 다시 열렸어요. 다른 앱을 몇 개 닫고, <b>📸 사진 찍기</b>(앱 안 카메라)로 다시 찍어 주세요.';
+      }
+    } catch (e) {}
     [k + 'QCam', k + 'QAlb'].forEach(function (id) {
       $(id).addEventListener('change', function () {
+        try { sessionStorage.removeItem('hjCam'); } catch (e) {}
         var f = this.files && this.files[0]; this.value = '';
         if (!f) return;
         if (!/^image\//.test(f.type) && !/\.(jpe?g|png|heic|heif|webp)$/i.test(f.name || '')) { q.res.hidden = false; q.st.textContent = '사진 파일만 넣을 수 있어요.'; return; }
@@ -4736,7 +4758,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
 
   // ---------- 앱 안 촬영 화면 (안내선 포함) ----------
   (function () {
-    var box = $('camBox'), video = $('camVideo'), stream = null, kind = 'palm', facing = 'environment';
+    var box = $('camBox'), video = $('camVideo'), stream = null, kind = 'palm', facing = 'environment', from = '';
     var GUIDE = {
       palm: '<path d="M104 372 L98 262 Q74 240 58 212 Q48 192 62 186 Q76 180 90 200 L104 222 L104 128 Q104 110 117 110 Q130 110 130 128 L130 206 L138 96 Q138 80 152 80 Q166 80 166 96 L166 204 L176 110 Q176 94 189 94 Q202 94 202 110 L200 212 L210 150 Q212 136 224 138 Q236 140 234 154 L228 262 Q222 330 216 372 Z" fill="rgba(255,209,220,.08)" stroke="#FFD1DC" stroke-width="4" stroke-dasharray="10 8" stroke-linejoin="round"/>',
       face: '<ellipse cx="150" cy="190" rx="92" ry="124" fill="none" stroke="#FFD1DC" stroke-width="4" stroke-dasharray="10 8"/><line x1="70" y1="150" x2="230" y2="150" stroke="#FFD1DC" stroke-width="1.5" stroke-dasharray="4 6" opacity=".7"/>'
@@ -4745,14 +4767,14 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     function stop() { if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; } video.srcObject = null; }
     function start() {
       stop();
-      return navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1440 } }, audio: false }).then(function (st) {
+      return navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: facing }, width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false }).then(function (st) {
         stream = st; video.srcObject = st; video.classList.toggle('mirror', facing === 'user');
         return video.play().catch(function () {});
       });
     }
     function close() { stop(); box.hidden = true; document.body.style.overflow = ''; }
-    window.fpOpenCam = function (k) {
-      kind = k; facing = k === 'face' ? 'user' : 'environment';
+    window.fpOpenCam = function (k, fr) {
+      kind = k; from = fr || ''; facing = k === 'face' ? 'user' : 'environment';
       $('camTitle').textContent = k === 'face' ? '👤 관상 사진 찍기' : '✋ 손금 사진 찍기';
       $('camGuide').innerHTML = GUIDE[k]; $('camTip').textContent = TIP[k];
       box.hidden = false; document.body.style.overflow = 'hidden';
@@ -4765,20 +4787,25 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     $('camFlip').addEventListener('click', function () { facing = facing === 'user' ? 'environment' : 'user'; start().catch(function () {}); });
     $('camShot').addEventListener('click', function () {
       if (!video.videoWidth) return;
-      var c = document.createElement('canvas'); c.width = video.videoWidth; c.height = video.videoHeight;
+      // 메모리를 아끼려고 긴 쪽 1280px까지만 담아요
+      var vs = Math.min(1, 1280 / Math.max(video.videoWidth, video.videoHeight));
+      var c = document.createElement('canvas'); c.width = Math.round(video.videoWidth * vs); c.height = Math.round(video.videoHeight * vs);
       var g = c.getContext('2d');
       if (facing === 'user') { g.translate(c.width, 0); g.scale(-1, 1); }
       g.drawImage(video, 0, 0, c.width, c.height);
       c.toBlob(function (b) {
         if (!b) return;
         var f = new File([b], (kind === 'face' ? 'gwansang' : 'songeum') + '.jpg', { type: 'image/jpeg' });
-        close();
+        close(); c.width = c.height = 0;
         window['fpSet_' + kind](f);
-        setTimeout(function () { var el = $(kind + 'pPrev'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+        setTimeout(function () { var el = from === 'quick' ? $(kind + 'QRes') : $(kind + 'pPrev'); if (el) el.scrollIntoView({ behavior: 'smooth', block: from === 'quick' ? 'start' : 'center' }); }, 50);
       }, 'image/jpeg', 0.92);
     });
-    $('camAlbum').addEventListener('change', function () { var f = this.files && this.files[0]; this.value = ''; if (f) { close(); window['fpSet_' + kind](f); } });
+    $('camAlbum').addEventListener('click', function () { stop(); try { sessionStorage.setItem('hjCam', kind); } catch (e) {} });
+    $('camAlbum').addEventListener('change', function () { try { sessionStorage.removeItem('hjCam'); } catch (e) {} var f = this.files && this.files[0]; this.value = ''; if (f) { close(); window['fpSet_' + kind](f); if (from === 'quick') setTimeout(function () { var el = $(kind + 'QRes'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50); } });
     box.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    // 앨범을 고르다 취소하고 돌아오면 카메라를 다시 켜요
+    document.addEventListener('visibilitychange', function () { if (!document.hidden && !box.hidden && !stream) setTimeout(function () { if (!box.hidden && !stream) start().catch(function () {}); }, 400); });
 
     // '바로 찍기': 앱 안 카메라를 먼저 쓰고, 안 되면 휴대폰 기본 카메라(파일 입력)로
     var inApp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
