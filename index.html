@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="hj-ver" content="69">
 <title>사주 만세력</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -161,6 +162,16 @@ body[data-mode=name] #go { background: #2F7D6B; }
 .sv-acts { grid-column: 2 / -1; display: flex; gap: 6px; flex-wrap: wrap; }
 .sv-acts button { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--green-2); background: #fff; color: var(--green-2); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; }
 .sv-acts button.sv-load { background: var(--green); color: #fff; border-color: var(--green); }
+.sv-acts button.sv-pack { background: #FFF6E0; color: #8A5A00; border-color: #F2D48A; }
+.pk-box { margin: 12px 0 4px; padding: 12px 14px; border-radius: 16px; background: linear-gradient(160deg, #FFF8EC, #F6F2FF); border: 1.5px solid #EADFC6; transition: box-shadow .3s; }
+.pk-box.pk-flash { box-shadow: 0 0 0 4px #F2C46B; }
+.pk-head { margin: 0 0 8px; } .pk-head b { display: block; font-size: 16px; color: #6B4A00; } .pk-head small { display: block; font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+.pk-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pk-b { min-height: 64px; border-radius: 14px; border: 1.5px solid; font: inherit; font-size: 14.5px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; word-break: keep-all; padding: 6px; }
+.pk-b span { font-size: 20px; line-height: 1; }
+.pk-pdf { background: #FFFFFF; border-color: #F2C9D6; color: #B4466A; } .pk-ln { background: #FFFFFF; border-color: #C9D7F2; color: #2F5590; }
+.pk-b:disabled { opacity: .6; cursor: wait; }
+.pk-got { margin: 8px 0; padding: 10px 14px; border-radius: 14px; background: #FFF1F5; border: 1.5px solid #F4A7BB; } .pk-got p { margin: 0 0 6px; font-size: 14.5px; }
 .sv-acts button.sv-del { border-color: #C9A3A3; color: #A3261D; }
 .nm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .nm-oh { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0 2px; }
@@ -457,6 +468,11 @@ textarea.out { width: 100%; min-height: 190px; font: 13px/1.6 var(--font-body); 
 .toast { font-size: 14px; color: var(--green-2); }
 #offBar { position: fixed; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 400; width: min(92vw, 460px); box-sizing: border-box; background: #3A2A31; color: #fff; border-radius: 16px; padding: 10px 14px; font-size: 13.5px; line-height: 1.5; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
 #offBar[hidden] { display: none; }
+#updBar { position: fixed; left: 50%; top: calc(10px + env(safe-area-inset-top)); transform: translateX(-50%); z-index: 410; width: min(92vw, 460px); box-sizing: border-box; display: flex; align-items: center; gap: 10px; background: #2F5590; color: #fff; border-radius: 16px; padding: 10px 12px 10px 16px; font-size: 14.5px; box-shadow: 0 8px 22px rgba(47, 85, 144, .35); }
+#updBar[hidden] { display: none; }
+#updBar span { flex: 1; line-height: 1.4; }
+#updBar button { min-height: 40px; border: 0; border-radius: 12px; background: #fff; color: #2F5590; font: inherit; font-weight: 700; padding: 0 12px; cursor: pointer; white-space: nowrap; }
+#updBar .upd-x { background: transparent; color: #fff; padding: 0 6px; font-size: 18px; }
 #offBar small { opacity: .8; }
 /* 풍수 */
 #splash .sp-choice .sp-fs { background: #D6EEDF !important; color: #2A6B45 !important; }
@@ -1000,6 +1016,16 @@ body[data-mode=tarot] .mode-sw button[aria-selected=true] { background: #1F4D3A;
       <button type="button" class="primary" id="svSave">지금 사주 저장</button>
     </div>
     <p class="toast" id="svMsg" role="status"></p>
+    <div class="pk-got" id="pkGot" hidden><p>💌 <b></b>의 사주를 링크로 받았어요. 아래에 풀이가 바로 나와 있어요.</p><button type="button" class="ghost" id="pkKeep">내 저장 목록에 넣기</button><p class="toast" id="pkKeepMsg" role="status"></p></div>
+    <div class="pk-box" id="pkBox">
+      <p class="pk-head"><b>📦 이 사람 풀이 통째로 보내기</b><small>지금 위에 넣은 사람의 명식·풀이·대운·세운·월운·합충 신살·명리 분석·토정비결·당사주를 한꺼번에 보내요.</small></p>
+      <div class="pk-btns">
+        <button type="button" class="pk-b pk-pdf" id="pkPdf"><span aria-hidden="true">📄</span>PDF 한 권으로 보내기</button>
+        <button type="button" class="pk-b pk-ln" id="pkLink"><span aria-hidden="true">🔗</span>앱 바로 열기 링크 보내기</button>
+      </div>
+      <p class="toast" id="pkMsg" role="status" style="white-space:pre-wrap"></p>
+      <p class="hint" style="margin:4px 0 0">PDF와 링크에는 생년월일과 태어난 시각이 들어 있어요. 보내도 괜찮은 사람에게만 보내 주세요. 링크를 받은 사람은 앱에서 같은 풀이를 바로 볼 수 있어요.</p>
+    </div>
     <div class="sv-tools">
       <div class="seg sv-filter" role="radiogroup" aria-label="목록 보기">
         <input type="radio" name="svF" id="svF-all" value="all" checked><label for="svF-all">전체</label>
@@ -4290,6 +4316,7 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
         '<button type="button" class="sv-star" data-i="' + r._i + '" aria-label="' + nm + ' 즐겨찾기' + (r.fav ? ' 해제' : '') + '" aria-pressed="' + (r.fav ? 'true' : 'false') + '">' + (r.fav ? '★' : '☆') + '</button>' +
         '<div class="sv-acts"><button type="button" class="sv-load" data-i="' + r._i + '">사주 보기</button>' +
         '<button type="button" class="sv-gh" data-i="' + r._i + '">궁합 상대로</button>' +
+        '<button type="button" class="sv-pack" data-i="' + r._i + '">📦 보내기</button>' +
         '<button type="button" class="sv-del" data-i="' + r._i + '">삭제</button></div></div>';
     }).join('');
   }
@@ -4305,6 +4332,236 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
     msg.textContent = svWrite(list) ? (at >= 0 ? '"' + name + '" 사주를 새 정보로 바꿔 저장했어요.' : '"' + name + '" 사주를 저장했어요.') : '이 브라우저에서는 저장할 수 없어요. (사생활 보호 모드인지 확인해 주세요)';
     svRender();
   });
+  // ================= 이 사람 풀이 통째로 보내기 (PDF 한 권 · 앱 바로 열기 링크) =================
+  var PK_APP = 'https://hong-jjang.github.io/saju/';
+  var PK_PARTS = [
+    ['1. 사주 명식', 'pn-1', ['입력한 생일 정보', '사주 명식', '📖 나의 사주 한눈에 풀이', '내 사주 핵심', '한눈에 풀이', '오행 분포', '공망·신살·형충회합', '계산에 쓴 기준']],
+    ['2. 성향과 명리 풀이', 'pn-5', ['🌷 나의 성향', '내 일주 성격', '기본 풀이', '보완하면 좋은 기운', '🔮 명리 분석']],
+    ['3. 운의 흐름', 'pn-2', ['대운', '세운', '월운', '🔥 그해 오행과 내 사주']],
+    ['4. 합충과 신살', 'pn-3', ['합·충·형·파·해', '신살과 귀인', '12신살']],
+    ['5. 전통 풀이', 'pn-6', ['📜 토정비결', '당사주']]
+  ];
+  var PK_SKIP = /^(BUTTON|INPUT|SELECT|TEXTAREA|SCRIPT|STYLE|SVG|CANVAS|IMG|VIDEO|FORM)$/;
+  function pkName() { return ($('svName').value || '').trim(); }
+  // 화면 내용을 글·표 조각으로 (버튼·입력칸·AI·공유 줄은 빼요)
+  function pkBlocks(sec) {
+    var out = [], BLOCK = /^(P|DIV|UL|OL|LI|TABLE|H3|H4|H5|SECTION|DETAILS|ARTICLE|DL|DT|DD|FIELDSET|BLOCKQUOTE)$/;
+    // 글 모으기: 나란한 칸(요소와 요소) 사이에는 띄어쓰기를 넣어요 (2025 乙巳 상관 …)
+    var txt = function (e) {
+      var parts = [], prevEl = false;
+      Array.prototype.forEach.call(e.childNodes, function (n) {
+        if (n.nodeType === 3) { parts.push(n.textContent); prevEl = false; return; }
+        if (n.nodeType !== 1 || PK_SKIP.test(n.tagName) || n.tagName === 'svg' || n.hidden || n.getAttribute('aria-hidden') === 'true') return;
+        var t = txt(n); if (!t) return;
+        parts.push((prevEl || /^(DIV|P|LI|BR|TD|TH)$/.test(n.tagName) ? ' ' : '') + t); prevEl = true;
+      });
+      return parts.join('').replace(/\s+/g, ' ').replace(/\s+([.,):·])/g, '$1').trim();
+    };
+    (function walk(el) {
+      Array.prototype.forEach.call(el.children, function (c) {
+        var tg = c.tagName;
+        if (PK_SKIP.test(tg) || tg === 'svg' || c.hidden || c.getAttribute('aria-hidden') === 'true' || c.style.display === 'none') return;
+        if (c.classList && (c.classList.contains('sh-row') || c.classList.contains('ai-links') || c.classList.contains('toast') || c.classList.contains('seg') || c.classList.contains('hj-ask') || c.classList.contains('err'))) return;
+        if (tg === 'H2') return;
+        if (tg === 'LABEL' && c.querySelector('input,select')) return;
+        if (/^(H3|H4|H5|SUMMARY|LEGEND)$/.test(tg)) { var h = txt(c); if (h) out.push({ t: 'h', s: h }); return; }
+        if (tg === 'TABLE') {
+          var rows = Array.prototype.map.call(c.querySelectorAll('tr'), function (tr) {
+            return Array.prototype.map.call(tr.children, function (td) {
+              var kids = Array.prototype.filter.call(td.children, function (k) { return txt(k); });
+              return kids.length > 1 ? kids.map(txt).join('\n') : txt(td);
+            });
+          }).filter(function (r) { return r.join('').trim(); });
+          if (rows.length) out.push({ t: 'table', rows: rows });
+          return;
+        }
+        var hasBlock = Array.prototype.some.call(c.children, function (k) { return BLOCK.test(k.tagName) || k.tagName === 'SUMMARY'; });
+        // 작은 칸 묶음(대운 한 칸, 오행 한 줄 등)은 한 줄로
+        if (hasBlock && !c.querySelector('table,h3,h4,h5,summary') && txt(c).length <= 70) { var one = txt(c); if (one && (!out.length || out[out.length - 1].s !== one)) out.push({ t: 'p', s: one }); return; }
+        if (hasBlock) { walk(c); return; }
+        var s = txt(c); if (!s) return;
+        if (/(누르면|눌러 |버튼|탭에서|아래 칸|위 칸)/.test(s) && s.length < 90) return; // 화면 조작 안내는 종이에서 빼요
+        if (tg === 'LI') s = '· ' + s;
+        if (!out.length || out[out.length - 1].s !== s) out.push({ t: 'p', s: s });
+      });
+    })(sec);
+    return out;
+  }
+  function pkCollect() {
+    var parts = [];
+    PK_PARTS.forEach(function (P) {
+      var pn = $(P[1]); if (!pn) return;
+      var secs = Array.prototype.slice.call(pn.querySelectorAll('section'));
+      var items = [];
+      P[2].forEach(function (want) {
+        var sec = secs.filter(function (s) { var h = s.querySelector('h2'); return h && h.textContent.trim().indexOf(want) === 0; })[0];
+        if (!sec) return;
+        var b = pkBlocks(sec); if (!b.length) return;
+        items.push({ title: sec.querySelector('h2').textContent.replace(/\s+/g, ' ').trim(), blocks: b });
+      });
+      if (items.length) parts.push({ title: P[0], items: items });
+    });
+    return parts;
+  }
+  // ---- A4 쪽 그림 만들기 (1240×1754, 150dpi) ----
+  function pkPages(name, parts, link) {
+    var W = 1240, H = 1754, M = 96, CW = W - M * 2, F = '"Gowun Dodum", "Noto Sans KR", sans-serif', B = '700 ';
+    var G = '#2F5590', PINK = '#B4466A', INK = '#2E2A33', MUT = '#7A7488', LINE = '#E4E0EC';
+    var pages = [], cv, c, y;
+    function wrap(t, w) { var lines = [], cur = ''; Array.from(t).forEach(function (ch) { if (ch === '\n') { lines.push(cur); cur = ''; return; } if (c.measureText(cur + ch).width > w && cur && !/[.,?!)』」’”…·]/.test(ch)) { lines.push(cur); cur = ch === ' ' ? '' : ch; } else cur += ch; }); if (cur) lines.push(cur); return lines; }
+    function rr(x, yy, w, h, r) { c.beginPath(); c.moveTo(x + r, yy); c.arcTo(x + w, yy, x + w, yy + h, r); c.arcTo(x + w, yy + h, x, yy + h, r); c.arcTo(x, yy + h, x, yy, r); c.arcTo(x, yy, x + w, yy, r); c.closePath(); }
+    function newPage() {
+      cv = document.createElement('canvas'); cv.width = W; cv.height = H; c = cv.getContext('2d');
+      c.fillStyle = '#FFFDF9'; c.fillRect(0, 0, W, H);
+      c.fillStyle = MUT; c.font = '22px ' + F; c.textAlign = 'left'; c.fillText('홍짱 사주 · ' + (name || '사주 풀이'), M, 60);
+      c.textAlign = 'right'; c.fillText(String(pages.length + 1), W - M, H - 50); c.textAlign = 'left';
+      c.strokeStyle = LINE; c.lineWidth = 2; c.beginPath(); c.moveTo(M, 78); c.lineTo(W - M, 78); c.stroke();
+      pages.push(cv); y = 130;
+    }
+    function need(h) { if (y + h > H - 100) newPage(); }
+    // 표지
+    newPage();
+    var g0 = c.createLinearGradient(0, 0, W, H); g0.addColorStop(0, '#CFE3FF'); g0.addColorStop(.55, '#E3DBFF'); g0.addColorStop(1, '#FFE3EC');
+    c.fillStyle = g0; c.fillRect(0, 0, W, H); rr(70, 70, W - 140, H - 140, 50); c.fillStyle = '#FFFDF9'; c.fill(); c.lineWidth = 5; c.strokeStyle = '#F4A7BB'; c.stroke();
+    ['#7CC49A', '#F28B82', '#F2C46B', '#C9CED6', '#8DB3F0'].forEach(function (col, i) { c.beginPath(); c.arc(W / 2 - 80 + i * 40, 300, 13, 0, 7); c.fillStyle = col; c.fill(); });
+    c.textAlign = 'center'; c.fillStyle = G; c.font = B + '78px ' + F; c.fillText(name ? name + '님의' : '나의', W / 2, 470); c.fillText('사주 풀이', W / 2, 570);
+    var info = (parts[0] && parts[0].items[0] && parts[0].items[0].title.indexOf('입력한') === 0) ? parts[0].items[0].blocks.map(function (b) { return b.s || ''; }).filter(Boolean) : [];
+    c.fillStyle = INK; c.font = '32px ' + F; var iy = 690; info.slice(0, 3).forEach(function (t) { wrap(t, W - 360).slice(0, 2).forEach(function (ln) { c.fillText(ln, W / 2, iy); iy += 50; }); });
+    iy = Math.max(iy + 60, 960); rr(W / 2 - 260, iy - 50, 520, 90 + parts.length * 52, 24); c.fillStyle = '#F6F4FB'; c.fill();
+    c.fillStyle = MUT; c.font = B + '28px ' + F; c.fillText('차례', W / 2, iy + 6); c.font = '30px ' + F; parts.forEach(function (p, i) { c.fillStyle = INK; c.fillText(p.title, W / 2, iy + 62 + i * 52); });
+    var d0 = new Date(); c.fillStyle = MUT; c.font = '26px ' + F; c.fillText('만든 날 ' + d0.getFullYear() + '. ' + (d0.getMonth() + 1) + '. ' + d0.getDate(), W / 2, H - 260);
+    c.save(); c.translate(W - 210, 210); c.rotate(0.1); rr(-56, -56, 112, 112, 20); c.fillStyle = '#E8736A'; c.fill(); c.fillStyle = '#FFF6F1'; c.font = B + '38px "Noto Sans KR", sans-serif'; c.fillText('홍', 0, -8); c.fillText('짱', 0, 38); c.restore();
+    c.fillStyle = G; c.font = B + '28px ' + F; c.fillText('hong-jjang.github.io/saju', W / 2, H - 180);
+    // 본문
+    parts.forEach(function (P, pi) {
+      if (pi === 0 || y > H * 0.62) newPage(); else y += 40;
+      rr(M, y - 50, CW, 80, 18); c.fillStyle = '#EEF2FF'; c.fill(); c.fillStyle = G; c.font = B + '42px ' + F; c.textAlign = 'left'; c.fillText(P.title, M + 28, y + 5); y += 90;
+      P.items.forEach(function (it) {
+        need(140);
+        c.fillStyle = PINK; c.font = B + '34px ' + F; wrap(it.title, CW).forEach(function (ln) { c.fillText(ln, M, y); y += 46; });
+        c.strokeStyle = '#F4A7BB'; c.lineWidth = 2; c.beginPath(); c.moveTo(M, y - 30); c.lineTo(M + 160, y - 30); c.stroke(); y += 6;
+        it.blocks.forEach(function (bk) {
+          if (bk.t === 'h') { need(70); c.fillStyle = G; c.font = B + '28px ' + F; wrap(bk.s, CW).forEach(function (ln) { c.fillText(ln, M, y + 6); y += 40; }); y += 4; return; }
+          if (bk.t === 'p') { c.fillStyle = INK; c.font = '26px ' + F; wrap(bk.s, CW).forEach(function (ln) { need(40); c.fillText(ln, M, y); y += 40; }); y += 8; return; }
+          if (bk.t === 'table') {
+            var ncol = Math.max.apply(null, bk.rows.map(function (r) { return r.length; })), cw = CW / ncol, fs = ncol > 6 ? 19 : ncol > 4 ? 21 : 23, lh = fs + 9;
+            c.font = fs + 'px ' + F; y += 4;
+            bk.rows.forEach(function (r, ri) {
+              var cells = []; for (var k = 0; k < ncol; k++) cells.push(wrap(String(r[k] || ''), cw - 14));
+              var rh = Math.max.apply(null, cells.map(function (l) { return l.length; })) * lh + 16;
+              need(rh); if (ri === 0 || y === 130) {}
+              c.fillStyle = ri === 0 ? '#F3F1FA' : (ri % 2 ? '#FFFFFF' : '#FBFAFE'); c.fillRect(M, y - lh + 2, CW, rh);
+              c.strokeStyle = LINE; c.lineWidth = 1.5; c.strokeRect(M, y - lh + 2, CW, rh);
+              cells.forEach(function (ls, k) {
+                c.fillStyle = ri === 0 ? G : INK; c.font = (ri === 0 ? B : '') + fs + 'px ' + F; c.textAlign = 'center';
+                ls.forEach(function (ln, j) { c.fillText(ln, M + cw * k + cw / 2, y + 6 + j * lh); });
+                if (k) { c.beginPath(); c.moveTo(M + cw * k, y - lh + 2); c.lineTo(M + cw * k, y - lh + 2 + rh); c.stroke(); }
+              });
+              c.textAlign = 'left'; y += rh;
+            });
+            y += 16;
+          }
+        });
+        y += 20;
+      });
+    });
+    // 마지막 안내
+    need(260); y += 20; c.fillStyle = MUT; c.font = '24px ' + F;
+    ['이 풀이는 전통 명리 계산과 해석을 정리한 참고 자료예요. 앞일을 정해 주지 않아요.', '중요한 결정은 사실을 확인하고 스스로 정해 주세요.'].concat(link ? ['앱에서 다시 보기: ' + link] : []).forEach(function (t) { wrap(t, CW).forEach(function (ln) { need(36); c.fillText(ln, M, y); y += 36; }); });
+    return pages;
+  }
+  // ---- JPEG 쪽 그림으로 PDF 만들기 (따로 도구 없이) ----
+  function pkPdf(pages) {
+    var enc = new TextEncoder(), chunks = [], len = 0, offs = [];
+    function add(x) { var b = typeof x === 'string' ? enc.encode(x) : x; chunks.push(b); len += b.length; }
+    function obj(n, body) { offs[n] = len; add(n + ' 0 obj\n'); body(); add('\nendobj\n'); }
+    var imgs = pages.map(function (cv) { var d = atob(cv.toDataURL('image/jpeg', 0.82).split(',')[1]), u = new Uint8Array(d.length); for (var i = 0; i < d.length; i++) u[i] = d.charCodeAt(i); return { w: cv.width, h: cv.height, b: u }; });
+    var N = pages.length, PW = 595.28, PH = 841.89;
+    add('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+    obj(1, function () { add('<< /Type /Catalog /Pages 2 0 R >>'); });
+    var kids = []; for (var i = 0; i < N; i++) kids.push((3 + i * 3) + ' 0 R');
+    obj(2, function () { add('<< /Type /Pages /Count ' + N + ' /Kids [' + kids.join(' ') + '] >>'); });
+    imgs.forEach(function (im, i) {
+      var pg = 3 + i * 3, ct = pg + 1, ix = pg + 2, cs = 'q ' + PW + ' 0 0 ' + PH + ' 0 0 cm /Im0 Do Q';
+      obj(pg, function () { add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + PW + ' ' + PH + '] /Resources << /XObject << /Im0 ' + ix + ' 0 R >> >> /Contents ' + ct + ' 0 R >>'); });
+      obj(ct, function () { add('<< /Length ' + cs.length + ' >>\nstream\n' + cs + '\nendstream'); });
+      obj(ix, function () { add('<< /Type /XObject /Subtype /Image /Width ' + im.w + ' /Height ' + im.h + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + im.b.length + ' >>\nstream\n'); add(im.b); add('\nendstream'); });
+    });
+    var total = 3 + N * 3, x = len;
+    add('xref\n0 ' + total + '\n0000000000 65535 f \n');
+    for (var n = 1; n < total; n++) add(('0000000000' + offs[n]).slice(-10) + ' 00000 n \n');
+    add('trailer\n<< /Size ' + total + ' /Root 1 0 R >>\nstartxref\n' + x + '\n%%EOF');
+    return new Blob(chunks, { type: 'application/pdf' });
+  }
+  // ---- 앱 바로 열기 링크 ----
+  function pkCode(rec, name) {
+    var o = { v: 1, n: name || '', c: rec.cal, g: rec.gender, d: rec.date, t: rec.unk ? '' : rec.time, u: rec.unk ? 1 : 0, p: rec.place, o: rec.lon || '', l: rec.leap ? 1 : 0, s: rec.dst ? 1 : 0 };
+    var b = btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+    return b.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  function pkDecode(code) {
+    var b = code.replace(/-/g, '+').replace(/_/g, '/'); while (b.length % 4) b += '=';
+    var o = JSON.parse(decodeURIComponent(escape(atob(b))));
+    if (!o || o.v !== 1 || !/^\d{4}-?\d{2}-?\d{2}$/.test(String(o.d).replace(/[^0-9-]/g, '')) ) throw new Error('bad');
+    return { name: String(o.n || '').slice(0, 20), rec: { cal: o.c === 'lunar' ? 'lunar' : 'solar', gender: o.g === 'M' ? 'M' : 'F', date: String(o.d), time: String(o.t || ''), unk: !!o.u, place: String(o.p || 'm30'), lon: String(o.o || ''), leap: !!o.l, dst: !!o.s, pv: 2 } };
+  }
+  function pkLink() { return PK_APP + '?p=' + pkCode(svSnap('a'), pkName()); }
+  function pkReady() {
+    var m = $('pkMsg');
+    try { A.read(zasi()); } catch (e) { m.textContent = '⚠️ 먼저 위에 생년월일을 넣어 주세요. (' + e.message + ')'; return false; }
+    if (!st.A) { touched = true; renderAll(false); }
+    return true;
+  }
+  function pkCopy(t) { var ok = false; try { var ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.top = '-1000px'; document.body.appendChild(ta); ta.select(); ok = document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {} try { if (navigator.clipboard) { navigator.clipboard.writeText(t); ok = true; } } catch (e) {} return ok; }
+  var pkMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  $('pkPdf').addEventListener('click', function () {
+    var m = $('pkMsg'); if (!pkReady()) return;
+    var name = pkName(), link = pkLink();
+    m.textContent = '📄 PDF를 만들고 있어요… (몇 초 걸려요)'; $('pkPdf').disabled = true;
+    var probe = '사주명식풀이대운세운월운합충신살토정비결당사주0123456789' + name;
+    var fonts = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('26px "Gowun Dodum"', probe), document.fonts.load('700 34px "Noto Sans KR"', probe)]).catch(function () {}) : Promise.resolve();
+    fonts.then(function () {
+      var parts = pkCollect();
+      if (!parts.length) throw new Error('풀이 내용을 찾지 못했어요.');
+      var pages = pkPages(name, parts, link), blob = pkPdf(pages);
+      pages.forEach(function (cv) { cv.width = cv.height = 0; });
+      var fname = '홍짱사주-' + (name || '사주풀이').replace(/[\\/:*?"<>|\s]+/g, '') + '.pdf', file = new File([blob], fname, { type: 'application/pdf' });
+      $('pkPdf').disabled = false;
+      if (pkMobile && navigator.canShare && navigator.share && navigator.canShare({ files: [file] })) {
+        return navigator.share({ files: [file], title: (name ? name + '님의 ' : '') + '사주 풀이', text: (name ? name + '님의 ' : '') + '사주 풀이 PDF예요. 홍짱 사주에서 만들었어요.' })
+          .then(function () { m.textContent = '보냈어요! (' + pages.length + '쪽 PDF)'; }, function (e) { m.textContent = e && e.name === 'AbortError' ? '보내기를 취소했어요.' : '보내지 못했어요. 다시 눌러 주세요.'; });
+      }
+      var url = URL.createObjectURL(blob), a = document.createElement('a'); a.href = url; a.download = fname; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 8000);
+      m.textContent = 'PDF를 저장했어요 (' + fname + ', ' + pages.length + '쪽). 카카오톡 대화창에 파일로 끌어 넣거나 [파일 보내기]로 보내 주세요.';
+    }).catch(function (e) { $('pkPdf').disabled = false; m.textContent = '⚠️ PDF를 만들지 못했어요. ' + (e && e.message ? e.message : ''); });
+  });
+  $('pkLink').addEventListener('click', function () {
+    var m = $('pkMsg'); if (!pkReady()) return;
+    var name = pkName(), link = pkLink(), text = (name ? name + '님의 ' : '') + '사주 풀이를 홍짱 사주 앱에서 바로 볼 수 있어요.\n' + link;
+    if (pkMobile && navigator.share) {
+      navigator.share({ title: '홍짱 사주', text: text }).then(function () { m.textContent = '링크를 보냈어요!'; }, function (e) { if (e && e.name === 'AbortError') { m.textContent = '보내기를 취소했어요.'; return; } m.textContent = pkCopy(text) ? '링크를 복사했어요. 카톡에 붙여 넣어 주세요.' : '복사가 안 됐어요.'; });
+      return;
+    }
+    m.textContent = pkCopy(text) ? '링크를 복사했어요. 카카오톡 대화창에 붙여 넣기(Ctrl+V) 해 주세요.' : '복사가 안 됐어요: ' + link;
+  });
+  // 받은 링크로 열었을 때: 그 사람 사주를 바로 보여 줘요 (앱이 다 준비된 뒤에)
+  setTimeout(function () {
+    var q = /[?&]p=([A-Za-z0-9_-]+)/.exec(location.search); if (!q) return;
+    var got; try { got = pkDecode(q[1]); } catch (e) { return; }
+    var sp = document.getElementById('splash'); if (sp) sp.hidden = true; document.body.style.overflow = '';
+    try { svFill('a', A, got.rec); } catch (e) { return; }
+    $('svName').value = got.name; touched = true; renderAll(true);
+    var bn = $('pkGot'); bn.hidden = false;
+    bn.querySelector('b').textContent = got.name ? got.name + '님' : '보내 준';
+    $('pkKeep').addEventListener('click', function () {
+      var list = svRead(), r = got.rec; r.name = got.name || '받은 사주'; r.t = Date.now(); r.memo = '링크로 받은 사주';
+      var at = -1; list.forEach(function (x, i) { if (x.name === r.name) at = i; }); if (at >= 0) list[at] = r; else list.push(r);
+      $('pkKeepMsg').textContent = svWrite(list) ? '저장 목록에 넣었어요.' : '이 브라우저에서는 저장할 수 없어요.'; svRender();
+    });
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+    setTimeout(function () { bn.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+  }, 0);
   $('svList').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-i]'); if (!b) return;
     var list = svRead(), i = +b.getAttribute('data-i'), r = list[i]; if (!r) return;
@@ -4313,6 +4570,12 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
       if (!confirm('"' + r.name + '" 사주를 목록에서 지울까요?')) return;
       var dl = svDelRead(); dl[r.name] = Date.now(); svDelWrite(dl);
       list.splice(i, 1); svWrite(list); svRender(); $('svMsg').textContent = '지웠어요.'; return;
+    }
+    if (b.classList.contains('sv-pack')) {
+      svFill('a', A, r); $('svName').value = r.name; $('svMemo').value = r.memo || ''; touched = true; renderAll(false);
+      $('pkMsg').textContent = '"' + r.name + '" 사주를 불러왔어요. PDF나 링크를 골라 보내 주세요.';
+      $('pkBox').scrollIntoView({ behavior: 'smooth', block: 'center' }); $('pkBox').classList.add('pk-flash'); setTimeout(function () { $('pkBox').classList.remove('pk-flash'); }, 1600);
+      return;
     }
     if (b.classList.contains('sv-load')) {
       svFill('a', A, r); $('svName').value = r.name; $('svMemo').value = r.memo || ''; touched = true; renderAll(document.body.getAttribute('data-mode') !== 'name');
@@ -6891,6 +7154,31 @@ if (typeof module !== "undefined") module.exports = {SAJU,LUNAR,SAJUX,READ};
   var ua = navigator.userAgent || '';
   var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
   if (standalone) document.body.classList.add('is-app');
+  // 새 버전 알림: 앱을 켜 둔 채로 돌아와도 새 버전이 있으면 알려 줘요 (다시 설치할 필요 없어요)
+  (function () {
+    var meta = document.querySelector('meta[name=hj-ver]'), mine = meta ? +meta.content : 0, last = 0, bar = null;
+    if (!mine || !/^https?:$/.test(location.protocol)) return;
+    function show() {
+      if (bar) { bar.hidden = false; return; }
+      bar = document.createElement('div'); bar.id = 'updBar'; bar.setAttribute('role', 'status');
+      bar.innerHTML = '<span>✨ 새 버전이 나왔어요</span><button type="button" class="upd-go">새로 열기</button><button type="button" class="upd-x" aria-label="닫기">×</button>';
+      bar.querySelector('.upd-go').addEventListener('click', function () { location.reload(); });
+      bar.querySelector('.upd-x').addEventListener('click', function () { bar.hidden = true; });
+      document.body.appendChild(bar);
+    }
+    function check() {
+      if (document.hidden || !navigator.onLine || Date.now() - last < 60000) return;
+      last = Date.now();
+      fetch(location.pathname + '?hjv=' + last, { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+        var m = /<meta name="hj-ver" content="(\d+)">/.exec(t || ''); if (m && +m[1] > mine) show();
+      }).catch(function () {});
+    }
+    document.addEventListener('visibilitychange', check);
+    window.addEventListener('focus', check);
+    setInterval(check, 30 * 60000);
+    setTimeout(check, 8000);
+    window.hjCheckUpdate = function () { last = 0; check(); };
+  })();
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(function () {}); });
   }
@@ -7129,7 +7417,7 @@ var KAKAO_JS_KEY = '393da0e592003f164282500dc2c8d890';
 <script>
 (function () {
   var sp = document.getElementById('splash'), go = document.getElementById('splashGo');
-  var seen = /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum|pungsu|fengshui|kkotjeom|flower|nalja|daycard)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
+  var seen = /[?&]p=[A-Za-z0-9_-]{20,}/.test(location.search) || /^#(tarot|name|tj|tojeong|mr|myeongri|face|gwansang|palm|songeum|dream|kkum|pungsu|fengshui|kkotjeom|flower|nalja|daycard)$/.test(location.hash); // 바로 가는 주소로 열면 시작 화면 건너뛰기
   function close() {
     sp.classList.add('out');
     document.body.style.overflow = '';

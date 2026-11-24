@@ -1,7 +1,7 @@
-// 홍짱 사주 앱: 오프라인용 서비스 워커 (2판)
+// 홍짱 사주 앱: 오프라인용 서비스 워커 (3판)
 // - 앱 파일: 인터넷이 되면 항상 새 파일을 먼저 받고, 안 될 때만 저장해 둔 화면을 보여 줘요.
 // - 글꼴·관상손금 인식 도구: 한 번 받은 것은 저장해 두고 다음부터 바로 꺼내 써요(오프라인에서도).
-const CACHE = 'hongjjang-saju-v2';
+const CACHE = 'hongjjang-saju-v3';
 const ASSETS = 'hongjjang-assets-v1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './favicon.ico', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 
@@ -42,13 +42,16 @@ self.addEventListener('fetch', (e) => {
   }
 
   if (url.origin !== self.location.origin) return; // 카카오·구글 로그인 등은 건드리지 않아요
+  // 새 버전 확인(hjv)과 받은 사주 링크(p)는 저장하지 않고 그대로 인터넷에서 받아요
+  if (url.searchParams.has('hjv')) return;
+  const saveReq = url.searchParams.has('p') ? new Request(url.origin + url.pathname) : req;
 
   e.respondWith(
     fetch(req, { cache: 'no-cache' })
       .then((res) => {
         if (res && res.ok) {
           const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
+          caches.open(CACHE).then((c) => c.put(saveReq, copy)).catch(() => {});
         }
         return res;
       })
